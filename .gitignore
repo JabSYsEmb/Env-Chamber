@@ -10,6 +10,6 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 
-# Ignore Files generated automatically by Intellj Idea 
+# Ignore Files generated automatically by Intellj Idea
 .idea/*
 *.iml
