@@ -8,5 +8,8 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+
+
+# Ignore Files generated automatically by Intellj Idea 
 .idea/*
 *.iml
