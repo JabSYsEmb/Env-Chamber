@@ -4,20 +4,21 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import java.util.Date;
 
-public class Report {
-    private int                     id;
-    private Date                    date;
-    private SimpleIntegerProperty   userID;
-    private SimpleStringProperty    userLastname;
-    private SimpleStringProperty    envChamberIP;
-    private SimpleIntegerProperty   takenDuration;
-    private SimpleStringProperty    userFirstname;
-    private SimpleStringProperty    pruflingSerialNumber;
-    private SimpleStringProperty    appliedCurveTasknumber;
 
-    public Report(int id, User observer, EnvChamber envChamber, Curve curve, Prufling prufling){
-        this.id                     = id;
-        this.date                   = new Date();
+public class Report {
+    private int id;
+    private final SimpleStringProperty    date;
+    private final SimpleIntegerProperty   userID;
+    private final SimpleStringProperty    userLastname;
+    private final SimpleStringProperty    envChamberIP;
+    private final SimpleIntegerProperty   takenDuration;
+    private final SimpleStringProperty    userFirstname;
+    private final SimpleStringProperty    pruflingSerialNumber;
+    private final SimpleStringProperty    appliedCurveTasknumber;
+
+    public Report(User observer, EnvChamber envChamber, Curve curve, Prufling prufling){
+        this.id                     = this.hashCode();
+        this.date                   = new SimpleStringProperty(new Date().toString());
         this.userID                 = new SimpleIntegerProperty(Integer.parseInt(observer.getId()));
         this.userLastname           = new SimpleStringProperty(observer.getLastName());
         this.envChamberIP           = new SimpleStringProperty(envChamber.getIp());
@@ -27,7 +28,11 @@ public class Report {
         this.appliedCurveTasknumber = new SimpleStringProperty(curve.getTaskNumber());
     }
 
-    public Date getDate() {
+    public String getDate() {
+        return date.get();
+    }
+
+    public SimpleStringProperty dateProperty() {
         return date;
     }
 
@@ -86,4 +91,5 @@ public class Report {
     public SimpleStringProperty appliedCurveTasknumberProperty() {
         return appliedCurveTasknumber;
     }
+
 }
