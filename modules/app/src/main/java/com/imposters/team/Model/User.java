@@ -1,17 +1,18 @@
 package com.imposters.team.model;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class User {
     private SimpleStringProperty id, firstName, lastName, username;
-    private boolean administrator;
+    private SimpleBooleanProperty administrator;
 
     public User(String id, String firstName, String lastName, String username, boolean administrator){
         this.id             = new SimpleStringProperty(id);
         this.firstName      = new SimpleStringProperty(firstName);
         this.lastName       = new SimpleStringProperty(lastName);
         this.username       = new SimpleStringProperty(username);
-        this.administrator  =  administrator;
+        this.administrator  = new SimpleBooleanProperty(administrator);
     }
 
     // Getter and setters of attributes
@@ -64,6 +65,11 @@ public class User {
     }
 
     public boolean isAdministrator() {
-        return administrator;
+        return administrator.get();
+    }
+
+    @Override
+    public String toString(){
+        return (this.firstName.getValue() + " " + this.lastName.getValue());
     }
 }
