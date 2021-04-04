@@ -252,31 +252,93 @@ public class MyJDBC {
                 + " Password VARCHAR(10),"
                 + " AdminStatus BIT(1) ");
 
-
+        /*
+             ***************************************************
+             * Curve_ID * Tasknumber * Duration * Temperature  *
+             * *************************************************
+             *  Int     *VARCHAR     *VARCHAR   *  Boolean Bit *
+             *   0      * Ahmed      * Must     *     True     *
+             *          *            *          *              *
+             *   1      *  ...       *  ...     *      ...     *
+             *          *            *          *              *
+             *          *            *          *              *
+             *   9..    *            *          *      ...     *
+             * *************************************************
+             */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Curve ("
                 + "Curve_ID INT(10)  INT  NOT NULL IDENTITY PRIMARY KEY,"
                 + " Tasknumber VARCHAR(45),"
                 + " Duration VARCHAR(100),"
                 + " Temperature VARCHAR(100),");
 
+        /*
+         ***************************************************
+         * CDID_INT *Curve_ID FK * Duration * Temperature  *
+         * *************************************************
+         *  Int     *VARCHAR     *VARCHAR   *  Boolean Bit *
+         *   0      * Ahmed      * Must     *     True     *
+         *          *            *          *              *
+         *   1      *  ...       *  ...     *      ...     *
+         *          *            *          *              *
+         *          *            *          *              *
+         *   9..    *            *          *      ...     *
+         * *************************************************
+         */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Curveduration ("
                 + "CDID_INT(10)  INT  NOT NULL IDENTITY PRIMARY KEY,"
                 + " Duration INT(),"
                 + " Temperature INT(),"
                 + " FOREIGN KEY (Curve_ID) REFERENCES Curve(Curve_ID),");
 
-
+        /*
+         ***************************************************
+         * EnvchamberID  *     Ip     *  Maxtemperature    *
+         * *************************************************
+         *  Int          * 127.0.0.1  *                    *
+         *   0           *            *                    *
+         *               *            *                    *
+         *   1           *  ...       *                    *
+         *               *            *                    *
+         *               *            *                    *
+         *   9..         *            *                    *
+         * *************************************************
+         */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Envchamber ("
                 + "  Envchamber_ID (10)  INT  NOT NULL IDENTITY PRIMARY KEY ,"
                 + "  Ip varchar(45),"
                 + "  Maxtemperature INT");
 
-
+        /*
+         ***************************************************************
+         *            *           *            *          *            *
+         * *************************************************************
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         * *************************************************************
+         */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Prufling ("
                 + "  Prufling_ID (10)  INT  NOT NULL IDENTITY PRIMARY KEY ,"
                 + "  Serialnumber INT,"
                 + "  Maxduration INT");
 
+        /*
+         ***************************************************************
+         *            *           *            *          *            *
+         * *************************************************************
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         * *************************************************************
+         */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Test ("
                 + "  Slot_ID (10)  INT  NOT NULL IDENTITY PRIMARY KEY ,"
                 + "  FOREIGN KEY (Curve_ID) REFERENCES Curve(Curve_ID),"
@@ -285,6 +347,19 @@ public class MyJDBC {
                 + "  Takenduration  INT "
                 + "  Startingtime TIME ");
 
+        /*
+         ***************************************************************
+         *            *           *            *          *            *
+         * *************************************************************
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         *            *           *            *          *            *
+         * *************************************************************
+         */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Bericht ("
                 + "  Bericht_ID INT  NOT NULL IDENTITY PRIMARY KEY,"
                 + "  FOREIGN KEY (Test_ID) REFERENCES Test(Test_ID),"
@@ -292,7 +367,7 @@ public class MyJDBC {
                 + "  FOREIGN KEY (Envchamber_ID) REFERENCES"
                 + "  FOREIGN KEY (Envchamber_ID)Envchamber(Envchamber_ID),"
                 + "  Date DATE ,");
-    }
+}
 
 /* ********************************PART_3************************************** */
     // For error handler and console functions.
