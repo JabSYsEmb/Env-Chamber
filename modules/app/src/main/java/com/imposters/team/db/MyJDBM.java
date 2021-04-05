@@ -428,4 +428,28 @@ public class MyJDBC {
     public void setVerbose(boolean verbose) {
         this.verbose = verbose;
     }
+
+    /**
+     * encrypts input password by an user via SHA-512 encryption
+     * digest algorithm into 128 characters before storing it in 
+     * Database.
+     * 
+     * @param passwd the unencrypted password that is passed by an user
+     *               to the database.
+     * @return       encrypted password as a String
+     */
+    public String Encrypter(String passwd){
+        MessageDigest md = null;
+        try{
+            md = MessageDigest.getInstance("SHA-512");
+        }catch(NoSuchAlgorithmException ex){
+            System.out.println(ex.getMessage());
+        }
+        // seperates the password into bytes for encyprtion.
+        md.update(passwd.getBytes(StandardCharsets.UTF_8));
+        byte[] digest = md.digest();
+        
+        String encryptedPasswd = String.format("%064x",new BigInteger(1,digest));
+        return encryptedPasswd;
+    }
 }
