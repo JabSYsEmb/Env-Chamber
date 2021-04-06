@@ -13,7 +13,7 @@ buildNumber.properties
 # GitIgnore Files generated automatically by Intellj IDEA
 .idea/*
 *.iml
-*/.idea
+modules/app/.idea/
 
 # Eclipse IDE GitIgnore
 .metadata
