@@ -31,29 +31,6 @@
             <version>4.7</version>
             <scope>test</scope>
         </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>2.5.1</version>
-            <scope>test</scope>
-        </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <!-- dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.22</version>
-        </dependency -->
-        
-        <!-- https://www.joda.org/joda-time/#
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.10.10</version>
-        </dependency> -->
-        
     </dependencies>
 
     <build>

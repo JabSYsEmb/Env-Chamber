@@ -59,11 +59,12 @@ public class CabinetMock extends Thread {
     }
 
     public static void main(String[] args) throws Exception {
-        if (args.length == 0) {
-            CabinetMock.log("Usage: CabinetMock <port>");
-            throw new Exception("Usage: CabinetMock <port>");
-        }
-        int port = Integer.parseInt(args[0]);
+        int port = args.length == 0 ? 2332 :  Integer.parseInt(args[0]);
+        System.out.println("Listening to port: " + port);
+        // if (args.length == 0) {
+        //     CabinetMock.log("Usage: CabinetMock <port>");
+        //     throw new Exception("Usage: CabinetMock <port>");
+        // }
         CabinetMock.log("Start server on port: " + port);
 
         CabinetMock server = new CabinetMock(port);
