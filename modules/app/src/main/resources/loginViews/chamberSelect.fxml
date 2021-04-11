@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="600.0" maxWidth="1000.0" minHeight="-600.0" minWidth="-1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.imposters.team.controllers.loginViews.ChamberSelectController">
+    <top>
+        <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #054671;" BorderPane.alignment="CENTER">
+            <children>
+                <Text fill="WHITE" fontSmoothingType="LCD" layoutX="26.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schrank Auswahl" wrappingWidth="201.21484375">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+    </top>
+    <center>
+        <AnchorPane prefHeight="534.0" prefWidth="1060.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="chamberSelectingButton" layoutX="632.0" layoutY="277.0" mnemonicParsing="false" style="-fx-background-color: 00; -fx-border-color: #054671;" text="auswählen" textFill="#054671" />
+                <ComboBox fx:id="chamberComboBox" layoutX="259.0" layoutY="225.0" prefHeight="27.0" prefWidth="446.0" style="-fx-background-color: 000; -fx-border-color: #054671;" AnchorPane.bottomAnchor="281.40000000000003" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="294.6" AnchorPane.topAnchor="225.0" />
+                <Text fill="#054671" layoutX="259.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wählen Sie Bitte einen Klimaschrank aus" wrappingWidth="308.5367431640625">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Text>
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </AnchorPane>
+    </center>
+</BorderPane>
