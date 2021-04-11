@@ -58,14 +58,14 @@
                 <runtimeBits>32</runtimeBits>
               </jre>
               <versionInfo>
-                <fileVersion>1.2.3.4</fileVersion>
-                <txtFileVersion>txt file version?</txtFileVersion>
-                <fileDescription>a description</fileDescription>
-                <copyright>my copyright</copyright>
-                <productVersion>4.3.2.1</productVersion>
-                <txtProductVersion>txt product version</txtProductVersion>
-                <productName>E-N-C-C</productName>
-                <internalName>ccne</internalName>
+                <fileVersion>${project.version}.0.0.0</fileVersion>
+                <txtFileVersion>Code's written for educational porposes</txtFileVersion>
+                <fileDescription>Environmental Chamber Controller</fileDescription>
+                <copyright>Imposters Team</copyright>
+                <productVersion>${project.version}.0.0.0</productVersion>
+                <txtProductVersion>Imposters Team created by Cabbar</txtProductVersion>
+                <productName>${project.artifactId}-${project.packaging}</productName>
+                <internalName>Env-Chamber</internalName>
                 <originalFilename>app.exe</originalFilename>
               </versionInfo>
             </configuration>
