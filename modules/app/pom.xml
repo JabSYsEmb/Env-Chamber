@@ -130,7 +130,15 @@
         <version>16</version>
         <scope>compile</scope>
     </dependency>
-    
+
+    <!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix/9.0.10-->
+    <dependency>
+      <groupId>com.jfoenix</groupId>
+      <artifactId>jfoenix</artifactId>
+      <version>9.0.10</version>
+    </dependency>
+
+
     <!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
     <!-- <dependency>
         <groupId>org.hsqldb</groupId>
