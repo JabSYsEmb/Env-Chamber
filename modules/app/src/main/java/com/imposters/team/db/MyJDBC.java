@@ -9,20 +9,25 @@ import java.sql.*;
 import java.util.Enumeration;
 
 public class MyJDBC {
-    private static final String DB_DEFAULT_DATABASE = "testdb";
-    private static final String DB_DEFAULT_SERVER_URL = "file";
-    private static final String DB_DEFAULT_ACCOUNT = "SA";
-    private static final String DB_DEFAULT_PASSWORD = "";
-    // mysql  database : use "com.mysql.cj.jdbc.Driver"
-    // hsqldb database : use "org.hsqldb.jdbcDriver" OR org.hsqldb.jdbc.JDBCDriver
-    private final static String DB_DRIVER_URL = "org.hsqldb.jdbc.JDBCDriver";
-    private final static String DB_DRIVER_PREFIX = "jdbc:hsqldb:";
+    //Part 1
+    private static final String DB_DEFAULT_DATABASE = "sys";
+    private static final String DB_DEFAULT_SERVER_URL = "localhost:3306";
+    private static final String DB_DEFAULT_ACCOUNT = "root";
+    private static final String DB_DEFAULT_PASSWORD = "root";
+
+    private final static String DB_DRIVER_URL = "com.mysql.jdbc.Driver";
+    private final static String DB_DRIVER_PREFIX = "jdbc:mysql://";
+    private final static String DB_DRIVER_PARAMETERS = "?useSSL=false";
 
     private Connection connection = null;
-    private boolean verbose = true; // set for verbose logging of all queries
-    private String errorMessage = null; // remembers the first error message on the connection
 
-    // Starts of constructors
+    // set for verbose logging of all queries
+    private boolean verbose = true;
+
+    // remembers the first error message on the connection
+    private String errorMessage = null;
+
+    // constructors
     public MyJDBC() {
         this(DB_DEFAULT_DATABASE, DB_DEFAULT_SERVER_URL, DB_DEFAULT_ACCOUNT, DB_DEFAULT_PASSWORD);
     }
@@ -41,19 +46,16 @@ public class MyJDBC {
             if (!selectDriver(DB_DRIVER_URL)) {
                 return;
             }
+
             if (password == null) {
                 password = "";
             }
+
             // establish a connection to a named database on a specified server
-            String connStr = DB_DRIVER_PREFIX + serverURL + ":" + dbName;
-            log("Connecting " + connStr + "...");
+            String connStr = DB_DRIVER_PREFIX + serverURL + "/" + dbName + DB_DRIVER_PARAMETERS;
+            log("Connecting " + connStr);
             this.connection = DriverManager.getConnection(connStr, account, password);
-            if (!this.connection.isClosed()) {
-                System.out.println(
-                        "The connection has been established successfully to " +
-                                dbName
-                );
-            }
+
         } catch (SQLException eSQL) {
             error(eSQL);
             this.close();
