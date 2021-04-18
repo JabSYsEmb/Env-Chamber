@@ -1,18 +1,51 @@
+.closeBtn{
+
+}
+
+.closeBtn:hover{
+    -fx-cursor:             crosshair;
+}
+
+.windowMainStyle{
+    -fx-alignment:           center;
+    -fx-pref-width:          1060px;
+    -fx-background-color:   #ffffff;
+}
+
 .button{
-    -fx-pref-width:         110px;
-    -fx-pref-height:        27px;
     -fx-text-fill:          #054671;
+    -fx-pref-width:           110px;
+    -fx-pref-height:           27px;
     -fx-border-color:       #0f4ff1;
     -fx-background-color:   #ffffff;
 }
 
-#closeBtn{
-    -fx-text-fill: "#2f2f2f";
+.button1{
+    -fx-text-fill:          #054671;
+    -fx-pref-width:           110px;
+    -fx-pref-height:           27px;
+    -fx-border-color:       #0f4ff1;
+    -fx-background-color:   #ffffff;
 }
 
-#hoveredBtn{
-    -fx-fill:               true;
-    -fx-text-fill:          #9F1010;
-    -fx-border-color:       #9F1010;
-    -fx-background-color:   #DEDEDE;
+.button1:hover{
+    -fx-effect:             dropshadow(three-pass-box,#8195ad, 1, 0.5, 3, 2);
+    -fx-cursor:             hand;
+    -fx-text-fill:          #ffffff;
+    -fx-border-color:       #0f4ff1;
+    -fx-background-color:   #0d40c1;
+ }
+
+.textBoxLogin{
+    -fx-pref-width:         445px;
+    -fx-pref-height:         30px;
+}
+
+.alertMessage{
+    -fx-alignment:   center-right;
+    -fx-font-size:           13px;
+    -fx-text-fill:        #ff0000;
+    -fx-pref-width:           300;
+    -fx-pref-height:           20;
+    -fx-text-alignment:     right;
 }
