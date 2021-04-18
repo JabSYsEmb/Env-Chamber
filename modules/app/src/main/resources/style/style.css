@@ -1,0 +1,18 @@
+.button{
+    -fx-pref-width:         110px;
+    -fx-pref-height:        27px;
+    -fx-text-fill:          #054671;
+    -fx-border-color:       #0f4ff1;
+    -fx-background-color:   #ffffff;
+}
+
+#closeBtn{
+    -fx-text-fill: "#2f2f2f";
+}
+
+#hoveredBtn{
+    -fx-fill:               true;
+    -fx-text-fill:          #9F1010;
+    -fx-border-color:       #9F1010;
+    -fx-background-color:   #DEDEDE;
+}

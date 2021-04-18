@@ -8,13 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.BlurType;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.effect.InnerShadow;
-import javafx.scene.paint.Color;
-
-import java.security.Guard;
 
 
 public class LoginController {
@@ -57,34 +50,24 @@ public class LoginController {
     @FXML
     public void onMouseEntered(){
         App.setCursor(Cursor.HAND);
-        loginBtn.setStyle(
-//                "-fx-border-color: #9F1010;" +
-//                "-fx-text-fill: #9F1010;" +
-                "-fx-background-color: #DEDEDE;" +
-                "-fx-fill: true");
+            loginBtn.setStyle(getBtnEnteredMode());
     }
 
     @FXML
     public void onMouseExited(){
         App.setCursor(Cursor.DEFAULT);
-        loginBtn.setStyle("-fx-border-color: #054671;-fx-text-fill: #054671;-fx-background-color: #ffffff");
+        loginBtn.setStyle(null);
     }
 
     @FXML
     public void onCloseClicked(){
-        App.getPrimaryStageOfprogram().close();
+        App.getPrimaryStageOfProgram().close();
     }
 
     @FXML
     public void onCloseEntered(){
         App.setCursor(Cursor.HAND);
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setRadius(5.0);
-        dropShadow.setOffsetX(3.0);
-        dropShadow.setOffsetY(3.0);
-        dropShadow.setColor(Color.color(0.2, 0.5, 0.5));
-        closeBtn.setEffect(dropShadow);
-        closeBtn.setStyle("-fx-text-fill: #c51300");
+        closeBtn.setStyle(getCloseEnteredMode());
     }
 
     @FXML
@@ -93,4 +76,18 @@ public class LoginController {
         closeBtn.setEffect(null);
         closeBtn.setStyle("-fx-text-fill: #2f2f2f");
     }
+
+    public String getBtnEnteredMode(){
+        return  "-fx-effect:             dropshadow(three-pass-box," +
+                                        "#8195ad, 1, 0.5, 3, 2);" +
+                "-fx-text-fill:          #ffffff;" +
+                "-fx-border-color:       #0f4ff1;" +
+                "-fx-background-color:   #0d40c1;";
+    }
+    public String getCloseEnteredMode(){
+        return  "-fx-effect:            dropshadow(one-pass-box," +
+                                        "#828187, 2, 0.6, 1.4, 1.4);"+
+                "-fx-text-fill:         #c51300;";
+    }
+
 }

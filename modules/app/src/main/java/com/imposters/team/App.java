@@ -14,22 +14,24 @@ import javafx.stage.StageStyle;
  */
 public class App extends Application{
     protected static Parent root;
-    protected static Stage primaryStageOfprogram;
-
+    protected static Stage primaryStageOfProgram;
+    private String css;
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.root = FXMLLoader.load(getClass().getResource("/loginViews/login.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
+        css = App.class.getResource("/style/style.css").toExternalForm();
+        root.getStylesheets().add(css);
         primaryStage.setScene(new Scene(this.root));
         primaryStage.setResizable(false);
-        primaryStageOfprogram = primaryStage;
+        primaryStageOfProgram = primaryStage;
         primaryStage.show();
     }
 
     public static Parent getRoot(){
         return root;
     }
-    public static Stage getPrimaryStageOfprogram(){ return primaryStageOfprogram;}
+    public static Stage getPrimaryStageOfProgram(){ return primaryStageOfProgram;}
     public static void setCursor(Cursor style){
         root.setCursor(style);
     }
