@@ -4,8 +4,6 @@ import com.imposters.team.App;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 
@@ -41,5 +39,8 @@ public class LoginController {
     public void onCloseClicked(){
         App.getPrimaryStageOfProgram().close();
     }
+
+    @FXML
+    public void onMinimizingClicked(){}
 
 }
