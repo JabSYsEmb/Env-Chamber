@@ -227,156 +227,224 @@ public class MyJDBC {
     }
 
 /* ********************************PART_2************************************** */
+     /**
+     * @author Hail Ibrahimoglu
+     * 
+     **/
 
     // Creating the whole database for the project.
-    public static void createEnvChamberDatabase(String ccm) {
+    public static void createEnvChamberDatabase(String dbName) {
 
-        System.out.println("Creating the " + ccm + " database...");
+        System.out.println("Creating the " + dbName + " database...");
 
-        MyJDBC sysJDBC = new MyJDBC("sys");
-        sysJDBC.executeUpdateQuery("CREATE DATABASE IF NOT EXISTS " + ccm);
+        MyJDBC sysJDBC = new MyJDBC("mydb");
+        sysJDBC.executeUpdateQuery("CREATE DATABASE IF NOT EXISTS " + dbName);
         sysJDBC.close();
 
         System.out.println("Creating the User table...");
-        MyJDBC myJDBC = new MyJDBC(DB_DEFAULT_DATABASE);
+        MyJDBC myJDBC = new MyJDBC(dbName);
 
         /*
-         ***************************************************************
-         * UserId * Fname * Lname * Username * Password * AdminsStatus *
-         * *************************************************************
-         *  Int   *VARCHAR*VARCHAR* VARCHAR  * VARCHAR  *  Boolean Bit *
-         *   0    * Ahmed * Must  *  Adminz  *SH63NX6385*     True     *
-         *        *       *       *          *287K....  *              *
-         *   1    *  ...  *  ...  *   ...    *   ...    *      ...     *
-         *        *       *       *          *          *              *
-         * *************************************************************
+        +---------+---------+------------+----------+----------+-------------+
+        | User_ID | Fname   | Lname      | Username | Password | AdminStatus |
+        +---------+---------+------------+----------+----------+-------------+
+        |       1 | Bianca  | Randermann | Bibo     | 12345    |           1 |
+        |       2 | Anna    | Gutenberg  | nino     | 54321    |           0 |
+        |       3 | Katrina | Gunther    | kiko     | 14523    |           0 |
+        +---------+---------+------------+----------+----------+-------------+
          */
+
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS User ("
-                + " User_ID INT(10)  INT  NOT NULL IDENTITY PRIMARY KEY,"
+                + " User_ID INT(10)  NOT NULL AUTO_INCREMENT  PRIMARY KEY ,"
                 + " Fname VARCHAR(45),"
                 + " Lname VARCHAR(45),"
                 + " Username VARCHAR(45),"
                 + " Password VARCHAR(10),"
-                + " AdminStatus BIT(1) ");
+                + " AdminStatus  BOOLEAN);");
 
         /*
-             ***************************************************
-             * Curve_ID * Tasknumber * Duration * Temperature  *
-             * *************************************************
-             *  Int     *VARCHAR     *VARCHAR   *  Boolean Bit *
-             *   0      * Ahmed      * Must     *     True     *
-             *          *            *          *              *
-             *   1      *  ...       *  ...     *      ...     *
-             *          *            *          *              *
-             *          *            *          *              *
-             *   9..    *            *          *      ...     *
-             * *************************************************
+        +----------+------------+----------+
+        | Curve_ID | Tasknumber | Duration |
+        +----------+------------+----------+
+        |        1 | 200A       | NULL     |
+        |        2 | 201A       | NULL     |
+        |        3 | 202A       | NULL     |
+        +----------+------------+----------+
              */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Curve ("
-                + "Curve_ID INT(10)  INT  NOT NULL IDENTITY PRIMARY KEY,"
+                + "Curve_ID INT(10) NOT NULL AUTO_INCREMENT  PRIMARY KEY,"
                 + " Tasknumber VARCHAR(45),"
-                + " Duration VARCHAR(100),"
-                + " Temperature VARCHAR(100),");
+                + " Duration VARCHAR(100));");
 
         /*
-         ***************************************************
-         * CDID_INT *Curve_ID FK * Duration * Temperature  *
-         * *************************************************
-         *  Int     *VARCHAR     *VARCHAR   *  Boolean Bit *
-         *   0      * Ahmed      * Must     *     True     *
-         *          *            *          *              *
-         *   1      *  ...       *  ...     *      ...     *
-         *          *            *          *              *
-         *          *            *          *              *
-         *   9..    *            *          *      ...     *
-         * *************************************************
+        +------+------+----------+-------------+----------+
+        | CDID | Step | Duration | Temperature | Curve_ID |
+        +------+------+----------+-------------+----------+
+        |    1 |    1 |        5 |          50 |        1 |
+        |    2 |    2 |        3 |          60 |        1 |
+        |    3 |    3 |        7 |         -60 |        1 |
+        |    4 |    1 |        7 |          10 |        2 |
+        |    5 |    2 |        1 |         100 |        2 |
+        |    6 |    3 |        9 |           3 |        2 |
+        +------+------+----------+-------------+----------+
          */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Curveduration ("
-                + "CDID_INT(10)  INT  NOT NULL IDENTITY PRIMARY KEY,"
-                + " Duration INT(),"
-                + " Temperature INT(),"
-                + " FOREIGN KEY (Curve_ID) REFERENCES Curve(Curve_ID),");
+                + "CDID INT(10) NOT NULL   PRIMARY KEY,"
+                + "Step INT(10) NOT NULL ,"
+                + " Duration INT,"
+                + " Temperature INT,"
+                + " Curve_ID INT,"
+                + " FOREIGN KEY (Curve_ID) REFERENCES Curve(Curve_ID));");
 
         /*
-         ***************************************************
-         * EnvchamberID  *     Ip     *  Maxtemperature    *
-         * *************************************************
-         *  Int          * 127.0.0.1  *                    *
-         *   0           *            *                    *
-         *               *            *                    *
-         *   1           *  ...       *                    *
-         *               *            *                    *
-         *               *            *                    *
-         *   9..         *            *                    *
-         * *************************************************
+        +---------------+-----------+-------------+
+        | Envchamber_ID | Ip        | temperature |
+        +---------------+-----------+-------------+
+        |             1 | 127.04.39 |        NULL |
+        |             2 | 536.02.01 |        NULL |
+        +---------------+-----------+-------------+
          */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Envchamber ("
-                + "  Envchamber_ID (10)  INT  NOT NULL IDENTITY PRIMARY KEY ,"
+                + "  Envchamber_ID INT  NOT NULL AUTO_INCREMENT  PRIMARY KEY ,"
                 + "  Ip varchar(45),"
-                + "  Maxtemperature INT");
+                + "  temperature INT);");
 
         /*
-         ***************************************************************
-         *            *           *            *          *            *
-         * *************************************************************
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         * *************************************************************
+        +-------------+--------------+-------------+
+        | Prufling_ID | Serialnumber | Maxduration |
+        +-------------+--------------+-------------+
+        |           1 | A10252       |          30 |
+        |           2 | A15425       |          20 |
+        |           3 | A17777       |          20 |
+        +-------------+--------------+-------------+
          */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Prufling ("
-                + "  Prufling_ID (10)  INT  NOT NULL IDENTITY PRIMARY KEY ,"
-                + "  Serialnumber INT,"
-                + "  Maxduration INT");
+                + "  Prufling_ID  INT  NOT NULL  PRIMARY KEY ,"
+                + "  Serialnumber varchar(45),"
+                + "  Maxduration INT);");
+
 
         /*
-         ***************************************************************
-         *            *           *            *          *            *
-         * *************************************************************
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         * *************************************************************
-         */
-        myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Test ("
-                + "  Slot_ID (10)  INT  NOT NULL IDENTITY PRIMARY KEY ,"
-                + "  FOREIGN KEY (Curve_ID) REFERENCES Curve(Curve_ID),"
-                + "  FOREIGN KEY (Prufling_ID) REFERENCES Purfling(Prufling_ID),"
-                + "  Failurestatus BIT(1),"
-                + "  Takenduration  INT "
-                + "  Startingtime TIME ");
-
-        /*
-         ***************************************************************
-         *            *           *            *          *            *
-         * *************************************************************
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         *            *           *            *          *            *
-         * *************************************************************
+        +------------+---------+---------------+------+
+        | Bericht_ID | User_ID | Envchamber_ID | Date |
+        +------------+---------+---------------+------+
+        |          1 |       2 |             1 | NULL |
+        |          2 |       3 |             1 | NULL |
+        +------------+---------+---------------+------+
          */
         myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Bericht ("
-                + "  Bericht_ID INT  NOT NULL IDENTITY PRIMARY KEY,"
-                + "  FOREIGN KEY (Test_ID) REFERENCES Test(Test_ID),"
+                + "  Bericht_ID INT  NOT NULL  PRIMARY KEY,"
+                + " User_ID INT(10),"
+                + "  Envchamber_ID INT,"
                 + "  FOREIGN KEY (User_ID) REFERENCES User(User_ID),"
-                + "  FOREIGN KEY (Envchamber_ID) REFERENCES"
-                + "  FOREIGN KEY (Envchamber_ID)Envchamber(Envchamber_ID),"
-                + "  Date DATE ,");
-}
+                + "  FOREIGN KEY (Envchamber_ID) REFERENCES Envchamber(Envchamber_ID),"
+                + "  Date DATETIME(6) );");
 
-/* ********************************PART_3************************************** */
+
+        /*
+        +---------+----------+------------+-------------+---------------+---------------+--------------+
+        | Slot_ID | Curve_ID | Bericht_ID | Prufling_ID | Failurestatus | Takenduration | Startingtime |
+        +---------+----------+------------+-------------+---------------+---------------+--------------+
+        |       1 |        1 |          1 |           1 |             1 |            50 | NULL         |
+        |       2 |        2 |          1 |           1 |             1 |            70 | NULL         |
+        |       3 |        2 |          2 |           3 |             0 |            20 | NULL         |
+        |       4 |        1 |          1 |           1 |             0 |             5 | NULL         |
+        |       5 |        2 |          2 |           2 |             1 |            60 | NULL         |
+        |       6 |        3 |          2 |           3 |             0 |             3 | NULL         |
+        +---------+----------+------------+-------------+---------------+---------------+--------------+
+         */
+        myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Test ("
+                + "  Slot_ID  INT  NOT NULL  PRIMARY KEY ,"
+                + "  Curve_ID INT(10),"
+                + "  Bericht_ID INT,"
+                + "  Prufling_ID  INT,"
+                + "  FOREIGN KEY (Curve_ID) REFERENCES Curve(Curve_ID),"
+                + "  FOREIGN KEY (Prufling_ID) REFERENCES Prufling(Prufling_ID),"
+                + "  FOREIGN KEY (Bericht_ID) REFERENCES Bericht(Bericht_ID),"
+                + "  Failurestatus  BOOLEAN,"
+                + "  Takenduration  INT,"
+                + "  Startingtime DATETIME(6) );");
+
+        myJDBC.close();
+    }
+
+
+    /* ********************************PART_3************************************** */
+    
+    /**
+    * @author Hail Ibrahimoglu
+    * 
+    **/
+    
+    public static void insertDataIntoDatabase(String dbName){
+        
+        //Get connected to database
+        MyJDBC myJDBC = new MyJDBC(dbName);
+
+        //user
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        myJDBC.executeUpdateQuery("TRUNCATE table User;");
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        myJDBC.executeUpdateQuery("INSERT INTO User VALUES (1,'Bianca', 'Randermann', 'Bibo', '12345', true )");
+        myJDBC.executeUpdateQuery("INSERT INTO User VALUES (2,'Anna', 'Gutenberg', 'nino', '54321', false )");
+        myJDBC.executeUpdateQuery("INSERT INTO User VALUES (3,'Katrina', 'Gunther', 'kiko', '14523', false )");
+
+        //Curve
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        myJDBC.executeUpdateQuery("TRUNCATE table Curve;");
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        myJDBC.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (1,'200A')");
+        myJDBC.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (2,'201A')");
+        myJDBC.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (3,'202A')");
+
+        //Curveduration
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        myJDBC.executeUpdateQuery("TRUNCATE table Curveduration;");
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (1,1,5, 50, 1)");
+        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (2,2,3, 60, 1)");
+        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (3,3,7, -60, 1)");
+        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (4,1,7, 10, 2)");
+        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (5,2,1, 100, 2)");
+        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (6,3,9, 3, 2)");
+
+        //Envchamber
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        myJDBC.executeUpdateQuery("TRUNCATE table Envchamber;");
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        myJDBC.executeUpdateQuery("INSERT INTO Envchamber VALUES (1,'127.04.39',NULL)");
+        myJDBC.executeUpdateQuery("INSERT INTO Envchamber VALUES (2,'536.02.01',NULL)");
+
+        //Prufling
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        myJDBC.executeUpdateQuery("TRUNCATE table Prufling;");
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        myJDBC.executeUpdateQuery("INSERT INTO Prufling VALUES (1,'A10252',30)");
+        myJDBC.executeUpdateQuery("INSERT INTO Prufling VALUES (2,'A15425',20)");
+        myJDBC.executeUpdateQuery("INSERT INTO Prufling VALUES (3,'A17777',20)");
+
+        //Bericht
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        myJDBC.executeUpdateQuery("TRUNCATE table Bericht;");
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        myJDBC.executeUpdateQuery("INSERT INTO Bericht VALUES (1,2,1,NULL)");
+        myJDBC.executeUpdateQuery("INSERT INTO Bericht VALUES (2,3,1, NULL)");
+
+
+        //Test
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        myJDBC.executeUpdateQuery("TRUNCATE table Test;");
+        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (1,1,1,1, true,50,NULL)");
+        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (2,2,1,1,true,70,NULL)");
+        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (3,2,2,3,false,20, NULL)");
+        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (4,1,1,1,false,5, NULL)");
+        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (5,2,2,2,true,60, NULL)");
+        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (6,3,2,3,false,3, NULL)");
+        myJDBC.close();
+    }
+
+/* ********************************PART_4************************************** */
     // For error handler and console functions.
 
     /**
