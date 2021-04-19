@@ -9,19 +9,26 @@
     <top>
         <AnchorPane blendMode="SRC_ATOP" prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #054671;" BorderPane.alignment="CENTER">
             <children>
-                <Text fill="WHITE" styleClass="titleText" layoutX="26.0" layoutY="43.0" text="Anmeldung" />
-                <Label fx:id="closeBtn" styleClass="closeBtn" layoutX="960.0" layoutY="0.0" onMouseClicked="#onCloseClicked" text="✖" />
-                <Label fx:id="minimizingBtn" styleClass="minimizingBtn" layoutX="920.0" layoutY="0.0" onMouseClicked="#onMinimizingClicked" text="➖" />
+                <Text fill="WHITE" fontSmoothingType="LCD" layoutX="26.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Anmeldung" wrappingWidth="200">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Text>
+            <Label fx:id="closeBtn" styleClass="closeBtn" layoutX="976.0" layoutY="-1.0" onMouseClicked="#onCloseClicked" prefHeight="36.0" prefWidth="16.0" text="X">
+               <font>
+                  <Font name="Gill Sans Ultra Bold" size="20.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </top>
     <center>
         <AnchorPane prefHeight="534.0" styleClass="windowMainStyle">
             <children>
-                <TextField fx:id="usernameTextField" layoutX="277.0" layoutY="193.0" promptText="Benutzername" styleClass="textBoxLogin" />
-                <PasswordField fx:id="passwordTextField" layoutX="277.0" layoutY="239.0" promptText="Passwort" styleClass="textBoxLogin" />
-                <Label fx:id="alertMessage" styleClass="alertMessage" layoutX="277.0" layoutY="279.0" />
-                <Button fx:id="loginBtn" styleClass="button1" layoutX="612.0" layoutY="280.0" onAction="#loginBtnClicked"  text="anmelden" />
+                <TextField fx:id="usernameTextField" styleClass="textBoxLogin" layoutX="277.0" layoutY="193.0" promptText="Benutzername" />
+                <PasswordField fx:id="passwordTextField" styleClass="textBoxLogin" layoutX="277.0" layoutY="239.0" promptText="Passwort" />
+                <Button fx:id="loginBtn" styleClass="button1" layoutX="619.0" layoutY="326.0" mnemonicParsing="false" onAction="#loginBtnClicked" text="anmelden" />
+                <Label fx:id="alertMessage" styleClass="alertMessage" layoutX="420.0" layoutY="279.0" />
             </children>
             <BorderPane.margin>
                 <Insets />
