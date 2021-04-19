@@ -42,4 +42,7 @@ public class LoginController {
         App.getPrimaryStageOfProgram().close();
     }
 
+    @FXML
+    public void onMinimizingClicked(){}
+
 }
