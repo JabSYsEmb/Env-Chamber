@@ -2,14 +2,22 @@
 :: in order to be able to run this script without throwing exceptions, maven 3.6+ version and 
 :: JDK need be installed and added to paths.
 
-tasklist /FI "IMAGENAME eq javaw.exe" /FO CSV > %temp%\search.log
+set EXE=javaw.exe
 
-FOR /F %%A IN (%temp%\search.log) DO IF %%~zA EQU 0 GOTO end
+FOR /F %%a IN ('tasklist /FI "IMAGENAME eq %EXE%"') DO IF %%a EQU %EXE% GOTO KILL
 
-Taskkill /IM javaw.exe /F
+GOTO BUILD
 
-:end
+:build
 
-del %temp%\search.log
+echo " build condition "
 
 mvn clean package && .\modules\app\target\app-1.exe
+
+:kill
+
+echo " kill condition "
+
+Taskkill /IM %EXE% /F
+
+GOTO BUILD
