@@ -10,13 +10,9 @@ GOTO BUILD
 
 :build
 
-echo " build condition "
-
 mvn clean package && .\modules\app\target\app-1.exe
 
 :kill
-
-echo " kill condition "
 
 Taskkill /IM %EXE% /F
 
