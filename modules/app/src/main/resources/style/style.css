@@ -26,7 +26,7 @@
     -fx-background-color:   #ffffff;
 }
 
-/* .button1{
+.button1{
     -fx-text-fill:          #000000;
     -fx-border-color:       #97959d;
     -fx-background-color:   #ffffff;
@@ -37,7 +37,7 @@
     -fx-text-fill:          #ffffff;
     -fx-border-color:       #0f4ff1;
     -fx-background-color:   #0d40c1;
-} */
+}
 
 .textBoxLogin{
     -fx-pref-width:           445px;
