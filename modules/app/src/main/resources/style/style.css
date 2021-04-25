@@ -8,7 +8,7 @@
 }
 
 #closeBtn:hover{
-    -fx-cursor:                DEFAULT;
+    -fx-cursor:             DEFAULT;
     -fx-text-fill:            #000a;
     -fx-background-color:       red;
 }
@@ -61,7 +61,7 @@
 }
 
 Button:hover{
-    -fx-cursor:             HAND;
+    -fx-cursor:                HAND;
 }
 
 Button{
