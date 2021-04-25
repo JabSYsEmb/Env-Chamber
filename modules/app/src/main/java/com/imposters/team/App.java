@@ -35,7 +35,7 @@ public class App extends Application{
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource(fxmlPageDir));
             Scene scene = new Scene(fxmlLoader.load());
-            primaryStageOfProgram.setScene(new Scene(fxmlLoader.load()));
+            primaryStageOfProgram.setScene(scene);
             primaryStageOfProgram.show();
         } catch (IOException e) {
             Logger logger = Logger.getLogger(App.class.getName());
@@ -43,7 +43,7 @@ public class App extends Application{
         }
     }
 
-    public static Stage getPrimaryStageOfProgram(){return primaryStageOfProgram;}
+    public static Stage getPrimaryStageOfProgram(){ return primaryStageOfProgram;}
 
     public static void main( String[] args )
     {
