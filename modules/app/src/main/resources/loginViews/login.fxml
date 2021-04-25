@@ -10,8 +10,8 @@
         <AnchorPane blendMode="SRC_ATOP" prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #054671;" BorderPane.alignment="CENTER">
             <children>
                 <Text fill="WHITE" styleClass="titleText" layoutX="26.0" layoutY="43.0" text="Anmeldung" />
-                <Label fx:id="closeBtn" styleClass="closeBtn" layoutX="960.0" layoutY="0.0" onMouseClicked="#onCloseClicked" text="✖" />
-                <Label fx:id="minimizingBtn" styleClass="minimizingBtn" layoutX="920.0" layoutY="0.0" onMouseClicked="#onMinimizingClicked" text="➖" />
+                <Label fx:id="closeBtn" styleClass="upperBar" layoutX="960.0" layoutY="0.0" onMouseClicked="#onCloseClicked" text="✖" />
+                <Label fx:id="minimizingBtn" styleClass="upperBar" layoutX="920.0" layoutY="0.0" onMouseClicked="#onMinimizingClicked" text="➖" />
             </children>
         </AnchorPane>
     </top>
