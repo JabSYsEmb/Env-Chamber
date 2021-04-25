@@ -1,12 +1,14 @@
 package com.imposters.team.controllers.loginViews;
+
 import com.imposters.team.App;
+import com.imposters.team.controllers.closeMinimizeFunctionalities;
 
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class LoginController {
+public class LoginController extends closeMinimizeFunctionalities {
 
     @FXML
     private Label alertMessage;
@@ -33,16 +35,6 @@ public class LoginController {
             usernameTextField.clear();
             alertMessage.setText("invalid username or password, try again!");
         }
-    }
-
-    @FXML
-    public void onCloseClicked(){
-        App.getPrimaryStageOfProgram().close();
-    }
-
-    @FXML
-    public void onMinimizingClicked(){
-        App.getPrimaryStageOfProgram().toBack();
     }
 
 }

@@ -17,12 +17,11 @@ import java.util.logging.Logger;
  */
 public class App extends Application{
     protected static Stage primaryStageOfProgram;
-    private String css;
+    protected final static String css =  App.class.getResource("/style/style.css").toExternalForm();
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginViews/login.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        css = App.class.getResource("/style/style.css").toExternalForm();
         root.getStylesheets().add(css);
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
@@ -35,6 +34,7 @@ public class App extends Application{
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource(fxmlPageDir));
             Scene scene = new Scene(fxmlLoader.load());
+            scene.getStylesheets().add(css);
             primaryStageOfProgram.setScene(scene);
             primaryStageOfProgram.show();
         } catch (IOException e) {
