@@ -43,6 +43,8 @@ public class LoginController {
     }
 
     @FXML
-    public void onMinimizingClicked(){}
+    public void onMinimizingClicked(){
+        App.getPrimaryStageOfProgram().toBack();
+    }
 
 }
