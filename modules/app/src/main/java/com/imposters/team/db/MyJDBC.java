@@ -10,9 +10,9 @@ import java.util.Enumeration;
 
 public class MyJDBC {
     //Part 1
-    private static final String DB_DEFAULT_DATABASE = "sql11409688";
+    private static final String DB_DEFAULT_DATABASE = "sql11409796";
     private static final String DB_DEFAULT_SERVER_URL = "sql11.freesqldatabase.com:3306";
-    private static final String DB_DEFAULT_ACCOUNT = "sql11409688";
+    private static final String DB_DEFAULT_ACCOUNT = "sql11409796";
     private static final String DB_DEFAULT_PASSWORD = "ibQQwa8EHc";
 
     private final static String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";

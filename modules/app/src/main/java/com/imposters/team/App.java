@@ -1,28 +1,30 @@
 package com.imposters.team;
 
+import com.imposters.team.db.MyJDBC;
+
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import java.io.IOException;
 import javafx.scene.Parent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.StageStyle;
 import javafx.application.Application;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Hello world!
  *
  */
 public class App extends Application{
-    protected static Stage primaryStageOfProgram;
-    protected final static String css =  App.class.getResource("/style/style.css").toExternalForm();
+    private static MyJDBC db;
+    private static Stage primaryStageOfProgram;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginViews/login.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        root.getStylesheets().add(css);
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStageOfProgram = primaryStage;
@@ -34,7 +36,6 @@ public class App extends Application{
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource(fxmlPageDir));
             Scene scene = new Scene(fxmlLoader.load());
-            scene.getStylesheets().add(css);
             primaryStageOfProgram.setScene(scene);
             primaryStageOfProgram.show();
         } catch (IOException e) {
@@ -45,8 +46,15 @@ public class App extends Application{
 
     public static Stage getPrimaryStageOfProgram(){ return primaryStageOfProgram;}
 
+    public static MyJDBC getDatabase(){
+        return App.db;
+    }
+
     public static void main( String[] args )
     {
+//        db = new MyJDBC();
+//        db.executeUpdateQuery("SELECT * FROM USERS;");
         launch(args);
+//        db.close();
     }
 }

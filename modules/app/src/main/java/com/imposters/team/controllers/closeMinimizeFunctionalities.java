@@ -12,6 +12,6 @@ public class closeMinimizeFunctionalities{
 
     @FXML
     public void onMinimizingClicked(){
-        App.getPrimaryStageOfProgram().toBack();
+        App.getPrimaryStageOfProgram().setIconified(true);
     }
 }
