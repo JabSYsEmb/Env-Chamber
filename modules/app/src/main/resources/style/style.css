@@ -1,65 +1,58 @@
-.titleText{
-    -fx-wrap-text:            200px;
+.TitleText{
     -fx-font-size:             24px;
-    -fx-stroke-type:        OUTSIDE;
-    -fx-font-family:     sans-serif;
-    -fx-stroke-width:           0px;
-    -fx-font-smoothing-type:    LCD;
+    -fx-font-weight:           bold;
+    -fx-fill:                  #fff;
 }
 
-.closeBtn:hover{
+.TitleBox{
+    -fx-alignment:           CENTER;
+    -fx-pref-width:           600px;
+    -fx-pref-height:           66px;
+    -fx-background-color:   #054671;
+}
+
+.GeneralTextStyle{
+    -fx-fill:               #054671;
+    -fx-font-size:             15px;
+}
+
+#closeBtn:hover{
     -fx-cursor:             DEFAULT;
-    -fx-text-fill:            #000a;
+    -fx-text-fill:            #fffd;
     -fx-background-color:       red;
 }
-.closeBtn{
-    -fx-alignment:           CENTER;
-    -fx-font-size:             14px;
-    -fx-font-scale:              10;
-    -fx-pref-width:            40px;
-    -fx-pref-height:           25px;
-}
 
-.minimizingBtn{
-    -fx-alignment:           CENTER;
-    -fx-font-size:             14px;
-    -fx-font-scale:              10;
-    -fx-pref-width:            40px;
-    -fx-pref-height:           25px;
-}
-.minimizingBtn:hover{
+#minimizingBtn:hover{
     -fx-text-fill:            #fff9;
     -fx-background-color: #00000030;
     -fx-background-insets:      0.2;
 }
 
-
 .windowMainStyle{
     -fx-alignment:           center;
     -fx-pref-width:          1060px;
+    -fx-pref-height:          534px;
     -fx-background-color:   #ffffff;
 }
 
 .button1{
-    -fx-text-fill:          #000000;
-    -fx-pref-width:           110px;
-    -fx-pref-height:           27px;
-    -fx-font-size:             14px;
-    -fx-border-color:       #97959d;
+    -fx-text-fill:          #054671;
+    -fx-border-color:       #054671;
     -fx-background-color:   #ffffff;
 }
 
 .button1:hover{
-    -fx-effect:             dropshadow(three-pass-box,#8195ad, 1, 0.5, 3, 2);
-    -fx-cursor:             hand;
+    -fx-cursor:                hand;
     -fx-text-fill:          #ffffff;
     -fx-border-color:       #0f4ff1;
-    -fx-background-color:   #0d40c1;
- }
+    -fx-background-color:   #054671;
+}
 
 .textBoxLogin{
     -fx-pref-width:           445px;
     -fx-pref-height:           30px;
+    -fx-border-color:       #054671;
+    -fx-background-color:   #ffffff;
 }
 
 .alertMessage{
@@ -68,4 +61,35 @@
     -fx-pref-width:           300px;
     -fx-pref-height:           20px;
     -fx-text-alignment:       right;
+}
+
+.closeMinimizeBtns{
+    -fx-alignment:           CENTER;
+    -fx-font-size:             14px;
+    -fx-font-scale:              10;
+    -fx-pref-width:            40px;
+    -fx-pref-height:           25px;
+}
+
+ComboBox{
+    -fx-pref-width:           445px;
+    -fx-pref-height:           30px;
+    -fx-border-color:       #054671;
+    -fx-background-color:   #ffffff;
+}
+
+Button:hover{
+    -fx-cursor:                HAND;
+}
+
+Button{
+    -fx-pref-width:           110px;
+    -fx-pref-height:           27px;
+    -fx-font-size:             14px;
+}
+
+BorderPane{
+    -fx-pref-heigh:           600px;
+    -fx-pref-width:          1000px;
+    -fx-background-color:   #ffffff;
 }

@@ -1,35 +1,60 @@
 package com.imposters.team;
 
+import com.imposters.team.db.MyJDBC;
+
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import java.io.IOException;
 import javafx.scene.Parent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.StageStyle;
 import javafx.application.Application;
+
 
 /**
  * Hello world!
  *
  */
 public class App extends Application{
-    protected static Stage primaryStageOfProgram;
-    private String css;
+    private static MyJDBC db;
+    private static Stage primaryStageOfProgram;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/loginViews/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginViews/login.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        css = App.class.getResource("/style/style.css").toExternalForm();
-        root.getStylesheets().add(css);
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStageOfProgram = primaryStage;
-        primaryStage.show();
+        primaryStageOfProgram.show();
+    }
+
+    public static void changeView(String fxmlPageDir){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource(fxmlPageDir));
+            Scene scene = new Scene(fxmlLoader.load());
+            primaryStageOfProgram.setScene(scene);
+            primaryStageOfProgram.show();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(App.class.getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
     }
 
     public static Stage getPrimaryStageOfProgram(){ return primaryStageOfProgram;}
 
+    public static MyJDBC getDatabase(){
+        return App.db;
+    }
+
     public static void main( String[] args )
     {
+//        db = new MyJDBC();
+//        db.executeUpdateQuery("SELECT * FROM USERS;");
         launch(args);
+//        db.close();
     }
 }

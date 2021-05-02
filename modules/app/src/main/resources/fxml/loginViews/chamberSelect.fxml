@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.Label?>
+<BorderPane stylesheets="@../../style/style.css"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.imposters.team.controllers.loginViews.ChamberSelectController">
+    <top>
+        <AnchorPane styleClass="TitleBox">
+            <children>
+                <Text styleClass="TitleText"
+                      layoutX="26.0"
+                      layoutY="43.0"
+                      text="Schrank Auswahl" />
+
+                <Label fx:id="closeBtn"
+                       styleClass="closeMinimizeBtns"
+                       layoutX="960.0"
+                       layoutY="0.0"
+                       onMouseClicked="#onCloseClicked"
+                       text="✖" />
+
+                <Label fx:id="minimizingBtn"
+                       styleClass="closeMinimizeBtns"
+                       layoutX="920.0"
+                       layoutY="0.0"
+                       onMouseClicked="#onMinimizingClicked"
+                       text="➖" />
+
+            </children>
+        </AnchorPane>
+    </top>
+
+    <center>
+        <AnchorPane styleClass="windowMainStyle" >
+            <children>
+                <ComboBox fx:id="chamberComboBox"
+                          layoutX="277.0"
+                          layoutY="193.0"/>
+
+                <Button fx:id="chamberSelectingButton"
+                        styleClass="button1"
+                        layoutX="612.0"
+                        layoutY="234.0"
+                        text="auswählen"/>
+
+                <Text styleClass="GeneralTextStyle"
+                      layoutX="277.0"
+                      layoutY="180.0"
+                      text="Wählen Sie Bitte einen Klimaschrank aus"/>
+
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
