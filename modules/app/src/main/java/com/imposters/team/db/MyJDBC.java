@@ -10,14 +10,14 @@ import java.util.Enumeration;
 
 public class MyJDBC {
     //Part 1
-    private static final String DB_DEFAULT_DATABASE = "sys";
-    private static final String DB_DEFAULT_SERVER_URL = "localhost:3306";
-    private static final String DB_DEFAULT_ACCOUNT = "root";
-    private static final String DB_DEFAULT_PASSWORD = "root";
+    private static final String DB_DEFAULT_DATABASE = "sql11409688";
+    private static final String DB_DEFAULT_SERVER_URL = "sql11.freesqldatabase.com:3306";
+    private static final String DB_DEFAULT_ACCOUNT = "sql11409688";
+    private static final String DB_DEFAULT_PASSWORD = "ibQQwa8EHc";
 
-    private final static String DB_DRIVER_URL = "com.mysql.jdbc.Driver";
+    private final static String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
     private final static String DB_DRIVER_PREFIX = "jdbc:mysql://";
-    private final static String DB_DRIVER_PARAMETERS = "?useSSL=false";
+    private final static String DB_DRIVER_PARAMETERS = "?useSSL=true&characterEncoding=UTF-8";
 
     private Connection connection = null;
 
@@ -55,7 +55,7 @@ public class MyJDBC {
             String connStr = DB_DRIVER_PREFIX + serverURL + "/" + dbName + DB_DRIVER_PARAMETERS;
             log("Connecting " + connStr);
             this.connection = DriverManager.getConnection(connStr, account, password);
-
+            this.checkDatabaseConnectionValidation(this.connection,5);
         } catch (SQLException eSQL) {
             error(eSQL);
             this.close();
@@ -181,7 +181,7 @@ public class MyJDBC {
             log(sql);
             ResultSet rs = s.executeQuery(sql);
             if (rs.next()) {
-                result = rs.getString(1);
+                result = rs.getString(5);
             }
             // close both statement and resultset
             s.close();
@@ -233,16 +233,7 @@ public class MyJDBC {
      **/
 
     // Creating the whole database for the project.
-    public static void createEnvChamberDatabase(String dbName) {
-
-        System.out.println("Creating the " + dbName + " database...");
-
-        MyJDBC sysJDBC = new MyJDBC("mydb");
-        sysJDBC.executeUpdateQuery("CREATE DATABASE IF NOT EXISTS " + dbName);
-        sysJDBC.close();
-
-        System.out.println("Creating the User table...");
-        MyJDBC myJDBC = new MyJDBC(dbName);
+    public void createDatabase() {
 
         /*
         +---------+---------+------------+----------+----------+-------------+
@@ -254,12 +245,12 @@ public class MyJDBC {
         +---------+---------+------------+----------+----------+-------------+
          */
 
-        myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS User ("
+        this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS User ("
                 + " User_ID INT(10)  NOT NULL AUTO_INCREMENT  PRIMARY KEY ,"
                 + " Fname VARCHAR(45),"
                 + " Lname VARCHAR(45),"
                 + " Username VARCHAR(45),"
-                + " Password VARCHAR(10),"
+                + " Password VARCHAR(129),"
                 + " AdminStatus  BOOLEAN);");
 
         /*
@@ -271,7 +262,7 @@ public class MyJDBC {
         |        3 | 202A       | NULL     |
         +----------+------------+----------+
              */
-        myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Curve ("
+        this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Curve ("
                 + "Curve_ID INT(10) NOT NULL AUTO_INCREMENT  PRIMARY KEY,"
                 + " Tasknumber VARCHAR(45),"
                 + " Duration VARCHAR(100));");
@@ -288,7 +279,7 @@ public class MyJDBC {
         |    6 |    3 |        9 |           3 |        2 |
         +------+------+----------+-------------+----------+
          */
-        myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Curveduration ("
+        this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Curveduration ("
                 + "CDID INT(10) NOT NULL   PRIMARY KEY,"
                 + "Step INT(10) NOT NULL ,"
                 + " Duration INT,"
@@ -304,7 +295,7 @@ public class MyJDBC {
         |             2 | 536.02.01 |        NULL |
         +---------------+-----------+-------------+
          */
-        myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Envchamber ("
+        this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Envchamber ("
                 + "  Envchamber_ID INT  NOT NULL AUTO_INCREMENT  PRIMARY KEY ,"
                 + "  Ip varchar(45),"
                 + "  temperature INT);");
@@ -318,7 +309,7 @@ public class MyJDBC {
         |           3 | A17777       |          20 |
         +-------------+--------------+-------------+
          */
-        myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Prufling ("
+        this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Prufling ("
                 + "  Prufling_ID  INT  NOT NULL  PRIMARY KEY ,"
                 + "  Serialnumber varchar(45),"
                 + "  Maxduration INT);");
@@ -332,13 +323,13 @@ public class MyJDBC {
         |          2 |       3 |             1 | NULL |
         +------------+---------+---------------+------+
          */
-        myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Bericht ("
+        this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Bericht ("
                 + "  Bericht_ID INT  NOT NULL  PRIMARY KEY,"
                 + " User_ID INT(10),"
                 + "  Envchamber_ID INT,"
                 + "  FOREIGN KEY (User_ID) REFERENCES User(User_ID),"
                 + "  FOREIGN KEY (Envchamber_ID) REFERENCES Envchamber(Envchamber_ID),"
-                + "  Date DATETIME(6) );");
+                + "  Date DATETIME);");
 
 
         /*
@@ -353,7 +344,7 @@ public class MyJDBC {
         |       6 |        3 |          2 |           3 |             0 |             3 | NULL         |
         +---------+----------+------------+-------------+---------------+---------------+--------------+
          */
-        myJDBC.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Test ("
+        this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Test ("
                 + "  Slot_ID  INT  NOT NULL  PRIMARY KEY ,"
                 + "  Curve_ID INT(10),"
                 + "  Bericht_ID INT,"
@@ -363,9 +354,7 @@ public class MyJDBC {
                 + "  FOREIGN KEY (Bericht_ID) REFERENCES Bericht(Bericht_ID),"
                 + "  Failurestatus  BOOLEAN,"
                 + "  Takenduration  INT,"
-                + "  Startingtime DATETIME(6) );");
-
-        myJDBC.close();
+                + "  Startingtime DATETIME);");
     }
 
 
@@ -376,74 +365,73 @@ public class MyJDBC {
     * 
     **/
     
-    public static void insertDataIntoDatabase(String dbName){
-        
-        //Get connected to database
-        MyJDBC myJDBC = new MyJDBC(dbName);
+    public void insertDataIntoDatabase(){
 
         //user
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
-        myJDBC.executeUpdateQuery("TRUNCATE table User;");
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
-        myJDBC.executeUpdateQuery("INSERT INTO User VALUES (1,'Bianca', 'Randermann', 'Bibo', '12345', true )");
-        myJDBC.executeUpdateQuery("INSERT INTO User VALUES (2,'Anna', 'Gutenberg', 'nino', '54321', false )");
-        myJDBC.executeUpdateQuery("INSERT INTO User VALUES (3,'Katrina', 'Gunther', 'kiko', '14523', false )");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery("TRUNCATE table User;");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery("INSERT INTO User VALUES (1,'Bianca', 'Randermann', 'Bibo', '" + this.Encrypter("12345") + "', true )");
+        this.executeUpdateQuery("INSERT INTO User VALUES (2,'Anna', 'Gutenberg', 'nino', '" + this.Encrypter("54321") + "', false )");
+        this.executeUpdateQuery("INSERT INTO User VALUES (3,'Katrina', 'Gunther', 'kiko', '" + this.Encrypter("54321") + "', false )");
 
         //Curve
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
-        myJDBC.executeUpdateQuery("TRUNCATE table Curve;");
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
-        myJDBC.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (1,'200A')");
-        myJDBC.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (2,'201A')");
-        myJDBC.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (3,'202A')");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery("TRUNCATE table Curve;");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (1,'200A')");
+        this.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (2,'201A')");
+        this.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (3,'202A')");
 
         //Curveduration
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
-        myJDBC.executeUpdateQuery("TRUNCATE table Curveduration;");
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
-        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (1,1,5, 50, 1)");
-        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (2,2,3, 60, 1)");
-        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (3,3,7, -60, 1)");
-        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (4,1,7, 10, 2)");
-        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (5,2,1, 100, 2)");
-        myJDBC.executeUpdateQuery("INSERT INTO Curveduration VALUES (6,3,9, 3, 2)");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery("TRUNCATE table Curveduration;");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery("INSERT INTO Curveduration VALUES (1,1,5, 50, 1)");
+        this.executeUpdateQuery("INSERT INTO Curveduration VALUES (2,2,3, 60, 1)");
+        this.executeUpdateQuery("INSERT INTO Curveduration VALUES (3,3,7, -60, 1)");
+        this.executeUpdateQuery("INSERT INTO Curveduration VALUES (4,1,7, 10, 2)");
+        this.executeUpdateQuery("INSERT INTO Curveduration VALUES (5,2,1, 100, 2)");
+        this.executeUpdateQuery("INSERT INTO Curveduration VALUES (6,3,9, 3, 2)");
 
         //Envchamber
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
-        myJDBC.executeUpdateQuery("TRUNCATE table Envchamber;");
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
-        myJDBC.executeUpdateQuery("INSERT INTO Envchamber VALUES (1,'127.04.39',NULL)");
-        myJDBC.executeUpdateQuery("INSERT INTO Envchamber VALUES (2,'536.02.01',NULL)");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery("TRUNCATE table Envchamber;");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (1,'127.04.39',NULL)");
+        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (2,'536.02.01',NULL)");
 
         //Prufling
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
-        myJDBC.executeUpdateQuery("TRUNCATE table Prufling;");
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
-        myJDBC.executeUpdateQuery("INSERT INTO Prufling VALUES (1,'A10252',30)");
-        myJDBC.executeUpdateQuery("INSERT INTO Prufling VALUES (2,'A15425',20)");
-        myJDBC.executeUpdateQuery("INSERT INTO Prufling VALUES (3,'A17777',20)");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery("TRUNCATE table Prufling;");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery("INSERT INTO Prufling VALUES (1,'A10252',30)");
+        this.executeUpdateQuery("INSERT INTO Prufling VALUES (2,'A15425',20)");
+        this.executeUpdateQuery("INSERT INTO Prufling VALUES (3,'A17777',20)");
 
         //Bericht
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
-        myJDBC.executeUpdateQuery("TRUNCATE table Bericht;");
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
-        myJDBC.executeUpdateQuery("INSERT INTO Bericht VALUES (1,2,1,NULL)");
-        myJDBC.executeUpdateQuery("INSERT INTO Bericht VALUES (2,3,1, NULL)");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery("TRUNCATE table Bericht;");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery("INSERT INTO Bericht VALUES (1,2,1,NULL)");
+        this.executeUpdateQuery("INSERT INTO Bericht VALUES (2,3,1, NULL)");
 
 
         //Test
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
-        myJDBC.executeUpdateQuery("TRUNCATE table Test;");
-        myJDBC.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
-        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (1,1,1,1, true,50,NULL)");
-        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (2,2,1,1,true,70,NULL)");
-        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (3,2,2,3,false,20, NULL)");
-        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (4,1,1,1,false,5, NULL)");
-        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (5,2,2,2,true,60, NULL)");
-        myJDBC.executeUpdateQuery("INSERT INTO Test VALUES (6,3,2,3,false,3, NULL)");
-        myJDBC.close();
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery("TRUNCATE table Test;");
+        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (1,1,1,1, true,50,NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (2,2,1,1,true,70,NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (3,2,2,3,false,20, NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (4,1,1,1,false,5, NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (5,2,2,2,true,60, NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (6,3,2,3,false,3, NULL)");
     }
 
+    public void dropDatabase(){
+        this.executeUpdateQuery("DROP DATABASE sql11409688;");
+    }
 /* ********************************PART_4************************************** */
     // For error handler and console functions.
 
@@ -485,7 +473,6 @@ public class MyJDBC {
     }
 
     /**
-     * *
      * echoes a message on the system console, if run in verbose mode
      *
      * @param message value is true by default for inspecting
@@ -506,9 +493,9 @@ public class MyJDBC {
 
     /**
      * encrypts input password by an user via SHA-512 encryption
-     * digest algorithm into 128 characters before storing it in 
+     * digest algorithm into 128 characters before storing it in
      * Database.
-     * 
+     *
      * @param passwd the unencrypted password that is passed by an user
      *               to the database.
      * @return       encrypted password as a String
@@ -523,8 +510,30 @@ public class MyJDBC {
         // seperates the password into bytes for encyprtion.
         md.update(passwd.getBytes(StandardCharsets.UTF_8));
         byte[] digest = md.digest();
-        
+
         String encryptedPasswd = String.format("%064x",new BigInteger(1,digest));
         return encryptedPasswd;
+    }
+
+    /**
+     * checks if the connection to a database is still valid or not
+     *
+     * @param conn      Connection Object for validation checking.
+     * @param timeOut   The time in seconds to wait for the database operation used to validate the connection to complete.
+     */
+    public void checkDatabaseConnectionValidation(Connection conn,int timeOut){
+        try {
+            if(conn.isValid(timeOut)) {
+                log(
+                        "The connection to " +
+                        DB_DEFAULT_SERVER_URL +
+                        "/" +
+                        DB_DEFAULT_DATABASE +
+                        " has been established successfully"
+                );
+            }
+        }catch(SQLException ex){
+            error(ex);
+        }
     }
 }
