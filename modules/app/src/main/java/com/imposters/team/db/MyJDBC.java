@@ -1,14 +1,14 @@
 package com.imposters.team.db;
 
-
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.math.BigInteger;
 import java.util.Enumeration;
+import java.security.MessageDigest;
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 
 public class MyJDBC {
+
     //Part 1
     private static final String DB_DEFAULT_DATABASE = "sql11409796";
     private static final String DB_DEFAULT_SERVER_URL = "sql11.freesqldatabase.com:3306";
@@ -27,6 +27,7 @@ public class MyJDBC {
     // remembers the first error message on the connection
     private String errorMessage = null;
 
+
     // constructors
     public MyJDBC() {
         this(DB_DEFAULT_DATABASE, DB_DEFAULT_SERVER_URL, DB_DEFAULT_ACCOUNT, DB_DEFAULT_PASSWORD);
@@ -43,7 +44,7 @@ public class MyJDBC {
     public MyJDBC(String dbName, String serverURL, String account, String password) {
         try {
             // verify that a proper JDBC driver has been installed and linked
-            if (!selectDriver(DB_DRIVER_URL)) {
+            if (!Boolean.TRUE.equals(selectDriver(DB_DRIVER_URL))){
                 return;
             }
 
@@ -77,13 +78,7 @@ public class MyJDBC {
      */
     private Boolean selectDriver(String driverName) {
         try {
-            try {
-                Class.forName(driverName).newInstance();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
+            Class.forName(driverName).newInstance();
             // Put all non-preferred drivers to the end, such that driver selection hits the first
             Enumeration<Driver> drivers = DriverManager.getDrivers();
             while (drivers.hasMoreElements()) {
@@ -93,7 +88,7 @@ public class MyJDBC {
                     DriverManager.registerDriver(d);
                 }
             }
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException ex) {
             error(ex);
             return false;
         }
@@ -110,10 +105,14 @@ public class MyJDBC {
      * @return a ResultSet object that can iterate along all rows
      * @throws SQLException
      */
-    public ResultSet executeResultSetQuery(String sql) throws SQLException {
-        Statement s = this.connection.createStatement();
-        ResultSet rs = s.executeQuery(sql);
-        return rs;
+    public ResultSet executeResultSetQuery(String sql){
+        try(Statement s = this.connection.createStatement()){
+            ResultSet rs = s.executeQuery(sql);
+            return rs;
+        }catch (SQLException ex){
+            error(ex);
+            return null;
+        }
     }
 
     /**
@@ -125,11 +124,9 @@ public class MyJDBC {
      * @return the number of rows that have been impacted, -1 on error
      */
     public int executeUpdateQuery(String sql) {
-        try {
-            Statement s = this.connection.createStatement();
+        try (Statement s = this.connection.createStatement()){
             log(sql);
             int n = s.executeUpdate(sql);
-            s.close();
             return (n);
         } catch (SQLException ex) {
             // handle exception
@@ -148,23 +145,17 @@ public class MyJDBC {
      */
     public String executeStringQuery(String sql) {
         String result = null;
-        try {
-            Statement s = this.connection.createStatement();
+        try (Statement s = this.connection.createStatement(); ResultSet rs = s.executeQuery(sql)){
             log(sql);
-            ResultSet rs = s.executeQuery(sql);
             if (rs.next()) {
                 result = rs.getString(1);
             }
-            // close both statement and Resultset
-            s.close();
         } catch (SQLException ex) {
             error(ex);
         }
-
         return result;
     }
 
-    /*{*/
     // this part of code needs refactoring.
 
     /**
@@ -176,21 +167,16 @@ public class MyJDBC {
      */
     public String executeStringListQuery(String sql) {
         String result = null;
-        try {
-            Statement s = this.connection.createStatement();
+        try (Statement s = this.connection.createStatement(); ResultSet rs = s.executeQuery(sql)){
             log(sql);
-            ResultSet rs = s.executeQuery(sql);
             if (rs.next()) {
                 result = rs.getString(5);
             }
-            // close both statement and resultset
-            s.close();
         } catch (SQLException ex) {
             error(ex);
         }
-
         return result;
-    }/*}*/
+    }
 
     /**
      * *
@@ -205,19 +191,13 @@ public class MyJDBC {
      * (3) -1 in case function call throws a SQLException
      */
     public int executeUserPasswordUpdateQuery(String userID, String newPassword) throws SQLException {
-
-        try {
-
-            PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE employee SET "
-                    + "password = ? WHERE employeeId = ?");
+        try (PreparedStatement preparedStatement =
+                     this.connection.prepareStatement("UPDATE employee SET " + "password = ? WHERE employeeId = ?")){
 
             preparedStatement.setString(1, newPassword);
             preparedStatement.setString(2, userID);
 
             int returnValue = preparedStatement.executeUpdate();
-            preparedStatement.close();
-            System.out.println(returnValue);
-
             return returnValue;
         } catch (SQLException ex) {
             // handle exception
@@ -366,27 +346,28 @@ public class MyJDBC {
     **/
     
     public void insertDataIntoDatabase(){
-
+        final String SET_FOREIGN_KEY_CHECKS_0 = "SET FOREIGN_KEY_CHECKS = 0;";
+        final String SET_FOREIGN_KEY_CHECKS_1 = "SET FOREIGN_KEY_CHECKS = 1;";
         //user
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table User;");
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO User VALUES (1,'Bianca', 'Randermann', 'Bibo', '" + this.Encrypter("12345") + "', true )");
         this.executeUpdateQuery("INSERT INTO User VALUES (2,'Anna', 'Gutenberg', 'nino', '" + this.Encrypter("54321") + "', false )");
         this.executeUpdateQuery("INSERT INTO User VALUES (3,'Katrina', 'Gunther', 'kiko', '" + this.Encrypter("54321") + "', false )");
 
         //Curve
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Curve;");
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (1,'200A')");
         this.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (2,'201A')");
         this.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (3,'202A')");
 
         //Curveduration
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Curveduration;");
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Curveduration VALUES (1,1,5, 50, 1)");
         this.executeUpdateQuery("INSERT INTO Curveduration VALUES (2,2,3, 60, 1)");
         this.executeUpdateQuery("INSERT INTO Curveduration VALUES (3,3,7, -60, 1)");
@@ -395,32 +376,32 @@ public class MyJDBC {
         this.executeUpdateQuery("INSERT INTO Curveduration VALUES (6,3,9, 3, 2)");
 
         //Envchamber
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Envchamber;");
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Envchamber VALUES (1,'127.04.39',NULL)");
         this.executeUpdateQuery("INSERT INTO Envchamber VALUES (2,'536.02.01',NULL)");
 
         //Prufling
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Prufling;");
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Prufling VALUES (1,'A10252',30)");
         this.executeUpdateQuery("INSERT INTO Prufling VALUES (2,'A15425',20)");
         this.executeUpdateQuery("INSERT INTO Prufling VALUES (3,'A17777',20)");
 
         //Bericht
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Bericht;");
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Bericht VALUES (1,2,1,NULL)");
         this.executeUpdateQuery("INSERT INTO Bericht VALUES (2,3,1, NULL)");
 
 
         //Test
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Test;");
-        this.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Test VALUES (1,1,1,1, true,50,NULL)");
         this.executeUpdateQuery("INSERT INTO Test VALUES (2,2,1,1,true,70,NULL)");
         this.executeUpdateQuery("INSERT INTO Test VALUES (3,2,2,3,false,20, NULL)");
@@ -450,7 +431,8 @@ public class MyJDBC {
         if (this.errorMessage == null) {
             this.errorMessage = msg;
         }
-        System.out.println(msg);
+
+        System.err.println(msg);
         e.printStackTrace();
 
         // if an error occurred, close the connection to prevent further operations
@@ -501,18 +483,23 @@ public class MyJDBC {
      * @return       encrypted password as a String
      */
     public String Encrypter(String passwd){
-        MessageDigest md = null;
         try{
-            md = MessageDigest.getInstance("SHA-512");
-        }catch(NoSuchAlgorithmException ex){
-            System.out.println(ex.getMessage());
-        }
-        // seperates the password into bytes for encyprtion.
-        md.update(passwd.getBytes(StandardCharsets.UTF_8));
-        byte[] digest = md.digest();
+            MessageDigest md = null;
+            try{
+                md = MessageDigest.getInstance("SHA-512");
+            }catch(NoSuchAlgorithmException ex){
+                System.out.println(ex.getMessage());
+            }
+            // seperates the password into bytes for encyprtion.
+            md.update(passwd.getBytes(StandardCharsets.UTF_8));
+            byte[] digest = md.digest();
 
-        String encryptedPasswd = String.format("%064x",new BigInteger(1,digest));
-        return encryptedPasswd;
+            String encryptedPasswd = String.format("%064x",new BigInteger(1,digest));
+            return encryptedPasswd;
+        }catch (NullPointerException ex){
+            this.error(ex);
+            return null;
+        }
     }
 
     /**
