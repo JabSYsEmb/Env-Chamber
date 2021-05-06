@@ -39,14 +39,14 @@
                 <TextField fx:id="ArtikelnummerTextField"
                            styleClass="textBoxLogin"
                            layoutX="277.0"
-                           layoutY="193.0"
+                           layoutY="190.0"
                            promptText="Artikelnummer" />
 
                 <TextField fx:id="AuftragsnummerTextField"
-                               styleClass="textBoxLogin"
-                               layoutX="277.0"
-                               layoutY="239.0"
-                               promptText="Auftragsnummer" />
+                           styleClass="textBoxLogin"
+                           layoutX="277.0"
+                           layoutY="230.0"
+                           promptText="Auftragsnummer" />
                                
                 <Label fx:id="alertMessage"
                        styleClass="alertMessage"
@@ -56,7 +56,7 @@
                 <Button fx:id="weiterBtn"
                         styleClass="button1"
                         layoutX="570.0"
-                        layoutY="280.0"
+                        layoutY="270.0"
                         onAction="#weiterBtnClicked"
                         text="Beginn Initialisierung"/>
 

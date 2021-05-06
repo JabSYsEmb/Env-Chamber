@@ -45,7 +45,7 @@
 .button1:hover{
     -fx-cursor:                hand;
     -fx-text-fill:          #ffffff;
-    -fx-border-color:       #0f4ff1;
+    -fx-border-color:       #054671;
     -fx-background-color:   #054671;
 }
 #weiterBtn{
@@ -53,6 +53,7 @@
 }
 .button1:pressed{
     -fx-background-color:   #546E7A;
+    -fx-border-color:       #546E7A;
 }
 .textBoxLogin{
     -fx-pref-width:           445px;
@@ -81,8 +82,27 @@ ComboBox{
     -fx-pref-width:           445px;
     -fx-pref-height:           30px;
     -fx-border-color:       #054671;
+    -fx-font-family:     sans-serif;
+    -fx-font-size:             13px;
     -fx-background-color:   #ffffff;
 }
+
+.combo-box-popup{
+    -fx-font-size:             13px;
+}
+
+.combo-box-popup .list-view .list-cell:hover
+{
+    -fx-font-size:             13px;
+    -fx-background-color:   #054671;
+    -fx-text-fill:          #ffffff;
+}
+
+.combo-box-popup .list-view .list-cell:selected
+{
+    -fx-background-color:   #546E7A;
+}
+
 
 Button:hover{
     -fx-cursor:                HAND;
