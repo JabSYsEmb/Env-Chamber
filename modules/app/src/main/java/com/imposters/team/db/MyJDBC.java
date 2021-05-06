@@ -14,10 +14,9 @@ public class MyJDBC {
     private static final String DB_DEFAULT_SERVER_URL = "sql11.freesqldatabase.com:3306";
     private static final String DB_DEFAULT_ACCOUNT = "sql11409796";
     private static final String DB_DEFAULT_PASSWORD = "ibQQwa8EHc";
-
-    private final static String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
-    private final static String DB_DRIVER_PREFIX = "jdbc:mysql://";
-    private final static String DB_DRIVER_PARAMETERS = "?useSSL=true&characterEncoding=UTF-8";
+    private static final String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
+    private static final String DB_DRIVER_PREFIX = "jdbc:mysql://";
+    private static final String DB_DRIVER_PARAMETERS = "?useSSL=true&characterEncoding=UTF-8";
 
     private Connection connection = null;
 
@@ -107,8 +106,7 @@ public class MyJDBC {
      */
     public ResultSet executeResultSetQuery(String sql){
         try(Statement s = this.connection.createStatement()){
-            ResultSet rs = s.executeQuery(sql);
-            return rs;
+            return s.executeQuery(sql);
         }catch (SQLException ex){
             error(ex);
             return null;
@@ -197,8 +195,7 @@ public class MyJDBC {
             preparedStatement.setString(1, newPassword);
             preparedStatement.setString(2, userID);
 
-            int returnValue = preparedStatement.executeUpdate();
-            return returnValue;
+            return preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             // handle exception
             error(ex);
@@ -352,9 +349,9 @@ public class MyJDBC {
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table User;");
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
-        this.executeUpdateQuery("INSERT INTO User VALUES (1,'Bianca', 'Randermann', 'Bibo', '" + this.Encrypter("12345") + "', true )");
-        this.executeUpdateQuery("INSERT INTO User VALUES (2,'Anna', 'Gutenberg', 'nino', '" + this.Encrypter("54321") + "', false )");
-        this.executeUpdateQuery("INSERT INTO User VALUES (3,'Katrina', 'Gunther', 'kiko', '" + this.Encrypter("54321") + "', false )");
+        this.executeUpdateQuery("INSERT INTO User VALUES (1,'Bianca', 'Randermann', 'Bibo', '" + this.passwordEncrypter("12345") + "', true )");
+        this.executeUpdateQuery("INSERT INTO User VALUES (2,'Anna', 'Gutenberg', 'nino', '" + this.passwordEncrypter("54321") + "', false )");
+        this.executeUpdateQuery("INSERT INTO User VALUES (3,'Katrina', 'Gunther', 'kiko', '" + this.passwordEncrypter("54321") + "', false )");
 
         //Curve
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
@@ -482,22 +479,21 @@ public class MyJDBC {
      *               to the database.
      * @return       encrypted password as a String
      */
-    public String Encrypter(String passwd){
+    public String passwordEncrypter(String passwd){
         try{
             MessageDigest md = null;
             try{
                 md = MessageDigest.getInstance("SHA-512");
+                // seperates the password into bytes for encyprtion.
+                md.update(passwd.getBytes(StandardCharsets.UTF_8));
             }catch(NoSuchAlgorithmException ex){
                 System.out.println(ex.getMessage());
             }
-            // seperates the password into bytes for encyprtion.
-            md.update(passwd.getBytes(StandardCharsets.UTF_8));
             byte[] digest = md.digest();
 
-            String encryptedPasswd = String.format("%064x",new BigInteger(1,digest));
-            return encryptedPasswd;
-        }catch (NullPointerException ex){
-            this.error(ex);
+            return String.format("%064x",new BigInteger(1,digest));
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -524,3 +520,5 @@ public class MyJDBC {
         }
     }
 }
+
+

@@ -3,7 +3,7 @@ package com.imposters.team.controllers;
 import com.imposters.team.App;
 import javafx.fxml.FXML;
 
-public class closeMinimizeFunctionalities{
+public class CloseMinimizeFunctionalities{
 
     @FXML
     public void onCloseClicked(){

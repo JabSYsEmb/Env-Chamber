@@ -44,7 +44,10 @@ public class App extends Application{
         }
     }
 
-    public static Stage getPrimaryStageOfProgram(){ return primaryStageOfProgram;}
+    public static Stage getPrimaryStageOfProgram(){
+
+        return primaryStageOfProgram;
+    }
 
     public static MyJDBC getDatabase(){
         return App.db;
@@ -52,9 +55,6 @@ public class App extends Application{
 
     public static void main( String[] args )
     {
-//        db = new MyJDBC();
-//        db.executeUpdateQuery("SELECT * FROM USERS;");
         launch(args);
-//        db.close();
     }
 }

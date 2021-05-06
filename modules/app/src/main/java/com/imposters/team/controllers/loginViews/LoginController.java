@@ -2,13 +2,13 @@ package com.imposters.team.controllers.loginViews;
 
 import com.imposters.team.App;
 import com.imposters.team.db.MyJDBC;
-import com.imposters.team.controllers.closeMinimizeFunctionalities;
+import com.imposters.team.controllers.CloseMinimizeFunctionalities;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class LoginController extends closeMinimizeFunctionalities {
+public class LoginController extends CloseMinimizeFunctionalities {
     
     @FXML
     private Label alertMessage;
