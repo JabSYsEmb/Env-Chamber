@@ -1,3 +1,4 @@
+
 .TitleText{
     -fx-font-size:             24px;
     -fx-font-weight:           bold;
@@ -47,7 +48,12 @@
     -fx-border-color:       #0f4ff1;
     -fx-background-color:   #054671;
 }
-
+#weiterBtn{
+    -fx-pref-width:           152px;
+}
+.button1:pressed{
+    -fx-background-color:   #546E7A;
+}
 .textBoxLogin{
     -fx-pref-width:           445px;
     -fx-pref-height:           30px;

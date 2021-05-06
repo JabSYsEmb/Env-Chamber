@@ -27,7 +27,7 @@ public class ChamberSelectController extends CloseMinimizeFunctionalities {
 
     @FXML
     public void onChamberSelectingbtnClicked() {
-        App.changeView("/main.fxml");
+        App.changeView("/burnInViews/burnInTester.fxml");
     }
 
 }
