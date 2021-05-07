@@ -94,6 +94,14 @@ BorderPane{
     -fx-background-color:       red;
 }
 
+.closeMinimizeBtns{
+    -fx-alignment:           CENTER;
+    -fx-font-size:             14px;
+    -fx-font-scale:              10;
+    -fx-pref-width:            40px;
+    -fx-pref-height:           25px;
+}
+
 #minimizingBtn:hover{
     -fx-text-fill:            #fff9;
     -fx-background-color: #00000030;

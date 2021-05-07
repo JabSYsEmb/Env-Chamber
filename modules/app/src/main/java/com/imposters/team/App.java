@@ -1,5 +1,6 @@
 package com.imposters.team;
 
+import com.imposters.team.controllers.loginViews.DataCatcher;
 import com.imposters.team.db.MyJDBC;
 
 import javafx.stage.Stage;
@@ -12,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.StageStyle;
 import javafx.application.Application;
 
+import javax.xml.crypto.Data;
+
 
 /**
  * Hello world!
@@ -20,6 +23,7 @@ import javafx.application.Application;
 public class App extends Application{
     private static MyJDBC db;
     private static Stage primaryStageOfProgram;
+    private static DataCatcher dataCatcher;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -52,10 +56,14 @@ public class App extends Application{
     public static MyJDBC getDatabase(){
         return App.db;
     }
+    public static DataCatcher getDataCatcher(){
+        return App.dataCatcher;
+    }
 
     public static void main( String[] args )
     {
-        db = new MyJDBC();
+//        db = new MyJDBC();
+        App.dataCatcher = new DataCatcher("127.0.0.1",2332);
         launch(args);
     }
 }

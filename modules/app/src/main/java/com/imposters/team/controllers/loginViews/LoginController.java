@@ -23,8 +23,9 @@ public class LoginController extends CloseMinimizeFunctionalities {
     public void loginBtnClicked() {
         String password = passwordTextField.getText();
         String username = usernameTextField.getText();
-        MyJDBC db = App.getDatabase();
+//        MyJDBC db = App.getDatabase();
         if(!(password.isEmpty() || username.isEmpty())){
+            App.getDataCatcher().emptyFunc(username);
             alertMessage.setText(
                     "logged in successfully, " +
                     Character.toUpperCase(username.charAt(0)) +
@@ -37,5 +38,5 @@ public class LoginController extends CloseMinimizeFunctionalities {
             alertMessage.setText("invalid username or password, try again!");
         }
     }
-
 }
+
