@@ -1,7 +1,6 @@
 package com.imposters.team.client;
 
-
-
+import java.util.List;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.io.PrintWriter;
@@ -32,10 +31,10 @@ public class Sender {
         }
     } //try
 
-    public void setSentMsg(ArrayList<String> appendMsg){
-        appendMsg.forEach(msg -> {
-            Sender.sentMsg.add(msg);
-        });
+    public void setSentMsg(List<String> appendMsg){
+        appendMsg.forEach(msg ->
+            Sender.sentMsg.add(msg)
+        );
     }
 
     public static String getSentMsg(){
