@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.io.IOException;
 import javafx.scene.Parent;
+
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
@@ -59,9 +61,11 @@ public class App extends Application{
         return App.sender;
     }
     public static String getToServerMsg(){return App.toServerMsg;}
-    public static void setToServerMsg(String[] appendMsg){
-        App.toServerMsg = String.valueOf(new StringBuilder().append(appendMsg.toString()));
-    }
+//    public static void setToServerMsg(String[] appendMsg){
+//       Arrays.stream(appendMsg).forEach(msg -> {
+//                   App.toServerMsg = String.valueOf(new StringBuilder().append(App.getToServerMsg()).append(msg));
+//               });
+//    }
     public static void main( String[] args )
     {
 //        db = new MyJDBC();
