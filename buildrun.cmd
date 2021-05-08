@@ -1,6 +1,6 @@
 :: Script to build and execute the project with one command in CMD for windows running devices
 :: in order to be able to run this script without throwing exceptions, maven 3.6+ version and 
-:: JDK need be installed and added to paths
+:: JDK need be installed and added to paths.
 
 set EXE=javaw.exe
 
