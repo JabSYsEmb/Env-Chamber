@@ -7,9 +7,9 @@ import java.util.Vector;
 
 public class Curve {
     private int id;
+    private Vector<Integer> temperature;
     private SimpleStringProperty taskNumber;
-    private Vector<Integer> Duration;
-    private Vector<Integer> Temperature;
+    private Vector<Integer> duration; //in sec
 
     public int getId() {
         return id;
@@ -28,7 +28,7 @@ public class Curve {
     }
 
     public Vector<Integer> getDuration() {
-        return Duration;
+        return duration;
     }
 
     public int getWholeDurationInSeconds(){
@@ -36,6 +36,6 @@ public class Curve {
     }
 
     public Vector<Integer> getTemperature() {
-        return Temperature;
+        return temperature;
     }
 }

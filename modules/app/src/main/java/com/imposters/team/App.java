@@ -23,7 +23,6 @@ import javafx.application.Application;
 public class App extends Application{
     private static MyJDBC db;
     private static Sender sender;
-    private static String toServerMsg;
     private static Stage primaryStageOfProgram;
 
     @Override
@@ -60,17 +59,11 @@ public class App extends Application{
     public static Sender getToServerSender(){
         return App.sender;
     }
-    public static String getToServerMsg(){return App.toServerMsg;}
-//    public static void setToServerMsg(String[] appendMsg){
-//       Arrays.stream(appendMsg).forEach(msg -> {
-//                   App.toServerMsg = String.valueOf(new StringBuilder().append(App.getToServerMsg()).append(msg));
-//               });
-//    }
     public static void main( String[] args )
     {
 //        db = new MyJDBC();
-
         App.sender = new Sender("127.0.0.1",2332);
         launch(args);
     }
 }
+
