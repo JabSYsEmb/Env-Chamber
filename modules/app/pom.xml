@@ -73,11 +73,23 @@
         </executions>
       </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.2.1</version>
-      </plugin>
+			<!--https://mvnrepository.com/artifact/org.codehaus.mojo/exec-maven-plugin/1.6.0  -->
+			<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>exec-maven-plugin</artifactId>
+			<version>1.6.0</version>
+			<executions>
+				<execution>
+					<goals>
+						<goal>java</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<mainClass>com.imposters.team.App</mainClass>
+			</configuration>
+			</plugin>
+		
 
     </plugins>
 
