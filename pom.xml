@@ -20,7 +20,6 @@
 
     <modules>
         <!-- <module>modules/server</module> -->
-        <!-- <module>modules/client</module> -->
         <module>modules/app</module>
     </modules>
 
