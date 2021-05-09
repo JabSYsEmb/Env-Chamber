@@ -9,7 +9,9 @@
 <?import javafx.scene.control.Label?>
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.imposters.team.controllers.login.ChamberSelectController">
+            fx:controller="com.imposters.team.controllers.login.ChamberSelectController"
+            onMousePressed="#setOnMousePressed"
+            onMouseDragged="#setOnMouseDragged">
     <top>
         <AnchorPane styleClass="TitleBox">
             <children>

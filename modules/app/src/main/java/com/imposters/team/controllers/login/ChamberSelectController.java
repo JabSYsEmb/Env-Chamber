@@ -28,7 +28,12 @@ public class ChamberSelectController extends CloseMinimizeFunctionalities {
 
     @FXML
     public void onChamberSelectingbtnClicked() {
-        App.getToServerSender().toServer("INIT|"+chamberComboBox.getSelectionModel().getSelectedItem()+"|1012323");
+        new Thread(() -> {
+            App.getToServerSender()
+                    .toServer("INIT|" +
+                            chamberComboBox.getSelectionModel().getSelectedItem()
+                            +"|1012323");
+        });
         App.changeView("/burnInViews/burnInTester.fxml");
     }
 
