@@ -2,14 +2,15 @@ package com.imposters.team.model;
 
 import javafx.beans.property.SimpleStringProperty;
 
-import java.util.Date;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class Curve {
     private int id;
-    private Vector<Integer> temperature;
+    // ArrayList is not synchronized, which means multiple
+    // threads can work on arrayList at the same time.
+    private ArrayList<Integer> duration; // duration stored in unit of second
+    private ArrayList<Integer> temperature;
     private SimpleStringProperty taskNumber;
-    private Vector<Integer> duration; //in sec
 
     public int getId() {
         return id;
@@ -27,7 +28,7 @@ public class Curve {
         this.taskNumber.set(taskNumber);
     }
 
-    public Vector<Integer> getDuration() {
+    public ArrayList<Integer> getDuration() {
         return duration;
     }
 
@@ -35,7 +36,7 @@ public class Curve {
         return this.getDuration().stream().mapToInt(obj->(int) obj).sum();
     }
 
-    public Vector<Integer> getTemperature() {
+    public ArrayList<Integer> getTemperature() {
         return temperature;
     }
 }

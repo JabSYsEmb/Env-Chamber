@@ -1,4 +1,4 @@
-package com.imposters.team.controllers.loginViews;
+package com.imposters.team.controllers.login;
 
 import com.imposters.team.App;
 import com.imposters.team.controllers.CloseMinimizeFunctionalities;
@@ -18,10 +18,11 @@ public class ChamberSelectController extends CloseMinimizeFunctionalities {
     @FXML
     public void DropDownClicked(){
         chamberComboBox.getItems().setAll(
-            "We need to connect that",
-            "To the database and",
-            "then get the names of ",
-            "chambers from there"
+            "Cabinet-1",
+            "Cabinet-2",
+            "Cabinet-3",
+            "Cabinet-4",
+            "..."
         );
     }
 

@@ -3,12 +3,13 @@ package com.imposters.team;
 import com.imposters.team.client.Sender;
 import com.imposters.team.db.MyJDBC;
 
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.io.IOException;
 import javafx.scene.Parent;
 
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,7 @@ public class App extends Application{
     private static MyJDBC db;
     private static Sender sender;
     private static Stage primaryStageOfProgram;
+    private double xOffset,yOffset;
 
     @Override
     public void start(Stage primaryStage) throws Exception{

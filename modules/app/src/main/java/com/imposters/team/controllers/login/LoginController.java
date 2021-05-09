@@ -1,4 +1,4 @@
-package com.imposters.team.controllers.loginViews;
+package com.imposters.team.controllers.login;
 
 import com.imposters.team.App;
 import com.imposters.team.controllers.CloseMinimizeFunctionalities;
@@ -6,6 +6,7 @@ import com.imposters.team.controllers.CloseMinimizeFunctionalities;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class LoginController extends CloseMinimizeFunctionalities {
     
@@ -24,7 +25,14 @@ public class LoginController extends CloseMinimizeFunctionalities {
         String username = usernameTextField.getText();
 //        MyJDBC db = App.getDatabase();
         if(!(password.isEmpty() || username.isEmpty())){
-            App.getToServerSender().toServer(new StringBuilder().append("STRT|CabinetControl1|").append(username).append("|Admin|10").toString());
+            new Thread(() -> {
+                App.getToServerSender().toServer(
+                        new StringBuilder()
+                                .append("STRT|CabinetControl1|")
+                                .append(username)
+                                .append("|Admin|10")
+                                .toString());
+            }).start();
             alertMessage.setText(
                     "logged in successfully, " +
                     Character.toUpperCase(username.charAt(0)) +

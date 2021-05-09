@@ -9,7 +9,7 @@
 <?import javafx.scene.control.Label?>
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.imposters.team.controllers.loginViews.ChamberSelectController">
+            fx:controller="com.imposters.team.controllers.login.ChamberSelectController">
     <top>
         <AnchorPane styleClass="TitleBox">
             <children>
