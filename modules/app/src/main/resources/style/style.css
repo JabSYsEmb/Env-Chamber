@@ -141,3 +141,23 @@ BorderPane{
     -fx-text-alignment:       right;
 }
 /* End of LoginLayout */
+
+/* ********************************************* */
+/* * This part is dedicated for BurnInLayouts **** */
+/* ********************************************* */
+/* Design of BurnInLayouts */
+
+.clock{
+    -fx-pref-width:          445px;
+    -fx-pref-height:          60px;
+    -fx-background-color:  #054671;
+}
+
+.clockLabel{
+    -fx-font-size:            50px;
+    -fx-text-fill:         #ffffff;
+    -fx-alignment:          center;
+    -fx-font-alignment:     center;
+}
+
+/* End of BurnInLayouts */

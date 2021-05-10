@@ -34,7 +34,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities {
                             chamberComboBox.getSelectionModel().getSelectedItem()
                             +"|1012323");
         });
-        App.changeView("/burnInViews/burnInTester.fxml");
+        App.changeView("/fxml/burnIn-views/burnInTester.fxml");
     }
 
 }

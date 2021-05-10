@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane stylesheets="@../style/style.css"
+<BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.imposters.team.controllers.burn.BurnInTesterController"
             onMousePressed="#setOnMousePressed"
@@ -38,30 +38,20 @@
         <AnchorPane styleClass="windowMainStyle">
             <children>
 
-                <TextField fx:id="ArtikelnummerTextField"
-                           styleClass="textBoxLogin"
-                           layoutX="277.0"
-                           layoutY="190.0"
-                           promptText="Artikelnummer" />
+                <AnchorPane fx:id="clockAnchor"
+                            layoutX="277.0"
+                            layoutY="190.0"
+                            styleClass="clock">
 
-                <TextField fx:id="AuftragsnummerTextField"
-                           styleClass="textBoxLogin"
-                           layoutX="277.0"
-                           layoutY="230.0"
-                           promptText="Auftragsnummer" />
-                               
-                <Label fx:id="alertMessage"
-                       styleClass="alertMessage"
-                       layoutX="277.0"
-                       layoutY="279.0" />
-
-                <Button fx:id="weiterBtn"
-                        styleClass="button1"
-                        layoutX="570.0"
-                        layoutY="270.0"
-                        onAction="#weiterBtnClicked"
-                        text="Beginn Initialisierung"/>
-
+                    <Label fx:id="Clock"
+                           text="00:00:00"
+                           styleClass="clockLabel"
+                           AnchorPane.topAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.0"
+                           AnchorPane.bottomAnchor="0.0"/>
+                </AnchorPane>
+                
             </children>
         </AnchorPane>
     </center>

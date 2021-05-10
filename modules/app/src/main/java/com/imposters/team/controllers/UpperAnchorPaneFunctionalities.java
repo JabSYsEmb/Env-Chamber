@@ -23,6 +23,11 @@ public abstract class UpperAnchorPaneFunctionalities {
         initialY = event.getSceneY();
     }
 
+    @FXML
+    public void weiterBtnClicked(){
+
+    }
+
     public void setOnMouseDragged(MouseEvent event){
         App.getPrimaryStageOfProgram().setX(event.getScreenX() - initialX);
         App.getPrimaryStageOfProgram().setY(event.getScreenY() - initialY);

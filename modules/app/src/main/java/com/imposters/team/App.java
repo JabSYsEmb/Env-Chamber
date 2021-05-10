@@ -28,7 +28,7 @@ public class App extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/burnIn-views/burnInTester2.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
@@ -70,7 +70,7 @@ public class App extends Application{
         App.setMsgToSent = new ArrayList<>();
 
         new Thread(() -> {App.sender = new Sender("127.0.0.1",2332);})
-                .run();
+                .start();
 
         launch(args);
     }
