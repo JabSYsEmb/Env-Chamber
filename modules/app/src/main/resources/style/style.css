@@ -1,8 +1,8 @@
 
 /* ********************************************* */
-/* * This part is dedicted for Buttons Design  * */
+/* * This part is dedicated for Buttons Design  * */
 /* ********************************************* */
-/* Desgin of buttons */
+/* Design of buttons */
 
 Button:hover{
     -fx-cursor:                HAND;
@@ -33,12 +33,12 @@ Button{
     -fx-background-color:   #546E7A;
     -fx-border-color:       #546E7A;
 }
-/* Desgin of buttons */
+/* Design of buttons */
 
 /* ********************************************* */
-/* * This part is dedicted for ComboBox Design * */
+/* * This part is dedicated for ComboBox Design * */
 /* ********************************************* */
-/* Desgin of ComboBox */
+/* Design of ComboBox */
 ComboBox{
     -fx-pref-width:           445px;
     -fx-pref-height:           30px;
@@ -66,9 +66,9 @@ ComboBox{
 /* End of ComboBox */
 
 /* ********************************************* */
-/* * This part is dedicted for Overall Design  * */
+/* * This part is dedicated for Overall Design  * */
 /* ********************************************* */
-/* Desgin of Overall GUI */
+/* Design of Overall GUI */
 
 BorderPane{
     -fx-pref-heigh:           600px;
@@ -123,9 +123,9 @@ BorderPane{
 /* End of of Overall GUI */
 
 /* ********************************************* */
-/* * This part is dedicted for LoginLayout  **** */
+/* * This part is dedicated for LoginLayout  **** */
 /* ********************************************* */
-/* Desgin of LoginLayout */
+/* Design of LoginLayout */
 .textBoxLogin{
     -fx-pref-width:           445px;
     -fx-pref-height:           30px;
