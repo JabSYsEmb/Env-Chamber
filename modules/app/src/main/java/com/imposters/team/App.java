@@ -3,20 +3,16 @@ package com.imposters.team;
 import com.imposters.team.client.Sender;
 import com.imposters.team.db.MyJDBC;
 
+import java.util.List;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-
-import java.awt.event.MouseEvent;
-import java.beans.EventHandler;
-import java.io.IOException;
 import javafx.scene.Parent;
-
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.StageStyle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 
 
@@ -28,7 +24,7 @@ public class App extends Application{
     private static MyJDBC db;
     private static Sender sender;
     private static Stage primaryStageOfProgram;
-    private static List<String> appendMsg;
+    private static List<String> setMsgToSent;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -64,15 +60,18 @@ public class App extends Application{
     public static Sender getToServerSender(){
         return App.sender;
     }
-    public static List<String> getAppendMsg(){
-        return App.appendMsg;
+    public static List<String> getSetMsgToSent(){
+        return App.setMsgToSent;
     }
 
     public static void main( String[] args )
     {
 //        db = new MyJDBC();
-        App.appendMsg = new ArrayList<>();
-        App.sender = new Sender("127.0.0.1",2332);
+        App.setMsgToSent = new ArrayList<>();
+
+        new Thread(() -> {App.sender = new Sender("127.0.0.1",2332);})
+                .run();
+
         launch(args);
     }
 }

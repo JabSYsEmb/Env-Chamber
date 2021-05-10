@@ -31,7 +31,7 @@ public class LoginController extends UpperAnchorPaneFunctionalities {
                                 .append(username)
                                 .append("|Admin|10")
                                 .toString());
-            }).start();
+            }).run();
             alertMessage.setText(
                     "logged in successfully, " +
                     Character.toUpperCase(username.charAt(0)) +
