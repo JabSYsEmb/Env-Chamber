@@ -156,6 +156,7 @@ BorderPane{
 .clockLabel{
     -fx-font-size:            50px;
     -fx-text-fill:         #ffffff;
+    -fx-font-weight:          bold;
     -fx-alignment:          center;
     -fx-font-alignment:     center;
 }

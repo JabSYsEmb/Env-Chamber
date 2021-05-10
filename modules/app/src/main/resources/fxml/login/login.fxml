@@ -6,11 +6,11 @@
 
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.imposters.team.controllers.login.LoginController"
-            onMousePressed="#setOnMousePressed"
-            onMouseDragged="#setOnMouseDragged">
+            fx:controller="com.imposters.team.controllers.login.LoginController">
     <top>
-        <AnchorPane styleClass="TitleBox">
+        <AnchorPane styleClass="TitleBox"
+                    onMousePressed="#setOnMousePressed"
+                    onMouseDragged="#setOnMouseDragged">
             <children>
                 <Text styleClass="TitleText"
                       layoutX="26.0"
