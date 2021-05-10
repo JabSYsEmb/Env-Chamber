@@ -1,14 +1,14 @@
 package com.imposters.team.controllers.login;
 
 import com.imposters.team.App;
-import com.imposters.team.controllers.CloseMinimizeFunctionalities;
+import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class LoginController extends CloseMinimizeFunctionalities {
-    
+public class LoginController extends UpperAnchorPaneFunctionalities {
+
     @FXML
     private Label alertMessage;
 

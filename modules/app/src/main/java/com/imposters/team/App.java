@@ -3,10 +3,11 @@ package com.imposters.team;
 import com.imposters.team.client.Sender;
 import com.imposters.team.db.MyJDBC;
 
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+
+import java.awt.event.MouseEvent;
+import java.beans.EventHandler;
 import java.io.IOException;
 import javafx.scene.Parent;
 

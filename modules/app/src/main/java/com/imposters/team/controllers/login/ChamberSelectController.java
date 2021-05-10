@@ -1,13 +1,13 @@
 package com.imposters.team.controllers.login;
 
 import com.imposters.team.App;
-import com.imposters.team.controllers.CloseMinimizeFunctionalities;
+import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
-public class ChamberSelectController extends CloseMinimizeFunctionalities {
+public class ChamberSelectController extends UpperAnchorPaneFunctionalities {
 
     @FXML
     private Button chamberSelectingButton;

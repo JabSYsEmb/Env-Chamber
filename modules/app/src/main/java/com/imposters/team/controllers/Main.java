@@ -1,5 +1,5 @@
 package com.imposters.team.controllers;
 
-public class Main extends CloseMinimizeFunctionalities{
+public class Main extends UpperAnchorPaneFunctionalities {
 
 }

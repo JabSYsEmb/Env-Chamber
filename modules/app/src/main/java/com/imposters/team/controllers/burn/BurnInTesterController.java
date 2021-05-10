@@ -1,12 +1,12 @@
 package com.imposters.team.controllers.burn;
 
-import com.imposters.team.controllers.CloseMinimizeFunctionalities;
+import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class BurnInTesterController extends CloseMinimizeFunctionalities {
+public class BurnInTesterController extends UpperAnchorPaneFunctionalities {
     
     @FXML
     private Label alertMessage;
