@@ -7,6 +7,7 @@
    -fx-cursor-type:              HAND;
    -fx-text-mainColor:           #fff;
    -fx-clock-height:             60px;
+   -fx-pressed-color:         #546E7A;
 }
 
 /* ********************************************* */
@@ -40,8 +41,8 @@ Button{
     -fx-pref-width:                     152px;
 } 
 .button1:pressed{ 
-    -fx-background-color:             #546E7A;
-    -fx-border-color:                 #546E7A;
+    -fx-background-color:   -fx-pressed-color;
+    -fx-border-color:       -fx-pressed-color;
 }
 /* Design of buttons */
 
@@ -71,7 +72,7 @@ ComboBox{
 
 .combo-box-popup .list-view .list-cell:selected
 {
-    -fx-background-color:               #546E7A;
+    -fx-background-color:     -fx-pressed-color;
 }
 /* End of ComboBox */
 
