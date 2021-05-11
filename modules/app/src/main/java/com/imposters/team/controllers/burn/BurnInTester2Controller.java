@@ -20,7 +20,7 @@ public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities {
     private ClockController clockController = new ClockController();
     @FXML
     public void weiterBtnClicked(){
-        clock.textProperty().bindBidirectional(clockController.getHourMinuteSecond());
+        clock.textProperty().bind(clockController.getHourMinuteSecond());
         new Thread (()->clockController.run()).start();
     }
 
@@ -38,7 +38,7 @@ class ClockController{
         this.second = new SimpleIntegerProperty(0);
         this.minute = new SimpleIntegerProperty(0);
         this.hour   = new SimpleIntegerProperty(0);
-        this.time   = new SimpleStringProperty("tttttttttttttt");
+        this.time   = new SimpleStringProperty("");
     }
 
     public void run() {
@@ -50,7 +50,7 @@ class ClockController{
             minute = new SimpleIntegerProperty(cal.get(Calendar.MINUTE));
             hour = new SimpleIntegerProperty(cal.get(Calendar.HOUR));
             //System.out.println(hour + ":" + (minute) + ":" + second);
-            time = new SimpleStringProperty(hour + ":" + (minute) + ":" + second);
+            time.bind(new SimpleStringProperty(String.valueOf(second.get())));
             System.out.println(time);
             try {
                 sleep(1000);
@@ -60,13 +60,10 @@ class ClockController{
         }
     }
 
-//    public List<SimpleIntegerProperty> getHourMinuteSecond(){
-//        return Arrays.asList(this.hour,this.minute,this.second);
-//    }
-
     public SimpleStringProperty getHourMinuteSecond(){
-        return this.time;
+        return time;
     }
+}
 
 //
 //    public void updateClockSec(){
@@ -92,4 +89,4 @@ class ClockController{
 //        };
 //        clock.start();
 //    }
-}
+//}

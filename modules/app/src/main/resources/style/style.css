@@ -1,3 +1,13 @@
+* {
+   -fx-mainColor:             #254671;
+   -fx-backgroundColor:       #ffffff;
+   -fx-main-height:             600px;
+   -fx-box-weight:              445px;
+   -fx-box-height:               30px;
+   -fx-cursor-type:              HAND;
+   -fx-text-mainColor:           #fff;
+   -fx-clock-height:             60px;
+}
 
 /* ********************************************* */
 /* * This part is dedicated for Buttons Design  * */
@@ -5,33 +15,33 @@
 /* Design of buttons */
 
 Button:hover{
-    -fx-cursor:                HAND;
+    -fx-cursor:               -fx-cursor-type;
 }
 
 Button{
-    -fx-pref-width:           110px;
-    -fx-pref-height:           27px;
-    -fx-font-size:             14px;
+    -fx-pref-width:                     110px;
+    -fx-pref-height:                     27px;
+    -fx-font-size:                       14px;
 }
 
 .button1{
-    -fx-text-fill:          #054671;
-    -fx-border-color:       #054671;
-    -fx-background-color:   #ffffff;
-}
+    -fx-text-fill:              -fx-mainColor;
+    -fx-border-color:           -fx-mainColor;
+    -fx-background-color: -fx-backgroundColor;
+} 
 
-.button1:hover{
-    -fx-cursor:                hand;
-    -fx-text-fill:          #ffffff;
-    -fx-border-color:       #054671;
-    -fx-background-color:   #054671;
-}
-#weiterBtn{
-    -fx-pref-width:           152px;
-}
-.button1:pressed{
-    -fx-background-color:   #546E7A;
-    -fx-border-color:       #546E7A;
+.button1:hover{ 
+    -fx-cursor:               -fx-cursor-type;
+    -fx-text-fill:        -fx-backgroundColor;
+    -fx-border-color:           -fx-mainColor;
+    -fx-background-color:       -fx-mainColor;
+} 
+#weiterBtn{ 
+    -fx-pref-width:                     152px;
+} 
+.button1:pressed{ 
+    -fx-background-color:             #546E7A;
+    -fx-border-color:                 #546E7A;
 }
 /* Design of buttons */
 
@@ -40,28 +50,28 @@ Button{
 /* ********************************************* */
 /* Design of ComboBox */
 ComboBox{
-    -fx-pref-width:           445px;
-    -fx-pref-height:           30px;
-    -fx-border-color:       #054671;
-    -fx-font-family:     sans-serif;
-    -fx-font-size:             13px;
-    -fx-background-color:   #ffffff;
+    -fx-pref-width:                       445px;
+    -fx-pref-height:             -fx-box-height;
+    -fx-border-color:             -fx-mainColor;
+    -fx-font-family:                 sans-serif;
+    -fx-font-size:                         13px;
+    -fx-background-color:   -fx-backgroundColor;
 }
 
 .combo-box-popup{
-    -fx-font-size:             13px;
+    -fx-font-size:                         13px;
 }
 
 .combo-box-popup .list-view .list-cell:hover
 {
-    -fx-font-size:             13px;
-    -fx-background-color:   #054671;
-    -fx-text-fill:          #ffffff;
+    -fx-font-size:                         13px;
+    -fx-background-color:         -fx-mainColor;
+    -fx-text-fill:          -fx-backgroundColor;
 }
 
 .combo-box-popup .list-view .list-cell:selected
 {
-    -fx-background-color:   #546E7A;
+    -fx-background-color:               #546E7A;
 }
 /* End of ComboBox */
 
@@ -71,53 +81,53 @@ ComboBox{
 /* Design of Overall GUI */
 
 BorderPane{
-    -fx-pref-heigh:           600px;
-    -fx-pref-width:          1000px;
-    -fx-background-color:   #ffffff;
+    -fx-pref-heigh:            -fx-main-height;
+    -fx-pref-width:                     1000px;
+    -fx-background-color:  -fx-backgroundColor;
 }
 
 .TitleText{
-    -fx-font-size:             24px;
-    -fx-font-weight:           bold;
-    -fx-fill:                  #fff;
+    -fx-font-size:                        24px;
+    -fx-font-weight:                      bold;
+    -fx-fill:                             #fff;
 }
 
 .TitleBox{
-    -fx-alignment:           CENTER;
-    -fx-pref-width:           600px;
-    -fx-pref-height:           66px;
-    -fx-background-color:   #054671;
+    -fx-alignment:                      CENTER;
+    -fx-pref-width:            -fx-main-height;
+    -fx-pref-height:                      66px;
+    -fx-background-color:        -fx-mainColor;
 }
 #closeBtn:hover{
-    -fx-cursor:             DEFAULT;
-    -fx-text-fill:            #fffd;
-    -fx-background-color:       red;
+    -fx-cursor:                        DEFAULT;
+    -fx-text-fill:                       #fffd;
+    -fx-background-color:                  red;
 }
 
 .closeMinimizeBtns{
-    -fx-alignment:           CENTER;
-    -fx-font-size:             14px;
-    -fx-font-scale:              10;
-    -fx-pref-width:            40px;
-    -fx-pref-height:           25px;
+    -fx-alignment:                      CENTER;
+    -fx-font-size:                        14px;
+    -fx-font-scale:                         10;
+    -fx-pref-width:                       40px;
+    -fx-pref-height:                      25px;
 }
 
 #minimizingBtn:hover{
-    -fx-text-fill:            #fff9;
-    -fx-background-color: #00000030;
-    -fx-background-insets:      0.2;
+    -fx-text-fill:                       #fff9;
+    -fx-background-color:            #00000030;
+    -fx-background-insets:                 0.2;
 }
 
 .windowMainStyle{
-    -fx-alignment:           center;
-    -fx-pref-width:          1060px;
-    -fx-pref-height:          534px;
-    -fx-background-color:   #ffffff;
+    -fx-alignment:                      center;
+    -fx-pref-width:                     1060px;
+    -fx-pref-height:                     534px;
+    -fx-background-color:  -fx-backgroundColor;
 }
 
 .GeneralTextStyle{
-    -fx-fill:               #054671;
-    -fx-font-size:             15px;
+    -fx-fill:                             #fff;
+    -fx-font-size:                        15px;
 }
 
 /* End of of Overall GUI */
@@ -127,18 +137,18 @@ BorderPane{
 /* ********************************************* */
 /* Design of LoginLayout */
 .textBoxLogin{
-    -fx-pref-width:           445px;
-    -fx-pref-height:           30px;
-    -fx-border-color:       #054671;
-    -fx-background-color:   #ffffff;
+    -fx-pref-width:             -fx-box-weight;
+    -fx-pref-height:            -fx-box-height;
+    -fx-border-color:            -fx-mainColor;
+    -fx-background-color:  -fx-backgroundColor;
 }
 
 .alertMessage{
-    -fx-text-fill:          #ff0000;
-    -fx-font-size:             13px;
-    -fx-pref-width:           300px;
-    -fx-pref-height:           20px;
-    -fx-text-alignment:       right;
+    -fx-text-fill:                     #ff0000;
+    -fx-font-size:                        13px;
+    -fx-pref-width:                      300px;
+    -fx-pref-height:                      20px;
+    -fx-text-alignment:                  right;
 }
 /* End of LoginLayout */
 
@@ -148,17 +158,17 @@ BorderPane{
 /* Design of BurnInLayouts */
 
 .clock{
-    -fx-pref-width:          445px;
-    -fx-pref-height:          60px;
-    -fx-background-color:  #054671;
+    -fx-pref-width:            -fx-box-weight;
+    -fx-pref-height:         -fx-clock-height;
+    -fx-background-color:       -fx-mainColor;
 }
 
 .clockLabel{
-    -fx-font-size:            50px;
-    -fx-text-fill:         #ffffff;
-    -fx-font-weight:          bold;
-    -fx-alignment:          center;
-    -fx-font-alignment:     center;
+    -fx-font-size:                       50px;
+    -fx-text-fill:        -fx-backgroundColor;
+    -fx-font-weight:                     bold;
+    -fx-alignment:                     center;
+    -fx-font-alignment:                center;
 }
 
 /* End of BurnInLayouts */
