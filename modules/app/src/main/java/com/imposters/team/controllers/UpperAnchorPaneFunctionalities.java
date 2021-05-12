@@ -24,8 +24,8 @@ public abstract class UpperAnchorPaneFunctionalities {
     }
 
     @FXML
-    public void weiterBtnClicked(){
-
+    public void clickWeiterBtn(){
+        App.getPrimaryStageOfProgram().close();
     }
 
     public void setOnMouseDragged(MouseEvent event){

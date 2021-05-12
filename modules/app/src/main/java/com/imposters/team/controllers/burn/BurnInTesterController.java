@@ -1,5 +1,6 @@
 package com.imposters.team.controllers.burn;
 
+import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import javafx.fxml.FXML;
@@ -18,9 +19,10 @@ public class BurnInTesterController extends UpperAnchorPaneFunctionalities {
     private TextField AuftragsnummerTextField;
 
     @FXML
-    public void weiterBtnClicked() {
+    public void clickWeiterBtn() {
         String Artikelnummer = ArtikelnummerTextField.getText();
         String Auftragsnummer = AuftragsnummerTextField.getText();
+        App.changeView("/fxml/burnIn-views/burnInTester2.fxml");
         alertMessage.setText("Was wollen Sie hier machen?");
     }
 

@@ -59,7 +59,7 @@
                         styleClass="button1"
                         layoutX="570.0"
                         layoutY="270.0"
-                        onAction="#weiterBtnClicked"
+                        onAction="#clickWeiterBtn"
                         text="Beginn Initialisierung"/>
 
             </children>

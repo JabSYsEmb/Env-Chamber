@@ -1,15 +1,15 @@
 * {
-   background-color:        #ffffff;
-   main-color:              #254671;
+   background-color:          #ffffff;
+   main-color:                #254671;
    window-width:               1000px;
    window-height:               600px;
    text-box-width:              445px;
    text-box-height:              30px;
    clock-box-height:             60px;
    cursor-hover-button:          HAND;
-   pressed-button-color:    #546E7A;
-   text-main-color:            #fff;
-   alert-color:             #ff0000;
+   pressed-button-color:      #546E7A;
+   text-main-color:              #fff;
+   alert-color:               #ff0000;
 
 }
 
@@ -166,14 +166,24 @@ BorderPane{
     -fx-pref-width:            text-box-width;
     -fx-pref-height:         clock-box-height;
     -fx-background-color:          main-color;
+    -fx-alignment:                     CENTER;
 }
 
 .clockLabel{
     -fx-font-size:                       50px;
     -fx-text-fill:           background-color;
-    -fx-font-weight:                     bold;
-    -fx-alignment:                     center;
-    -fx-font-alignment:                center;
+    -fx-font-weight:                     BOLD;
+    -fx-alignment:                     CENTER;
+    -fx-font-alignment:                CENTER;
 }
 
+#inside-clockAnchor{
+    -fx-alignment:                     CENTER;
+    -fx-font-alignment:                CENTER;
+}
 /* End of BurnInLayouts */
+
+.Clock{
+    -fx-pref-width:  10px;
+    -fx-pref-height: 10px;
+}
