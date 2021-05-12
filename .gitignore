@@ -1,3 +1,6 @@
+.gitIgnore
+modules/app/src/main/resources/fonts/
+
 target/
 pom.xml.tag
 pom.xml.releaseBackup

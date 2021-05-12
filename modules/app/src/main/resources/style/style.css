@@ -1,6 +1,6 @@
 * {
    background-color:          #ffffff;
-   main-color:                #254671;
+   main-color:                #054671;
    window-width:               1000px;
    window-height:               600px;
    text-box-width:              445px;
@@ -10,7 +10,8 @@
    pressed-button-color:      #546E7A;
    text-main-color:              #fff;
    alert-color:               #ff0000;
-
+   table-width:                 477px;
+   table-height:                377px;
 }
 
 /* ********************************************* */
@@ -19,29 +20,29 @@
 /* Design of buttons */
 
 Button:hover{
-    -fx-cursor:               cursor-hover-button;
+    -fx-cursor:             cursor-hover-button;
 }
 
 Button{
-    -fx-pref-width:                     110px;
-    -fx-pref-height:                     27px;
-    -fx-font-size:                       14px;
+    -fx-pref-width:                       110px;
+    -fx-pref-height:                       27px;
+    -fx-font-size:                         14px;
 }
 
 .button1{
-    -fx-text-fill:              main-color;
-    -fx-border-color:           main-color;
-    -fx-background-color: background-color;
+    -fx-text-fill:                    main-color;
+    -fx-border-color:                 main-color;
+    -fx-background-color:       background-color;
 } 
 
 .button1:hover{ 
-    -fx-cursor:               cursor-hover-button;
-    -fx-text-fill:        background-color;
-    -fx-border-color:           main-color;
-    -fx-background-color:       main-color;
+    -fx-cursor:              cursor-hover-button;
+    -fx-text-fill:              background-color;
+    -fx-border-color:                 main-color;
+    -fx-background-color:             main-color;
 } 
 #weiterBtn{ 
-    -fx-pref-width:                     152px;
+    -fx-pref-width:                        152px;
 } 
 .button1:pressed{ 
     -fx-background-color:   pressed-button-color;
@@ -55,11 +56,11 @@ Button{
 /* Design of ComboBox */
 ComboBox{
     -fx-pref-width:                       445px;
-    -fx-pref-height:             text-box-height;
-    -fx-border-color:             main-color;
+    -fx-pref-height:            text-box-height;
+    -fx-border-color:                main-color;
     -fx-font-family:                 sans-serif;
     -fx-font-size:                         13px;
-    -fx-background-color:   background-color;
+    -fx-background-color:      background-color;
 }
 
 .combo-box-popup{
@@ -99,9 +100,9 @@ BorderPane{
 
 .TitleBox{
     -fx-alignment:                      CENTER;
-    -fx-pref-width:            window-height;
+    -fx-pref-width:              window-height;
     -fx-pref-height:                      66px;
-    -fx-background-color:        main-color;
+    -fx-background-color:           main-color;
 }
 #closeBtn:hover{
     -fx-cursor:                        DEFAULT;
@@ -127,7 +128,7 @@ BorderPane{
     -fx-alignment:                      center;
     -fx-pref-width:                     1060px;
     -fx-pref-height:                     534px;
-    -fx-background-color:  background-color;
+    -fx-background-color:     background-color;
 }
 
 .GeneralTextStyle{
@@ -142,44 +143,51 @@ BorderPane{
 /* ********************************************* */
 /* Design of LoginLayout */
 .textBoxLogin{
-    -fx-pref-width:             text-box-width;
+    -fx-pref-width:              text-box-width;
     -fx-pref-height:            text-box-height;
-    -fx-border-color:            main-color;
-    -fx-background-color:  background-color;
+    -fx-border-color:                main-color;
+    -fx-background-color:      background-color;
 }
 
 .alertMessage{
-    -fx-text-fill:                 alert-color;
-    -fx-font-size:                        13px;
-    -fx-pref-width:                      300px;
-    -fx-pref-height:                      20px;
-    -fx-text-alignment:                  right;
+    -fx-text-fill:                  alert-color;
+    -fx-font-size:                         13px;
+    -fx-pref-width:                       300px;
+    -fx-pref-height:                       20px;
+    -fx-text-alignment:                   right;
 }
 /* End of LoginLayout */
 
-/* ********************************************* */
+/* *********************************************** */
 /* * This part is dedicated for BurnInLayouts **** */
-/* ********************************************* */
+/* *********************************************** */
 /* Design of BurnInLayouts */
 
 .clock{
-    -fx-pref-width:            text-box-width;
-    -fx-pref-height:         clock-box-height;
-    -fx-background-color:          main-color;
-    -fx-alignment:                     CENTER;
+    -fx-pref-width:              text-box-width;
+    -fx-pref-height:           clock-box-height;
+    -fx-background-color:            main-color;
+    -fx-alignment:                       CENTER;
 }
 
 .clockLabel{
-    -fx-font-size:                       50px;
-    -fx-text-fill:           background-color;
-    -fx-font-weight:                     BOLD;
-    -fx-alignment:                     CENTER;
-    -fx-font-alignment:                CENTER;
+    -fx-font-size:                         50px;
+    -fx-text-fill:             background-color;
+    -fx-font-weight:                       BOLD;
+    -fx-alignment:                       CENTER;
+    -fx-font-alignment:                  CENTER;
+}
+
+#BauteilIDTextField, #AuftragsnummerTextField, #SlotTextField{
+    -fx-pref-width:           352px;
+}
+#alertMessageBurnIn{
+    -fx-pref-width:           250px;
 }
 
 #inside-clockAnchor{
-    -fx-alignment:                     CENTER;
-    -fx-font-alignment:                CENTER;
+    -fx-alignment:                       CENTER;
+    -fx-font-alignment:                  CENTER;
 }
 /* End of BurnInLayouts */
 
@@ -187,3 +195,39 @@ BorderPane{
     -fx-pref-width:  10px;
     -fx-pref-height: 10px;
 }
+
+/* ************************************** */
+/* * This part is dedicated for Tables ** */
+/* ************************************** */
+.table-view, .tree-table-view {
+    /* Constants used throughout the tableview. */
+    -fx-table-header-border-color:  transparent;
+    -fx-table-cell-border-color:     main-color;
+    -fx-box-border-color:            main-color; /* Horizontal Lines*/
+    -fx-background-color:           transparent;
+    -fx-pref-width:                 table-width;
+    -fx-pref-height:               table-height;
+}
+/* The column header row is made up of a number of column-header, one for each
+  TableColumn, and a 'filler' area that extends from the right-most column
+  to the edge of the tableview, or up to the 'column control' button. */
+.table-view .filler, .tree-table-view .filler, .table-view .column-header,
+.tree-table-view .column-header {
+   -fx-size:                                 40;
+   -fx-color:                       transparent;
+   -fx-border-style:                       null;
+   -fx-border-color:                      white;
+   -fx-border-width:                          1;
+   -fx-background-color:             main-color;
+}
+.table-row-cell, .tree-table-row-cell {
+   -fx-cell-size:                          40px;
+}
+.table-view .column-header .label{
+   -fx-text-fill:               white;
+}
+.table-row-cell:selected {
+   -fx-background-color:             main-color;
+   -fx-text-background-color:        main-color;
+}
+/* End of Tables */
