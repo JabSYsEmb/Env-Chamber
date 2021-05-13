@@ -54,7 +54,7 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities {
 
     }
     public void entfernenBtnClicked() {
-        alertMessageBurnIn.setText("Ich werde entwernt werden");
+        alertMessageBurnIn.setText("Ich werde entfernt werden");
 
     }
 

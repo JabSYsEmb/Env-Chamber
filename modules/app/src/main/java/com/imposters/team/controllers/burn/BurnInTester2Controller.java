@@ -20,6 +20,8 @@ public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities impl
     private SimpleIntegerProperty minutes = new SimpleIntegerProperty(0);
     private final int SECOND = 1;
     private final int MINUTE = 1;
+    @FXML
+    private Label message;
 
     @FXML
     private AnchorPane clockAnchor;
@@ -52,7 +54,9 @@ public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities impl
                                 timeInSec.set(0);
                             }
                             if(timeInMin.get()==4 && timeInSec.get()==59){
-                                clockAnchor.setStyle("-fx-background-color:#993730;");
+                                clock.setStyle("-fx-text-fill:green;");
+                                message.setText("Initialisierungsvorgang ist beendet!");
+                                message.setStyle("-fx-text-fill:green;");
                             }
                         }
                     }

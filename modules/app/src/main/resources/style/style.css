@@ -147,16 +147,25 @@ BorderPane{
     -fx-pref-height:            text-box-height;
     -fx-border-color:                main-color;
     -fx-background-color:      background-color;
-}
+}/* End of LoginLayout */
 
+
+/* ********************************************* */
+/* * This part is dedicated for alertMessage**** */
+/* ********************************************* */
 .alertMessage{
     -fx-text-fill:                  alert-color;
     -fx-font-size:                         13px;
-    -fx-pref-width:                       300px;
     -fx-pref-height:                       20px;
     -fx-text-alignment:                   right;
 }
-/* End of LoginLayout */
+#alertMessageBurnIn{
+    -fx-pref-width:           300px;
+}
+#alertMessage{
+    -fx-pref-width:          200px;
+}
+/* End of alertMessage */
 
 /* *********************************************** */
 /* * This part is dedicated for BurnInLayouts **** */
@@ -172,7 +181,7 @@ BorderPane{
 
 .clockLabel{
     -fx-font-size:                         50px;
-    -fx-text-fill:             background-color;
+    -fx-text-fill:             main-color;
     -fx-font-weight:                       BOLD;
     -fx-alignment:                       CENTER;
     -fx-font-alignment:                  CENTER;
@@ -181,14 +190,30 @@ BorderPane{
 #BauteilIDTextField, #AuftragsnummerTextField, #SlotTextField{
     -fx-pref-width:           352px;
 }
-#alertMessageBurnIn{
-    -fx-pref-width:           175px;
-}
+
 
 #inside-clockAnchor{
     -fx-alignment:                       CENTER;
     -fx-font-alignment:                  CENTER;
 }
+.BurnInTextStyle{
+    -fx-fill:               #054671;
+    -fx-font-size:             15px;
+    -fx-font-family:     sans-serif;
+    -fx-alignment:           center;
+    -fx-font-alignment:      center;
+}
+.BurnIntextBox{
+    -fx-pref-width:           352px;
+    -fx-pref-height:           30px;
+    -fx-border-color:       #054671;
+    -fx-background-color:   #ffffff;
+}
+.BurnInclock{
+    -fx-pref-width:          352px;
+    -fx-pref-height:          60px;
+}
+
 /* End of BurnInLayouts */
 
 .Clock{
