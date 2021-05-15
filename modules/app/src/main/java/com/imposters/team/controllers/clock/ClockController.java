@@ -45,16 +45,16 @@ public class ClockController {
                                 this.minutes.set(this.minutes.get() + MINUTE);
                                 this.seconds.set(0);
                             }
-                            if(this.minutes.get()==4 && this.seconds.get()==59){
-                                clock.setStyle("-fx-text-fill:green;");
-                                message.setText(this.message);
-                                message.setStyle("-fx-text-fill:green;");
-                            }
                         }
                     }
             );
             Thread.sleep(10);
         }
+        Platform.runLater(()->{
+            clock.setStyle("-fx-text-fill:green;");
+            message.setText(this.message);
+            message.setStyle("-fx-text-fill:green;");
+        });
     }
 
     public void run(Label clock, Label message){
@@ -69,6 +69,10 @@ public class ClockController {
 
     public String getCurrentTime(){
         return "00:0"+String.valueOf(this.minutes.get())+":"+String.valueOf(this.seconds.get());
+    }
+
+    public void stopStopwatch(){
+        this.countDownInMinutes = 0;
     }
 
 }

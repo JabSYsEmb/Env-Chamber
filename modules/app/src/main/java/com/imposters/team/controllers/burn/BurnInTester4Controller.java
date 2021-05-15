@@ -40,5 +40,6 @@ public class BurnInTester4Controller extends UpperAnchorPaneFunctionalities impl
         message.setText("Hallo heißer ich bin Message");
         progressBar.setProgress(0.88);
         Tempratur.setText("0080.9");
+
     }
 }

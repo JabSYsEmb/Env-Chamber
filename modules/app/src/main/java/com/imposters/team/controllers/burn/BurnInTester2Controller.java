@@ -25,7 +25,7 @@ public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities impl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new ClockController(5,"Initialisierungsvorgang ist beendet!").run(clock,message);
+        new ClockController(1,"Initialisierungsvorgang ist beendet!").run(clock,message);
     }
 
     @FXML

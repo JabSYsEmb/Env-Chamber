@@ -1,6 +1,7 @@
 * {
    background-color:          #ffffff;
    main-color:                #054671;
+   second-main-color:         #ff2200;
    window-width:               1000px;
    window-height:               600px;
    text-box-width:              445px;
@@ -132,7 +133,7 @@ BorderPane{
 }
 
 .GeneralTextStyle{
-    -fx-fill:                             #fff;
+    -fx-fill:                       main-color;
     -fx-font-size:                        15px;
 }
 
@@ -197,11 +198,12 @@ BorderPane{
     -fx-font-alignment:                  CENTER;
 }
 .BurnInTextStyle{
-    -fx-fill:               #054671;
-    -fx-font-size:             15px;
-    -fx-font-family:     sans-serif;
-    -fx-alignment:           center;
-    -fx-font-alignment:      center;
+    -fx-fill:             main-color;
+    -fx-text-fill: second-main-color;
+    -fx-font-size:              15px;
+    -fx-font-family:      sans-serif;
+    -fx-alignment:            center;
+    -fx-font-alignment:       center;
 }
 .BurnIntextBox{
     -fx-pref-width:           352px;
@@ -249,7 +251,7 @@ BorderPane{
    -fx-cell-size:                          40px;
 }
 .table-view .column-header .label{
-   -fx-text-fill:               white;
+   -fx-text-fill:                         white;
 }
 .table-row-cell:selected {
    -fx-background-color:             main-color;
@@ -262,16 +264,16 @@ BorderPane{
 /* ************************************** */
 .progress-bar {
     -fx-accent: main-color;
-    -fx-background-color:             white;
-    -fx-border-color:               #054671;
-    -fx-pref-width:                   445px;
-    -fx-pref-height:                   27px;
+    -fx-background-color:      background-color;
+    -fx-border-color:                main-color;
+    -fx-pref-width:                       445px;
+    -fx-pref-height:                       27px;
 }
 .progress-bar .bar {
-    -fx-padding:                        1px;
-    -fx-background-insets:                0;
+    -fx-padding:                            1px;
+    -fx-background-insets:                    0;
 }
 .progress-bar .track {
-     -fx-background-color:             white;
+    -fx-background-color:                 white;
 }
 /* End of progress-bar */
