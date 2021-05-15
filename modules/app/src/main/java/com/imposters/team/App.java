@@ -28,7 +28,11 @@ public class App extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+<<<<<<< HEAD
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/login.fxml"));
+=======
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/burnIn-views/burnInTester4.fxml"));
+>>>>>>> a76ed9624cf4d2dd29584211dd4ac7e3d1e46698
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
