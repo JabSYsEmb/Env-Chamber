@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane stylesheets="@../../style/style.css"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.imposters.team.controllers.burn.BurnInTester4Controller">
+    <top>
+        <AnchorPane styleClass="TitleBox"
+                    onMousePressed="#setOnMousePressed"
+                    onMouseDragged="#setOnMouseDragged">
+            <children>
+                <Text styleClass="TitleText"
+                      layoutX="26.0"
+                      layoutY="43.0"
+                      text="Burn-In Tester" />
+
+                <Label fx:id="closeBtn"
+                       styleClass="closeMinimizeBtns"
+                       layoutX="960.0"
+                       layoutY="0.0"
+                       onMouseClicked="#onCloseClicked"
+                       text="✖" />
+
+                <Label fx:id="minimizingBtn"
+                       styleClass="closeMinimizeBtns"
+                       layoutX="920.0"
+                       layoutY="0.0"
+                       onMouseClicked="#onMinimizingClicked"
+                       text="➖" />
+
+            </children>
+        </AnchorPane>
+    </top>
+    <center>
+        <AnchorPane styleClass="windowMainStyle">
+            <children>
+
+                <AnchorPane fx:id="clockAnchor"
+                            layoutX="277"
+                            layoutY="200.0"
+                            styleClass="BurnInclock" >
+
+                    <Label fx:id="clock"
+                           text="00:00:00"
+                           styleClass="clockLabel"
+                           AnchorPane.topAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0"
+                           AnchorPane.bottomAnchor="0.0"/>
+                    <Label fx:id="Testdauer"
+                           text="Voraussichtliche Testdauer: 00:00:00"
+                           styleClass="BurnInTextStyle"
+                           AnchorPane.topAnchor="65.0"
+                           AnchorPane.leftAnchor="0.0"
+                           AnchorPane.bottomAnchor="0.0"/>
+                </AnchorPane>
+
+                <AnchorPane fx:id="TempraturAnchor"
+                            layoutX="277.0"
+                            layoutY="100.0"
+                            styleClass="BurnInclock" >
+
+                    <Label fx:id="Tempratur"
+                           text="0001.7"
+                           styleClass="clockLabel"
+                           AnchorPane.topAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0"
+                           AnchorPane.bottomAnchor="0.0"/>
+                    <Label fx:id="sollTempratur"
+                           text="Soll Tempratur : 0000.0"
+                           styleClass="BurnInTextStyle"
+                           AnchorPane.topAnchor="65.0"
+                           AnchorPane.leftAnchor="0.0"
+                           AnchorPane.bottomAnchor="0.0"/>
+                </AnchorPane>
+
+                <Text styleClass="BurnInTextStyle"
+                      layoutX="277.0"
+                      layoutY="215.0"
+                      text="Verstrichene Zeit"/>
+
+                <Text styleClass="BurnInTextStyle"
+                      layoutX="277.0"
+                      layoutY="118.0"
+                      text="Ist Tempratur"/>
+
+                <Label fx:id="Message"
+                       styleClass="alertMessage"
+                       layoutX="277.0"
+                       layoutY="345.0" />
+
+
+
+
+                <ProgressBar fx:id="progressBar"
+                        layoutX="277"
+                        layoutY="300.0" />
+
+                <Button fx:id="weiterBtn"
+                        styleClass="button1"
+                        layoutX="570.0"
+                        layoutY="335.0"
+                        onAction="#clickWeiterBtn"
+                        text="Weiter"/>
+                
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
