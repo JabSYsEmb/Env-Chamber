@@ -1,16 +1,22 @@
 package com.imposters.team.controllers.burn;
 
+import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
+import com.imposters.team.controllers.clock.ClockController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities {
+
+public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  implements Initializable {
 
     @FXML
     private Label alertMessageBurnIn;
@@ -35,6 +41,7 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities {
         String Slot = SlotTextField.getText();
         String BauteilID = BauteilIDTextField.getText();
         alertMessageBurnIn.setText("Ich bin eine Warnungsnachricht");
+        App.changeView("/fxml/burnIn-views/burnInTester4.fxml");
     }
 
     @FXML
@@ -58,4 +65,8 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        new ClockController(2,"Hi Nigga").run(this.clock,this.massage);
+    }
 }

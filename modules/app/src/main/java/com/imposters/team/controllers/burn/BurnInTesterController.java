@@ -13,15 +13,15 @@ public class BurnInTesterController extends UpperAnchorPaneFunctionalities {
     private Label alertMessage;
 
     @FXML
-    private TextField ArtikelnummerTextField;
+    private TextField Artikelnummer;
 
     @FXML
-    private TextField AuftragsnummerTextField;
+    private TextField Auftragsnummer;
 
     @FXML
     public void clickWeiterBtn() {
-        String Artikelnummer = ArtikelnummerTextField.getText();
-        String Auftragsnummer = AuftragsnummerTextField.getText();
+        String Artikelnummer = this.Artikelnummer.getText();
+        String Auftragsnummer = this.Auftragsnummer.getText();
         App.changeView("/fxml/burnIn-views/burnInTester2.fxml");
         alertMessage.setText("Was wollen Sie hier machen?");
     }

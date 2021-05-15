@@ -38,13 +38,13 @@
         <AnchorPane styleClass="windowMainStyle">
             <children>
 
-                <TextField fx:id="ArtikelnummerTextField"
+                <TextField fx:id="Artikelnummer"
                            styleClass="textBoxLogin"
                            layoutX="277.0"
                            layoutY="190.0"
                            promptText="Artikelnummer" />
 
-                <TextField fx:id="AuftragsnummerTextField"
+                <TextField fx:id="Auftragsnummer"
                            styleClass="textBoxLogin"
                            layoutX="277.0"
                            layoutY="230.0"
