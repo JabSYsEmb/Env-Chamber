@@ -86,7 +86,7 @@
                       layoutY="118.0"
                       text="Ist Tempratur"/>
 
-                <Label fx:id="Message"
+                <Label fx:id="message"
                        styleClass="alertMessage"
                        layoutX="277.0"
                        layoutY="345.0" />
