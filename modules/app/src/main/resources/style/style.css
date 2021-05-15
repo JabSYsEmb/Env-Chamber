@@ -256,3 +256,22 @@ BorderPane{
    -fx-text-background-color:        main-color;
 }
 /* End of Tables */
+
+/* ************************************** */
+/* * This part is dedicated for progress-bar ** */
+/* ************************************** */
+.progress-bar {
+    -fx-accent: main-color;
+    -fx-background-color:             white;
+    -fx-border-color:               #054671;
+    -fx-pref-width:                   445px;
+    -fx-pref-height:                   27px;
+}
+.progress-bar .bar {
+    -fx-padding:                        1px;
+    -fx-background-insets:                0;
+}
+.progress-bar .track {
+     -fx-background-color:             white;
+}
+/* End of progress-bar */
