@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane stylesheets="@../../style/style.css"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.imposters.team.controllers.burn.BurnInTester5Controller">
+    <top>
+        <AnchorPane styleClass="TitleBox"
+                    onMousePressed="#setOnMousePressed"
+                    onMouseDragged="#setOnMouseDragged">
+            <children>
+                <Text styleClass="TitleText"
+                      layoutX="26.0"
+                      layoutY="43.0"
+                      text="Report" />
+
+                <Label fx:id="closeBtn"
+                       styleClass="closeMinimizeBtns"
+                       layoutX="960.0"
+                       layoutY="0.0"
+                       onMouseClicked="#onCloseClicked"
+                       text="✖" />
+
+                <Label fx:id="minimizingBtn"
+                       styleClass="closeMinimizeBtns"
+                       layoutX="920.0"
+                       layoutY="0.0"
+                       onMouseClicked="#onMinimizingClicked"
+                       text="➖" />
+
+            </children>
+        </AnchorPane>
+    </top>
+    <center>
+        <AnchorPane styleClass="windowMainStyle">
+            <children>
+
+
+
+                <Button fx:id="weiterBtn"
+                        styleClass="button1"
+                        layoutX="160"
+                        layoutY="240.0"
+                        onAction="#clickWeiterBtn"
+                        text="Ende"/>
+
+                <Text styleClass="ReportText"
+                      layoutX="30.0"
+                      layoutY="60.0"
+                      text="Bericht ID : "/>
+
+                <Label fx:id="BerichtID"
+                        styleClass="ReportText"
+                        alignment="CENTER_RIGHT"
+                        layoutX="160.0"
+                        layoutY="45.0"
+                        prefHeight="18.0"
+                        prefWidth="150.0"
+                        text="1" />
+
+                <Text styleClass="ReportText"
+                      layoutX="30.0"
+                      layoutY="90.0"
+                      text="Datum : "/>
+                <Label fx:id="Datum"
+                       styleClass="ReportText"
+                       alignment="CENTER_RIGHT"
+                       layoutX="160.0"
+                       layoutY="75.0"
+                       prefHeight="18.0"
+                       prefWidth="150.0"
+                       text="22.10.2022" />
+
+                <Text styleClass="ReportText"
+                      layoutX="30.0"
+                      layoutY="120.0"
+                      text="Chamber ID : "/>
+                <Label fx:id="ChamberID"
+                       styleClass="ReportText"
+                       alignment="CENTER_RIGHT"
+                       layoutX="160.0"
+                       layoutY="105.0"
+                       prefHeight="18.0"
+                       prefWidth="150.0"
+                       text="1" />
+
+                <Text styleClass="ReportText"
+                      layoutX="30.0"
+                      layoutY="150.0"
+                      text="Arbeitername : "/>
+                <Label fx:id="Arbeitername"
+                       styleClass="ReportText"
+                       alignment="CENTER_RIGHT"
+                       layoutX="160.0"
+                       layoutY="135.0"
+                       prefHeight="18.0"
+                       prefWidth="150.0"
+                       text="Dunklerberg" />
+
+                <Text styleClass="ReportText"
+                      layoutX="30.0"
+                      layoutY="180.0"
+                      text="Arbeitersvorname : "/>
+                <Label fx:id="Arbeitersvorname"
+                       styleClass="ReportText"
+                       alignment="CENTER_RIGHT"
+                       layoutX="160.0"
+                       layoutY="165.0"
+                       prefHeight="18.0"
+                       prefWidth="150.0"
+                       text="Anna" />
+
+                <Text styleClass="ReportText"
+                      layoutX="30.0"
+                      layoutY="210.0"
+                      text="Arbeiter ID : "/>
+                <Label fx:id="ArbeiterID"
+                       styleClass="ReportText"
+                       alignment="CENTER_RIGHT"
+                       layoutX="160.0"
+                       layoutY="195.0"
+                       prefHeight="18.0"
+                       prefWidth="150.0"
+                       text="356541" />
+
+
+                <TableView fx:id="table"
+                           layoutX="400.0"
+                           layoutY="40.0">
+                    <columns>
+                        <TableColumn fx:id="Slot"
+                                     prefWidth="100.0" text="Slot" />
+                        <TableColumn fx:id="BauteilID"
+                                     prefWidth="150.0" text="Bauteil-ID" />
+                        <TableColumn fx:id="Auftragsnummer"
+                                     prefWidth="150.0" text="Auftragsnummer" />
+                        <TableColumn fx:id="status"
+                                     prefWidth="78.0" text="status" />
+                    </columns>
+                </TableView>
+
+
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
