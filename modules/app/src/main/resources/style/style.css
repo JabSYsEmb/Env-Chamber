@@ -136,7 +136,12 @@ BorderPane{
     -fx-fill:                       main-color;
     -fx-font-size:                        15px;
 }
-
+.ReportText{
+    -fx-fill:                       main-color;
+    -fx-font-size:                        15px;
+    -fx-font-weight:                      bold;
+    -fx-text-fill:                       main-color;
+}
 /* End of of Overall GUI */
 
 /* ********************************************* */
