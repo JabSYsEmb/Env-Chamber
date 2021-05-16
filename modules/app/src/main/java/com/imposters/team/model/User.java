@@ -6,20 +6,28 @@ import javafx.beans.property.SimpleStringProperty;
 public class User {
     private SimpleStringProperty id, firstName, lastName, username;
     private SimpleBooleanProperty administrator;
+    private SimpleStringProperty password;
 
-    public User(String id, String firstName, String lastName, String username, boolean administrator){
+    public User(String id, String firstName, String lastName, String username, boolean administrator, String passwd){
         this.id             = new SimpleStringProperty(id);
-        this.firstName      = new SimpleStringProperty(firstName);
+        this.password       = new SimpleStringProperty(passwd);
         this.lastName       = new SimpleStringProperty(lastName);
         this.username       = new SimpleStringProperty(username);
+        this.firstName      = new SimpleStringProperty(firstName);
+        this.administrator  = new SimpleBooleanProperty(administrator);
+    }
+
+    public User(String userName, String passwd, boolean administrator){
+        this.password       = new SimpleStringProperty(passwd);
+        this.username       = new SimpleStringProperty(userName);
         this.administrator  = new SimpleBooleanProperty(administrator);
     }
 
     // Getter and setters of attributes
+
     public SimpleStringProperty firstNameProperty() {
         return firstName;
     }
-
     public String getFirstName() {
         return firstName.get();
     }
@@ -48,6 +56,10 @@ public class User {
         return lastName.get();
     }
 
+    public String getPassword() {
+        return password.get();
+    }
+
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
     }
@@ -71,5 +83,11 @@ public class User {
     @Override
     public String toString(){
         return (this.firstName.getValue() + " " + this.lastName.getValue());
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        User temp_user = (User) obj;
+        return this.username.equals(temp_user.getUsername()) && this.password.equals(temp_user.getPassword());
     }
 }

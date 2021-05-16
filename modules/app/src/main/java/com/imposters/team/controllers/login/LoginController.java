@@ -3,6 +3,8 @@ package com.imposters.team.controllers.login;
 import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
+import com.imposters.team.db.MyJDBC;
+import com.imposters.team.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -22,8 +24,13 @@ public class LoginController extends UpperAnchorPaneFunctionalities {
     public void loginBtnClicked() {
         String password = passwordTextField.getText();
         String username = usernameTextField.getText();
-//        MyJDBC db = App.getDatabase();
-        if(!(password.isEmpty() || username.isEmpty())){
+        MyJDBC db = App.getDatabase();
+        String username_data = db.executeStringQuery("SELECT Username from User;");
+        String password_data = db.executeStringQuery("SELECT Password from User;");
+//        if(new User(username_data,password_data,true).isAdministrator()){
+//
+//        }
+        if((username.equals(username_data) && password_data.equals(db.passwordEncrypter(password)))){
             new Thread(() -> {
                 App.getToServerSender().toServer(
                         new StringBuilder()
