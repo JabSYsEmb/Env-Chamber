@@ -28,7 +28,7 @@ public class App extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/burnIn-views/burnInTester5.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/login.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
@@ -66,7 +66,8 @@ public class App extends Application{
 
     public static void main( String[] args )
     {
-//        db = new MyJDBC();
+        db = new MyJDBC();
+
         App.setMsgToSent = new ArrayList<>();
 
         new Thread(() -> {App.sender = new Sender("127.0.0.1",2332);})

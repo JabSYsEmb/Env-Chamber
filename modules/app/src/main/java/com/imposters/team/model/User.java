@@ -1,5 +1,6 @@
 package com.imposters.team.model;
 
+import com.imposters.team.App;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -78,6 +79,11 @@ public class User {
 
     public boolean isAdministrator() {
         return administrator.get();
+    }
+
+    public User getUserFromDatabase(String userName){
+        App.getDatabase().executeUpdateQuery("");
+        return null;
     }
 
     @Override

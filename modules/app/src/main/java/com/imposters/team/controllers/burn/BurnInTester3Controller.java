@@ -67,6 +67,7 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new ClockController(3,"Hi Nigga").run(this.clock,this.massage);
+        new ClockController(11,"Hi Nigga").run(this.clock,this.massage);
+//        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 }

@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities{
+public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities implements Initializable{
 
     @FXML
     private Label BerichtID;
@@ -54,6 +54,8 @@ public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities{
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
-
+    }
 }

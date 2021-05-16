@@ -10,13 +10,13 @@ import java.security.NoSuchAlgorithmException;
 public class MyJDBC {
 
     //Part 1
-    private static final String DB_DEFAULT_DATABASE = "sql11409796";
-    private static final String DB_DEFAULT_SERVER_URL = "sql11.freesqldatabase.com:3306";
-    private static final String DB_DEFAULT_ACCOUNT = "sql11409796";
-    private static final String DB_DEFAULT_PASSWORD = "ibQQwa8EHc";
+    private static final String DB_DEFAULT_DATABASE = "mydb";
+    private static final String DB_DEFAULT_SERVER_URL = "172.16.103.136:3310";
+    private static final String DB_DEFAULT_ACCOUNT = "sa";
+    private static final String DB_DEFAULT_PASSWORD = "123456";
     private static final String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
     private static final String DB_DRIVER_PREFIX = "jdbc:mysql://";
-    private static final String DB_DRIVER_PARAMETERS = "?useSSL=true&characterEncoding=UTF-8";
+    private static final String DB_DRIVER_PARAMETERS = "";
 
     private Connection connection = null;
 
@@ -518,6 +518,51 @@ public class MyJDBC {
         }catch(SQLException ex){
             error(ex);
         }
+    }
+
+    public static String getDBConnectionStatus(MyJDBC db){
+        String status = null;
+        try {
+            if(db.connection.isValid(5)) {
+                status = "The connection to " +
+                                db.getDbDefaultServerUrl() +
+                                "/" +
+                                db.getDbDefaultDatabase() +
+                                " has been established successfully";
+            }
+        }catch(SQLException ex){
+            status = "The connection hasn't been established";
+            db.error(ex);
+        }
+        return status;
+    }
+
+    public static String getDbDefaultDatabase() {
+        return DB_DEFAULT_DATABASE;
+    }
+
+    public static String getDbDefaultServerUrl() {
+        return DB_DEFAULT_SERVER_URL;
+    }
+
+    public static String getDbDefaultAccount() {
+        return DB_DEFAULT_ACCOUNT;
+    }
+
+    public static String getDbDefaultPassword() {
+        return DB_DEFAULT_PASSWORD;
+    }
+
+    public static String getDbDriverUrl() {
+        return DB_DRIVER_URL;
+    }
+
+    public static String getDbDriverPrefix() {
+        return DB_DRIVER_PREFIX;
+    }
+
+    public static String getDbDriverParameters() {
+        return DB_DRIVER_PARAMETERS;
     }
 }
 

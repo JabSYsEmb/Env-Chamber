@@ -4,10 +4,14 @@ import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
-public class ChamberSelectController extends UpperAnchorPaneFunctionalities {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ChamberSelectController extends UpperAnchorPaneFunctionalities implements Initializable {
 
     @FXML
     private Button chamberSelectingButton;
@@ -37,6 +41,10 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities {
         App.changeView("/fxml/burnIn-views/burnInTester.fxml");
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }
 
 

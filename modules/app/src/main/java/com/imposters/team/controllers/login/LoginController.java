@@ -6,10 +6,16 @@ import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.User;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class LoginController extends UpperAnchorPaneFunctionalities {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginController extends UpperAnchorPaneFunctionalities implements Initializable {
+
+    private MyJDBC db;
 
     @FXML
     private Label alertMessage;
@@ -24,9 +30,8 @@ public class LoginController extends UpperAnchorPaneFunctionalities {
     public void loginBtnClicked() {
         String password = passwordTextField.getText();
         String username = usernameTextField.getText();
-        MyJDBC db = App.getDatabase();
-        String username_data = db.executeStringQuery("SELECT Username from User;");
-        String password_data = db.executeStringQuery("SELECT Password from User;");
+        String username_data = db.executeStringQuery("SELECT Username from User where Username LIKE 'nino' ;");
+        String password_data = db.executeStringQuery("SELECT Password from User where Username LIKE 'nino' ;");
 //        if(new User(username_data,password_data,true).isAdministrator()){
 //
 //        }
@@ -50,6 +55,14 @@ public class LoginController extends UpperAnchorPaneFunctionalities {
             usernameTextField.clear();
             alertMessage.setText("invalid username or password, try again!");
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        new Thread(()->{this.db = App.getDatabase();}).start();
+        new Thread(() -> {
+            alertMessage.setText(MyJDBC.getDBConnectionStatus(this.db));
+        }).start();
     }
 }
 

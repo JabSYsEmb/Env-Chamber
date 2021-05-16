@@ -11,8 +11,10 @@
    pressed-button-color:      #546E7A;
    text-main-color:              #fff;
    alert-color:               #ff0000;
-   table-width:                 477px;
-   table-height:                377px;
+   table-width:                 490px;
+   cell-width:                   40px;
+   table-height:                370px;
+   cell-height:                  30px;
 }
 
 /* ********************************************* */
@@ -169,7 +171,7 @@ BorderPane{
     -fx-pref-width:           300px;
 }
 #alertMessage{
-    -fx-pref-width:          200px;
+    -fx-pref-width:          300px;
 }
 /* End of alertMessage */
 
@@ -187,7 +189,7 @@ BorderPane{
 
 .clockLabel{
     -fx-font-size:                         50px;
-    -fx-text-fill:             main-color;
+    -fx-text-fill:                   main-color;
     -fx-font-weight:                       BOLD;
     -fx-alignment:                       CENTER;
     -fx-font-alignment:                  CENTER;
@@ -237,23 +239,27 @@ BorderPane{
     -fx-table-cell-border-color:     main-color;
     -fx-box-border-color:            main-color; /* Horizontal Lines*/
     -fx-background-color:           transparent;
+    -fx-border-width:                         5;
+    -fx-border-color:                main-color;
     -fx-pref-width:                 table-width;
     -fx-pref-height:               table-height;
 }
+
 /* The column header row is made up of a number of column-header, one for each
   TableColumn, and a 'filler' area that extends from the right-most column
   to the edge of the tableview, or up to the 'column control' button. */
 .table-view .filler, .tree-table-view .filler, .table-view .column-header,
 .tree-table-view .column-header {
-   -fx-size:                                 40;
-   -fx-color:                       transparent;
-   -fx-border-style:                       null;
-   -fx-border-color:                      white;
-   -fx-border-width:                          1;
+   -fx-size:                         cell-width;
+   /*-fx-color:                       transparent;*/
+   /*-fx-border-style:                       null;*/
+   -fx-border-color:                 main-color;
+   -fx-wrap-text:                          true;
+   -fx-border-width:                          2;
    -fx-background-color:             main-color;
 }
 .table-row-cell, .tree-table-row-cell {
-   -fx-cell-size:                          40px;
+   -fx-cell-size:                   cell-height;
 }
 .table-view .column-header .label{
    -fx-text-fill:                         white;
