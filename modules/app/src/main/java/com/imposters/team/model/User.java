@@ -5,6 +5,13 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class User {
+    //Attribute in user
+  /*public int User_ID;
+	public String Fname;
+	public String Lname;
+	public String Username;
+	public String Password;
+	public byte AdminStatus;*/
     private SimpleStringProperty id, firstName, lastName, username;
     private SimpleBooleanProperty administrator;
     private SimpleStringProperty password;

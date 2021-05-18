@@ -7,6 +7,10 @@ import java.net.Inet4Address;
 
 
 public class EnvChamber{
+    //Attribute in envchamber
+  /*public int Envchamber_ID;
+	public String Ip;
+	public int temperature;*/
     private int id;
     private SimpleStringProperty ip;
     private SimpleIntegerProperty maxTemperature;

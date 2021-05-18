@@ -5,6 +5,13 @@ import javafx.beans.property.SimpleStringProperty;
 import java.util.ArrayList;
 
 public class Curve {
+    //Attribute in curve
+  /*public int Curve_ID;
+	public String Tasknumber;
+	public String Duration;*/
+    // wir brauchen hier eine array for Curvedurationen
+
+
     private int id;
     // ArrayList is not synchronized, which means multiple
     // threads can work on arrayList at the same time.

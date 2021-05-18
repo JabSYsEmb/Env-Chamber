@@ -7,6 +7,13 @@ import java.util.Date;
 
 
 public class Report {
+    //Attribute in Bericht
+    /*public int Bericht_ID;
+    public int User_ID;
+    public int Envchamber_ID;
+    public java.sql.Date Date*/
+    // Wir brauchen hier eine Array for testobjekte
+
     private int id;
     private final SimpleStringProperty    date;
     private final SimpleIntegerProperty   userID;
