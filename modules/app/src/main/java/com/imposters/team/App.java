@@ -70,12 +70,6 @@ public class App extends Application{
     public static void main( String[] args )
     {
         db = new MyJDBC();
-        UserDao userDao = new UserDao();
-        User testUser = userDao.getUserFromDatabase("nino",db);
-        List<User> users = userDao.getUsersFromDatabase(db);
-        users.stream().forEach(e -> System.out.println(e));
-
-        //App.setMsgToSent = new ArrayList<>();
 
         new Thread(() -> {App.sender = new Sender("127.0.0.1",2332);})
                 .start();

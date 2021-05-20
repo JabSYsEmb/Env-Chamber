@@ -2,7 +2,6 @@ package com.imposters.team.model.dao;
 
 import com.imposters.team.model.User;
 import com.imposters.team.db.MyJDBC;
-import com.imposters.team.App;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,8 +11,11 @@ import java.util.List;
 
 public class UserDao {
 
-    public User getUserFromDatabase(String username, MyJDBC db){
-        db = App.getDatabase();
+    private UserDao(){
+        throw new IllegalStateException("Utility class");
+    }
+
+    public static User getUserFromDatabase(String username, MyJDBC db){
         User user = null;
         try(PreparedStatement preparedStatement =
                     db.getConnection().prepareStatement("SELECT * from User where Username = ?;")){
@@ -29,15 +31,13 @@ public class UserDao {
                         rs.getString("Password")
                 );
             }
-        } catch (SQLException ex) {
+        } catch (SQLException | NullPointerException ex) {
             ex.printStackTrace();
-            return null;
         }
         return user;
     }
 
-    public List<User> getUsersFromDatabase(MyJDBC db){
-        db = App.getDatabase();
+    public static List<User> getUsersFromDatabase(MyJDBC db){
         List<User> user = new ArrayList<>();
         try(PreparedStatement preparedStatement =
                     db.getConnection().prepareStatement("SELECT * from User;")){
@@ -52,9 +52,8 @@ public class UserDao {
                         rs.getString("Password"))
                 );
             }
-        } catch (SQLException ex) {
+        } catch (SQLException | NullPointerException ex) {
             ex.printStackTrace();
-            return null;
         }
         return user;
     }
