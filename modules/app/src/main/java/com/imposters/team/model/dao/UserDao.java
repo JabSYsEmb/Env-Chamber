@@ -1,13 +1,13 @@
 package com.imposters.team.model.dao;
 
-import com.imposters.team.App;
-import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.User;
+import com.imposters.team.db.MyJDBC;
+import com.imposters.team.App;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.ResultSet;
 import java.util.List;
 
 public class UserDao {
