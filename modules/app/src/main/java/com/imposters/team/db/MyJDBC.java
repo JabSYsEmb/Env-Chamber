@@ -14,13 +14,14 @@ public class MyJDBC {
 
     //Part 1
     private static final String DB_DEFAULT_DATABASE = "mydb";
-    private static final String DB_DEFAULT_SERVER_URL = "";
-    private static final String DB_DEFAULT_ACCOUNT = "";
-    private static final String DB_DEFAULT_PASSWORD = "";
+    private static final String DB_DEFAULT_SERVER_URL = "172.16.103.136:3310";
+    private static final String DB_DEFAULT_ACCOUNT = "sa";
+    private static final String DB_DEFAULT_PASSWORD = "123456";
     private static final String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
     private static final String DB_DRIVER_PREFIX = "jdbc:mysql://";
     private static final String DB_DRIVER_PARAMETERS = "";
     private Connection connection = null;
+
 
     private boolean verbose = true;
     // remembers the first error message on the connection
@@ -352,7 +353,7 @@ public class MyJDBC {
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO User VALUES (1,'Bianca', 'Randermann', 'Bibo', '" + this.passwordEncrypter("12345") + "', true )");
         this.executeUpdateQuery("INSERT INTO User VALUES (2,'Anna', 'Gutenberg', 'nino', '" + this.passwordEncrypter("54321") + "', false )");
-        this.executeUpdateQuery("INSERT INTO User VALUES (3,'Katrina', 'Gunther', 'kiko', '" + this.passwordEncrypter("54321") + "', false )");
+        this.executeUpdateQuery("INSERT INTO User VALUES (3,'Katrina', 'Gunther', 'kiko', '" + this.passwordEncrypter("12345") + "', false )");
 
         //Curve
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
