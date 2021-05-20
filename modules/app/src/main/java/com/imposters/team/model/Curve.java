@@ -1,23 +1,20 @@
 package com.imposters.team.model;
 
 import javafx.beans.property.SimpleStringProperty;
-
-import java.util.ArrayList;
+import java.util.List;
 
 public class Curve {
-    //Attribute in curve
-  /*public int Curve_ID;
-	public String Tasknumber;
-	public String Duration;*/
-    // wir brauchen hier eine array for Curvedurationen
-
-
     private int id;
-    // ArrayList is not synchronized, which means multiple
-    // threads can work on arrayList at the same time.
-    private ArrayList<Integer> duration; // duration stored in unit of second
-    private ArrayList<Integer> temperature;
+    private List<Curveduration> duration; // duration stored in unit of second
     private SimpleStringProperty taskNumber;
+
+    // constructor
+
+    public Curve(int id, List<Curveduration> duration, SimpleStringProperty taskNumber) {
+        this.id = id;
+        this.duration = duration;
+        this.taskNumber = taskNumber;
+    }
 
     public int getId() {
         return id;
@@ -35,15 +32,7 @@ public class Curve {
         this.taskNumber.set(taskNumber);
     }
 
-    public ArrayList<Integer> getDuration() {
+    public List<Curveduration> getDuration() {
         return duration;
-    }
-
-    public int getWholeDurationInSeconds(){
-        return this.getDuration().stream().mapToInt(obj->(int) obj).sum();
-    }
-
-    public ArrayList<Integer> getTemperature() {
-        return temperature;
     }
 }

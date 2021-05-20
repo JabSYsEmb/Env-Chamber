@@ -27,11 +27,11 @@ public class Report {
     public Report(User observer, EnvChamber envChamber, Curve curve, Prufling prufling){
         this.id                     = this.hashCode();
         this.date                   = new SimpleStringProperty(new Date().toString());
-        this.userID                 = new SimpleIntegerProperty(Integer.parseInt(observer.getId()));
+        this.userID                 = new SimpleIntegerProperty(observer.getId());
         this.userLastname           = new SimpleStringProperty(observer.getLastName());
         this.envChamberIP           = new SimpleStringProperty(envChamber.getIp());
         this.userFirstname          = new SimpleStringProperty(observer.getFirstName());
-        this.takenDuration          = new SimpleIntegerProperty(curve.getWholeDurationInSeconds());
+        this.takenDuration          = new SimpleIntegerProperty();
         this.pruflingSerialNumber   = new SimpleStringProperty(prufling.getSerialNumber());
         this.appliedCurveTasknumber = new SimpleStringProperty(curve.getTaskNumber());
     }
