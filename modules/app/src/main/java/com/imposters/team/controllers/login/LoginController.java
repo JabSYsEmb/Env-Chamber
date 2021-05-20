@@ -5,12 +5,14 @@ import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.User;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoginController extends UpperAnchorPaneFunctionalities implements Initializable {
@@ -32,18 +34,20 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
         String username = usernameTextField.getText();
         String username_data = db.executeStringQuery("SELECT Username from User where Username LIKE 'nino' ;");
         String password_data = db.executeStringQuery("SELECT Password from User where Username LIKE 'nino' ;");
+        System.out.println(username_data + password_data);
+
 //        if(new User(username_data,password_data,true).isAdministrator()){
 //
 //        }
         if((username.equals(username_data) && password_data.equals(db.passwordEncrypter(password)))){
-            new Thread(() -> {
-                App.getToServerSender().toServer(
-                        new StringBuilder()
-                                .append("STRT|CabinetControl1|")
-                                .append(username)
-                                .append("|Admin|10")
-                                .toString());
-            }).start();
+//            new Thread(() -> {
+//                App.getToServerSender().toServer(
+//                        new StringBuilder()
+//                                .append("STRT|CabinetControl1|")
+//                                .append(username)
+//                                .append("|Admin|10")
+//                                .toString());
+//            }).start();
             alertMessage.setText(
                     "logged in successfully, " +
                     Character.toUpperCase(username.charAt(0)) +

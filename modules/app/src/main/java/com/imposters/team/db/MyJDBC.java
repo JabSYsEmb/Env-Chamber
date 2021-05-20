@@ -1,11 +1,14 @@
 package com.imposters.team.db;
 
+import com.imposters.team.model.User;
+
 import java.sql.*;
 import java.math.BigInteger;
 import java.util.Enumeration;
 import java.security.MessageDigest;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public class MyJDBC {
 
@@ -19,7 +22,7 @@ public class MyJDBC {
     private static final String DB_DRIVER_PREFIX = "jdbc:mysql://";
     private static final String DB_DRIVER_PARAMETERS = "";
 
-    // Hail Database
+// Hail Database
     /*private static final String DB_DEFAULT_DATABASE = "mydb";
     private static final String DB_DEFAULT_SERVER_URL = "localhost:3306";
     private static final String DB_DEFAULT_ACCOUNT = "root";
@@ -28,21 +31,20 @@ public class MyJDBC {
     private final static String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
     private final static String DB_DRIVER_PREFIX = "jdbc:mysql://";
     private final static String DB_DRIVER_PARAMETERS = "";*/
-
     private Connection connection = null;
 
     // set for verbose logging of all queries
-    private boolean verbose = true;
 
+    private boolean verbose = true;
     // remembers the first error message on the connection
+
     private String errorMessage = null;
 
-
     // constructors
+
     public MyJDBC() {
         this(DB_DEFAULT_DATABASE, DB_DEFAULT_SERVER_URL, DB_DEFAULT_ACCOUNT, DB_DEFAULT_PASSWORD);
     }
-
     public MyJDBC(String dbName) {
         this(dbName, DB_DEFAULT_SERVER_URL, DB_DEFAULT_ACCOUNT, DB_DEFAULT_PASSWORD);
     }
@@ -72,10 +74,10 @@ public class MyJDBC {
             this.close();
         }
     }
+
     // end of constructors
 
-/* ********************************PART_1************************************** */
-
+    /* ********************************PART_1************************************** */
     /**
      * *
      * elects proper loading of the named driver for database connections. This
@@ -165,8 +167,8 @@ public class MyJDBC {
         return result;
     }
 
-    // this part of code needs refactoring.
 
+    // this part of code needs refactoring.
     /**
      * *
      * Executes query that is expected to return a list of String values
@@ -214,10 +216,12 @@ public class MyJDBC {
         }
     }
 
-/* ********************************PART_2************************************** */
-     /**
+
+
+    /* ********************************PART_2************************************** */
+    /**
      * @author Hail Ibrahimoglu
-     * 
+     *
      **/
 
     // Creating the whole database for the project.
@@ -347,12 +351,11 @@ public class MyJDBC {
 
 
     /* ********************************PART_3************************************** */
-    
     /**
     * @author Hail Ibrahimoglu
-    * 
+    *
     **/
-    
+
     public void insertDataIntoDatabase(){
         final String SET_FOREIGN_KEY_CHECKS_0 = "SET FOREIGN_KEY_CHECKS = 0;";
         final String SET_FOREIGN_KEY_CHECKS_1 = "SET FOREIGN_KEY_CHECKS = 1;";
@@ -421,9 +424,9 @@ public class MyJDBC {
     public void dropDatabase(){
         this.executeUpdateQuery("DROP DATABASE sql11409688;");
     }
-/* ********************************PART_4************************************** */
-    // For error handler and console functions.
 
+    /* ********************************PART_4************************************** */
+    // For error handler and console functions.
     /**
      * *
      * echoes an exception and its stack trace on the system console. remembers
@@ -570,6 +573,10 @@ public class MyJDBC {
 
     public static String getDbDriverPrefix() {
         return DB_DRIVER_PREFIX;
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
     public static String getDbDriverParameters() {
