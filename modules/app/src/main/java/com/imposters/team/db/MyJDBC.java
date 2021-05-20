@@ -13,27 +13,14 @@ import java.util.List;
 public class MyJDBC {
 
     //Part 1
-    // Cabar database
     private static final String DB_DEFAULT_DATABASE = "mydb";
-    private static final String DB_DEFAULT_SERVER_URL = "172.16.103.136:3310";
-    private static final String DB_DEFAULT_ACCOUNT = "sa";
-    private static final String DB_DEFAULT_PASSWORD = "123456";
+    private static final String DB_DEFAULT_SERVER_URL = "";
+    private static final String DB_DEFAULT_ACCOUNT = "";
+    private static final String DB_DEFAULT_PASSWORD = "";
     private static final String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
     private static final String DB_DRIVER_PREFIX = "jdbc:mysql://";
     private static final String DB_DRIVER_PARAMETERS = "";
-
-// Hail Database
-    /*private static final String DB_DEFAULT_DATABASE = "mydb";
-    private static final String DB_DEFAULT_SERVER_URL = "localhost:3306";
-    private static final String DB_DEFAULT_ACCOUNT = "root";
-    private static final String DB_DEFAULT_PASSWORD = "1234";
-
-    private final static String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
-    private final static String DB_DRIVER_PREFIX = "jdbc:mysql://";
-    private final static String DB_DRIVER_PARAMETERS = "";*/
     private Connection connection = null;
-
-    // set for verbose logging of all queries
 
     private boolean verbose = true;
     // remembers the first error message on the connection
