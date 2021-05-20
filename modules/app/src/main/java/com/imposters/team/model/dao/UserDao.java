@@ -1,5 +1,6 @@
 package com.imposters.team.model.dao;
 
+<<<<<<< HEAD
 import com.imposters.team.model.User;
 import com.imposters.team.db.MyJDBC;
 import com.imposters.team.App;
@@ -8,6 +9,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.ResultSet;
+=======
+import com.imposters.team.App;
+import com.imposters.team.db.MyJDBC;
+import com.imposters.team.model.User;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+>>>>>>> 737d5e29e7e35bef2f8139c4682b885a1e7024dd
 import java.util.List;
 
 public class UserDao {
