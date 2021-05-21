@@ -3,7 +3,7 @@ package com.imposters.team.model;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import java.net.Inet4Address;
-
+import java.util.Objects;
 
 
 public class EnvChamber{
@@ -11,25 +11,44 @@ public class EnvChamber{
   /*public int Envchamber_ID;
 	public String Ip;
 	public int temperature;*/
-    private int id;
-    private SimpleStringProperty ip;
-    private SimpleIntegerProperty maxTemperature;
+    private int EnvchamberID;
+    private SimpleStringProperty Ip;
 
-    public EnvChamber(int id, String ip, int maxTemperature){
-        this.id             = id;
-        this.ip             = new SimpleStringProperty(ip);
-        this.maxTemperature = new SimpleIntegerProperty(maxTemperature);
+    public EnvChamber(int envchamberID, String ip) {
+        this.EnvchamberID = envchamberID;
+        this.Ip = new SimpleStringProperty(ip);
     }
 
-    public int getMaxTemperature() {
-        return maxTemperature.get();
+    public int getEnvchamberID() {
+        return EnvchamberID;
     }
 
     public String getIp() {
-        return ip.get();
+        return Ip.get();
     }
 
-    public int getId() {
-        return id;
+    public SimpleStringProperty ipProperty() {
+        return Ip;
+    }
+
+    @Override
+    public String toString() {
+        return "EnvChamber{" +
+                "EnvchamberID=" + EnvchamberID +
+                ", Ip=" + Ip +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EnvChamber that = (EnvChamber) o;
+        return EnvchamberID == that.EnvchamberID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(EnvchamberID);
     }
 }
