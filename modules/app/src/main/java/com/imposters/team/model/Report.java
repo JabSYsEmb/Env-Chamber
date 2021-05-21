@@ -3,7 +3,11 @@ package com.imposters.team.model;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 
 public class Report {
@@ -14,90 +18,65 @@ public class Report {
     public java.sql.Date Date*/
     // Wir brauchen hier eine Array for testobjekte
 
-    private int id;
-    private final SimpleStringProperty    date;
-    private final SimpleIntegerProperty   userID;
-    private final SimpleStringProperty    userLastname;
-    private final SimpleStringProperty    envChamberIP;
-    private final SimpleIntegerProperty   takenDuration;
-    private final SimpleStringProperty    userFirstname;
-    private final SimpleStringProperty    pruflingSerialNumber;
-    private final SimpleStringProperty    appliedCurveTasknumber;
+    private int ReportID;
+    private User user;
+    private EnvChamber envChamber;
+    private SimpleDateFormat date;
+    private List<Test> test = new ArrayList<>();
 
-    public Report(User observer, EnvChamber envChamber, Curve curve, Prufling prufling){
-        this.id                     = this.hashCode();
-        this.date                   = new SimpleStringProperty(new Date().toString());
-        this.userID                 = new SimpleIntegerProperty(observer.getId());
-        this.userLastname           = new SimpleStringProperty(observer.getLastName());
-        this.envChamberIP           = new SimpleStringProperty(envChamber.getIp());
-        this.userFirstname          = new SimpleStringProperty(observer.getFirstName());
-        this.takenDuration          = new SimpleIntegerProperty();
-        this.pruflingSerialNumber   = new SimpleStringProperty(prufling.getSerialNumber());
-        this.appliedCurveTasknumber = new SimpleStringProperty(curve.getTaskNumber());
+    public Report(int reportID, User user, EnvChamber envChamber, String date, List<Test> test) {
+        ReportID = reportID;
+        this.user = user;
+        this.envChamber = envChamber;
+        this.date = new SimpleDateFormat(date);// String achtung!
+        this.test = test;
     }
 
-    public String getDate() {
-        return date.get();
+    public int getReportID() {
+        return ReportID;
     }
 
-    public SimpleStringProperty dateProperty() {
+    public User getUser() {
+        return user;
+    }
+
+    public EnvChamber getEnvChamber() {
+        return envChamber;
+    }
+
+    public SimpleDateFormat getDate() {
         return date;
     }
 
-    public int getUserID() {
-        return userID.get();
+    public List<Test> getTest() {
+        return test;
+    }
+    public synchronized boolean addTest(Test e){
+        return test.add(e);
     }
 
-    public SimpleIntegerProperty userIDProperty() {
-        return userID;
+
+    @Override
+    public String toString() {
+        return "Report{" +
+                "ReportID=" + ReportID +
+                ", user=" + user +
+                ", envChamber=" + envChamber +
+                ", date=" + date +
+                ", test=" + test +
+                '}';
     }
 
-    public String getUserLastname() {
-        return userLastname.get();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Report report = (Report) o;
+        return ReportID == report.ReportID;
     }
 
-    public SimpleStringProperty userLastnameProperty() {
-        return userLastname;
+    @Override
+    public int hashCode() {
+        return Objects.hash(ReportID);
     }
-
-    public String getEnvChamberIP() {
-        return envChamberIP.get();
-    }
-
-    public SimpleStringProperty envChamberIPProperty() {
-        return envChamberIP;
-    }
-
-    public int getTakenDuration() {
-        return takenDuration.get();
-    }
-
-    public SimpleIntegerProperty takenDurationProperty() {
-        return takenDuration;
-    }
-
-    public String getUserFirstname() {
-        return userFirstname.get();
-    }
-
-    public SimpleStringProperty userFirstnameProperty() {
-        return userFirstname;
-    }
-
-    public String getPruflingSerialNumber() {
-        return pruflingSerialNumber.get();
-    }
-
-    public SimpleStringProperty pruflingSerialNumberProperty() {
-        return pruflingSerialNumber;
-    }
-
-    public String getAppliedCurveTasknumber() {
-        return appliedCurveTasknumber.get();
-    }
-
-    public SimpleStringProperty appliedCurveTasknumberProperty() {
-        return appliedCurveTasknumber;
-    }
-
 }

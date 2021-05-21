@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Curve {
     private int id;
-    private List<Curveduration> duration; // duration stored in unit of second
+    private List<Integer> duration; // duration stored in unit of second
     private SimpleStringProperty taskNumber;
 
     // constructor
 
-    public Curve(int id, List<Curveduration> duration, SimpleStringProperty taskNumber) {
+    public Curve(int id, List<Integer> duration, SimpleStringProperty taskNumber) {
         this.id = id;
         this.duration = duration;
         this.taskNumber = taskNumber;
@@ -32,7 +32,7 @@ public class Curve {
         this.taskNumber.set(taskNumber);
     }
 
-    public List<Curveduration> getDuration() {
+    public List<Integer> getDuration() {
         return duration;
     }
 }

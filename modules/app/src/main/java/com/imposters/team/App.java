@@ -5,7 +5,7 @@ import com.imposters.team.db.MyJDBC;
 
 import java.util.List;
 
-import com.imposters.team.model.User;
+import com.imposters.team.model.*;
 import com.imposters.team.model.dao.UserDao;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -28,6 +28,11 @@ public class App extends Application{
     private static Sender sender;
     private static Stage primaryStageOfProgram;
     private static List<String> setMsgToSent;
+    public static User user;
+    public static EnvChamber envChamber;
+    public static Prufling prufling;
+    public static List<Test> tests;
+    public static Report report;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
