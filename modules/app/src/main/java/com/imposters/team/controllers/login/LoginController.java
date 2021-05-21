@@ -45,7 +45,6 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
                     Character.toUpperCase(user.getUsername().charAt(0)) +
                     username.substring(1) + "!"
             );
-            App.user= user;
             App.changeView("/fxml/login/chamberSelect.fxml");
         }else{
             passwordTextField.clear();

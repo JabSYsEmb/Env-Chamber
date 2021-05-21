@@ -14,14 +14,12 @@ public class MyJDBC {
 
     //Part 1
     private static final String DB_DEFAULT_DATABASE = "mydb";
-    private static final String DB_DEFAULT_SERVER_URL = "localhost:3306/mydb?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=Turkey#";
-    private static final String DB_DEFAULT_ACCOUNT = "root";
-    private static final String DB_DEFAULT_PASSWORD = "1234";
-
-    private final static String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
-    private final static String DB_DRIVER_PREFIX = "jdbc:mysql://";
-    private final static String DB_DRIVER_PARAMETERS = "";
-
+    private static final String DB_DEFAULT_SERVER_URL = "172.16.103.136:3310";
+    private static final String DB_DEFAULT_ACCOUNT = "sa";
+    private static final String DB_DEFAULT_PASSWORD = "123456";
+    private static final String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
+    private static final String DB_DRIVER_PREFIX = "jdbc:mysql://";
+    private static final String DB_DRIVER_PARAMETERS = "";
     private Connection connection = null;
 
 
