@@ -85,6 +85,7 @@
                        AnchorPane.leftAnchor="0.0"
                        AnchorPane.rightAnchor="5.0"
                        AnchorPane.bottomAnchor="0.0"/>
+                
                 <Label fx:id="statusAdmin"
                        text="Role"
                        styleClass="statusStyle"
