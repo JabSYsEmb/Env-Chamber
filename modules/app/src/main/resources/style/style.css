@@ -22,6 +22,38 @@
    cell-height:                            30px;
 }
 
+
+/* ********************************************* */
+/* * * * * * * * * Status Bar  * * * * * * * * * */
+/* ********************************************* */
+/* Status Bar */
+
+.statusBar{
+    -fx-background-color:                 WHITE;
+    -fx-alignment:                       CENTER;
+    -fx-pref-height:             infoBar-height;
+    -fx-pref-width:               infoBar-width;
+    -fx-border-color:                     BLACK;
+}
+.statusStyle{
+    -fx-text-fill:                          RED;
+}
+
+#statusChamber{
+    -fx-alignment:                 center-right;
+}
+
+#statusUser{
+    -fx-alignment:                  center-left;
+}
+
+#statusAdmin{
+    -fx-alignment:                       center;
+}
+
+/* Status Bar */
+
+
 /* ********************************************* */
 /* * This part is dedicated for Buttons Design  * */
 /* ********************************************* */
@@ -41,18 +73,18 @@ Button{
     -fx-text-fill:                   main-color;
     -fx-border-color:                main-color;
     -fx-background-color:      background-color;
-} 
+}
 
-.button1:hover{ 
+.button1:hover{
     -fx-cursor:             cursor-hover-button;
     -fx-text-fill:             background-color;
     -fx-border-color:                main-color;
     -fx-background-color:            main-color;
-} 
-#weiterBtn{ 
+}
+#weiterBtn{
     -fx-pref-width:                       152px;
-} 
-.button1:pressed{ 
+}
+.button1:pressed{
     -fx-background-color:  pressed-button-color;
     -fx-border-color:      pressed-button-color;
 }
@@ -111,15 +143,6 @@ BorderPane{
     -fx-pref-width:               window-height;
     -fx-pref-height:                       66px;
     -fx-background-color:            main-color;
-}
-
-.infoBar{
-    -fx-background-color:            main-color;
-    -fx-alignment:                       CENTER;
-    -fx-pref-height:             infoBar-height;
-    -fx-pref-width:               infoBar-width;
-    /*-fx-border-width:      infoBar-border-width;*/
-    -fx-border-color:                     BLACK;
 }
 #closeBtn:hover{
     -fx-cursor:                         DEFAULT;

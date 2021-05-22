@@ -67,17 +67,33 @@
         </AnchorPane>
     </center>
     <bottom>
-        <AnchorPane styleClass="infoBar"/>
-<!--        <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0">-->
-<!--            <children>-->
-<!--                <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">-->
-<!--                    <font>-->
-<!--                        <Font size="11.0" fx:id="x3" />-->
-<!--                    </font>-->
-<!--                </Label>-->
-<!--                <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />-->
-<!--                <Label font="$x3" maxWidth="-1.0" text="Right status" HBox.hgrow="NEVER" />-->
-<!--            </children>-->
-<!--        </HBox>-->
+        <AnchorPane styleClass="statusBar">
+
+            <children>
+                <Label fx:id="statusUser"
+                       text="User"
+                       styleClass="statusStyle"
+                       AnchorPane.topAnchor="0.0"
+                       AnchorPane.leftAnchor="5.0"
+                       AnchorPane.rightAnchor="0.0"
+                       AnchorPane.bottomAnchor="0.0"/>
+
+                <Label fx:id="statusChamber"
+                       text="Chamber info"
+                       styleClass="statusStyle"
+                       AnchorPane.topAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0"
+                       AnchorPane.rightAnchor="5.0"
+                       AnchorPane.bottomAnchor="0.0"/>
+                <Label fx:id="statusAdmin"
+                       text="Role"
+                       styleClass="statusStyle"
+                       AnchorPane.topAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0"
+                       AnchorPane.rightAnchor="0.0"
+                       AnchorPane.bottomAnchor="0.0"/>
+            </children>
+
+        </AnchorPane>
     </bottom>
 </BorderPane>
