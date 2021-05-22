@@ -7,6 +7,11 @@
 <?import javafx.scene.text.Text?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import java.awt.Color?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.geometry.Insets?>
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.imposters.team.controllers.login.ChamberSelectController">
@@ -63,5 +68,16 @@
     </center>
     <bottom>
         <AnchorPane styleClass="infoBar"/>
+<!--        <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0">-->
+<!--            <children>-->
+<!--                <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">-->
+<!--                    <font>-->
+<!--                        <Font size="11.0" fx:id="x3" />-->
+<!--                    </font>-->
+<!--                </Label>-->
+<!--                <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />-->
+<!--                <Label font="$x3" maxWidth="-1.0" text="Right status" HBox.hgrow="NEVER" />-->
+<!--            </children>-->
+<!--        </HBox>-->
     </bottom>
 </BorderPane>
