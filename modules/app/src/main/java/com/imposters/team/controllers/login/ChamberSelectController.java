@@ -16,10 +16,6 @@ import java.util.ResourceBundle;
 public class ChamberSelectController extends UpperAnchorPaneFunctionalities implements Initializable {
     private User user;
 
-    public ChamberSelectController(User user){
-        this.user = user;
-    }
-
     @FXML
     private Button chamberSelectingButton;
 
@@ -39,6 +35,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities impl
 
     @FXML
     public void onChamberSelectingbtnClicked() {
+
         new Thread(() -> {
             App.getToServerSender()
                     .toServer("INIT|" +
@@ -50,7 +47,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities impl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Context.getUser();
+        user = Context.getUser();
     }
 }
 
