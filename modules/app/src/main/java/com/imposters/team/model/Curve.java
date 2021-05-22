@@ -1,18 +1,20 @@
 package com.imposters.team.model;
 
 import javafx.beans.property.SimpleStringProperty;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Curve {
     private int id;
-    private List<Integer> duration; // duration stored in unit of second
     private SimpleStringProperty taskNumber;
+    private List<ArrayList<Integer>> definition; // duration stored in unit of second
 
     // constructor
 
-    public Curve(int id, List<Integer> duration, SimpleStringProperty taskNumber) {
+    public Curve(int id, List<ArrayList<Integer>> definition, SimpleStringProperty taskNumber) {
         this.id = id;
-        this.duration = duration;
+        this.definition = definition;
         this.taskNumber = taskNumber;
     }
 
@@ -32,7 +34,7 @@ public class Curve {
         this.taskNumber.set(taskNumber);
     }
 
-    public List<Integer> getDuration() {
-        return duration;
+    public List<ArrayList<Integer>> getDefinition() {
+        return definition;
     }
 }

@@ -4,10 +4,10 @@ import com.imposters.team.App;
 import com.imposters.team.client.Sender;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
+import com.imposters.team.controllers.context.Context;
 import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.User;
 import com.imposters.team.model.dao.UserDao;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.Arrays;
-import java.util.List;
+
 import java.util.ResourceBundle;
 
 public class LoginController extends UpperAnchorPaneFunctionalities implements Initializable {
@@ -45,7 +45,7 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
                     Character.toUpperCase(user.getUsername().charAt(0)) +
                     username.substring(1) + "!"
             );
-            App.user= user;
+            Context.setUser(user);
             App.changeView("/fxml/login/chamberSelect.fxml");
         }else{
             passwordTextField.clear();

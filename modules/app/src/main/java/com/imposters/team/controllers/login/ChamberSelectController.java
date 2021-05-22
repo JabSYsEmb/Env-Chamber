@@ -3,6 +3,8 @@ package com.imposters.team.controllers.login;
 import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
+import com.imposters.team.controllers.context.Context;
+import com.imposters.team.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,6 +14,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChamberSelectController extends UpperAnchorPaneFunctionalities implements Initializable {
+    private User user;
+
+    public ChamberSelectController(User user){
+        this.user = user;
+    }
 
     @FXML
     private Button chamberSelectingButton;
@@ -43,7 +50,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities impl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        Context.getUser();
     }
 }
 

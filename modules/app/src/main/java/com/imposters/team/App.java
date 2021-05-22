@@ -1,17 +1,13 @@
 package com.imposters.team;
 
-import com.imposters.team.client.Sender;
 import com.imposters.team.db.MyJDBC;
+import com.imposters.team.client.Sender;
 
-import java.util.List;
 
-import com.imposters.team.model.*;
-import com.imposters.team.model.dao.UserDao;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import java.io.IOException;
-import java.util.ArrayList;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.StageStyle;
 import java.util.logging.Level;
@@ -27,12 +23,6 @@ public class App extends Application{
     private static MyJDBC db;
     private static Sender sender;
     private static Stage primaryStageOfProgram;
-    private static List<String> setMsgToSent;
-    public static User user;
-    public static EnvChamber envChamber;
-    public static Prufling prufling;
-    public static List<Test> tests;
-    public static Report report;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -67,9 +57,6 @@ public class App extends Application{
     }
     public static Sender getToServerSender(){
         return App.sender;
-    }
-    public static List<String> getSetMsgToSent(){
-        return App.setMsgToSent;
     }
 
     public static void main( String[] args )
