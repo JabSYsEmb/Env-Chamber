@@ -66,6 +66,34 @@
         </AnchorPane>
     </center>
     <bottom>
-        <AnchorPane styleClass="infoBar"/>
+        <AnchorPane styleClass="infoBar">
+
+            <children>
+                <Label fx:id="statusUser"
+                       text="User"
+                       styleClass="statusStyle"
+                       AnchorPane.topAnchor="0.0"
+                       AnchorPane.leftAnchor="5.0"
+                       AnchorPane.rightAnchor="0.0"
+                       AnchorPane.bottomAnchor="0.0"/>
+
+                <Label fx:id="statusChamber"
+                       text="Chamber info"
+                       styleClass="statusStyle"
+                       AnchorPane.topAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0"
+                       AnchorPane.rightAnchor="5.0"
+                       AnchorPane.bottomAnchor="0.0"/>
+
+                <Label fx:id="statusAdmin"
+                       text="Role"
+                       styleClass="statusStyle"
+                       AnchorPane.topAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0"
+                       AnchorPane.rightAnchor="0.0"
+                       AnchorPane.bottomAnchor="0.0"/>
+            </children>
+
+        </AnchorPane>
     </bottom>
 </BorderPane>
