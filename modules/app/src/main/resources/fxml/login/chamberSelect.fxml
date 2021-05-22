@@ -62,8 +62,6 @@
         </AnchorPane>
     </center>
     <bottom>
-        <AnchorPane styleClass="infoBar"
-                    prefHeight="20.0"
-                    prefWidth="1000.0"/>
+        <AnchorPane styleClass="infoBar"/>
     </bottom>
 </BorderPane>

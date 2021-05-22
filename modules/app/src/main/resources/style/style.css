@@ -11,6 +11,9 @@
    button-height:                          30px;
    cursor-hover-button:                    HAND;
    pressed-button-color:                #546E7A;
+   infoBar-width:                        1000px;
+   infoBar-height:                         20px;
+   infoBar-border-width:                    1px;
    text-main-color:                        #fff;
    alert-color:                         #ff0000;
    table-width:                           490px;
@@ -109,10 +112,13 @@ BorderPane{
     -fx-pref-height:                       66px;
     -fx-background-color:            main-color;
 }
+
 .infoBar{
     -fx-background-color:            main-color;
     -fx-alignment:                       CENTER;
-    -fx-border-width:                       1px;
+    -fx-pref-height:             infoBar-height;
+    -fx-pref-width:               infoBar-width;
+    /*-fx-border-width:      infoBar-border-width;*/
     -fx-border-color:                     BLACK;
 }
 #closeBtn:hover{
@@ -150,7 +156,7 @@ BorderPane{
     -fx-fill:                        main-color;
     -fx-font-size:                         15px;
     -fx-font-weight:                       bold;
-    -fx-text-fill                    main-color;
+    -fx-text-fill:                   main-color;
 }
 /* End of of Overall GUI */
 
