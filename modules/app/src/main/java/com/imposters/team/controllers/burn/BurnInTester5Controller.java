@@ -1,36 +1,33 @@
 package com.imposters.team.controllers.burn;
 
-import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
-import com.imposters.team.controllers.clock.ClockController;
 import com.imposters.team.controllers.context.Context;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.collections.FXCollections;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
 
-import java.net.URL;
 import java.util.ResourceBundle;
+import java.net.URL;
 
 
 public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities
         implements Initializable{
 
     @FXML
-    private Label BerichtID;
+    private Label berichtID;
     @FXML
-    private Label Datum;
+    private Label datum;
     @FXML
-    private Label ChamberID;
+    private Label chamberID;
     @FXML
-    private Label Arbeitername;
+    private Label arbeitername;
     @FXML
-    private Label Arbeitersvorname;
+    private Label arbeitersvorname;
     @FXML
-    private Label ArbeiterID;
+    private Label arbeiterID;
     @FXML
     private TableView table;
 
@@ -46,13 +43,12 @@ public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities
                 new String("OOPS"),
                 new String("Functions"));
         table.setItems(courseData);
-        BerichtID.setText("1");
-        Datum.setText("10.01.1999");
-        ChamberID.setText("1");
-        Arbeitername.setText("Stark");
-        Arbeitersvorname.setText("Reiner");
-        ArbeiterID.setText("66666");
-
+        berichtID.setText("1");
+        datum.setText("10.01.1999");
+        chamberID.setText("1");
+        arbeitername.setText("Stark");
+        arbeitersvorname.setText("Reiner");
+        arbeiterID.setText("66666");
     }
 
 
