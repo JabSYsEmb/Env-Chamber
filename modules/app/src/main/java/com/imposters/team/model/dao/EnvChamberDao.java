@@ -1,12 +1,14 @@
 package com.imposters.team.model.dao;
 
-import com.imposters.team.db.MyJDBC;
+
 import com.imposters.team.model.EnvChamber;
+import com.imposters.team.db.MyJDBC;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+
 import java.util.List;
 
 public class EnvChamberDao {
@@ -14,6 +16,7 @@ public class EnvChamberDao {
     private EnvChamberDao(){
         throw new IllegalStateException("Utility class");
     }
+
 
     public static EnvChamber getEnvChamberFromDatabase(int EnvchamberID, MyJDBC db){
         try(PreparedStatement preparedStatement =
@@ -35,21 +38,23 @@ public class EnvChamberDao {
         }
     }
 
-    public static List<EnvChamber> getEnvChambersFromDatabase(MyJDBC db){
-        List<EnvChamber> envChamber = new ArrayList<>();
+    public static List<EnvChamber> getEnvChamberFromDatabase(MyJDBC db){
         try(PreparedStatement preparedStatement =
-                    db.getConnection().prepareStatement("SELECT Envchamber_ID,Ip from Envchamber;")){
+                    db.getConnection().prepareStatement("SELECT * from Envchamber;")){
             ResultSet rs = preparedStatement.executeQuery();
+            List<EnvChamber> envChamberList = new ArrayList<>();
             while(rs.next()) {
-                envChamber.add(new EnvChamber(
-                        rs.getInt("Envchamber_ID"),
-                        rs.getString("Ip"))
-                );
+                envChamberList.add(
+                        new EnvChamber(
+                                rs.getInt("Envchamber_ID"),
+                                rs.getString("Ip")
+                        ));
             }
+            return envChamberList;
         } catch (SQLException | NullPointerException ex) {
             ex.printStackTrace();
-        }
-        return envChamber;
+            return null;
+            }
     }
 }
 

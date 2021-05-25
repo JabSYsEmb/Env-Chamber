@@ -4,21 +4,25 @@ import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.context.Context;
+import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.EnvChamber;
 import com.imposters.team.model.User;
+import com.imposters.team.model.dao.EnvChamberDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class ChamberSelectController extends UpperAnchorPaneFunctionalities
         implements Initializable {
 
     private User user;
+    private List<EnvChamber> envChamberList;
 
     @FXML
     private Button chamberSelectingButton;
@@ -29,11 +33,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
     @FXML
     public void DropDownClicked(){
         chamberComboBox.getItems().setAll(
-            "Cabinet-1",
-            "Cabinet-2",
-            "Cabinet-3",
-            "Cabinet-4",
-            "..."
+                getEnvChamberList()
         );
     }
 
@@ -52,8 +52,22 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         user = Context.getUser();
+        this.setDatabase();
         this.setStatusBar(user);
+        this.setEnvChamberList(EnvChamberDao.getEnvChamberFromDatabase(this.db));
+    }
+
+    public void setEnvChamberList(List<EnvChamber> envChamberList) {
+        this.envChamberList = envChamberList;
+    }
+
+    public List<String> getEnvChamberList(){
+        return this.envChamberList
+                .stream()
+                .map(item -> item.getIp())
+                .collect(Collectors.toList());
     }
 }
 

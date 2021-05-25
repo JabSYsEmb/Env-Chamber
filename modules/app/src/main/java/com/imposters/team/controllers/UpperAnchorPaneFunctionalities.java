@@ -2,6 +2,7 @@ package com.imposters.team.controllers;
 
 import com.imposters.team.App;
 
+import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.EnvChamber;
 import com.imposters.team.model.User;
 import javafx.fxml.FXML;
@@ -12,12 +13,14 @@ public abstract class UpperAnchorPaneFunctionalities {
     private double initialX;
     private double initialY;
 
+    protected MyJDBC db;
+
     @FXML
-    public Label statusChamber;
+    protected Label statusChamber;
     @FXML
-    private Label statusUser;
+    protected Label statusUser;
     @FXML
-    public Label statusAdmin;
+    protected Label statusAdmin;
 
     @FXML
     public void onCloseClicked(){
@@ -57,4 +60,9 @@ public abstract class UpperAnchorPaneFunctionalities {
         this.setStatusBar(signedInUser);
         statusChamber.setText(chamber.getIp());
     }
+
+    public void setDatabase(){
+        this.db = App.getDatabase();
+    }
+
 }
