@@ -20,8 +20,6 @@ import java.util.ResourceBundle;
 
 public class LoginController extends UpperAnchorPaneFunctionalities implements Initializable {
 
-    private MyJDBC db;
-
     @FXML
     private Label alertMessage;
 
@@ -36,9 +34,8 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
         String password = passwordTextField.getText();
         String username = usernameTextField.getText();
         User user = UserDao.getUserFromDatabase(username,this.db);
-
-        if(user.getPassword().equals(db.passwordEncrypter(password))){
-//        if(true){
+        System.out.println(user.toString());
+        if(user.getPassword().equals(this.db.passwordEncrypter(password))){
             Sender.setSTRMessageForCabinetMock(user, Arrays.asList("STR","Test"));
 
             alertMessage.setText(
@@ -58,7 +55,7 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Inject db in the Class beside initialization
-        this.db = App.getDatabase();
+        this.setDatabase();
     }
 }
 
