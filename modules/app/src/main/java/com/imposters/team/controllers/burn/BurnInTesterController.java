@@ -3,11 +3,17 @@ package com.imposters.team.controllers.burn;
 import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
+import com.imposters.team.controllers.context.Context;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class BurnInTesterController extends UpperAnchorPaneFunctionalities {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class BurnInTesterController extends UpperAnchorPaneFunctionalities
+        implements Initializable {
     
     @FXML
     private Label alertMessage;
@@ -26,4 +32,8 @@ public class BurnInTesterController extends UpperAnchorPaneFunctionalities {
         alertMessage.setText("Was wollen Sie hier machen?");
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.setStatusBar(Context.getUser(),Context.getEnvChamber());
+    }
 }

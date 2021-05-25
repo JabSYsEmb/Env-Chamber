@@ -147,7 +147,7 @@
         </AnchorPane>
     </center>
     <bottom>
-        <AnchorPane styleClass="infoBar">
+        <AnchorPane styleClass="statusBar">
 
             <children>
                 <Label fx:id="statusUser"

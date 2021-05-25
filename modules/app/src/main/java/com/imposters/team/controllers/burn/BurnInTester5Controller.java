@@ -3,6 +3,7 @@ package com.imposters.team.controllers.burn;
 import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 import com.imposters.team.controllers.clock.ClockController;
+import com.imposters.team.controllers.context.Context;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,7 +16,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities implements Initializable{
+public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities
+        implements Initializable{
 
     @FXML
     private Label BerichtID;
@@ -56,6 +58,6 @@ public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities impl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        this.setStatusBar(Context.getUser(),Context.getEnvChamber());
     }
 }

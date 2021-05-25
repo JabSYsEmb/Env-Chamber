@@ -16,11 +16,11 @@ public class UserDao {
     }
 
     public static User getUserFromDatabase(String username, MyJDBC db){
-        User user = null;
         try(PreparedStatement preparedStatement =
                     db.getConnection().prepareStatement("SELECT * from User where Username = ?;")){
             preparedStatement.setString(1,username);
             ResultSet rs = preparedStatement.executeQuery();
+            User user = null;
             if(rs.next()) {
                 user = new User(
                         rs.getInt("User_ID"),
@@ -31,10 +31,12 @@ public class UserDao {
                         rs.getString("Password")
                 );
             }
+            return user;
         } catch (SQLException | NullPointerException ex) {
+            System.out.println("NotFoundUserInfo, try again!");
             ex.printStackTrace();
+            return null;
         }
-        return user;
     }
 
     public static List<User> getUsersFromDatabase(MyJDBC db){

@@ -4,6 +4,7 @@ import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.clock.ClockController;
+import com.imposters.team.controllers.context.Context;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
@@ -23,14 +24,15 @@ public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities impl
     private Label clock;
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        new ClockController(1,"Initialisierungsvorgang ist beendet!").run(clock,message);
-    }
-
     @FXML
     @Override
     public void clickWeiterBtn(){
         App.changeView("/fxml/burnIn-views/burnInTester3.fxml");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        new ClockController(1,"Initialisierungsvorgang ist beendet!").run(clock,message);
+        this.setStatusBar(Context.getUser(),Context.getEnvChamber());
     }
 }

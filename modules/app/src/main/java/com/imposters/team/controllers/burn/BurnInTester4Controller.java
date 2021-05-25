@@ -3,6 +3,7 @@ package com.imposters.team.controllers.burn;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 import com.imposters.team.controllers.clock.ClockController;
 
+import com.imposters.team.controllers.context.Context;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -27,11 +28,6 @@ public class BurnInTester4Controller extends UpperAnchorPaneFunctionalities impl
     private ProgressBar progressBar;
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        new ClockController(5,"BurnInTester4Controller").run(clock,message);
-    }
-
     @FXML
     @Override
     public void clickWeiterBtn(){
@@ -41,5 +37,11 @@ public class BurnInTester4Controller extends UpperAnchorPaneFunctionalities impl
         progressBar.setProgress(0.88);
         Tempratur.setText("0080.9");
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        new ClockController(5,"BurnInTester4Controller").run(clock,message);
+        this.setStatusBar(Context.getUser(),Context.getEnvChamber());
     }
 }

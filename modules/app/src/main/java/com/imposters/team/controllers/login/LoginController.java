@@ -35,9 +35,10 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
     public void loginBtnClicked() {
         String password = passwordTextField.getText();
         String username = usernameTextField.getText();
-                User user = UserDao.getUserFromDatabase(username,this.db);
+        User user = UserDao.getUserFromDatabase(username,this.db);
 
         if(user.getPassword().equals(db.passwordEncrypter(password))){
+//        if(true){
             Sender.setSTRMessageForCabinetMock(user, Arrays.asList("STR","Test"));
 
             alertMessage.setText(

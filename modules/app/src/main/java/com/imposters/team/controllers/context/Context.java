@@ -60,10 +60,6 @@ public class Context {
         Context.user = user;
     }
 
-    public static EnvChamber getChamber() {
-        return envChamber;
-    }
-
     public static void setChamber(EnvChamber chamber) {
         Context.envChamber = chamber;
     }
