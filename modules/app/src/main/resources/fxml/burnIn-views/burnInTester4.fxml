@@ -6,6 +6,7 @@
 
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
+            onKeyPressed="#onKeyPressedListener"
             fx:controller="com.imposters.team.controllers.burn.BurnInTester4Controller">
     <top>
         <AnchorPane styleClass="TitleBox"
@@ -102,7 +103,7 @@
                         styleClass="button1"
                         layoutX="570.0"
                         layoutY="335.0"
-                        onAction="#clickWeiterBtn"
+                        onAction="#nextClicked"
                         text="Weiter"/>
                 
             </children>

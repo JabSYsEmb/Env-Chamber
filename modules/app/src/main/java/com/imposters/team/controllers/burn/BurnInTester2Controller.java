@@ -26,7 +26,7 @@ public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities impl
 
     @FXML
     @Override
-    public void clickWeiterBtn(){
+    public void nextClicked(){
         App.changeView("/fxml/burnIn-views/burnInTester3.fxml");
     }
 

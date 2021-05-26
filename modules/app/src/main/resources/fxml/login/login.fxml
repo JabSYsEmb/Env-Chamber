@@ -6,6 +6,7 @@
 
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
+            onKeyPressed="#onKeyPressedListener"
             fx:controller="com.imposters.team.controllers.login.LoginController">
     <top>
         <AnchorPane styleClass="TitleBox"
@@ -59,7 +60,7 @@
                         styleClass="button1"
                         layoutX="612.0"
                         layoutY="270.0"
-                        onAction="#loginBtnClicked"
+                        onAction="#nextClicked"
                         text="anmelden" />
 
             </children>

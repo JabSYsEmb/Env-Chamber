@@ -38,7 +38,7 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
 
     @Override
     @FXML
-    public void clickWeiterBtn() {
+    public void nextClicked() {
         String Slot = SlotTextField.getText();
         String BauteilID = BauteilIDTextField.getText();
         alertMessageBurnIn.setText("Ich bin eine Warnungsnachricht");

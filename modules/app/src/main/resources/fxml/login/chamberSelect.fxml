@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Label?>
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
+            onKeyPressed="#onKeyPressedListener"
             fx:controller="com.imposters.team.controllers.login.ChamberSelectController">
     <top>
         <AnchorPane styleClass="TitleBox"
@@ -50,7 +51,7 @@
                         styleClass="button1"
                         layoutX="612.0"
                         layoutY="234.0"
-                        onMouseClicked="#onChamberSelectingbtnClicked"
+                        onMouseClicked="#nextClicked"
                         text="auswählen"/>
 
                 <Text styleClass="GeneralTextStyle"

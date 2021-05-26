@@ -30,26 +30,39 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
     private TextField usernameTextField;
 
     @FXML
-    public void loginBtnClicked() {
-        String password = passwordTextField.getText();
-        String username = usernameTextField.getText();
-        User user = UserDao.getUserFromDatabase(username,this.db);
-        System.out.println(user.toString());
-        if(user.getPassword().equals(this.db.passwordEncrypter(password))){
-            Sender.setSTRMessageForCabinetMock(user, Arrays.asList("STR","Test"));
+    public void nextClicked() {
+        this.infoChecker();
+    }
 
-            alertMessage.setText(
-                    "logged in successfully, " +
-                    Character.toUpperCase(user.getUsername().charAt(0)) +
-                    username.substring(1) + "!"
-            );
-            Context.setUser(user);
-            App.changeView("/fxml/login/chamberSelect.fxml");
-        }else{
-            passwordTextField.clear();
-            usernameTextField.clear();
-            alertMessage.setText("invalid username or password, try again!");
+    public void infoChecker(){
+        try {
+            String password = passwordTextField.getText();
+            String username = usernameTextField.getText();
+            User user = UserDao.getUserFromDatabase(username,this.db);
+            System.out.println(user.toString());
+            if(user.getPassword().equals(this.db.passwordEncrypter(password))){
+                Sender.setSTRMessageForCabinetMock(user, Arrays.asList("STR","Test"));
+
+                alertMessage.setText(
+                        "logged in successfully, " +
+                                Character.toUpperCase(user.getUsername().charAt(0)) +
+                                username.substring(1) + "!"
+                );
+                Context.setUser(user);
+                App.changeView("/fxml/login/chamberSelect.fxml");
+            }else{
+                textFieldCleaner();
+            }
+        }catch (Exception ex){
+            textFieldCleaner();
+            System.out.println(ex);
         }
+    }
+
+    public void textFieldCleaner(){
+        passwordTextField.clear();
+        usernameTextField.clear();
+        alertMessage.setText("invalid username or password, try again!");
     }
 
     @Override

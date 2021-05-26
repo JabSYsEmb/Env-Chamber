@@ -34,7 +34,7 @@ public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities
 
     @Override
     @FXML
-    public void clickWeiterBtn() {
+    public void nextClicked() {
         ObservableList<String> courseData = FXCollections.observableArrayList(
                 "Inheritance",
                 "Abstraction",

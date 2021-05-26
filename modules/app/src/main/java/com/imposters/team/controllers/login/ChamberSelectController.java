@@ -38,7 +38,8 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
     }
 
     @FXML
-    public void onChamberSelectingbtnClicked() {
+    @Override
+    public void nextClicked() {
         Context.setChamber(new EnvChamber(1,"172.16.103.136"));
         new Thread(() -> {
             App.getToServerSender()

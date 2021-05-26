@@ -7,6 +7,8 @@ import com.imposters.team.model.EnvChamber;
 import com.imposters.team.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public abstract class UpperAnchorPaneFunctionalities {
@@ -51,7 +53,7 @@ public abstract class UpperAnchorPaneFunctionalities {
         if(signedInUser.isAdminStatus()){
             statusAdmin.setText("Admin");
         }else{
-            statusAdmin.setText("Local-user");
+            statusAdmin.setText("Limited User");
         }
         statusUser.setText(signedInUser.getFirstName() + " " + signedInUser.getLastName());
     }
@@ -64,5 +66,13 @@ public abstract class UpperAnchorPaneFunctionalities {
     public void setDatabase(){
         this.db = App.getDatabase();
     }
+
+    public void onKeyPressedListener(KeyEvent keyEvent) {
+        switch (keyEvent.getCode()){
+            case ENTER: nextClicked();
+        }
+    }
+
+    protected abstract void nextClicked();
 
 }
