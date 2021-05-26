@@ -48,7 +48,7 @@ public abstract class UpperAnchorPaneFunctionalities {
     }
 
     public void setStatusBar(User signedInUser){
-        if(signedInUser.getPassword().equals("1")){
+        if(signedInUser.isAdminStatus()){
             statusAdmin.setText("Admin");
         }else{
             statusAdmin.setText("Local-user");

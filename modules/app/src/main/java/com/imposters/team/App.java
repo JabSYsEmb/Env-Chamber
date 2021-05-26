@@ -4,12 +4,16 @@ import com.imposters.team.db.MyJDBC;
 import com.imposters.team.client.Sender;
 
 
+import com.imposters.team.model.EnvChamber;
+import com.imposters.team.model.dao.EnvChamberDao;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.StageStyle;
+
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
