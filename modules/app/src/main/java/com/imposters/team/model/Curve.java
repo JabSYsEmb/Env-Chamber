@@ -3,19 +3,19 @@ package com.imposters.team.model;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Curve {
     private int id;
     private SimpleStringProperty taskNumber;
-    private List<ArrayList<Integer>> definition; // duration stored in unit of second
-
+    HashMap<Integer, CurveDefinition> CurveDefinitions = new HashMap<Integer, CurveDefinition>();
     // constructor
 
-    public Curve(int id, List<ArrayList<Integer>> definition, SimpleStringProperty taskNumber) {
+    public Curve(int id, String taskNumber, HashMap<Integer, CurveDefinition> curveDefinitions) {
         this.id = id;
-        this.definition = definition;
-        this.taskNumber = taskNumber;
+        this.taskNumber = new SimpleStringProperty(taskNumber);
+        CurveDefinitions = curveDefinitions;
     }
 
     public int getId() {
@@ -30,11 +30,16 @@ public class Curve {
         return taskNumber;
     }
 
-    public void setTaskNumber(String taskNumber) {
-        this.taskNumber.set(taskNumber);
+    public HashMap<Integer, CurveDefinition> getCurveDefinitions() {
+        return CurveDefinitions;
     }
 
-    public List<ArrayList<Integer>> getDefinition() {
-        return definition;
+    @Override
+    public String toString() {
+        return "Curve{" +
+                "id=" + id +
+                ", taskNumber=" + taskNumber +
+                ", CurveDefinitions=" + CurveDefinitions +
+                '}';
     }
 }
