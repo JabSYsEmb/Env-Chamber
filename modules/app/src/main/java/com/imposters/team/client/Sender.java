@@ -2,6 +2,8 @@ package com.imposters.team.client;
 
 import com.imposters.team.App;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -25,6 +27,12 @@ public class Sender {
                 Socket echoSocket = new Socket(this.hostName, this.portNumber);
                 PrintWriter out =
                         new PrintWriter(echoSocket.getOutputStream(), true);
+                BufferedReader in =
+                        new BufferedReader(
+                                new InputStreamReader(echoSocket.getInputStream()));
+                BufferedReader stdIn =
+                        new BufferedReader(
+                                new InputStreamReader(System.in))
         ) {
             out.println(msg);
         } catch (IOException unknownHostException) {
@@ -39,20 +47,10 @@ public class Sender {
     }
 
     public static void sendMsgToMockServer(){
-
-        new Thread(() ->
-            App.getToServerSender().toServer
-                    (
-                            Sender.sentMsg.stream().collect
-                            (
-                                    Collectors.joining("|")
-                            )
-                    )
-            ).start();
+        App.getToServerSender().toServer(
+                Sender.sentMsg
+                        .stream()
+                        .collect(Collectors.joining("|"))
+        );
     }
-
-    public static String getSentMsg(){
-        return Sender.sentMsg.toString();
-    }
-
 }

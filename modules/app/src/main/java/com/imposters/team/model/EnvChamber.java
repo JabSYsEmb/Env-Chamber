@@ -2,7 +2,7 @@ package com.imposters.team.model;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import java.net.Inet4Address;
+
 import java.util.Objects;
 
 
@@ -11,16 +11,25 @@ public class EnvChamber{
   /*public int Envchamber_ID;
 	public String Ip;
 	public int temperature;*/
-    private int EnvchamberID;
+    private int envchamberID;
     private SimpleStringProperty Ip;
+    private SimpleIntegerProperty failureRate;
+    private SimpleIntegerProperty maxTemperature;
+
+    public EnvChamber(int envchamberID, String ip, int failureRate, int maxTemperature) {
+        this.envchamberID = envchamberID;
+        this.Ip = new SimpleStringProperty(ip);
+        this.failureRate = new SimpleIntegerProperty(failureRate);
+        this.maxTemperature = new SimpleIntegerProperty(maxTemperature);
+    }
 
     public EnvChamber(int envchamberID, String ip) {
-        this.EnvchamberID = envchamberID;
+        this.envchamberID = envchamberID;
         this.Ip = new SimpleStringProperty(ip);
     }
 
     public int getEnvchamberID() {
-        return EnvchamberID;
+        return envchamberID;
     }
 
     public String getIp() {
@@ -34,9 +43,13 @@ public class EnvChamber{
     @Override
     public String toString() {
         return "EnvChamber{" +
-                "EnvchamberID=" + EnvchamberID +
+                "EnvchamberID=" + envchamberID +
                 ", Ip=" + Ip +
                 '}';
+    }
+
+    public int getFailureRate(){
+        return this.failureRate.get();
     }
 
     @Override
@@ -44,11 +57,11 @@ public class EnvChamber{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EnvChamber that = (EnvChamber) o;
-        return EnvchamberID == that.EnvchamberID;
+        return envchamberID == that.envchamberID;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(EnvchamberID);
+        return Objects.hash(envchamberID);
     }
 }

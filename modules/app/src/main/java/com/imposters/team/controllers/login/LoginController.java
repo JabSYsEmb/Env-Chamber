@@ -39,7 +39,6 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
             String password = passwordTextField.getText();
             String username = usernameTextField.getText();
             User user = UserDao.getUserFromDatabase(username,this.db);
-            System.out.println(user.toString());
             if(user.getPassword().equals(this.db.passwordEncrypter(password))){
                 Context.setUser(user);
                 App.changeView("/fxml/login/chamberSelect.fxml");

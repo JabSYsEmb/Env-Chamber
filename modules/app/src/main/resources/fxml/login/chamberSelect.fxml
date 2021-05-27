@@ -47,8 +47,7 @@
                           layoutY="193.0"
                           onMouseClicked="#DropDownClicked"/>
 
-                <Button fx:id="chamberSelectingButton"
-                        styleClass="button1"
+                <Button styleClass="button1"
                         layoutX="612.0"
                         layoutY="234.0"
                         onMouseClicked="#nextClicked"

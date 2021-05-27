@@ -27,9 +27,6 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
     private List<EnvChamber> envChamberList;
 
     @FXML
-    private Button chamberSelectingButton;
-
-    @FXML
     private ComboBox<String> chamberComboBox;
 
     @FXML
@@ -42,12 +39,17 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
     @FXML
     @Override
     public void nextClicked() {
-        Context.setChamber(new EnvChamber(1,"172.16.103.136"));
+
+        Context.setChamber(EnvChamberDao.getEnvChamberFromDatabase(
+                chamberComboBox.getSelectionModel().getSelectedItem(),this.db
+        ));
+
         Sender.setSentMsg(Arrays.asList(
                 "STR",
+                chamberComboBox.getSelectionModel().getSelectedItem(),
                 user.getUsername(),
                 user.isAdminOrLimitedUser(),
-                chamberComboBox.getSelectionModel().getSelectedItem()
+                String.valueOf(Context.getEnvChamber().getFailureRate())
         ));
 
         Sender.sendMsgToMockServer();
