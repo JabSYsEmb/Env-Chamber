@@ -1,6 +1,7 @@
 package com.imposters.team.controllers.login;
 
 import com.imposters.team.App;
+import com.imposters.team.client.Sender;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.context.Context;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -41,12 +43,14 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
     @Override
     public void nextClicked() {
         Context.setChamber(new EnvChamber(1,"172.16.103.136"));
-        new Thread(() -> {
-            App.getToServerSender()
-                    .toServer("INIT|" +
-                            chamberComboBox.getSelectionModel().getSelectedItem()
-                            +"|1012323");
-        });
+        Sender.setSentMsg(Arrays.asList(
+                "STR",
+                user.getUsername(),
+                user.isAdminOrLimitedUser(),
+                chamberComboBox.getSelectionModel().getSelectedItem()
+        ));
+
+        Sender.sendMsgToMockServer();
 
         App.changeView("/fxml/burnIn-views/burnInTester.fxml");
     }

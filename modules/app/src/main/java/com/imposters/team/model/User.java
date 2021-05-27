@@ -128,4 +128,11 @@ public class User {
         return Objects.hash(id);
     }
 
+    public String isAdminOrLimitedUser(){
+        if(this.isAdminStatus()){
+            return "Admin";
+        }else{
+            return "Limited User";
+        }
+    }
 }

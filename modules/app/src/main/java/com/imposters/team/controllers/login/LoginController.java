@@ -41,13 +41,6 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
             User user = UserDao.getUserFromDatabase(username,this.db);
             System.out.println(user.toString());
             if(user.getPassword().equals(this.db.passwordEncrypter(password))){
-                Sender.setSTRMessageForCabinetMock(user, Arrays.asList("STR","Test"));
-
-                alertMessage.setText(
-                        "logged in successfully, " +
-                                Character.toUpperCase(user.getUsername().charAt(0)) +
-                                username.substring(1) + "!"
-                );
                 Context.setUser(user);
                 App.changeView("/fxml/login/chamberSelect.fxml");
             }else{
@@ -55,7 +48,6 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
             }
         }catch (Exception ex){
             textFieldCleaner();
-            System.out.println(ex);
         }
     }
 

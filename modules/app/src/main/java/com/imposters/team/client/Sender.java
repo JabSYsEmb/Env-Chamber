@@ -1,6 +1,5 @@
 package com.imposters.team.client;
 
-import com.imposters.team.model.User;
 import com.imposters.team.App;
 
 import java.util.List;
@@ -21,6 +20,7 @@ public class Sender {
     }
 
     public void toServer(String msg) {
+        System.out.println(msg);
         try (
                 Socket echoSocket = new Socket(this.hostName, this.portNumber);
                 PrintWriter out =
@@ -32,18 +32,18 @@ public class Sender {
         }
     }
 
-    public void setSentMsg(List<String> appendMsg){
+    public static void setSentMsg(List<String> appendMsg){
         appendMsg.forEach(msg ->
             Sender.sentMsg.add(msg)
         );
     }
 
-    public static void setSTRMessageForCabinetMock(User signedInUser, List<String> msgToBeSent){
+    public static void sendMsgToMockServer(){
 
         new Thread(() ->
             App.getToServerSender().toServer
                     (
-                    msgToBeSent.stream().collect
+                            Sender.sentMsg.stream().collect
                             (
                                     Collectors.joining("|")
                             )
