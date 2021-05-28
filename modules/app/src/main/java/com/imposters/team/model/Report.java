@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,14 +22,14 @@ public class Report {
     private int ReportID;
     private User user;
     private EnvChamber envChamber;
-    private SimpleDateFormat date;
+    private LocalDate date;
     private List<Test> test = new ArrayList<>();
 
-    public Report(int reportID, User user, EnvChamber envChamber, String date, List<Test> test) {
+    public Report(int reportID, User user, EnvChamber envChamber, LocalDate date, List<Test> test) {
         ReportID = reportID;
         this.user = user;
         this.envChamber = envChamber;
-        this.date = new SimpleDateFormat(date);// String achtung!
+        this.date = date;
         this.test = test;
     }
 
@@ -44,17 +45,21 @@ public class Report {
         return envChamber;
     }
 
-    public SimpleDateFormat getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
     public List<Test> getTest() {
         return test;
     }
-    public synchronized boolean addTest(Test e){
-        return test.add(e);
-    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Report report = (Report) o;
+        return ReportID == report.ReportID;
+    }
 
     @Override
     public String toString() {
@@ -65,14 +70,6 @@ public class Report {
                 ", date=" + date +
                 ", test=" + test +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Report report = (Report) o;
-        return ReportID == report.ReportID;
     }
 
     @Override

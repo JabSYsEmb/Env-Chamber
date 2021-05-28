@@ -4,8 +4,9 @@ import com.imposters.team.db.MyJDBC;
 import com.imposters.team.client.Sender;
 
 
-import com.imposters.team.model.EnvChamber;
+import com.imposters.team.model.*;
 import com.imposters.team.model.dao.EnvChamberDao;
+import com.imposters.team.model.dao.ReportDao;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.StageStyle;
 
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -66,6 +67,23 @@ public class App extends Application{
     public static void main( String[] args )
     {
         db = new MyJDBC();
+        // Erstellung ein Muster für Report+ Test von setReportinDatabase(report,database)
+    /*    ReportDao.setReportinDatabase(new Report(66,
+                new User(1, "testuser1", "testuser2", "testuser3",
+                true,
+                "testuser4"),
+                new EnvChamber(1, "testchamer"),
+                null,
+                Arrays.asList(
+                        new Test(100,new Curve(1,"CurveTest",null),
+                                new Prufling(1,null,0),true,2),
+                        new Test(101,new Curve(2,"CurveTest",null),
+                                new Prufling(1,null,0),true,2),
+                        new Test(102,new Curve(2,"CurveTest",null),
+                                new Prufling(1,null,0),true,2)
+
+                )
+        ),db);*/
 
         new Thread(() -> {App.sender = new Sender("127.0.0.1",2332);})
                 .start();
