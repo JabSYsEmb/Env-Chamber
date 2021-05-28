@@ -25,7 +25,8 @@ public class BurnInTesterController extends UpperAnchorPaneFunctionalities
     private TextField Auftragsnummer;
 
     @FXML
-    public void clickWeiterBtn() {
+    @Override
+    public void nextClicked() {
         String Artikelnummer = this.Artikelnummer.getText();
         String Auftragsnummer = this.Auftragsnummer.getText();
         App.changeView("/fxml/burnIn-views/burnInTester2.fxml");

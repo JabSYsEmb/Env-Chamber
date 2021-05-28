@@ -30,7 +30,7 @@ public class BurnInTester4Controller extends UpperAnchorPaneFunctionalities impl
 
     @FXML
     @Override
-    public void clickWeiterBtn(){
+    public void nextClicked(){
 
         //App.changeView("/fxml/burnIn-views/burnInTester5.fxml");
         message.setText("Hallo heißer ich bin Message");

@@ -18,16 +18,18 @@ public class EnvChamberDao {
     }
 
 
-    public static EnvChamber getEnvChamberFromDatabase(int EnvchamberID, MyJDBC db){
+    public static EnvChamber getEnvChamberFromDatabase(String EnvchamberIP, MyJDBC db){
         try(PreparedStatement preparedStatement =
-                    db.getConnection().prepareStatement("SELECT Envchamber_ID,Ip from Envchamber where Envchamber_ID = ?;")){
-            preparedStatement.setInt(1,EnvchamberID);
+                    db.getConnection().prepareStatement("SELECT * from Envchamber where Ip = ?;")){
+            preparedStatement.setString(1,EnvchamberIP);
             ResultSet rs = preparedStatement.executeQuery();
             EnvChamber envChamber = null;
             if(rs.next()) {
                 envChamber = new EnvChamber(
                         rs.getInt("Envchamber_ID"),
-                        rs.getString("Ip")
+                        rs.getString("Ip"),
+                        rs.getInt("FailureRate"),
+                        rs.getInt("maxTemperature")
                 );
             }
             return envChamber;
@@ -47,14 +49,16 @@ public class EnvChamberDao {
                 envChamberList.add(
                         new EnvChamber(
                                 rs.getInt("Envchamber_ID"),
-                                rs.getString("Ip")
+                                rs.getString("Ip"),
+                                rs.getInt("FailureRate"),
+                                rs.getInt("maxTemperature")
                         ));
             }
             return envChamberList;
         } catch (SQLException | NullPointerException ex) {
             ex.printStackTrace();
             return null;
-            }
+        }
     }
 }
 

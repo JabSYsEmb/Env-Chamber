@@ -1,6 +1,7 @@
 package com.imposters.team.controllers.login;
 
 import com.imposters.team.App;
+import com.imposters.team.client.Sender;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.context.Context;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -23,9 +25,6 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
 
     private User user;
     private List<EnvChamber> envChamberList;
-
-    @FXML
-    private Button chamberSelectingButton;
 
     @FXML
     private ComboBox<String> chamberComboBox;
@@ -38,14 +37,22 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
     }
 
     @FXML
-    public void onChamberSelectingbtnClicked() {
-        Context.setChamber(new EnvChamber(1,"172.16.103.136"));
-        new Thread(() -> {
-            App.getToServerSender()
-                    .toServer("INIT|" +
-                            chamberComboBox.getSelectionModel().getSelectedItem()
-                            +"|1012323");
-        });
+    @Override
+    public void nextClicked() {
+
+        Context.setChamber(EnvChamberDao.getEnvChamberFromDatabase(
+                chamberComboBox.getSelectionModel().getSelectedItem(),this.db
+        ));
+
+        Sender.setSentMsg(Arrays.asList(
+                "STR",
+                chamberComboBox.getSelectionModel().getSelectedItem(),
+                user.getUsername(),
+                user.isAdminOrLimitedUser(),
+                String.valueOf(Context.getEnvChamber().getFailureRate())
+        ));
+
+        Sender.sendMsgToMockServer();
 
         App.changeView("/fxml/burnIn-views/burnInTester.fxml");
     }

@@ -85,8 +85,10 @@ public class App extends Application{
                 )
         ),db);*/
 
-        new Thread(() -> {App.sender = new Sender("127.0.0.1",2332);})
+        new Thread(() -> App.sender = new Sender("127.0.0.1",2332))
                 .start();
+
+        new Thread(() -> new String());
 
         launch(args);
 
