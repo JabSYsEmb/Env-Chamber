@@ -19,11 +19,10 @@ public class ReportDao {
 
     public static void setReportinDatabase(Report report, MyJDBC db){
         try(PreparedStatement preparedStatement =
-                    db.getConnection().prepareStatement("INSERT INTO Bericht  VALUES (?,?,?,?) ;")){
-            preparedStatement.setInt(1,report.getReportID());
-            preparedStatement.setInt(2,report.getUser().getId());
-            preparedStatement.setInt(3,report.getEnvChamber().getEnvchamberID());
-            preparedStatement.setDate(4, null);
+                    db.getConnection().prepareStatement("INSERT INTO Bericht (User_ID,Envchamber_ID,Date) VALUES (?,?,?) ;")){
+            preparedStatement.setInt(1,report.getUser().getId());
+            preparedStatement.setInt(2,report.getEnvChamber().getEnvchamberID());
+            preparedStatement.setDate(3, null);
             preparedStatement.executeUpdate();
         } catch (SQLException | NullPointerException ex) {
             System.out.println("NotFoundReportInfo, try again!");

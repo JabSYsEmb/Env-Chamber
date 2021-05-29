@@ -280,7 +280,8 @@ public class MyJDBC {
         this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Envchamber ("
                 + "  Envchamber_ID INT  NOT NULL AUTO_INCREMENT  PRIMARY KEY ,"
                 + "  Ip varchar(45),"
-                + "  temperature INT);");
+                + "  FailureRate INT,"
+                + "  maxTemperature INT);");
 
         /*
         +-------------+--------------+-------------+
@@ -306,7 +307,7 @@ public class MyJDBC {
         +------------+---------+---------------+------+
          */
         this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Bericht ("
-                + "  Bericht_ID INT  NOT NULL  PRIMARY KEY,"
+                + "  Bericht_ID INT  NOT NULL  AUTO_INCREMENT PRIMARY KEY,"
                 + " User_ID INT(10),"
                 + "  Envchamber_ID INT,"
                 + "  FOREIGN KEY (User_ID) REFERENCES User(User_ID),"
@@ -380,8 +381,10 @@ public class MyJDBC {
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Envchamber;");
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
-        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (1,'127.04.39',NULL)");
-        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (2,'536.02.01',NULL)");
+        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (1,'192.16.103.132',10,90)");
+        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (2,'192.16.100.2',20,80)");
+        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (3,'51.16.10.1',20,80)");
+        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (4,'142.250.187.142',20,80)");
 
         //Prufling
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);

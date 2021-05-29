@@ -25,8 +25,7 @@ public class Report {
     private LocalDate date;
     private List<Test> test = new ArrayList<>();
 
-    public Report(int reportID, User user, EnvChamber envChamber, LocalDate date, List<Test> test) {
-        ReportID = reportID;
+    public Report( User user, EnvChamber envChamber, LocalDate date, List<Test> test) {
         this.user = user;
         this.envChamber = envChamber;
         this.date = date;
