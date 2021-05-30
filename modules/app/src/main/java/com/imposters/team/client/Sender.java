@@ -35,22 +35,17 @@ public class Sender {
                                 new InputStreamReader(System.in))
         ) {
             out.println(msg);
+            while(in.ready()){
+                System.out.println("in Class :" + in.readLine());
+                System.out.println("stdIn Class :" + stdIn.readLine());
+            }
         } catch (IOException unknownHostException) {
             unknownHostException.printStackTrace();
         }
     }
 
-    public static void setSentMsg(List<String> appendMsg){
-        appendMsg.forEach(msg ->
-            Sender.sentMsg.add(msg)
-        );
-    }
-
     public static void sendMsgToMockServer(){
-        App.getToServerSender().toServer(
-                Sender.sentMsg
-                        .stream()
-                        .collect(Collectors.joining("|"))
-        );
+        App.getToServerSender().toServer("STRT|Kabinett 1|Babur Hoca|Admin|10|3");
+
     }
 }
