@@ -32,22 +32,49 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
     @FXML
     public void DropDownClicked(){
         chamberComboBox.getItems().setAll(
-                "1.1.1.1.1",
-                "ldskjfsdf",
-                "sdljfjsdf",
-                "sjdlf"
+                getEnvChamberList()
         );
     }
 
     @FXML
     @Override
     public void nextClicked() {
+
+        Context.setChamber(EnvChamberDao.getEnvChamberFromDatabase(
+                chamberComboBox.getSelectionModel().getSelectedItem(),this.db
+        ));
+
+        Sender.setSentMsg(Arrays.asList(
+                "STR",
+                chamberComboBox.getSelectionModel().getSelectedItem(),
+                user.getUsername(),
+                user.isAdminOrLimitedUser(),
+                String.valueOf(Context.getEnvChamber().getFailureRate())
+        ));
+
         Sender.sendMsgToMockServer();
+
+        App.changeView("/fxml/burnIn-views/burnInTester.fxml");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        user = Context.getUser();
+        this.setDatabase();
+        this.setStatusBar(user);
+        this.setEnvChamberList(EnvChamberDao.getEnvChamberFromDatabase(this.db));
+    }
+
+    public void setEnvChamberList(List<EnvChamber> envChamberList) {
+        this.envChamberList = envChamberList;
+    }
+
+    public List<String> getEnvChamberList(){
+        return this.envChamberList
+                .stream()
+                .map(item -> item.getIp())
+                .collect(Collectors.toList());
     }
 }
 
