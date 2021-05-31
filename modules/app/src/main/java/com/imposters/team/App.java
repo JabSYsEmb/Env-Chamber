@@ -67,8 +67,6 @@ public class App extends Application{
     public static void main( String[] args )
     {
         db = new MyJDBC();
-        db.createDatabase();
-        db.insertDataIntoDatabase();
         // Erstellung ein Muster für Report+ Test von setReportinDatabase(report,database)
         ReportDao.setReportinDatabase(new Report(
                 new User(1, "testuser1", "testuser2", "testuser3",

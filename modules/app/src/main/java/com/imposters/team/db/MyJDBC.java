@@ -328,7 +328,7 @@ public class MyJDBC {
         +---------+----------+------------+-------------+---------------+---------------+--------------+
          */
         this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Test ("
-                + "  Slot_ID  INT  NOT NULL  PRIMARY KEY ,"
+                + "  Slot_ID  INT  NOT NULL  ,"
                 + "  Curve_ID INT(10),"
                 + "  Bericht_ID INT,"
                 + "  Prufling_ID  INT,"
@@ -350,26 +350,21 @@ public class MyJDBC {
     public void insertDataIntoDatabase(){
         final String SET_FOREIGN_KEY_CHECKS_0 = "SET FOREIGN_KEY_CHECKS = 0;";
         final String SET_FOREIGN_KEY_CHECKS_1 = "SET FOREIGN_KEY_CHECKS = 1;";
-        //user
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
+        //user
         this.executeUpdateQuery("TRUNCATE table User;");
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO User VALUES (1,'Bianca', 'Randermann', 'Bibo', '" + this.passwordEncrypter("12345") + "', true )");
         this.executeUpdateQuery("INSERT INTO User VALUES (2,'Anna', 'Gutenberg', 'nino', '" + this.passwordEncrypter("54321") + "', false )");
         this.executeUpdateQuery("INSERT INTO User VALUES (3,'Katrina', 'Gunther', 'kiko', '" + this.passwordEncrypter("12345") + "', false )");
 
         //Curve
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Curve;");
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (1,'200A')");
         this.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (2,'201A')");
         this.executeUpdateQuery("INSERT INTO Curve (Curve_ID,Tasknumber) VALUES (3,'202A')");
 
         //Curveduration
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Curveduration;");
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Curveduration VALUES (1,1,5, 50, 1)");
         this.executeUpdateQuery("INSERT INTO Curveduration VALUES (2,2,3, 60, 1)");
         this.executeUpdateQuery("INSERT INTO Curveduration VALUES (3,3,7, -60, 1)");
@@ -378,40 +373,34 @@ public class MyJDBC {
         this.executeUpdateQuery("INSERT INTO Curveduration VALUES (6,3,9, 3, 2)");
 
         //Envchamber
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Envchamber;");
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Envchamber VALUES (1,'192.16.103.132',10,90)");
         this.executeUpdateQuery("INSERT INTO Envchamber VALUES (2,'192.16.100.2',20,80)");
         this.executeUpdateQuery("INSERT INTO Envchamber VALUES (3,'51.16.10.1',20,80)");
         this.executeUpdateQuery("INSERT INTO Envchamber VALUES (4,'142.250.187.142',20,80)");
 
         //Prufling
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Prufling;");
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Prufling VALUES (1,'A10252',30)");
         this.executeUpdateQuery("INSERT INTO Prufling VALUES (2,'A15425',20)");
         this.executeUpdateQuery("INSERT INTO Prufling VALUES (3,'A17777',20)");
 
         //Bericht
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Bericht;");
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Bericht VALUES (1,2,1,NULL)");
         this.executeUpdateQuery("INSERT INTO Bericht VALUES (2,3,1, NULL)");
 
 
         //Test
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
         this.executeUpdateQuery("TRUNCATE table Test;");
-        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
         this.executeUpdateQuery("INSERT INTO Test VALUES (1,1,1,1, true,50,NULL)");
         this.executeUpdateQuery("INSERT INTO Test VALUES (2,2,1,1,true,70,NULL)");
         this.executeUpdateQuery("INSERT INTO Test VALUES (3,2,2,3,false,20, NULL)");
         this.executeUpdateQuery("INSERT INTO Test VALUES (4,1,1,1,false,5, NULL)");
         this.executeUpdateQuery("INSERT INTO Test VALUES (5,2,2,2,true,60, NULL)");
         this.executeUpdateQuery("INSERT INTO Test VALUES (6,3,2,3,false,3, NULL)");
+
+        this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
     }
 
     public void dropDatabase(){
