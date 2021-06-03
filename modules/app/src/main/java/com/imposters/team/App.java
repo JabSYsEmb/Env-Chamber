@@ -67,23 +67,6 @@ public class App extends Application{
     public static void main( String[] args )
     {
         db = new MyJDBC();
-        // Erstellung ein Muster für Report+ Test von setReportinDatabase(report,database)
-        ReportDao.setReportinDatabase(new Report(
-                new User(1, "testuser1", "testuser2", "testuser3",
-                true,
-                "testuser4"),
-                new EnvChamber(1, "testchamer",5,50),
-                null,
-                Arrays.asList(
-                        new Test(100,new Curve(1,"CurveTest",null),
-                                new Prufling(1,null,0),true,2),
-                        new Test(101,new Curve(2,"CurveTest",null),
-                                new Prufling(1,null,0),true,2),
-                        new Test(102,new Curve(2,"CurveTest",null),
-                                new Prufling(1,null,0),true,2)
-
-                )
-        ),db);
 
         new Thread(() -> App.sender = new Sender("127.0.0.1",2332))
                 .start();
