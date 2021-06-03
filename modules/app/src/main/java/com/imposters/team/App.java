@@ -68,6 +68,7 @@ public class App extends Application{
     {
         db = new MyJDBC();
 
+        // Initialize a thread for communication with the server
         new Thread(() -> App.sender = new Sender("127.0.0.1",2332))
                 .start();
 
