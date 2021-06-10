@@ -415,7 +415,7 @@ class RequestHandler extends Thread {
 					+ (slot + 1) + ">>. Ignoring and waiting for the next one...";
 		}
 		this.slots[slot] = examinee;
-		return "Examinee <<" + examinee + ">>> is registered in slot <<" + (slot + 1) + ">>";
+		return "Examinee <<" + examinee + ">> is registered in slot <<" + (slot + 1) + ">>";
 	}
 
 	private String processStartMessage(StringTokenizer tokenizer) {
@@ -428,7 +428,7 @@ class RequestHandler extends Thread {
 		this.role = tokenizer.nextToken();
 		retVal += this.role + ">> privileges. The simulation will work with <<";
 		this.failureRate = Integer.parseInt(tokenizer.nextToken());
-		retVal += this.failureRate + "%>> failure rate and <<<";
+		retVal += this.failureRate + "%>> failure rate and <<";
 		this.maxMinsWait = Integer.parseInt(tokenizer.nextToken());
 		retVal += this.maxMinsWait + "[ms] ping time>>";
 		retVal += " - Waiting for initialisation of examinees...";
