@@ -37,14 +37,10 @@ public class BurnInTesterController extends UpperAnchorPaneFunctionalities
     @Override
     public void nextClicked() {
 
-        this.mySender.setSentMsg(
-                this.units
-                        .stream()
-                        .flatMap(Collection::stream)
-                        .collect(Collectors.toList())
+        this.units.stream().forEach(
+                item -> this.mySender.toServer(
+                        item.stream().collect(Collectors.joining()))
         );
-
-        new Thread(() -> mySender.sendMsgToMockServer()).start();
 
         App.changeView("/fxml/burnIn-views/burnInTester2.fxml");
     }
@@ -66,8 +62,9 @@ public class BurnInTesterController extends UpperAnchorPaneFunctionalities
         }else{
             if(numberOfUnits!=0){
                 units.add(Arrays.asList(
-                          "INIT"
+                          "INIT|"
                         + this.Artikelnummer.getText()
+                        + "|"
                         + this.Auftragsnummer.getText()
                 ));
                 --numberOfUnits;

@@ -20,7 +20,7 @@ public class Communicator {
     private BufferedReader fromServer;
     private BufferedReader stdIn;
 
-    private static ArrayList<String> sentMsg = new ArrayList<>();
+    private List<String> sentMsg = new ArrayList<>();
 
     public Communicator(String hostName, int portNumber) {
         this.hostName = hostName;
@@ -46,6 +46,7 @@ public class Communicator {
     }
 
     public void toServer(String msg) {
+        System.out.println(msg);
         this.toServer.println(msg);
         try {
             System.out.println(this.fromServer.readLine());
@@ -55,15 +56,15 @@ public class Communicator {
     }
 
     public void setSentMsg(List<String> appendMsg){
-        Communicator.sentMsg.clear();
+        this.sentMsg.clear();
         appendMsg.forEach(msg ->
-            Communicator.sentMsg.add(msg)
+                this.sentMsg.add(msg)
         );
     }
 
     public void sendMsgToMockServer(){
         App.getToServerSender().toServer(
-                Communicator.sentMsg
+                this.sentMsg
                         .stream()
                         .collect(Collectors.joining("|"))
         );
