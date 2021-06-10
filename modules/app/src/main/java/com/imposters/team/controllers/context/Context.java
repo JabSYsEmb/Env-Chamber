@@ -52,6 +52,7 @@ public class Context {
         Context.report = report;
     }
 
+
     public static User getUser() {
         return user;
     }

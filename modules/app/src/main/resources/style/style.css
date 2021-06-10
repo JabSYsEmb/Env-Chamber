@@ -84,6 +84,9 @@ Button{
 #weiterBtn{
     -fx-pref-width:                       152px;
 }
+#AddTestingUnit{
+    -fx-pref-width:                       152px;
+}
 .button1:pressed{
     -fx-background-color:  pressed-button-color;
     -fx-border-color:      pressed-button-color;
@@ -203,6 +206,9 @@ BorderPane{
     -fx-font-size:                         13px;
     -fx-pref-height:                       20px;
     -fx-text-alignment:                   right;
+}
+#alertMessageInit{
+    -fx-pref-width:              text-box-width;
 }
 #alertMessageBurnIn{
     -fx-pref-width:                       300px;

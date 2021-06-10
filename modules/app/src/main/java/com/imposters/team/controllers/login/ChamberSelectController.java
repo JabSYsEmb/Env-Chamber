@@ -41,7 +41,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
         Context.setChamber(EnvChamberDao.getEnvChamberFromDatabase(
                 chamberComboBox.getSelectionModel().getSelectedItem(),this.db
         ));
-
+        
         mySender.setSentMsg(Arrays.asList(
                 "STRT",
                 chamberComboBox.getSelectionModel().getSelectedItem(),
@@ -51,7 +51,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
                 String.valueOf(Context.getEnvChamber().getAcceptedResponseTime())
         ));
 
-        mySender.sendMsgToMockServer();
+        new Thread(() -> mySender.sendMsgToMockServer()).start();
 
         App.changeView("/fxml/burnIn-views/burnInTester.fxml");
     }
