@@ -1,11 +1,9 @@
 package com.imposters.team.controllers.login;
 
 import com.imposters.team.App;
-import com.imposters.team.client.Sender;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.context.Context;
-import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.User;
 import com.imposters.team.model.dao.UserDao;
 import javafx.fxml.FXML;
@@ -14,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.util.Arrays;
 
 import java.util.ResourceBundle;
 

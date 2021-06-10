@@ -1,12 +1,9 @@
 package com.imposters.team;
 
 import com.imposters.team.db.MyJDBC;
-import com.imposters.team.client.Sender;
+import com.imposters.team.client.Communicator;
 
 
-import com.imposters.team.model.*;
-import com.imposters.team.model.dao.EnvChamberDao;
-import com.imposters.team.model.dao.ReportDao;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
@@ -14,7 +11,6 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.StageStyle;
 
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -26,7 +22,7 @@ import javafx.application.Application;
  */
 public class App extends Application{
     private static MyJDBC db;
-    private static Sender sender;
+    private static Communicator sender;
     private static Stage primaryStageOfProgram;
 
     @Override
@@ -60,7 +56,7 @@ public class App extends Application{
     public static MyJDBC getDatabase(){
         return App.db;
     }
-    public static Sender getToServerSender(){
+    public static Communicator getToServerSender(){
         return App.sender;
     }
 
@@ -69,7 +65,7 @@ public class App extends Application{
         db = new MyJDBC();
 
         // Initialize a thread for communication with the server
-        new Thread(() -> App.sender = new Sender("127.0.0.1",1111))
+        new Thread(() -> App.sender = new Communicator("127.0.0.1",1111))
                 .start();
 
         launch(args);

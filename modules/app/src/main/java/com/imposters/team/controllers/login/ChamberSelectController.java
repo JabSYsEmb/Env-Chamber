@@ -1,17 +1,15 @@
 package com.imposters.team.controllers.login;
 
 import com.imposters.team.App;
-import com.imposters.team.client.Sender;
+import com.imposters.team.client.Communicator;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.context.Context;
-import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.EnvChamber;
 import com.imposters.team.model.User;
 import com.imposters.team.model.dao.EnvChamberDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
 import java.net.URL;
@@ -25,7 +23,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
 
     private User user;
     private List<EnvChamber> envChamberList;
-    private Sender mySender;
+    private Communicator mySender;
 
     @FXML
     private ComboBox<String> chamberComboBox;

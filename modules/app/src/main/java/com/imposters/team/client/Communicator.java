@@ -1,28 +1,28 @@
 package com.imposters.team.client;
 
 import com.imposters.team.App;
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
-public class Sender {
+public class Communicator {
     private int portNumber;
     private String hostName;
 
+    private Socket echoSocket;
     private PrintWriter toServer;
-    private BufferedReader in;
+    private BufferedReader fromServer;
     private BufferedReader stdIn;
 
     private static ArrayList<String> sentMsg = new ArrayList<>();
 
-    public Sender(String hostName, int portNumber) {
+    public Communicator(String hostName, int portNumber) {
         this.hostName = hostName;
         this.portNumber = portNumber;
         this.socketInitializer();
@@ -30,34 +30,39 @@ public class Sender {
 
     public void socketInitializer(){
         try{
-            Socket echoSocket = new Socket(this.hostName, this.portNumber);
+            this.echoSocket = new Socket(this.hostName, this.portNumber);
             this.toServer =
                     new PrintWriter(echoSocket.getOutputStream(), true);
 
-            this.in =
+            this.fromServer =
                     new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
 
             this.stdIn =
                     new BufferedReader(new InputStreamReader(System.in));
+
         }catch (IOException unknownHostException) {
             unknownHostException.printStackTrace();
         }
     }
 
     public void toServer(String msg) {
-            this.toServer.println(msg);
-            
+        this.toServer.println(msg);
+        try {
+            System.out.println(this.fromServer.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setSentMsg(List<String> appendMsg){
         appendMsg.forEach(msg ->
-            Sender.sentMsg.add(msg)
+            Communicator.sentMsg.add(msg)
         );
     }
 
     public void sendMsgToMockServer(){
         App.getToServerSender().toServer(
-                Sender.sentMsg
+                Communicator.sentMsg
                         .stream()
                         .collect(Collectors.joining("|"))
         );
