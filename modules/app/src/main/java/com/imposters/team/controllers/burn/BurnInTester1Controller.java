@@ -14,24 +14,22 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class BurnInTesterController extends UpperAnchorPaneFunctionalities
+public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
         implements Initializable {
+    private int NUMBER_OF_UNITS  = 20;
 
+    private List<List<String>> units = new ArrayList<>();
     private Communicator mySender;
-    private int numberOfUnits;
-    private String colorOfMsg;
-
-    private List<List<String>> units = new ArrayList();
-
     private String message;
+
     @FXML
     private Label alertMessageInit;
 
     @FXML
-    private TextField Artikelnummer;
+    private TextField slotNumber;
 
     @FXML
-    private TextField Auftragsnummer;
+    private TextField orderNumber;
 
     @FXML
     @Override
@@ -49,36 +47,36 @@ public class BurnInTesterController extends UpperAnchorPaneFunctionalities
     public void initialize(URL location, ResourceBundle resources) {
         this.setStatusBar(Context.getUser(),Context.getEnvChamber());
         this.mySender = App.getToServerSender();
-        this.numberOfUnits = 2;
     }
 
     @FXML
     public void addNewUnit(){
         this.message = "";
-        this.colorOfMsg = "red";
-        if(this.Artikelnummer.getText().isEmpty() || this.Auftragsnummer.getText().isEmpty())
+        String colorOfMsg = "red";
+        if(this.slotNumber.getText().isEmpty() || this.orderNumber.getText().isEmpty())
         {
             this.message = "Ungültige Gerät, jedes Gerät sollte eine Artikelnummer und Auftragsnummer.";
         }else{
-            if(numberOfUnits!=0){
+            if(NUMBER_OF_UNITS!=0){
                 units.add(Arrays.asList(
                           "INIT|"
-                        + this.Artikelnummer.getText()
+                        + this.slotNumber.getText()
                         + "|"
-                        + this.Auftragsnummer.getText()
+                        + this.orderNumber.getText()
                 ));
-                --numberOfUnits;
+                --NUMBER_OF_UNITS;
             }
-            this.colorOfMsg = "green";
-            showCabinetStatus(numberOfUnits);
+            colorOfMsg = "green";
+            showCabinetStatus(NUMBER_OF_UNITS);
         }
+
         this.clearTextBoxes();
-        this.showMessage(this.message,this.colorOfMsg);
+        this.showMessage(this.message,colorOfMsg);
     }
 
     public void clearTextBoxes(){
-        this.Artikelnummer.clear();
-        this.Auftragsnummer.clear();
+        this.slotNumber.clear();
+        this.orderNumber.clear();
     }
 
     public void showCabinetStatus(int numberOfUnits){
@@ -88,6 +86,7 @@ public class BurnInTesterController extends UpperAnchorPaneFunctionalities
             this.message = "Gibt es keine slots verfügbar, Die Initialisierung soll beginnen!";
         }
     }
+
     public void showMessage(String msg,String color){
         alertMessageInit.setStyle("-fx-text-fill:"+color+";");
         alertMessageInit.setText(msg);

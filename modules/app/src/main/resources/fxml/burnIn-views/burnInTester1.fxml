@@ -7,7 +7,7 @@
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
             onKeyPressed="#onKeyPressedListener"
-            fx:controller="com.imposters.team.controllers.burn.BurnInTesterController">
+            fx:controller="com.imposters.team.controllers.burn.BurnInTester1Controller">
     <top>
         <AnchorPane styleClass="TitleBox"
                     onMousePressed="#setOnMousePressed"
@@ -39,13 +39,13 @@
         <AnchorPane styleClass="windowMainStyle">
             <children>
 
-                <TextField fx:id="Artikelnummer"
+                <TextField fx:id="slotNumber"
                            styleClass="textBoxLogin"
                            layoutX="277.0"
                            layoutY="190.0"
                            promptText="Artikelnummer" />
 
-                <TextField fx:id="Auftragsnummer"
+                <TextField fx:id="orderNumber"
                            styleClass="textBoxLogin"
                            layoutX="277.0"
                            layoutY="230.0"

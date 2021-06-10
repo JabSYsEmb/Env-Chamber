@@ -53,7 +53,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
 
         new Thread(() -> mySender.sendMsgToMockServer()).start();
 
-        App.changeView("/fxml/burnIn-views/burnInTester.fxml");
+        App.changeView("/fxml/burnIn-views/burnInTester1.fxml");
     }
 
     @Override
