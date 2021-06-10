@@ -48,7 +48,7 @@ public class ClockController {
                         }
                     }
             );
-            Thread.sleep(10);
+            Thread.sleep(1000);
         }
         Platform.runLater(()->{
             clock.setStyle("-fx-text-fill:green;");

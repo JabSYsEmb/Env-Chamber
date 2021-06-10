@@ -2,12 +2,12 @@ package com.imposters.team.controllers;
 
 import com.imposters.team.App;
 
+import com.imposters.team.client.Communicator;
 import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.EnvChamber;
 import com.imposters.team.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -15,6 +15,7 @@ public abstract class UpperAnchorPaneFunctionalities {
     private double initialX;
     private double initialY;
 
+    protected Communicator client = App.getToServerSender();
     protected MyJDBC db;
 
     @FXML

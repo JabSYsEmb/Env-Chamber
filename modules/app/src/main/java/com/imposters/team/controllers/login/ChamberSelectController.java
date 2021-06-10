@@ -23,7 +23,6 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
 
     private User user;
     private List<EnvChamber> envChamberList;
-    private Communicator mySender;
 
     @FXML
     private ComboBox<String> chamberComboBox;
@@ -41,8 +40,8 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
         Context.setChamber(EnvChamberDao.getEnvChamberFromDatabase(
                 chamberComboBox.getSelectionModel().getSelectedItem(),this.db
         ));
-        
-        mySender.setSentMsg(Arrays.asList(
+
+        this.client.setSentMsg(Arrays.asList(
                 "STRT",
                 chamberComboBox.getSelectionModel().getSelectedItem(),
                 user.getUsername(),
@@ -51,7 +50,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
                 String.valueOf(Context.getEnvChamber().getAcceptedResponseTime())
         ));
 
-        new Thread(() -> mySender.sendMsgToMockServer()).start();
+        new Thread(() -> this.client.sendMsgToMockServer()).start();
 
         App.changeView("/fxml/burnIn-views/burnInTester1.fxml");
     }
@@ -63,7 +62,6 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
         this.setDatabase();
         this.setStatusBar(user);
         this.setEnvChamberList(EnvChamberDao.getEnvChamberFromDatabase(this.db));
-        this.mySender = App.getToServerSender();
     }
 
     public void setEnvChamberList(List<EnvChamber> envChamberList) {

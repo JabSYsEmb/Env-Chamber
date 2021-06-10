@@ -19,7 +19,6 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
     private int NUMBER_OF_UNITS  = 20;
 
     private List<List<String>> units = new ArrayList<>();
-    private Communicator mySender;
     private String message;
 
     @FXML
@@ -36,9 +35,12 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
     public void nextClicked() {
 
         this.units.stream().forEach(
-                item -> this.mySender.toServer(
+                item -> this.client.toServer(
                         item.stream().collect(Collectors.joining()))
         );
+
+        // End of Initialization
+        this.client.toServer("ENDINIT");
 
         App.changeView("/fxml/burnIn-views/burnInTester2.fxml");
     }
@@ -46,7 +48,6 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.setStatusBar(Context.getUser(),Context.getEnvChamber());
-        this.mySender = App.getToServerSender();
     }
 
     @FXML
