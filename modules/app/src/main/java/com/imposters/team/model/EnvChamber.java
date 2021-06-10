@@ -7,20 +7,19 @@ import java.util.Objects;
 
 
 public class EnvChamber{
-    //Attribute in envchamber
-  /*public int Envchamber_ID;
-	public String Ip;
-	public int temperature;*/
+
     private int envchamberID;
     private SimpleStringProperty Ip;
     private SimpleIntegerProperty failureRate;
     private SimpleIntegerProperty maxTemperature;
+    private SimpleIntegerProperty acceptedResponseTime;
 
-    public EnvChamber(int envchamberID, String ip, int failureRate, int maxTemperature) {
+    public EnvChamber(int envchamberID, String ip, int failureRate, int maxTemperature, int acceptedResponseTime) {
         this.envchamberID = envchamberID;
         this.Ip = new SimpleStringProperty(ip);
         this.failureRate = new SimpleIntegerProperty(failureRate);
         this.maxTemperature = new SimpleIntegerProperty(maxTemperature);
+        this.acceptedResponseTime = new SimpleIntegerProperty(acceptedResponseTime);
     }
 
     public EnvChamber(int envchamberID, String ip) {
@@ -50,6 +49,9 @@ public class EnvChamber{
 
     public int getFailureRate(){
         return this.failureRate.get();
+    }
+    public int getAcceptedResponseTime(){
+        return this.acceptedResponseTime.get();
     }
 
     @Override

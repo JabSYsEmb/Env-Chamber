@@ -29,7 +29,8 @@ public class EnvChamberDao {
                         rs.getInt("Envchamber_ID"),
                         rs.getString("Ip"),
                         rs.getInt("FailureRate"),
-                        rs.getInt("maxTemperature")
+                        rs.getInt("maxTemperature"),
+                        rs.getInt("responseTime")
                 );
             }
             return envChamber;
@@ -51,7 +52,8 @@ public class EnvChamberDao {
                                 rs.getInt("Envchamber_ID"),
                                 rs.getString("Ip"),
                                 rs.getInt("FailureRate"),
-                                rs.getInt("maxTemperature")
+                                rs.getInt("maxTemperature"),
+                                rs.getInt("responseTime")
                         ));
             }
             return envChamberList;
