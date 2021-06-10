@@ -281,7 +281,8 @@ public class MyJDBC {
                 + "  Envchamber_ID INT  NOT NULL AUTO_INCREMENT  PRIMARY KEY ,"
                 + "  Ip varchar(45),"
                 + "  FailureRate INT,"
-                + "  maxTemperature INT);");
+                + "  maxTemperature INT,"
+                + "  responseTime INT);");
 
         /*
         +-------------+--------------+-------------+
@@ -374,10 +375,10 @@ public class MyJDBC {
 
         //Envchamber
         this.executeUpdateQuery("TRUNCATE table Envchamber;");
-        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (1,'192.16.103.132',10,90)");
-        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (2,'192.16.100.2',20,80)");
-        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (3,'51.16.10.1',20,80)");
-        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (4,'142.250.187.142',20,80)");
+        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (1,'192.16.103.132',10,90,25)");
+        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (2,'192.16.100.2',20,80,20)");
+        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (3,'51.16.10.1',20,80,20)");
+        this.executeUpdateQuery("INSERT INTO Envchamber VALUES (4,'142.250.187.142',20,80,10)");
 
         //Prufling
         this.executeUpdateQuery("TRUNCATE table Prufling;");
@@ -404,7 +405,7 @@ public class MyJDBC {
     }
 
     public void dropDatabase(){
-        this.executeUpdateQuery("DROP DATABASE sql11409688;");
+        this.executeUpdateQuery("DROP DATABASE mysql;");
     }
 
     /* ********************************PART_4************************************** */

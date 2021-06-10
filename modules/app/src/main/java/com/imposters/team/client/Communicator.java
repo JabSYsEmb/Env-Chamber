@@ -55,6 +55,7 @@ public class Communicator {
     }
 
     public void setSentMsg(List<String> appendMsg){
+        Communicator.sentMsg.clear();
         appendMsg.forEach(msg ->
             Communicator.sentMsg.add(msg)
         );

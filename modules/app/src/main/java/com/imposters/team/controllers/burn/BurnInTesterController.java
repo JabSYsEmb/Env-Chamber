@@ -1,6 +1,7 @@
 package com.imposters.team.controllers.burn;
 
 import com.imposters.team.App;
+import com.imposters.team.client.Communicator;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.context.Context;
@@ -10,17 +11,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class BurnInTesterController extends UpperAnchorPaneFunctionalities
         implements Initializable {
 
+    private Communicator mySender;
     private int numberOfUnits;
     private String colorOfMsg;
 
-    private List<String> units = new ArrayList();
+    private List<List<String>> units = new ArrayList();
 
     private String message;
     @FXML
@@ -35,12 +36,23 @@ public class BurnInTesterController extends UpperAnchorPaneFunctionalities
     @FXML
     @Override
     public void nextClicked() {
+
+        this.mySender.setSentMsg(
+                this.units
+                        .stream()
+                        .flatMap(Collection::stream)
+                        .collect(Collectors.toList())
+        );
+
+        new Thread(() -> mySender.sendMsgToMockServer()).start();
+
         App.changeView("/fxml/burnIn-views/burnInTester2.fxml");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.setStatusBar(Context.getUser(),Context.getEnvChamber());
+        this.mySender = App.getToServerSender();
         this.numberOfUnits = 2;
     }
 
@@ -53,7 +65,11 @@ public class BurnInTesterController extends UpperAnchorPaneFunctionalities
             this.message = "Ungültige Gerät, jedes Gerät sollte eine Artikelnummer und Auftragsnummer.";
         }else{
             if(numberOfUnits!=0){
-                units.add(this.Artikelnummer.getText() + "|" + this.Auftragsnummer.getText());
+                units.add(Arrays.asList(
+                          "INIT"
+                        + this.Artikelnummer.getText()
+                        + this.Auftragsnummer.getText()
+                ));
                 --numberOfUnits;
             }
             this.colorOfMsg = "green";
