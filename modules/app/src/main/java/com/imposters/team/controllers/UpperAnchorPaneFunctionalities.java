@@ -51,17 +51,25 @@ public abstract class UpperAnchorPaneFunctionalities {
     }
 
     public void setStatusBar(User signedInUser){
-        if(signedInUser.isAdminStatus()){
-            statusAdmin.setText("Admin");
-        }else{
-            statusAdmin.setText("Limited User");
+        try{
+            if(signedInUser.isAdminStatus()){
+                statusAdmin.setText("Admin");
+            }else{
+                statusAdmin.setText("Limited User");
+            }
+            statusUser.setText(signedInUser.getFirstName() + " " + signedInUser.getLastName());
+        }catch (NullPointerException ex){
+            ex.getMessage();
         }
-        statusUser.setText(signedInUser.getFirstName() + " " + signedInUser.getLastName());
     }
 
     public void setStatusBar(User signedInUser, EnvChamber chamber){
-        this.setStatusBar(signedInUser);
-        statusChamber.setText(chamber.getIp());
+        try{
+            this.setStatusBar(signedInUser);
+            statusChamber.setText(chamber.getIp());
+        }catch (NullPointerException ex){
+            ex.getMessage();
+        }
     }
 
     public void setDatabase(){

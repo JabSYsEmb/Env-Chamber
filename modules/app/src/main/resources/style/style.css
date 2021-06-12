@@ -1,7 +1,7 @@
 * {
    background-color:                    #ffffff;
-   main-color:                          #054671;
-   second-main-color:                   #ff2200;
+   main-color:                          #054671; // color of headers
+   second-main-color:                   #546E7A; // color of content
    window-width:                         1000px;
    window-height:                         600px;
    text-box-width:                        445px;

@@ -50,6 +50,6 @@ public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities impl
 //        new Thread(() ->
 //                preTestList.stream().forEach(item -> this.client.toServer(item))
 //            );
-        
+
     }
 }
