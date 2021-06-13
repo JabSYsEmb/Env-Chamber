@@ -36,6 +36,13 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
     @FXML
     private TextField AuftragsnummerTextField;
 
+
+    /* todo
+    *   1. storing all slots in burinInTest1 static List for sharing
+    *   2. Extracting the ID, slot number and order Number of the list
+    *   3. Pinging to all slots
+    *   4. showing the results in the ObservableList
+    */
     @Override
     @FXML
     public void nextClicked() {

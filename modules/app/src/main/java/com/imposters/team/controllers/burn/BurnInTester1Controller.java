@@ -20,13 +20,14 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
     private int NUMBER_OF_UNITS  = 2;
 
     private List<List<String>> units = new ArrayList<>();
-    private String message;
+    protected static List<List<String>> addedUnitsForTesting = new ArrayList<>();
 
+    private String message;
     @FXML
     private Button AddTestingUnit;
+
     @FXML
     private Label alertMessageInit;
-
     @FXML
     private TextField slotNumber;
 
@@ -36,13 +37,15 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
     @FXML
     @Override
     public void nextClicked() {
+        // copying the value into static list for sharing over Project
+        addedUnitsForTesting = this.units;
 
         try{
             this.units.stream().forEach(
                     item -> this.client.toServer(
                             item.stream().collect(Collectors.joining()))
             );
-            // End of Initialization
+            // Ending The initialization
             this.client.toServer("ENDINIT");
         }catch (NullPointerException ex){
             ex.getMessage();
@@ -108,4 +111,9 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
         this.slotNumber.setDisable(true);
         this.orderNumber.setDisable(true);
     }
+
+    public static List<List<String>> getUnits() {
+        return addedUnitsForTesting;
+    }
+
 }
