@@ -35,10 +35,8 @@ public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities impl
     public void initialize(URL location, ResourceBundle resources) {
         new ClockController(1,"Initialisierungsvorgang ist beendet!").run(clock,message);
         this.setStatusBar(Context.getUser(),Context.getEnvChamber());
-
-        new Thread( () ->
-            this.runPreTest()
-        ).start();
+        
+        new Thread( () -> this.runPreTest()).start();
 
     }
 

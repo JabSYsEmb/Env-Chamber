@@ -55,7 +55,6 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
                 new String("OOPS"),
                 new String("Functions"));
         table.setItems(courseData);
-
     }
     public void hinzufügenBtnClicked() {
         alertMessageBurnIn.setText("Ich werde hinzufügt werden");
@@ -68,8 +67,7 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new ClockController(11,"Hi Nigga").run(this.clock,this.massage);
+        new ClockController(11,"Hi My Friend").run(this.clock,this.massage);
         this.setStatusBar(Context.getUser(),Context.getEnvChamber());
-//        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 }

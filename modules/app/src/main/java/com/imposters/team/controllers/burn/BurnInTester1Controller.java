@@ -65,18 +65,11 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
             this.message = "Ungültige Gerät, jedes Gerät sollte eine Artikelnummer und Auftragsnummer.";
         }else{
             if(NUMBER_OF_UNITS!=0){
-                units.add(Arrays.asList(
-                          "INIT|"
-                        + this.slotNumber.getText()
-                        + "|"
-                        + this.orderNumber.getText()
-                ));
-                --NUMBER_OF_UNITS;
+                this.addTheUnitToUnitTestingList();
             }
             colorOfMsg = "green";
             showCabinetStatus(NUMBER_OF_UNITS);
         }
-
         this.clearTextBoxes();
         this.showMessage(this.message,colorOfMsg);
     }
@@ -98,6 +91,16 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
     public void showMessage(String msg,String color){
         alertMessageInit.setStyle("-fx-text-fill:"+color+";");
         alertMessageInit.setText(msg);
+    }
+
+    public void addTheUnitToUnitTestingList(){
+        units.add(Arrays.asList(
+                "INIT|"
+                        + this.slotNumber.getText()
+                        + "|"
+                        + this.orderNumber.getText()
+        ));
+        --NUMBER_OF_UNITS;
     }
 
     public void disableUnitAdderButtonAndTextBoxesIfCabinetFull(){
