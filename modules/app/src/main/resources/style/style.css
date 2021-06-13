@@ -34,9 +34,10 @@
     -fx-pref-height:             infoBar-height;
     -fx-pref-width:               infoBar-width;
     -fx-border-color:                     BLACK;
+    -fx-background-color:     second-main-color;
 }
 .statusStyle{
-    -fx-text-fill:                          RED;
+    -fx-text-fill:                         BLUE;
 }
 
 #statusChamber{
