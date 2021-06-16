@@ -1,6 +1,7 @@
 package com.imposters.team.client;
 
 import com.imposters.team.App;
+import com.imposters.team.model.Prufling;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Communicator {
@@ -59,27 +62,12 @@ public class Communicator {
         String sent = a.nextToken();
 
         this.toServer.println(msg);
-        try {
-            System.out.println(this.fromServer.readLine());
-            switch(sent){
-                case "INIT":
-                {
-                    System.out.println("------------------");
-                }
-                case "PRETST":
-                {
-                    System.out.println("calculate the response time in Milliseconds...");
-                }
-                case "OPERTEMP":
-                {
-                    System.out.println("Get the temperature from the message that sent by the server.");
-                }
-                case "PING":
-                {
-                    System.out.println("Check the response failed Or Not and get the failure rate of the response");
-                }
-            }
-        } catch (IOException e)
+        try
+        {
+            String fromServerMsg = this.fromServer.readLine();
+            this.messageProcessor(sent,fromServerMsg);
+        }
+        catch (IOException e)
         {
             e.printStackTrace();
         }
@@ -100,5 +88,32 @@ public class Communicator {
                         .stream()
                         .collect(Collectors.joining("|"))
         );
+    }
+
+    public void messageProcessor(String stage, String line){
+        switch(stage)
+        {
+            case "INIT":
+            {
+                Matcher m = Pattern.compile("\\<<(.*?)\\>").matcher(line);
+                while (m.find())
+                {
+//                    Prufling prufling = new Prufling("sdfsdf",m.group(0),m.group(1));
+                }
+                System.out.println("------------------");
+            }
+            case "PRETST":
+            {
+                System.out.println("calculate the response time in Milliseconds...");
+            }
+            case "OPERTEMP":
+            {
+                System.out.println("Get the temperature from the message that sent by the server.");
+            }
+            case "PING":
+            {
+                System.out.println("Check the response failed Or Not and get the failure rate of the response");
+            }
+        }
     }
 }
