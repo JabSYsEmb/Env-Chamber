@@ -2,6 +2,7 @@ package com.imposters.team.client;
 
 import com.imposters.team.App;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
 public class Communicator {
@@ -28,9 +30,12 @@ public class Communicator {
         this.socketInitializer();
     }
 
-    public void socketInitializer(){
-        try{
-            this.echoSocket = new Socket(this.hostName, this.portNumber);
+    public void socketInitializer()
+    {
+        try
+        {
+            this.echoSocket = new Socket(this.hostName,this.portNumber);
+
             this.toServer =
                     new PrintWriter(echoSocket.getOutputStream(), true);
 
@@ -40,29 +45,56 @@ public class Communicator {
             this.stdIn =
                     new BufferedReader(new InputStreamReader(System.in));
 
-        }catch (IOException unknownHostException) {
+        }
+        catch (IOException unknownHostException)
+        {
             unknownHostException.printStackTrace();
         }
     }
 
-    public void toServer(String msg) {
+    public void toServer(String msg)
+    {
         System.out.println(msg);
+        StringTokenizer a = new StringTokenizer(msg,"|");
+        String sent = a.nextToken();
+
         this.toServer.println(msg);
         try {
             System.out.println(this.fromServer.readLine());
-        } catch (IOException e) {
+            switch(sent){
+                case "INIT":
+                {
+                    System.out.println("------------------");
+                }
+                case "PRETST":
+                {
+                    System.out.println("calculate the response time in Milliseconds...");
+                }
+                case "OPERTEMP":
+                {
+                    System.out.println("Get the temperature from the message that sent by the server.");
+                }
+                case "PING":
+                {
+                    System.out.println("Check the response failed Or Not and get the failure rate of the response");
+                }
+            }
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
     }
 
-    public void setSentMsg(List<String> appendMsg){
+    public void setSentMsg(List<String> appendMsg)
+    {
         this.sentMsg.clear();
         appendMsg.forEach(msg ->
                 this.sentMsg.add(msg)
         );
     }
 
-    public void sendMsgToMockServer(){
+    public void sendMsgToMockServer()
+    {
         App.getToServerSender().toServer(
                 this.sentMsg
                         .stream()

@@ -22,18 +22,24 @@ public class ClockController {
 
     private void updateTime(Label clock, Label message) throws InterruptedException {
 
-        while(this.minutes.get()!=this.countDownInMinutes) {
+        while(this.minutes.get()!=this.countDownInMinutes)
+        {
             Platform.runLater(
-                    () -> {
+                    () ->
+                    {
                         {
-                            if(this.seconds.get()!=60){
-                                if(this.seconds.get()<10){
+                            if(this.seconds.get()!=60)
+                            {
+                                if(this.seconds.get()<10)
+                                {
                                     clock.setText(
                                             "00:0"+
                                                     String.valueOf(this.minutes.get())+
                                                     ":0"+String.valueOf(this.seconds.get())
                                     );
-                                }else{
+                                }
+                                else
+                                {
                                     clock.setText(
                                             "00:0"+
                                                     String.valueOf(this.minutes.get())+
@@ -50,7 +56,7 @@ public class ClockController {
             );
             Thread.sleep(1000);
         }
-        Platform.runLater(()->{
+        Platform.runLater(()-> {
             clock.setStyle("-fx-text-fill:green;");
             message.setText(this.message);
             message.setStyle("-fx-text-fill:green;");

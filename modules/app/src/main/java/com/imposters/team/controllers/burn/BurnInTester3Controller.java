@@ -63,11 +63,13 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
                 new String("Functions"));
         table.setItems(courseData);
     }
-    public void hinzufügenBtnClicked() {
+    public void hinzufügenBtnClicked()
+    {
         alertMessageBurnIn.setText("Ich werde hinzufügt werden");
 
     }
-    public void entfernenBtnClicked() {
+    public void entfernenBtnClicked()
+    {
         alertMessageBurnIn.setText("Ich werde entfernt werden");
 
     }
