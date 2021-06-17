@@ -17,7 +17,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  implements Initializable {
+public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  implements Initializable 
+{
 
     @FXML
     private Label alertMessageBurnIn;
@@ -45,7 +46,8 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
     */
     @Override
     @FXML
-    public void nextClicked() {
+    public void nextClicked() 
+    {
         String Slot = SlotTextField.getText();
         String BauteilID = BauteilIDTextField.getText();
         alertMessageBurnIn.setText("Ich bin eine Warnungsnachricht");
@@ -53,7 +55,8 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
     }
 
     @FXML
-    public void fertigBtnClicked() {
+    public void fertigBtnClicked() 
+    {
         ObservableList<String> courseData = FXCollections.observableArrayList(
                 new String("Inheritance"),
                 new String("Abstraction"),
@@ -66,7 +69,6 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
     public void hinzufügenBtnClicked()
     {
         alertMessageBurnIn.setText("Ich werde hinzufügt werden");
-
     }
     public void entfernenBtnClicked()
     {
@@ -75,7 +77,8 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) 
+    {
         new ClockController(11,"Hi My Friend").run(this.clock,this.massage);
         this.setStatusBar(Context.getUser(),Context.getEnvChamber());
     }

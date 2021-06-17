@@ -5,7 +5,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Objects;
 
-public class Prufling {
+public class Prufling 
+{
     //Attribute in prufling
   /*public int Prufling_ID;
 	public String Serialnumber;
@@ -14,34 +15,41 @@ public class Prufling {
     private SimpleStringProperty serialNumber;
     private SimpleIntegerProperty Maxduration;
 
-    public Prufling(int pruflingID, String serialNumber, int maxduration) {
+    public Prufling(int pruflingID, String serialNumber, int maxduration) 
+    {
         this.PruflingID = pruflingID;
         this.serialNumber = new SimpleStringProperty(serialNumber);
         this.Maxduration = new SimpleIntegerProperty(maxduration);
     }
 
-    public int getPruflingID() {
+    public int getPruflingID() 
+    {
         return PruflingID;
     }
 
-    public String getSerialNumber() {
+    public String getSerialNumber() 
+    {
         return serialNumber.get();
     }
 
-    public SimpleStringProperty serialNumberProperty() {
+    public SimpleStringProperty serialNumberProperty() 
+    {
         return serialNumber;
     }
 
-    public int getMaxduration() {
+    public int getMaxduration() 
+    {
         return Maxduration.get();
     }
 
-    public SimpleIntegerProperty maxdurationProperty() {
+    public SimpleIntegerProperty maxdurationProperty() 
+    {
         return Maxduration;
     }
 
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return "Prufling{" +
                 "PruflingID=" + PruflingID +
                 ", serialNumber=" + serialNumber +
@@ -50,7 +58,8 @@ public class Prufling {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Prufling prufling = (Prufling) o;
@@ -58,7 +67,8 @@ public class Prufling {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode() 
+    {
         return Objects.hash(PruflingID);
     }
 }

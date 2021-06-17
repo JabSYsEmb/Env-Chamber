@@ -15,7 +15,8 @@ import java.util.List;
 import java.net.URL;
 
 
-public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities implements Initializable{
+public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities implements Initializable
+{
 
     private List<String> preTestList = new ArrayList<>();
 
@@ -27,22 +28,25 @@ public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities impl
 
     @FXML
     @Override
-    public void nextClicked(){
+    public void nextClicked()
+    {
         App.changeView("/fxml/burnIn-views/burnInTester3.fxml");
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) 
+    {
         new ClockController(1,"Initialisierungsvorgang ist beendet!").run(clock,message);
         this.setStatusBar(Context.getUser(),Context.getEnvChamber());
         
         new Thread( () -> this.runPreTest()).start();
-
     }
 
-    public void runPreTest(){
+    public void runPreTest()
+    {
         this.preTestList.add("STRTPRE|32");
-        for (int i = 1; i <= 20; i++) {
+        for(int i = 1; i <= 20; i++) 
+        {
             this.preTestList.add("PRETST|"+i);
         }
         this.preTestList.add("ENDPRE");

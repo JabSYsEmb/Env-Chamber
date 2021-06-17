@@ -16,7 +16,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Communicator {
+public class Communicator 
+{
     private int portNumber;
     private String hostName;
 
@@ -27,7 +28,8 @@ public class Communicator {
 
     private List<String> sentMsg = new ArrayList<>();
 
-    public Communicator(String hostName, int portNumber) {
+    public Communicator(String hostName, int portNumber) 
+    {
         this.hostName = hostName;
         this.portNumber = portNumber;
         this.socketInitializer();
@@ -76,21 +78,19 @@ public class Communicator {
     public void setSentMsg(List<String> appendMsg)
     {
         this.sentMsg.clear();
-        appendMsg.forEach(msg ->
-                this.sentMsg.add(msg)
-        );
+        appendMsg.forEach(msg -> this.sentMsg.add(msg));
     }
 
     public void sendMsgToMockServer()
     {
         App.getToServerSender().toServer(
-                this.sentMsg
-                        .stream()
+            this.sentMsg.stream()
                         .collect(Collectors.joining("|"))
         );
     }
 
-    public void messageProcessor(String stage, String line){
+    public void messageProcessor(String stage, String line)
+    {
         switch(stage)
         {
             case "INIT":

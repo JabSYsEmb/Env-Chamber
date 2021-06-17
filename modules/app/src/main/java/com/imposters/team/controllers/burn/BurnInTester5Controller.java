@@ -13,8 +13,8 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 
-public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities
-        implements Initializable{
+public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities implements Initializable
+{
 
     @FXML
     private Label berichtID;
@@ -34,7 +34,8 @@ public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities
 
     @Override
     @FXML
-    public void nextClicked() {
+    public void nextClicked() 
+    {
         ObservableList<String> courseData = FXCollections.observableArrayList(
                 "Inheritance",
                 "Abstraction",
@@ -53,7 +54,8 @@ public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) 
+    {
         this.setStatusBar(Context.getUser(),Context.getEnvChamber());
     }
 }

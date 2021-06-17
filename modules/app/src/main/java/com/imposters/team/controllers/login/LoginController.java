@@ -15,8 +15,8 @@ import java.net.URL;
 
 import java.util.ResourceBundle;
 
-public class LoginController extends UpperAnchorPaneFunctionalities implements Initializable {
-
+public class LoginController extends UpperAnchorPaneFunctionalities implements Initializable 
+{
     @FXML
     private Label alertMessage;
 
@@ -27,34 +27,44 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
     private TextField usernameTextField;
 
     @FXML
-    public void nextClicked() {
+    public void nextClicked() 
+    {
         this.infoChecker();
     }
 
-    public void infoChecker(){
-        try {
+    public void infoChecker()
+    {
+        try 
+        {
             String password = passwordTextField.getText();
             String username = usernameTextField.getText();
             User user = UserDao.getUserFromDatabase(username,this.db);
-            if(user.getPassword().equals(this.db.passwordEncrypter(password))){
+            if(user.getPassword().equals(this.db.passwordEncrypter(password)))
+            {
                 Context.setUser(user);
                 App.changeView("/fxml/login/chamberSelect.fxml");
-            }else{
+            }
+            else
+            {
                 textFieldCleaner();
             }
-        }catch (Exception ex){
+        }
+        catch (Exception ex)
+        {
             textFieldCleaner();
         }
     }
 
-    public void textFieldCleaner(){
+    public void textFieldCleaner()
+    {
         passwordTextField.clear();
         usernameTextField.clear();
         alertMessage.setText("invalid username or password, try again!");
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) 
+    {
         // Inject db in the Class beside initialization
         this.setDatabase();
     }

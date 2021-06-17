@@ -15,8 +15,8 @@ import java.rmi.ServerException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
-        implements Initializable {
+public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities implements Initializable 
+        {
     private int NUMBER_OF_UNITS  = 2;
 
     private List<List<String>> units = new ArrayList<>();
@@ -36,18 +36,21 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
 
     @FXML
     @Override
-    public void nextClicked() {
+    public void nextClicked() 
+    {
         // copying the value into static list for sharing over Project
         addedUnitsForTesting = this.units;
 
-        try{
+        try
+        {
             this.units.stream().forEach(
-                    item -> this.client.toServer(
-                            item.stream().collect(Collectors.joining()))
+                item -> this.client.toServer(item.stream().collect(Collectors.joining()))
             );
             // Ending The initialization
             this.client.toServer("ENDINIT");
-        }catch (NullPointerException ex){
+        }
+        catch (NullPointerException ex)
+        {
             ex.getMessage();
         }
 
@@ -55,19 +58,25 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        this.setStatusBar(Context.getUser(),Context.getEnvChamber());
+    public void initialize(URL location, ResourceBundle resources) 
+    {
+        this.setStatusBar(Context.getUser(),
+                          Context.getEnvChamber());
     }
 
     @FXML
-    public void addNewUnit(){
+    public void addNewUnit()
+    {
         this.message = "";
         String colorOfMsg = "red";
         if(this.slotNumber.getText().isEmpty() || this.orderNumber.getText().isEmpty())
         {
             this.message = "Ungültige Gerät, jedes Gerät sollte eine Artikelnummer und Auftragsnummer.";
-        }else{
-            if(NUMBER_OF_UNITS!=0){
+        }
+        else
+        {
+            if(NUMBER_OF_UNITS!=0)
+            {
                 this.addTheUnitToUnitTestingList();
             }
             colorOfMsg = "green";
@@ -77,26 +86,33 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
         this.showMessage(this.message,colorOfMsg);
     }
 
-    public void clearTextBoxes(){
+    public void clearTextBoxes()
+    {
         this.slotNumber.clear();
         this.orderNumber.clear();
     }
 
-    public void showCabinetStatus(int numberOfUnits){
-        if(numberOfUnits!=0){
+    public void showCabinetStatus(int numberOfUnits)
+    {
+        if(numberOfUnits!=0)
+        {
             this.message = "Das Gerät wurde erfolgreich hinzugefügt, gibt es noch " + numberOfUnits + " slots verfügbar.";
-        }else{
+        }
+        else
+        {
             this.message = "Gibt es keine slots verfügbar, Die Initialisierung soll beginnen!";
             this.disableUnitAdderButtonAndTextBoxesIfCabinetFull();
         }
     }
 
-    public void showMessage(String msg,String color){
+    public void showMessage(String msg,String color)
+    {
         alertMessageInit.setStyle("-fx-text-fill:"+color+";");
         alertMessageInit.setText(msg);
     }
 
-    public void addTheUnitToUnitTestingList(){
+    public void addTheUnitToUnitTestingList()
+    {
         units.add(Arrays.asList(
                 "INIT|"
                         + this.slotNumber.getText()
@@ -106,13 +122,15 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities
         --NUMBER_OF_UNITS;
     }
 
-    public void disableUnitAdderButtonAndTextBoxesIfCabinetFull(){
+    public void disableUnitAdderButtonAndTextBoxesIfCabinetFull()
+    {
         this.AddTestingUnit.setDisable(true);
         this.slotNumber.setDisable(true);
         this.orderNumber.setDisable(true);
     }
 
-    public static List<List<String>> getUnits() {
+    public static List<List<String>> getUnits() 
+    {
         return addedUnitsForTesting;
     }
 

@@ -20,13 +20,15 @@ import javafx.application.Application;
  * Hello world!
  *
  */
-public class App extends Application{
+public class App extends Application
+{
     private static MyJDBC db;
     private static Communicator sender;
     private static Stage primaryStageOfProgram;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception
+    {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/login.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root));
@@ -35,28 +37,34 @@ public class App extends Application{
         primaryStageOfProgram.show();
     }
 
-    public static void changeView(String fxmlPageDir){
-        try {
+    public static void changeView(String fxmlPageDir)
+    {
+        try 
+        {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource(fxmlPageDir));
             Scene scene = new Scene(fxmlLoader.load());
             primaryStageOfProgram.setScene(scene);
             primaryStageOfProgram.show();
-        } catch (IOException e) {
+        } 
+        catch (IOException e) 
+        {
             Logger logger = Logger.getLogger(App.class.getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }
     }
 
-    public static Stage getPrimaryStageOfProgram(){
-
+    public static Stage getPrimaryStageOfProgram()
+    {
         return primaryStageOfProgram;
     }
 
-    public static MyJDBC getDatabase(){
+    public static MyJDBC getDatabase()
+    {
         return App.db;
     }
-    public static Communicator getToServerSender(){
+    public static Communicator getToServerSender()
+    {
         return App.sender;
     }
 
@@ -69,7 +77,6 @@ public class App extends Application{
                 .start();
 
         launch(args);
-
     }
 }
 

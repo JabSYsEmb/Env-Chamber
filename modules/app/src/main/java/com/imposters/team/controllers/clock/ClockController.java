@@ -20,12 +20,11 @@ public class ClockController {
     }
 
 
-    private void updateTime(Label clock, Label message) throws InterruptedException {
-
+    private void updateTime(Label clock, Label message) throws InterruptedException 
+    {
         while(this.minutes.get()!=this.countDownInMinutes)
         {
-            Platform.runLater(
-                    () ->
+            Platform.runLater(() ->
                     {
                         {
                             if(this.seconds.get()!=60)
@@ -47,36 +46,46 @@ public class ClockController {
                                     );
                                 }
                                 this.seconds.set(this.seconds.get() + SECOND);
-                            }else{
+                            }
+                            else
+                            {
                                 this.minutes.set(this.minutes.get() + MINUTE);
                                 this.seconds.set(0);
                             }
                         }
-                    }
-            );
+                    });
+
             Thread.sleep(1000);
         }
-        Platform.runLater(()-> {
+        Platform.runLater(()-> 
+        {
             clock.setStyle("-fx-text-fill:green;");
             message.setText(this.message);
             message.setStyle("-fx-text-fill:green;");
         });
     }
 
-    public void run(Label clock, Label message){
-        new Thread(() -> {
-            try {
+    public void run(Label clock, Label message)
+    {
+        new Thread(() -> 
+        {
+            try 
+            {
                 this.updateTime(clock,message);
-            } catch (InterruptedException e) {
+            } 
+            catch (InterruptedException e) 
+            {
                 e.printStackTrace();
             }
         }).start();
     }
-    public String getCurrentTime(){
+    public String getCurrentTime()
+    {
         return "00:0"+String.valueOf(this.minutes.get())+":"+String.valueOf(this.seconds.get());
     }
 
-    public void stopStopwatch(){
+    public void stopStopwatch()
+    {
         this.countDownInMinutes = 0;
     }
 

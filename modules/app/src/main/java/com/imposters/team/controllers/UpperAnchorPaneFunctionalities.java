@@ -11,7 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public abstract class UpperAnchorPaneFunctionalities {
+public abstract class UpperAnchorPaneFunctionalities 
+{
     private double initialX;
     private double initialY;
 
@@ -26,58 +27,77 @@ public abstract class UpperAnchorPaneFunctionalities {
     protected Label statusAdmin;
 
     @FXML
-    public void onCloseClicked(){
+    public void onCloseClicked()
+    {
         App.getPrimaryStageOfProgram().close();
     }
 
     @FXML
-    public void onMinimizingClicked(){
+    public void onMinimizingClicked()
+    {
         App.getPrimaryStageOfProgram().setIconified(true);
     }
 
-    public void setOnMousePressed(MouseEvent event){
+    public void setOnMousePressed(MouseEvent event)
+    {
         initialX = event.getSceneX();
         initialY = event.getSceneY();
     }
 
     @FXML
-    public void clickWeiterBtn(){
+    public void clickWeiterBtn()
+    {
         App.getPrimaryStageOfProgram().close();
     }
 
-    public void setOnMouseDragged(MouseEvent event){
+    public void setOnMouseDragged(MouseEvent event)
+    {
         App.getPrimaryStageOfProgram().setX(event.getScreenX() - initialX);
         App.getPrimaryStageOfProgram().setY(event.getScreenY() - initialY);
     }
 
-    public void setStatusBar(User signedInUser){
-        try{
-            if(signedInUser.isAdminStatus()){
+    public void setStatusBar(User signedInUser)
+    {
+        try
+        {
+            if(signedInUser.isAdminStatus())
+            {
                 statusAdmin.setText("Admin");
-            }else{
+            }
+            else
+            {
                 statusAdmin.setText("Limited User");
             }
             statusUser.setText(signedInUser.getFirstName() + " " + signedInUser.getLastName());
-        }catch (NullPointerException ex){
+        }
+        catch (NullPointerException ex)
+        {
             ex.getMessage();
         }
     }
 
-    public void setStatusBar(User signedInUser, EnvChamber chamber){
-        try{
+    public void setStatusBar(User signedInUser, EnvChamber chamber)
+    {
+        try
+        {
             this.setStatusBar(signedInUser);
             statusChamber.setText(chamber.getIp());
-        }catch (NullPointerException ex){
+        }
+        catch (NullPointerException ex)
+        {
             ex.getMessage();
         }
     }
 
-    public void setDatabase(){
+    public void setDatabase()
+    {
         this.db = App.getDatabase();
     }
 
-    public void onKeyPressedListener(KeyEvent keyEvent) {
-        switch (keyEvent.getCode()){
+    public void onKeyPressedListener(KeyEvent keyEvent) 
+    {
+        switch (keyEvent.getCode())
+        {
             case ENTER: nextClicked();
         }
     }

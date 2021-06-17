@@ -7,7 +7,8 @@ import javafx.beans.property.SimpleStringProperty;
 import java.util.Date;
 import java.util.Objects;
 
-public class Test {
+public class Test 
+{
     // Attribute in tset (es sollte als eine  Array im Bericht gespeisert werden)
     /*public int Slot_ID;
     public int Curve_ID;
@@ -23,7 +24,8 @@ public class Test {
     private SimpleIntegerProperty takenduration;
     // constructors
 
-    public Test(int slot_ID, Curve curve, Prufling prufling, boolean failurestatus, int takenduration) {
+    public Test(int slot_ID, Curve curve, Prufling prufling, boolean failurestatus, int takenduration) 
+    {
         this.slot_ID = new SimpleIntegerProperty(slot_ID);
         this.curve = curve;
         this.prufling = prufling;
@@ -31,40 +33,49 @@ public class Test {
         this.takenduration = new SimpleIntegerProperty(takenduration);
     }
 
-    public int getSlot_ID() {
+    public int getSlot_ID() 
+    {
         return slot_ID.get();
     }
 
-    public SimpleIntegerProperty slot_IDProperty() {
+    public SimpleIntegerProperty slot_IDProperty() 
+    {
         return slot_ID;
     }
 
-    public Curve getCurve() {
+    public Curve getCurve() 
+    {
         return curve;
     }
 
-    public Prufling getPrufling() {
+    public Prufling getPrufling() 
+    {
         return prufling;
     }
 
-    public boolean isFailurestatus() {
+    public boolean isFailurestatus() 
+    {
         return failurestatus.get();
     }
 
-    public SimpleBooleanProperty failurestatusProperty() {
+    public SimpleBooleanProperty failurestatusProperty() 
+    {
         return failurestatus;
     }
 
-    public int getTakenduration() {
+    public int getTakenduration() 
+    {
         return takenduration.get();
     }
 
-    public SimpleIntegerProperty takendurationProperty() {
+    public SimpleIntegerProperty takendurationProperty() 
+    {
         return takenduration;
     }
 
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return "Test{" +
                 "slot_ID=" + slot_ID +
                 ", curve=" + curve +
@@ -75,7 +86,8 @@ public class Test {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Test test = (Test) o;
@@ -83,7 +95,8 @@ public class Test {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode() 
+    {
         return Objects.hash(slot_ID);
     }
 }

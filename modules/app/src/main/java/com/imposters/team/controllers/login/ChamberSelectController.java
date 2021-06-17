@@ -18,9 +18,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class ChamberSelectController extends UpperAnchorPaneFunctionalities
-        implements Initializable {
-
+public class ChamberSelectController extends UpperAnchorPaneFunctionalities implements Initializable 
+{
     private User user;
     private List<EnvChamber> envChamberList;
 
@@ -28,18 +27,17 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
     private ComboBox<String> chamberComboBox;
 
     @FXML
-    public void DropDownClicked(){
-        chamberComboBox.getItems().setAll(
-                getEnvChamberIps()
-        );
+    public void DropDownClicked()
+    {
+        chamberComboBox.getItems().setAll(getEnvChamberIps());
     }
 
     @FXML
     @Override
-    public void nextClicked() {
+    public void nextClicked() 
+    {
         Context.setChamber(EnvChamberDao.getEnvChamberFromDatabase(
-                chamberComboBox.getSelectionModel().getSelectedItem(),this.db
-        ));
+            chamberComboBox.getSelectionModel().getSelectedItem(),this.db));
 
         this.client.setSentMsg(Arrays.asList(
                 "STRT",
@@ -56,19 +54,21 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
+    public void initialize(URL location, ResourceBundle resources) 
+    {
         user = Context.getUser();
         this.setDatabase();
         this.setStatusBar(user);
         this.setEnvChamberList(EnvChamberDao.getEnvChamberFromDatabase(this.db));
     }
 
-    public void setEnvChamberList(List<EnvChamber> envChamberList) {
+    public void setEnvChamberList(List<EnvChamber> envChamberList) 
+    {
         this.envChamberList = envChamberList;
     }
 
-    public List<String> getEnvChamberIps(){
+    public List<String> getEnvChamberIps()
+    {
         return this.envChamberList
                 .stream()
                 .map(item -> item.getIp())
