@@ -2,9 +2,7 @@ package com.imposters.team.model;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Test 
@@ -19,12 +17,12 @@ public class Test
     public java.sql.Date Startingtime;*/
     private SimpleIntegerProperty slot_ID;
     private Curve curve;
-    private Prufling prufling;
+    private UnitUnderTest prufling;
     private SimpleBooleanProperty failurestatus;
     private SimpleIntegerProperty takenduration;
     // constructors
 
-    public Test(int slot_ID, Curve curve, Prufling prufling, boolean failurestatus, int takenduration) 
+    public Test(int slot_ID, Curve curve, UnitUnderTest prufling, boolean failurestatus, int takenduration)
     {
         this.slot_ID = new SimpleIntegerProperty(slot_ID);
         this.curve = curve;
@@ -48,7 +46,7 @@ public class Test
         return curve;
     }
 
-    public Prufling getPrufling() 
+    public UnitUnderTest getPrufling()
     {
         return prufling;
     }

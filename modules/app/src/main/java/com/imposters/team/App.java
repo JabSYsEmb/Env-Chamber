@@ -73,7 +73,7 @@ public class App extends Application
         db = new MyJDBC();
 
         // Initialize a thread for communication with the server
-        new Thread(() -> App.sender = new Communicator("127.0.0.1",1111))
+        new Thread(() -> App.sender = new Communicator("127.0.0.1",2332))
                 .start();
 
         launch(args);

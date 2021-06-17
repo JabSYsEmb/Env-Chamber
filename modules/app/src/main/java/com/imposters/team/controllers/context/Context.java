@@ -8,7 +8,7 @@ public class Context
 {
     private static List<String> setMsgToSent;
     private static EnvChamber envChamber;
-    private static Prufling prufling;
+    private static UnitUnderTest prufling;
     private static List<Test> tests;
     private static Report report;
     private static User user;
@@ -33,12 +33,12 @@ public class Context
         Context.envChamber = envChamber;
     }
 
-    public static Prufling getPrufling() 
+    public static UnitUnderTest getPrufling()
     {
         return prufling;
     }
 
-    public static void setPrufling(Prufling prufling) 
+    public static void setPrufling(UnitUnderTest prufling)
     {
         Context.prufling = prufling;
     }

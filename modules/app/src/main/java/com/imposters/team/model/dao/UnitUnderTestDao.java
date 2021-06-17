@@ -1,7 +1,7 @@
 package com.imposters.team.model.dao;
 
 import com.imposters.team.db.MyJDBC;
-import com.imposters.team.model.Prufling;
+import com.imposters.team.model.UnitUnderTest;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,49 +9,47 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PruflingDao {
+public class UnitUnderTestDao {
 
-    private PruflingDao(){
+    private UnitUnderTestDao(){
         throw new IllegalStateException("Utility class");
     }
 
-    public static Prufling getPruflingFromDatabase(int pruflingID, MyJDBC db){
+    public static UnitUnderTest getUnitUnderTestFromDBById(int pruflingID, MyJDBC db){
         try(PreparedStatement preparedStatement =
                     db.getConnection().prepareStatement("SELECT * from Prufling where Prufling_ID = ?;")){
             preparedStatement.setInt(1,pruflingID);
             ResultSet rs = preparedStatement.executeQuery();
-            Prufling prufling = null;
+            UnitUnderTest unitUnderTest = null;
             if(rs.next()) {
-                prufling = new Prufling(
+                unitUnderTest = new UnitUnderTest(
                         rs.getInt("Prufling_ID"),
-                        rs.getString("Serialnumber"),
-                        rs.getInt("Maxduration")
+                        rs.getString("Serialnumber")
                 );
             }
-            return prufling;
+            return unitUnderTest;
         } catch (SQLException | NullPointerException ex) {
-            System.out.println("NotFoundPruflingInfo, try again!");
+            System.out.println("Needed UnitUnderTest NotFound,try again!");
             ex.printStackTrace();
             return null;
         }
     }
 
-    public static List<Prufling> getPruflingsFromDatabase(MyJDBC db){
-        List<Prufling> prufling = new ArrayList<>();
+    public static List<UnitUnderTest> getUnitUnderTestFromDB(MyJDBC db){
+        List<UnitUnderTest> unitUnderTests = new ArrayList<>();
         try(PreparedStatement preparedStatement =
                     db.getConnection().prepareStatement("SELECT * from Prufling;")){
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()) {
-                prufling.add(new Prufling(
+                unitUnderTests.add(new UnitUnderTest(
                         rs.getInt("Prufling_ID"),
-                        rs.getString("Serialnumber"),
-                        rs.getInt("Maxduration"))
-                );
+                        rs.getString("Serialnumber")
+                ));
             }
         } catch (SQLException | NullPointerException ex) {
             ex.printStackTrace();
         }
-        return prufling;
+        return unitUnderTests;
     }
 }
 

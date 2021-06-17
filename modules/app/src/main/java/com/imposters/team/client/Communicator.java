@@ -1,9 +1,8 @@
 package com.imposters.team.client;
 
 import com.imposters.team.App;
-import com.imposters.team.model.Prufling;
+import com.imposters.team.model.UnitUnderTest;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -95,24 +94,37 @@ public class Communicator
         {
             case "INIT":
             {
-                Matcher m = Pattern.compile("\\<<(.*?)\\>").matcher(line);
-                while (m.find())
+                System.out.println(line);
+                Matcher matcher = Pattern.compile("Examinee <<(.*?)>> is registered in slot <<(.*?)>>").matcher(line);
+
+                if (matcher.matches())
                 {
-//                    Prufling prufling = new Prufling("sdfsdf",m.group(0),m.group(1));
+                    UnitUnderTest unitUnderTest =
+                            new UnitUnderTest(Integer.parseInt(matcher.group(1)),
+                                    matcher.group(2));
+                    System.out.println(unitUnderTest.toString());
                 }
-                System.out.println("------------------");
+
+                break;
             }
             case "PRETST":
             {
                 System.out.println("calculate the response time in Milliseconds...");
+                break;
             }
             case "OPERTEMP":
             {
                 System.out.println("Get the temperature from the message that sent by the server.");
+                break;
             }
             case "PING":
             {
                 System.out.println("Check the response failed Or Not and get the failure rate of the response");
+                break;
+            }
+            default:
+            {
+                break;
             }
         }
     }

@@ -13,14 +13,16 @@ import java.util.List;
 
 public class EnvChamberDao {
 
-    private EnvChamberDao(){
+    private EnvChamberDao()
+    {
         throw new IllegalStateException("Utility class");
     }
 
-
-    public static EnvChamber getEnvChamberFromDatabase(String EnvchamberIP, MyJDBC db){
+    public static EnvChamber getEnvChamberFromDatabase(String EnvchamberIP, MyJDBC db)
+    {
         try(PreparedStatement preparedStatement =
-                    db.getConnection().prepareStatement("SELECT * from Envchamber where Ip = ?;")){
+                    db.getConnection().prepareStatement("SELECT * from Envchamber where Ip = ?;"))
+        {
             preparedStatement.setString(1,EnvchamberIP);
             ResultSet rs = preparedStatement.executeQuery();
             EnvChamber envChamber = null;
@@ -34,19 +36,23 @@ public class EnvChamberDao {
                 );
             }
             return envChamber;
-        } catch (SQLException | NullPointerException ex) {
+        }
+        catch (SQLException | NullPointerException ex)
+        {
             System.out.println("NotFoundEnvChamberInfo, try again!");
             ex.printStackTrace();
             return null;
         }
     }
 
-    public static List<EnvChamber> getEnvChamberFromDatabase(MyJDBC db){
+    public static List<EnvChamber> getEnvChamberFromDatabase(MyJDBC db)
+    {
         try(PreparedStatement preparedStatement =
                     db.getConnection().prepareStatement("SELECT * from Envchamber;")){
             ResultSet rs = preparedStatement.executeQuery();
             List<EnvChamber> envChamberList = new ArrayList<>();
-            while(rs.next()) {
+            while(rs.next())
+            {
                 envChamberList.add(
                         new EnvChamber(
                                 rs.getInt("Envchamber_ID"),
@@ -57,7 +63,9 @@ public class EnvChamberDao {
                         ));
             }
             return envChamberList;
-        } catch (SQLException | NullPointerException ex) {
+        }
+        catch (SQLException | NullPointerException ex)
+        {
             ex.printStackTrace();
             return null;
         }

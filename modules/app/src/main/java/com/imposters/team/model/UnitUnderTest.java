@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Objects;
 
-public class Prufling 
+public class UnitUnderTest
 {
     //Attribute in prufling
   /*public int Prufling_ID;
@@ -13,13 +13,11 @@ public class Prufling
 	public int Maxduration;*/
     private int PruflingID;
     private SimpleStringProperty serialNumber;
-    private SimpleIntegerProperty Maxduration;
 
-    public Prufling(int pruflingID, String serialNumber, int maxduration) 
+    public UnitUnderTest(int UnitId, String serialNumber)
     {
-        this.PruflingID = pruflingID;
+        this.PruflingID = UnitId;
         this.serialNumber = new SimpleStringProperty(serialNumber);
-        this.Maxduration = new SimpleIntegerProperty(maxduration);
     }
 
     public int getPruflingID() 
@@ -37,23 +35,12 @@ public class Prufling
         return serialNumber;
     }
 
-    public int getMaxduration() 
-    {
-        return Maxduration.get();
-    }
-
-    public SimpleIntegerProperty maxdurationProperty() 
-    {
-        return Maxduration;
-    }
-
     @Override
     public String toString() 
     {
         return "Prufling{" +
                 "PruflingID=" + PruflingID +
                 ", serialNumber=" + serialNumber +
-                ", Maxduration=" + Maxduration +
                 '}';
     }
 
@@ -62,7 +49,7 @@ public class Prufling
     {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Prufling prufling = (Prufling) o;
+        UnitUnderTest prufling = (UnitUnderTest) o;
         return PruflingID == prufling.PruflingID;
     }
 
