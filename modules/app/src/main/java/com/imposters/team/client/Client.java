@@ -109,7 +109,10 @@ public class Client
             }
             case "PRETST":
             {
+                long startTime = System.nanoTime();
                 System.out.println("calculate the response time in Milliseconds...");
+                long stopTime = System.nanoTime();
+                System.out.println("Execution time " + (stopTime - startTime) + "nano seconds");
                 break;
             }
             case "OPERTEMP":
