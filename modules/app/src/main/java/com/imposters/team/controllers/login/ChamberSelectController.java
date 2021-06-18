@@ -1,13 +1,12 @@
 package com.imposters.team.controllers.login;
 
 import com.imposters.team.App;
-import com.imposters.team.client.Communicator;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.context.Context;
 import com.imposters.team.model.EnvChamber;
 import com.imposters.team.model.User;
-import com.imposters.team.model.dao.EnvChamberDao;
+import com.imposters.team.dao.EnvChamberDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;

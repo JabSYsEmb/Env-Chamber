@@ -2,7 +2,7 @@ package com.imposters.team.controllers;
 
 import com.imposters.team.App;
 
-import com.imposters.team.client.Communicator;
+import com.imposters.team.client.Client;
 import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.EnvChamber;
 import com.imposters.team.model.User;
@@ -16,7 +16,7 @@ public abstract class UpperAnchorPaneFunctionalities
     private double initialX;
     private double initialY;
 
-    protected Communicator client = App.getToServerSender();
+    protected Client client = App.getToServerSender();
     protected MyJDBC db;
 
     @FXML

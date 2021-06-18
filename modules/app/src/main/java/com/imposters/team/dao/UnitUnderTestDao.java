@@ -1,4 +1,4 @@
-package com.imposters.team.model.dao;
+package com.imposters.team.dao;
 
 import com.imposters.team.db.MyJDBC;
 import com.imposters.team.model.UnitUnderTest;

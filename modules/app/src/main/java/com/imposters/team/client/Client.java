@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Communicator 
+public class Client
 {
     private int portNumber;
     private String hostName;
@@ -27,7 +27,7 @@ public class Communicator
 
     private List<String> sentMsg = new ArrayList<>();
 
-    public Communicator(String hostName, int portNumber) 
+    public Client(String hostName, int portNumber)
     {
         this.hostName = hostName;
         this.portNumber = portNumber;

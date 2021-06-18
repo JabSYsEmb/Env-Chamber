@@ -1,7 +1,7 @@
 package com.imposters.team;
 
 import com.imposters.team.db.MyJDBC;
-import com.imposters.team.client.Communicator;
+import com.imposters.team.client.Client;
 
 
 import javafx.stage.Stage;
@@ -23,7 +23,7 @@ import javafx.application.Application;
 public class App extends Application
 {
     private static MyJDBC db;
-    private static Communicator sender;
+    private static Client sender;
     private static Stage primaryStageOfProgram;
 
     @Override
@@ -63,7 +63,7 @@ public class App extends Application
     {
         return App.db;
     }
-    public static Communicator getToServerSender()
+    public static Client getToServerSender()
     {
         return App.sender;
     }
@@ -73,7 +73,7 @@ public class App extends Application
         db = new MyJDBC();
 
         // Initialize a thread for communication with the server
-        new Thread(() -> App.sender = new Communicator("127.0.0.1",2332))
+        new Thread(() -> App.sender = new Client("127.0.0.1",2332))
                 .start();
 
         launch(args);

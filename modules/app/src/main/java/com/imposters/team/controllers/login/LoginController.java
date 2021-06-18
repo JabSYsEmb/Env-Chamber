@@ -5,7 +5,7 @@ import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.context.Context;
 import com.imposters.team.model.User;
-import com.imposters.team.model.dao.UserDao;
+import com.imposters.team.dao.UserDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
