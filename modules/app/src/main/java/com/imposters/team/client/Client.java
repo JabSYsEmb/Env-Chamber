@@ -1,6 +1,7 @@
 package com.imposters.team.client;
 
 import com.imposters.team.model.UnitUnderTest;
+import sun.awt.datatransfer.DataTransferer;
 
 import java.util.List;
 import java.net.Socket;
@@ -33,6 +34,7 @@ public class Client
         this.socketInitializer();
     }
 
+    // socket initialization and establish a connection to the server via given port
     public void socketInitializer()
     {
         try
@@ -57,21 +59,57 @@ public class Client
 
     public void toServer(String msg)
     {
-        System.out.println(msg);
-        StringTokenizer a = new StringTokenizer(msg,"|");
-        String sent = a.nextToken();
-
         this.toServer.println(msg);
-        try
+        String prefixMsg = new StringTokenizer(msg,"|").nextToken();
+        String responseFromServer = this.fromServerMsg();
+
+        switch (prefixMsg)
         {
-            String fromServerMsg = this.fromServer.readLine();
-            this.messageProcessor(sent,fromServerMsg);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
+            case "INIT":
+            {
+                this.initHandler(responseFromServer);
+                break;
+            }
+
+            case "PRETST":
+            {
+                this.pretestHandler(responseFromServer);
+                break;
+            }
+
+            case "OPERTEMP":
+            {
+                this.opertempHandler(responseFromServer);
+                break;
+            }
+
+            case "PING":
+            {
+                this.pingHandler(responseFromServer);
+                break;
+            }
+
+            default:
+            {
+                break;
+            }
+
         }
     }
+
+    private String fromServerMsg() {
+        String gottenMsg;
+        try{
+            gottenMsg = this.fromServer.readLine();
+        }
+        catch (IOException io)
+        {
+            io.printStackTrace();
+            gottenMsg = "Something's went wrong!";
+        }
+        return gottenMsg;
+    }
+
 
     public void setSentMsg(List<String> appendMsg)
     {
@@ -87,47 +125,37 @@ public class Client
         );
     }
 
-    public void messageProcessor(String stage, String line)
+    public void initHandler(String fromServerMsg)
     {
-        switch(stage)
+        String responsePattern = "Examinee <<(.*?)>> is registered in slot <<(.*?)>>";
+
+        Matcher matcher = Pattern.compile(responsePattern).matcher(fromServerMsg);
+        if(matcher.matches())
         {
-            case "INIT":
-            {
-                System.out.println(line);
-                Matcher matcher = Pattern.compile("Examinee <<(.*?)>> is registered in slot <<(.*?)>>").matcher(line);
-
-                if (matcher.matches())
-                {
-                    UnitUnderTest unitUnderTest =
-                            new UnitUnderTest(Integer.parseInt(matcher.group(1)),
-                                    matcher.group(2));
-                    System.out.println(unitUnderTest.toString());
-                }
-
-                break;
-            }
-            case "PRETST":
-            {
-                long startTime = System.nanoTime();
-                System.out.println("calculate the response time in Milliseconds...");
-                long stopTime = System.nanoTime();
-                System.out.println("Execution time " + (stopTime - startTime) + "nano seconds");
-                break;
-            }
-            case "OPERTEMP":
-            {
-                System.out.println("Get the temperature from the message that sent by the server.");
-                break;
-            }
-            case "PING":
-            {
-                System.out.println("Check the response failed Or Not and get the failure rate of the response");
-                break;
-            }
-            default:
-            {
-                break;
-            }
+            UnitUnderTest unitUnderTest = new UnitUnderTest(
+                    Integer.parseInt(matcher.group(1)),
+                    matcher.group(2));
+            System.out.println(unitUnderTest.toString());
         }
+    }
+
+    private void opertempHandler(String readLine) {
+        long startTime = System.nanoTime();
+        System.out.println("calculate the response time in Milliseconds...");
+        long stopTime = System.nanoTime();
+        System.out.println("Execution time " + (stopTime - startTime) + "nano seconds");
+    }
+
+    private void pretestHandler(String test) {
+        long startTime = System.nanoTime();
+        System.out.println("calculate the response time in Milliseconds...");
+        long stopTime = System.nanoTime();
+        System.out.println("Execution time " + (stopTime - startTime) + "nano seconds");
+        System.out.println("Get the temperature from the message that sent by the server.");
+    }
+
+
+    private void pingHandler(String responseFromServer) {
+        System.out.println("Check the response failed Or Not and get the failure rate of the response");
     }
 }

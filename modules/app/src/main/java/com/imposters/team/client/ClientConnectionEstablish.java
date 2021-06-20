@@ -18,7 +18,7 @@ public class ClientConnectionEstablish {
     }
 
     private ClientConnectionEstablish(){
-        this.client = new Client("127.0.0.1",1111);
+        this.client = new Client("127.0.0.1",2332);
     }
 
     public Client getClient() {
