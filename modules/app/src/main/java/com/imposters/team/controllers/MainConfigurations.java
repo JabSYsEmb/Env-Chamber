@@ -2,22 +2,28 @@ package com.imposters.team.controllers;
 
 import com.imposters.team.App;
 
-import com.imposters.team.client.Client;
-import com.imposters.team.db.MyJDBC;
+import com.imposters.team.client.ClientConnectionEstablish;
+import com.imposters.team.db.DbConnectionEstablish;
 import com.imposters.team.model.EnvChamber;
-import com.imposters.team.model.User;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
+import com.imposters.team.client.Client;
 import javafx.scene.input.MouseEvent;
+import com.imposters.team.model.User;
+import com.imposters.team.db.MyJDBC;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Label;
+import javafx.fxml.FXML;
 
-public abstract class UpperAndLowerBarConfigurator
+public abstract class MainConfigurations
 {
+
+    // Establish a connection to the database
+    protected MyJDBC db = DbConnectionEstablish.getInstance().getDb();
+
+    // Connect the app to the server
+    protected Client client = ClientConnectionEstablish.getInstance().getClient();
+
     private double initialX;
     private double initialY;
-
-    protected Client client;
-    protected MyJDBC db;
 
     @FXML
     protected Label statusChamber;
@@ -42,12 +48,6 @@ public abstract class UpperAndLowerBarConfigurator
     {
         initialX = event.getSceneX();
         initialY = event.getSceneY();
-    }
-
-    @FXML
-    public void clickWeiterBtn()
-    {
-        App.getPrimaryStageOfProgram().close();
     }
 
     public void setOnMouseDragged(MouseEvent event)

@@ -1,6 +1,6 @@
 package com.imposters.team.controllers.burn;
 
-import com.imposters.team.controllers.UpperAndLowerBarConfigurator;
+import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.App;
 
 import com.imposters.team.controllers.clock.ClockController;
@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class UnitTestsPingerController extends UpperAndLowerBarConfigurator implements Initializable
+public class UnitTestsPingerController extends MainConfigurations implements Initializable
 {
 
     @FXML

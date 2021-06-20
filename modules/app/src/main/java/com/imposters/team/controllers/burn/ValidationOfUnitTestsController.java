@@ -1,6 +1,6 @@
 package com.imposters.team.controllers.burn;
 
-import com.imposters.team.controllers.UpperAndLowerBarConfigurator;
+import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.App;
 
 import com.imposters.team.controllers.clock.ClockController;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.net.URL;
 
 
-public class ValidationOfUnitTestsController extends UpperAndLowerBarConfigurator implements Initializable
+public class ValidationOfUnitTestsController extends MainConfigurations implements Initializable
 {
 
     private List<String> preTestList = new ArrayList<>();

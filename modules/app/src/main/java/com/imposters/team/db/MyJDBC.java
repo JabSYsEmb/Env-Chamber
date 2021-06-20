@@ -632,7 +632,7 @@ public class MyJDBC
 
     public Connection getConnection() 
     {
-        return connection;
+        return this.connection;
     }
 
     public static String getDbDriverParameters() 

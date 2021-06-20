@@ -1,6 +1,6 @@
 package com.imposters.team.controllers.report;
 
-import com.imposters.team.controllers.UpperAndLowerBarConfigurator;
+import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.controllers.context.Context;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 
-public class ReportReviewController extends UpperAndLowerBarConfigurator implements Initializable
+public class ReportReviewController extends MainConfigurations implements Initializable
 {
 
     @FXML

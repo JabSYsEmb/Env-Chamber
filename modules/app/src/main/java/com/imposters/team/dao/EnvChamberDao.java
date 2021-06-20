@@ -66,6 +66,7 @@ public class EnvChamberDao {
         }
         catch (SQLException | NullPointerException ex)
         {
+            System.out.println("----------------------------------");
             ex.printStackTrace();
             return null;
         }

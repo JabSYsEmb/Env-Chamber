@@ -1,6 +1,6 @@
 package com.imposters.team.controllers.selection;
 
-import com.imposters.team.controllers.UpperAndLowerBarConfigurator;
+import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.App;
 
 import com.imposters.team.controllers.context.Context;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class ChamberSelection extends UpperAndLowerBarConfigurator implements Initializable
+public class ChamberSelection extends MainConfigurations implements Initializable
 {
     private User user;
     private List<EnvChamber> envChamberList;
@@ -28,7 +28,7 @@ public class ChamberSelection extends UpperAndLowerBarConfigurator implements In
     @FXML
     public void DropDownClicked()
     {
-        chamberComboBox.getItems().setAll(getEnvChamberIps());
+        chamberComboBox.getItems().setAll(this.getEnvChamberIps());
     }
 
     @FXML
