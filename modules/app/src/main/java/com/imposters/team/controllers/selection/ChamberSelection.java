@@ -54,7 +54,7 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
                 String.valueOf(Context.getEnvChamber().getAcceptedResponseTime())
         ));
 
-        new Thread(() -> this.client.initHandler(toServerMsg)).start();
+        new Thread(() -> this.client.toServer(toServerMsg)).start();
     }
 
     @Override

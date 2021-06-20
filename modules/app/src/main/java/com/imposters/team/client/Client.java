@@ -79,7 +79,7 @@ public class Client
         return separatedMsg.stream().collect(Collectors.joining("|"));
     }
 
-    public void initHandler(String toServerMsg)
+    public UnitUnderTest initHandler(String toServerMsg)
     {
         this.toServer.println(toServerMsg);
         String fromServerMsg = this.getMessageFromServer();
@@ -92,7 +92,9 @@ public class Client
             UnitUnderTest unitUnderTest = new UnitUnderTest(
                     Integer.parseInt(matcher.group(1)),
                     matcher.group(2));
-            System.out.println(unitUnderTest.toString());
+            return unitUnderTest;
+        }else{
+            return null;
         }
     }
 

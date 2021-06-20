@@ -4,22 +4,22 @@ import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.App;
 
 import com.imposters.team.controllers.context.Context;
+import com.imposters.team.model.UnitUnderTest;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 
-import java.util.stream.Collectors;
 import java.net.URL;
 import java.util.*;
 
 public class UnitTestsInitializationController extends MainConfigurations implements Initializable
         {
-    private int NUMBER_OF_UNITS  = 2;
+    private int NUMBER_OF_UNITS  = 20;
 
-    private List<List<String>> units = new ArrayList<>();
-    protected static List<List<String>> addedUnitsForTesting = new ArrayList<>();
+    private List<String> units = new ArrayList<>();
+    protected static List<UnitUnderTest> addedTestingUnits = new ArrayList<>();
 
     private String message;
     @FXML
@@ -37,21 +37,13 @@ public class UnitTestsInitializationController extends MainConfigurations implem
     @Override
     public void nextClicked()
     {
-        // copying the value into static list for sharing over Project
-        addedUnitsForTesting = this.units;
+        this.units.stream().forEach
+        (
+                item -> addedTestingUnits.add(this.client.initHandler(item))
+        );
 
-        try
-        {
-            this.units.stream().forEach(
-                item -> this.client.toServer(item.stream().collect(Collectors.joining()))
-            );
-            // Ending The initialization
-            this.client.toServer("ENDINIT");
-        }
-        catch (NullPointerException ex)
-        {
-            ex.getMessage();
-        }
+        // Ending The initialization
+        this.client.toServer("ENDINIT");
 
         App.changeView("/fxml/burnIn-views/ValidationOfUnitTests.fxml");
     }
@@ -113,12 +105,12 @@ public class UnitTestsInitializationController extends MainConfigurations implem
 
     public void addTheUnitToUnitTestingList()
     {
-        units.add(Arrays.asList(
+        units.add(
                 "INIT|"
-                        + this.slotNumber.getText()
-                        + "|"
-                        + this.orderNumber.getText()
-        ));
+                + this.slotNumber.getText()
+                + "|"
+                + this.orderNumber.getText()
+        );
         --NUMBER_OF_UNITS;
     }
 
@@ -128,10 +120,4 @@ public class UnitTestsInitializationController extends MainConfigurations implem
         this.slotNumber.setDisable(true);
         this.orderNumber.setDisable(true);
     }
-
-    public static List<List<String>> getUnits() 
-    {
-        return addedUnitsForTesting;
-    }
-
 }
