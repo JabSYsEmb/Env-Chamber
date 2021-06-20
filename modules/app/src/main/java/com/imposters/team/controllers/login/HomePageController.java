@@ -15,7 +15,7 @@ import java.net.URL;
 
 import java.util.ResourceBundle;
 
-public class LoginController extends UpperAnchorPaneFunctionalities implements Initializable 
+public class HomePageController extends UpperAnchorPaneFunctionalities implements Initializable
 {
     @FXML
     private Label alertMessage;
@@ -42,7 +42,7 @@ public class LoginController extends UpperAnchorPaneFunctionalities implements I
             if(user.getPassword().equals(this.db.passwordEncrypter(password)))
             {
                 Context.setUser(user);
-                App.changeView("/fxml/login/chamberSelect.fxml");
+                App.changeView("/fxml/chamber-selection/ChamberSelection.fxml");
             }
             else
             {

@@ -1,4 +1,4 @@
-package com.imposters.team.controllers.login;
+package com.imposters.team.controllers.selection;
 
 import com.imposters.team.App;
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class ChamberSelectController extends UpperAnchorPaneFunctionalities implements Initializable 
+public class ChamberSelection extends UpperAnchorPaneFunctionalities implements Initializable
 {
     private User user;
     private List<EnvChamber> envChamberList;
@@ -49,7 +49,7 @@ public class ChamberSelectController extends UpperAnchorPaneFunctionalities impl
 
         new Thread(() -> this.client.sendMsgToMockServer()).start();
 
-        App.changeView("/fxml/burnIn-views/burnInTester1.fxml");
+        App.changeView("/fxml/burnIn-views/UnitTestsInitialization.fxml");
     }
 
     @Override

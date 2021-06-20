@@ -12,7 +12,7 @@ import javafx.scene.control.ProgressBar;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BurnInTester4Controller extends UpperAnchorPaneFunctionalities implements Initializable
+public class UnitTestsStarterController extends UpperAnchorPaneFunctionalities implements Initializable
 {
 
     @FXML
@@ -34,7 +34,7 @@ public class BurnInTester4Controller extends UpperAnchorPaneFunctionalities impl
     public void nextClicked()
     {
 
-        //App.changeView("/fxml/burnIn-views/burnInTester5.fxml");
+        //App.changeView("/fxml/burnIn-views/ReportReview.fxml");
         message.setText("Hallo heißer ich bin Message");
         progressBar.setProgress(0.88);
         Tempratur.setText("0080.9");

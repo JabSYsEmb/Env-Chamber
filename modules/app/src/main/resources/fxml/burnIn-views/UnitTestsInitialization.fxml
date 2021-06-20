@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Label?>
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
             onKeyPressed="#onKeyPressedListener"
-            fx:controller="com.imposters.team.controllers.login.ChamberSelectController">
+            fx:controller="com.imposters.team.controllers.burn.UnitTestsInitializationController">
     <top>
         <AnchorPane styleClass="TitleBox"
                     onMousePressed="#setOnMousePressed"
@@ -19,7 +16,7 @@
                 <Text styleClass="TitleText"
                       layoutX="26.0"
                       layoutY="43.0"
-                      text="Schrank Auswahl" />
+                      text="Burn-In Tester" />
 
                 <Label fx:id="closeBtn"
                        styleClass="closeMinimizeBtns"
@@ -38,25 +35,40 @@
             </children>
         </AnchorPane>
     </top>
-
     <center>
-        <AnchorPane styleClass="windowMainStyle" >
+        <AnchorPane styleClass="windowMainStyle">
             <children>
-                <ComboBox fx:id="chamberComboBox"
-                          layoutX="277.0"
-                          layoutY="193.0"
-                          onMouseClicked="#DropDownClicked"/>
 
-                <Button styleClass="button1"
-                        layoutX="612.0"
-                        layoutY="234.0"
-                        onMouseClicked="#nextClicked"
-                        text="auswählen"/>
+                <TextField fx:id="slotNumber"
+                           styleClass="textBoxLogin"
+                           layoutX="277.0"
+                           layoutY="190.0"
+                           promptText="Artikelnummer" />
 
-                <Text styleClass="GeneralTextStyle"
-                      layoutX="277.0"
-                      layoutY="180.0"
-                      text="Wählen Sie Bitte einen Klimaschrank aus"/>
+                <TextField fx:id="orderNumber"
+                           styleClass="textBoxLogin"
+                           layoutX="277.0"
+                           layoutY="230.0"
+                           promptText="Auftragsnummer" />
+                               
+                <Label fx:id="alertMessageInit"
+                       styleClass="alertMessage"
+                       layoutX="277.0"
+                       layoutY="170.0"/>
+
+                <Button fx:id="AddTestingUnit"
+                        styleClass="button1"
+                        layoutX="570.0"
+                        layoutY="270.0"
+                        onAction="#addNewUnit"
+                        text="Gerät hinzufügen"/>
+
+                <Button fx:id="weiterBtn"
+                        styleClass="button1"
+                        layoutX="570.0"
+                        layoutY="310.0"
+                        onAction="#nextClicked"
+                        text="Beginn Initialisierung"/>
 
             </children>
         </AnchorPane>

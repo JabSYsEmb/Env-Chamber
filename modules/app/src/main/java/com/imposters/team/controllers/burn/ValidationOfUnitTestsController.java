@@ -15,7 +15,7 @@ import java.util.List;
 import java.net.URL;
 
 
-public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities implements Initializable
+public class ValidationOfUnitTestsController extends UpperAnchorPaneFunctionalities implements Initializable
 {
 
     private List<String> preTestList = new ArrayList<>();
@@ -30,7 +30,7 @@ public class BurnInTester2Controller extends UpperAnchorPaneFunctionalities impl
     @Override
     public void nextClicked()
     {
-        App.changeView("/fxml/burnIn-views/burnInTester3.fxml");
+        App.changeView("/fxml/burnIn-views/UnitTestsPinger.fxml");
     }
 
     @Override

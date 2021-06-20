@@ -7,7 +7,7 @@
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
             onKeyPressed="#onKeyPressedListener"
-            fx:controller="com.imposters.team.controllers.burn.BurnInTester1Controller">
+            fx:controller="com.imposters.team.controllers.burn.ValidationOfUnitTestsController">
     <top>
         <AnchorPane styleClass="TitleBox"
                     onMousePressed="#setOnMousePressed"
@@ -39,37 +39,36 @@
         <AnchorPane styleClass="windowMainStyle">
             <children>
 
-                <TextField fx:id="slotNumber"
-                           styleClass="textBoxLogin"
-                           layoutX="277.0"
-                           layoutY="190.0"
-                           promptText="Artikelnummer" />
+                <AnchorPane fx:id="clockAnchor"
+                            layoutX="324.0"
+                            layoutY="175.0"
+                            styleClass="BurnInclock" >
 
-                <TextField fx:id="orderNumber"
-                           styleClass="textBoxLogin"
-                           layoutX="277.0"
-                           layoutY="230.0"
-                           promptText="Auftragsnummer" />
-                               
-                <Label fx:id="alertMessageInit"
-                       styleClass="alertMessage"
-                       layoutX="277.0"
-                       layoutY="170.0"/>
+                    <Label fx:id="clock"
+                           text="00:00:00"
+                           styleClass="clockLabel"
+                           AnchorPane.topAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.0"
+                           AnchorPane.bottomAnchor="0.0"/>
+                    <Label fx:id="message"
+                           text="Initialisierungsvorgang läuft..."
+                           styleClass="BurnInTextStyle"
+                           AnchorPane.topAnchor="65.0"
+                           AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.0"
+                           AnchorPane.bottomAnchor="0.0"/>
+                </AnchorPane>
 
-                <Button fx:id="AddTestingUnit"
-                        styleClass="button1"
-                        layoutX="570.0"
-                        layoutY="270.0"
-                        onAction="#addNewUnit"
-                        text="Gerät hinzufügen"/>
+
 
                 <Button fx:id="weiterBtn"
                         styleClass="button1"
-                        layoutX="570.0"
-                        layoutY="310.0"
+                        layoutX="424.0"
+                        layoutY="270.0"
                         onAction="#nextClicked"
-                        text="Beginn Initialisierung"/>
-
+                        text="Check in"/>
+                
             </children>
         </AnchorPane>
     </center>

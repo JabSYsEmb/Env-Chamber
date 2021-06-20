@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  implements Initializable 
+public class UnitTestsPingerController extends UpperAnchorPaneFunctionalities  implements Initializable
 {
 
     @FXML
@@ -51,7 +51,7 @@ public class BurnInTester3Controller extends UpperAnchorPaneFunctionalities  imp
         String Slot = SlotTextField.getText();
         String BauteilID = BauteilIDTextField.getText();
         alertMessageBurnIn.setText("Ich bin eine Warnungsnachricht");
-        App.changeView("/fxml/burnIn-views/burnInTester4.fxml");
+        App.changeView("/fxml/burnIn-views/UnitTestsStarter.fxml");
     }
 
     @FXML

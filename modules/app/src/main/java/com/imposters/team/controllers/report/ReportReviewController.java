@@ -1,4 +1,4 @@
-package com.imposters.team.controllers.burn;
+package com.imposters.team.controllers.report;
 
 import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 import com.imposters.team.controllers.context.Context;
@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 
-public class BurnInTester5Controller extends UpperAnchorPaneFunctionalities implements Initializable
+public class ReportReviewController extends UpperAnchorPaneFunctionalities implements Initializable
 {
 
     @FXML

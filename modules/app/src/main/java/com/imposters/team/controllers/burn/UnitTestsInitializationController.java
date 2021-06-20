@@ -11,11 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.rmi.ServerException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities implements Initializable 
+public class UnitTestsInitializationController extends UpperAnchorPaneFunctionalities implements Initializable
         {
     private int NUMBER_OF_UNITS  = 2;
 
@@ -54,7 +53,7 @@ public class BurnInTester1Controller extends UpperAnchorPaneFunctionalities impl
             ex.getMessage();
         }
 
-        App.changeView("/fxml/burnIn-views/burnInTester2.fxml");
+        App.changeView("/fxml/burnIn-views/ValidationOfUnitTests.fxml");
     }
 
     @Override

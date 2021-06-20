@@ -7,7 +7,7 @@
 <BorderPane stylesheets="@../../style/style.css"
             xmlns:fx="http://javafx.com/fxml/1"
             onKeyPressed="#onKeyPressedListener"
-            fx:controller="com.imposters.team.controllers.burn.BurnInTester5Controller">
+            fx:controller="com.imposters.team.controllers.report.ReportReviewController">
     <top>
         <AnchorPane styleClass="TitleBox"
                     onMousePressed="#setOnMousePressed"
