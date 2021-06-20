@@ -1,15 +1,15 @@
 package com.imposters.team.controllers.selection;
 
+import com.imposters.team.controllers.UpperAndLowerBarConfigurator;
 import com.imposters.team.App;
-import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.context.Context;
+import com.imposters.team.dao.EnvChamberDao;
 import com.imposters.team.model.EnvChamber;
 import com.imposters.team.model.User;
-import com.imposters.team.dao.EnvChamberDao;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class ChamberSelection extends UpperAnchorPaneFunctionalities implements Initializable
+public class ChamberSelection extends UpperAndLowerBarConfigurator implements Initializable
 {
     private User user;
     private List<EnvChamber> envChamberList;
@@ -56,7 +56,6 @@ public class ChamberSelection extends UpperAnchorPaneFunctionalities implements 
     public void initialize(URL location, ResourceBundle resources) 
     {
         user = Context.getUser();
-        this.setDatabase();
         this.setStatusBar(user);
         this.setEnvChamberList(EnvChamberDao.getEnvChamberFromDatabase(this.db));
     }

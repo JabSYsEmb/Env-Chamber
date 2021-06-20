@@ -11,12 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public abstract class UpperAnchorPaneFunctionalities 
+public abstract class UpperAndLowerBarConfigurator
 {
     private double initialX;
     private double initialY;
 
-    protected Client client = App.getToServerSender();
+    protected Client client;
     protected MyJDBC db;
 
     @FXML
@@ -89,12 +89,7 @@ public abstract class UpperAnchorPaneFunctionalities
         }
     }
 
-    public void setDatabase()
-    {
-        this.db = App.getDatabase();
-    }
-
-    public void onKeyPressedListener(KeyEvent keyEvent) 
+    public void onKeyPressedListener(KeyEvent keyEvent)
     {
         switch (keyEvent.getCode())
         {
@@ -103,5 +98,4 @@ public abstract class UpperAnchorPaneFunctionalities
     }
 
     protected abstract void nextClicked();
-
 }

@@ -1,7 +1,7 @@
 package com.imposters.team.controllers.clock;
 
-import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 
 public class ClockController {

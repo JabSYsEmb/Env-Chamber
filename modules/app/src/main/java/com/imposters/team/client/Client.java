@@ -1,6 +1,5 @@
 package com.imposters.team.client;
 
-import com.imposters.team.App;
 import com.imposters.team.model.UnitUnderTest;
 
 import java.util.List;
@@ -82,7 +81,7 @@ public class Client
 
     public void sendMsgToMockServer()
     {
-        App.getToServerSender().toServer(
+        this.toServer(
             this.sentMsg.stream()
                         .collect(Collectors.joining("|"))
         );

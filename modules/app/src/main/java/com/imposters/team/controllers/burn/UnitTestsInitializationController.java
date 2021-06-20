@@ -1,7 +1,7 @@
 package com.imposters.team.controllers.burn;
 
 import com.imposters.team.App;
-import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
+import com.imposters.team.controllers.UpperAndLowerBarConfigurator;
 
 import com.imposters.team.controllers.context.Context;
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class UnitTestsInitializationController extends UpperAnchorPaneFunctionalities implements Initializable
+public class UnitTestsInitializationController extends UpperAndLowerBarConfigurator implements Initializable
         {
     private int NUMBER_OF_UNITS  = 2;
 

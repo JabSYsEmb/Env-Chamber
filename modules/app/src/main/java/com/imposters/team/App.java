@@ -22,8 +22,6 @@ import javafx.application.Application;
  */
 public class App extends Application
 {
-    private static MyJDBC db;
-    private static Client sender;
     private static Stage primaryStageOfProgram;
 
     @Override
@@ -59,23 +57,8 @@ public class App extends Application
         return primaryStageOfProgram;
     }
 
-    public static MyJDBC getDatabase()
-    {
-        return App.db;
-    }
-    public static Client getToServerSender()
-    {
-        return App.sender;
-    }
-
     public static void main( String[] args )
     {
-        db = new MyJDBC();
-
-        // Initialize a thread for communication with the server
-        new Thread(() -> App.sender = new Client("127.0.0.1",2332))
-                .start();
-
         launch(args);
     }
 }

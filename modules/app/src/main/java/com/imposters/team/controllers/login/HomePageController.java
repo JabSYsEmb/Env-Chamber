@@ -1,21 +1,23 @@
 package com.imposters.team.controllers.login;
 
+import com.imposters.team.controllers.UpperAndLowerBarConfigurator;
+import com.imposters.team.client.Client;
 import com.imposters.team.App;
-import com.imposters.team.controllers.UpperAnchorPaneFunctionalities;
 
 import com.imposters.team.controllers.context.Context;
-import com.imposters.team.model.User;
 import com.imposters.team.dao.UserDao;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import com.imposters.team.model.User;
+import com.imposters.team.db.MyJDBC;
+import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
 
 import java.net.URL;
 
 import java.util.ResourceBundle;
 
-public class HomePageController extends UpperAnchorPaneFunctionalities implements Initializable
+public class HomePageController extends UpperAndLowerBarConfigurator implements Initializable
 {
     @FXML
     private Label alertMessage;
@@ -66,7 +68,11 @@ public class HomePageController extends UpperAnchorPaneFunctionalities implement
     public void initialize(URL location, ResourceBundle resources) 
     {
         // Inject db in the Class beside initialization
-        this.setDatabase();
+        this.db = new MyJDBC();
+
+        // Initialize a thread for communication with the server
+        new Thread(() -> this.client = new Client("127.0.0.1",2332))
+                .start();
     }
 }
 
