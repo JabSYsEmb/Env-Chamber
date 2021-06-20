@@ -1,7 +1,6 @@
 package com.imposters.team.client;
 
 import com.imposters.team.model.UnitUnderTest;
-import sun.awt.datatransfer.DataTransferer;
 
 import java.util.List;
 import java.net.Socket;
@@ -60,44 +59,9 @@ public class Client
     public void toServer(String msg)
     {
         this.toServer.println(msg);
-        String prefixMsg = new StringTokenizer(msg,"|").nextToken();
-        String responseFromServer = this.fromServerMsg();
-
-        switch (prefixMsg)
-        {
-            case "INIT":
-            {
-                this.initHandler(responseFromServer);
-                break;
-            }
-
-            case "PRETST":
-            {
-                this.pretestHandler(responseFromServer);
-                break;
-            }
-
-            case "OPERTEMP":
-            {
-                this.opertempHandler(responseFromServer);
-                break;
-            }
-
-            case "PING":
-            {
-                this.pingHandler(responseFromServer);
-                break;
-            }
-
-            default:
-            {
-                break;
-            }
-
-        }
     }
 
-    private String fromServerMsg() {
+    private String getMessageFromServer() {
         String gottenMsg;
         try{
             gottenMsg = this.fromServer.readLine();
@@ -110,23 +74,16 @@ public class Client
         return gottenMsg;
     }
 
-
-    public void setSentMsg(List<String> appendMsg)
+    public String messageJoiner(List<String> separatedMsg)
     {
-        this.sentMsg.clear();
-        appendMsg.forEach(msg -> this.sentMsg.add(msg));
+        return separatedMsg.stream().collect(Collectors.joining("|"));
     }
 
-    public void sendMsgToMockServer()
+    public void initHandler(String toServerMsg)
     {
-        this.toServer(
-            this.sentMsg.stream()
-                        .collect(Collectors.joining("|"))
-        );
-    }
+        this.toServer.println(toServerMsg);
+        String fromServerMsg = this.getMessageFromServer();
 
-    public void initHandler(String fromServerMsg)
-    {
         String responsePattern = "Examinee <<(.*?)>> is registered in slot <<(.*?)>>";
 
         Matcher matcher = Pattern.compile(responsePattern).matcher(fromServerMsg);
@@ -139,14 +96,16 @@ public class Client
         }
     }
 
-    private void opertempHandler(String readLine) {
+    private void opertempHandler(String readLine)
+    {
         long startTime = System.nanoTime();
         System.out.println("calculate the response time in Milliseconds...");
         long stopTime = System.nanoTime();
         System.out.println("Execution time " + (stopTime - startTime) + "nano seconds");
     }
 
-    private void pretestHandler(String test) {
+    private void pretestHandler(String test)
+    {
         long startTime = System.nanoTime();
         System.out.println("calculate the response time in Milliseconds...");
         long stopTime = System.nanoTime();

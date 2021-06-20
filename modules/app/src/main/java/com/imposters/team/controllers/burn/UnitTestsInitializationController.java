@@ -1,18 +1,18 @@
 package com.imposters.team.controllers.burn;
 
-import com.imposters.team.App;
 import com.imposters.team.controllers.MainConfigurations;
+import com.imposters.team.App;
 
 import com.imposters.team.controllers.context.Context;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
 
+import java.util.stream.Collectors;
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class UnitTestsInitializationController extends MainConfigurations implements Initializable
         {
@@ -35,7 +35,7 @@ public class UnitTestsInitializationController extends MainConfigurations implem
 
     @FXML
     @Override
-    public void nextClicked() 
+    public void nextClicked()
     {
         // copying the value into static list for sharing over Project
         addedUnitsForTesting = this.units;
@@ -59,8 +59,9 @@ public class UnitTestsInitializationController extends MainConfigurations implem
     @Override
     public void initialize(URL location, ResourceBundle resources) 
     {
-        this.setStatusBar(Context.getUser(),
-                          Context.getEnvChamber());
+        this.setStatusBar(
+                Context.getUser(),
+                Context.getEnvChamber());
     }
 
     @FXML

@@ -98,4 +98,5 @@ public abstract class MainConfigurations
     }
 
     protected abstract void nextClicked();
+
 }

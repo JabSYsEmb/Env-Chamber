@@ -38,7 +38,14 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
         Context.setChamber(EnvChamberDao.getEnvChamberFromDatabase(
             chamberComboBox.getSelectionModel().getSelectedItem(),this.db));
 
-        this.client.setSentMsg(Arrays.asList(
+        this.sendInitMsg();
+
+        App.changeView("/fxml/burnIn-views/UnitTestsInitialization.fxml");
+    }
+
+    private void sendInitMsg() {
+
+        String toServerMsg = this.client.messageJoiner(Arrays.asList(
                 "STRT",
                 chamberComboBox.getSelectionModel().getSelectedItem(),
                 user.getUsername(),
@@ -47,9 +54,7 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
                 String.valueOf(Context.getEnvChamber().getAcceptedResponseTime())
         ));
 
-        new Thread(() -> this.client.sendMsgToMockServer()).start();
-
-        App.changeView("/fxml/burnIn-views/UnitTestsInitialization.fxml");
+        new Thread(() -> this.client.initHandler(toServerMsg)).start();
     }
 
     @Override
