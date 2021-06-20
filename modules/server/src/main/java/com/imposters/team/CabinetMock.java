@@ -180,7 +180,6 @@ class RequestHandler extends Thread {
 				break;
 			}
 			if (!this.initPhase) {
-				CabinetMock.log("SENDING - Initialisation of examinees started...");
 				this.initPhase = true;
 				Thread.sleep(500);
 			}
@@ -404,7 +403,7 @@ class RequestHandler extends Thread {
 			return "Wrong slot number sent. Ignoring and waiting for the next one...";
 		}
 		if (this.slots[slot] != null) {
-			return "Cannot register >>" + examinee + ">>. Slot <<" + (slot + 1)
+			return "Cannot register <<" + examinee + ">>. Slot <<" + (slot + 1)
 					+ ">> occupied. Ignoring and waiting for the next one...";
 		}
 		Integer temp = this.examinees.get(examinee);

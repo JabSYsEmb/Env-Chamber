@@ -19,17 +19,18 @@ public class UnitTestsInitializationController extends MainConfigurations implem
     private int NUMBER_OF_UNITS  = 20;
 
     private List<String> units = new ArrayList<>();
-    protected static List<UnitUnderTest> addedTestingUnits = new ArrayList<>();
+
+    public static List<UnitUnderTest> addedTestingUnits = new ArrayList<>();
 
     private String message;
-    @FXML
-    private Button AddTestingUnit;
 
+            @FXML
+    private Button AddTestingUnit;
     @FXML
     private Label alertMessageInit;
-    @FXML
-    private TextField slotNumber;
 
+            @FXML
+    private TextField slotNumber;
     @FXML
     private TextField orderNumber;
 
@@ -42,14 +43,11 @@ public class UnitTestsInitializationController extends MainConfigurations implem
                 item -> addedTestingUnits.add(this.client.initHandler(item))
         );
 
-        // Ending The initialization
-        this.client.toServer("ENDINIT");
-
         App.changeView("/fxml/burnIn-views/ValidationOfUnitTests.fxml");
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) 
+    public void initialize(URL location, ResourceBundle resources)
     {
         this.setStatusBar(
                 Context.getUser(),
@@ -119,5 +117,9 @@ public class UnitTestsInitializationController extends MainConfigurations implem
         this.AddTestingUnit.setDisable(true);
         this.slotNumber.setDisable(true);
         this.orderNumber.setDisable(true);
+    }
+
+    public static List<UnitUnderTest> getAddedTestingUnits() {
+        return addedTestingUnits;
     }
 }

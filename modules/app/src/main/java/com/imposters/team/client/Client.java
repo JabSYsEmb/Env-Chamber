@@ -61,7 +61,8 @@ public class Client
         this.toServer.println(msg);
     }
 
-    private String getMessageFromServer() {
+    private String getMessageFromServer(String toServerMsg) {
+        this.toServer.println(toServerMsg);
         String gottenMsg;
         try{
             gottenMsg = this.fromServer.readLine();
@@ -81,8 +82,8 @@ public class Client
 
     public UnitUnderTest initHandler(String toServerMsg)
     {
-        this.toServer.println(toServerMsg);
-        String fromServerMsg = this.getMessageFromServer();
+        System.out.println(toServerMsg);
+        String fromServerMsg = this.getMessageFromServer(toServerMsg);
 
         String responsePattern = "Examinee <<(.*?)>> is registered in slot <<(.*?)>>";
 
@@ -90,8 +91,8 @@ public class Client
         if(matcher.matches())
         {
             UnitUnderTest unitUnderTest = new UnitUnderTest(
-                    Integer.parseInt(matcher.group(1)),
-                    matcher.group(2));
+                    Integer.parseInt(matcher.group(2)),
+                    matcher.group(1));
             return unitUnderTest;
         }else{
             return null;
