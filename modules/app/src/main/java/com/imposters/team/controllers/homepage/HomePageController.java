@@ -1,4 +1,4 @@
-package com.imposters.team.controllers.login;
+package com.imposters.team.controllers.homepage;
 
 import com.imposters.team.controllers.UpperAndLowerBarConfigurator;
 import com.imposters.team.client.Client;
