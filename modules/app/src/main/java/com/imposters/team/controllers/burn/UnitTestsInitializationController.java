@@ -13,7 +13,7 @@ import javafx.fxml.FXML;
 
 import java.net.URL;
 import java.util.*;
-    
+
 public class UnitTestsInitializationController extends MainConfigurations implements Initializable {
     public static List<UnitUnderTest> addedTestingUnits = new ArrayList<>();
     private final List<String> units = new ArrayList<>();
@@ -44,10 +44,10 @@ public class UnitTestsInitializationController extends MainConfigurations implem
                             addedTestingUnits.add(this.client.initHandler(item));
                         }
                 );
-        this.changetheView();
+        this.changeTheView();
     }
 
-    private void changetheView() {
+    private void changeTheView() {
         App.changeView("/fxml/burnIn-views/ValidationOfUnitTests.fxml");
     }
 
