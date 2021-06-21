@@ -5,20 +5,15 @@ import com.imposters.team.App;
 
 import com.imposters.team.controllers.context.Context;
 import com.imposters.team.model.UnitUnderTest;
-import com.sun.javafx.fxml.expression.LiteralExpression;
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
-import jdk.nashorn.internal.ir.LiteralNode;
 
-import javax.crypto.spec.PSource;
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
-
+    
 public class UnitTestsInitializationController extends MainConfigurations implements Initializable {
     public static List<UnitUnderTest> addedTestingUnits = new ArrayList<>();
     private final List<String> units = new ArrayList<>();

@@ -51,8 +51,8 @@ public class Client {
     }
 
     public void toServer(String msg) {
-        this.toServer.println(msg);
         try {
+            this.toServer.println(msg);
             this.fromServer.readLine();
         } catch (IOException e) {
             e.printStackTrace();
