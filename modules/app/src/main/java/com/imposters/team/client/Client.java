@@ -14,8 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Client
-{
+public class Client {
     private int portNumber;
     private String hostName;
 
@@ -26,19 +25,16 @@ public class Client
 
     private List<String> sentMsg = new ArrayList<>();
 
-    public Client(String hostName, int portNumber)
-    {
+    public Client(String hostName, int portNumber) {
         this.hostName = hostName;
         this.portNumber = portNumber;
         this.socketInitializer();
     }
 
     // socket initialization and establish a connection to the server via given port
-    public void socketInitializer()
-    {
-        try
-        {
-            this.echoSocket = new Socket(this.hostName,this.portNumber);
+    public void socketInitializer() {
+        try {
+            this.echoSocket = new Socket(this.hostName, this.portNumber);
 
             this.toServer =
                     new PrintWriter(echoSocket.getOutputStream(), true);
@@ -49,66 +45,56 @@ public class Client
             this.stdIn =
                     new BufferedReader(new InputStreamReader(System.in));
 
-        }
-        catch (IOException unknownHostException)
-        {
+        } catch (IOException unknownHostException) {
             unknownHostException.printStackTrace();
         }
     }
 
-    public void toServer(String msg)
-    {
+    public void toServer(String msg) {
         this.toServer.println(msg);
     }
 
     private String getMessageFromServer(String toServerMsg) {
         this.toServer.println(toServerMsg);
         String gottenMsg;
-        try{
+        try {
             gottenMsg = this.fromServer.readLine();
-        }
-        catch (IOException io)
-        {
+        } catch (IOException io) {
             io.printStackTrace();
             gottenMsg = "Something's went wrong!";
         }
         return gottenMsg;
     }
 
-    public String messageJoiner(List<String> separatedMsg)
-    {
+    public String messageJoiner(List<String> separatedMsg) {
         return separatedMsg.stream().collect(Collectors.joining("|"));
     }
 
-    public UnitUnderTest initHandler(String toServerMsg)
-    {
+    public UnitUnderTest initHandler(String toServerMsg) {
         System.out.println(toServerMsg);
         String fromServerMsg = this.getMessageFromServer(toServerMsg);
 
         String responsePattern = "Examinee <<(.*?)>> is registered in slot <<(.*?)>>";
 
         Matcher matcher = Pattern.compile(responsePattern).matcher(fromServerMsg);
-        if(matcher.matches())
-        {
+        if (matcher.matches()) {
             UnitUnderTest unitUnderTest = new UnitUnderTest(
                     Integer.parseInt(matcher.group(2)),
                     matcher.group(1));
             return unitUnderTest;
-        }else{
+        } else {
             return null;
         }
     }
 
-    private void opertempHandler(String readLine)
-    {
+    private void opertempHandler(String readLine) {
         long startTime = System.nanoTime();
         System.out.println("calculate the response time in Milliseconds...");
         long stopTime = System.nanoTime();
         System.out.println("Execution time " + (stopTime - startTime) + "nano seconds");
     }
 
-    private void pretestHandler(String test)
-    {
+    private void pretestHandler(String test) {
         long startTime = System.nanoTime();
         System.out.println("calculate the response time in Milliseconds...");
         long stopTime = System.nanoTime();
