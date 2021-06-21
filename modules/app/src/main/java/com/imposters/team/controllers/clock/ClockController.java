@@ -20,7 +20,7 @@ public class ClockController {
 
 
     private void updateTime(Label clock, Label message) throws InterruptedException {
-        while (this.minutes.get() != this.countDownInMinutes) {
+        while (this.minutes.get() < this.countDownInMinutes) {
             Platform.runLater(() ->
             {
                 {
@@ -66,7 +66,6 @@ public class ClockController {
             }
         }).start();
     }
-
     public String getCurrentTime() {
         return "00:0" + this.minutes.get() + ":" + this.seconds.get();
     }

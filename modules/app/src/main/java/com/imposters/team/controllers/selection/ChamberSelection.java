@@ -63,7 +63,7 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
                 String.valueOf(Context.getEnvChamber().getAcceptedResponseTime())
         ));
 
-        new Thread(() -> this.client.toServer(toServerMsg)).start();
+        this.client.toServer(toServerMsg);
     }
 
     @Override
@@ -78,7 +78,8 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
                 .map(item -> item.getIp())
                 .collect(Collectors.toList());
     }
-    public List<String> getCurveIds(){
+
+    public List<String> getCurveIds() {
         return CurveDao.getCurvesFromDatabase(this.db)
                 .stream()
                 .map(item -> item.getTaskNumber())

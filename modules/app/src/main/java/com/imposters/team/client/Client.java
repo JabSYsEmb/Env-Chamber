@@ -52,6 +52,11 @@ public class Client {
 
     public void toServer(String msg) {
         this.toServer.println(msg);
+        try {
+            this.fromServer.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String getMessageFromServer(String toServerMsg) {
@@ -71,7 +76,6 @@ public class Client {
     }
 
     public UnitUnderTest initHandler(String toServerMsg) {
-        System.out.println(toServerMsg);
         String fromServerMsg = this.getMessageFromServer(toServerMsg);
 
         String responsePattern = "Examinee <<(.*?)>> is registered in slot <<(.*?)>>";

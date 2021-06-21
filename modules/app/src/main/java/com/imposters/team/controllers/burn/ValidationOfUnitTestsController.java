@@ -6,6 +6,7 @@ import com.imposters.team.App;
 import com.imposters.team.controllers.clock.ClockController;
 import com.imposters.team.controllers.context.Context;
 import com.imposters.team.model.UnitUnderTest;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -20,17 +21,28 @@ import java.util.stream.Collectors;
 public class ValidationOfUnitTestsController extends MainConfigurations implements Initializable {
 
     private final List<String> preTestList = new ArrayList<>();
-
+    private boolean status = true;
 
     @FXML
     private Label message;
     @FXML
     private Label clock;
+    @FXML
+    private Button weiterBtn;
+
+    private ClockController timestamp;
 
     @FXML
     @Override
     public void nextClicked() {
-        App.changeView("/fxml/burnIn-views/UnitTestsPinger.fxml");
+        if(status) {
+            timestamp.stopStopwatch();
+            new Thread(() -> this.runPreTest()).start();
+            this.weiterBtn.setText("Weiter");
+            status = false;
+        }else {
+            App.changeView("/fxml/burnIn-views/UnitTestsPinger.fxml");
+        }
     }
 
     @Override
@@ -46,10 +58,9 @@ public class ValidationOfUnitTestsController extends MainConfigurations implemen
         // Ending The initialization
         this.client.toServer("ENDINIT");
 
-        new ClockController(1, "Initialisierungsvorgang ist beendet!").run(clock, message);
+        timestamp = new ClockController(1, "Initialisierungsvorgang ist beendet!");
+        timestamp.run(clock,message);
         this.setStatusBar(Context.getUser(), Context.getEnvChamber());
-
-        new Thread(() -> this.runPreTest()).start();
     }
 
     public void runPreTest() {
