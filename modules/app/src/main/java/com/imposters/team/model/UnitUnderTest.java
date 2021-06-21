@@ -1,25 +1,28 @@
 package com.imposters.team.model;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Objects;
 
 public class UnitUnderTest {
-    //Attribute in prufling
-  /*public int Prufling_ID;
-	public String Serialnumber;
-	public int Maxduration;*/
-    private final int PruflingID;
-    private final SimpleStringProperty serialNumber;
 
-    public UnitUnderTest(int UnitId, String serialNumber) {
-        this.PruflingID = UnitId;
+    private SimpleIntegerProperty PruflingID;
+    private SimpleStringProperty serialNumber;
+    private SimpleStringProperty curveTaskNumber;
+    private SimpleBooleanProperty status;
+
+
+    public UnitUnderTest(int UnitId, String serialNumber, String curveTaskNumber, boolean status) {
+        this.PruflingID = new SimpleIntegerProperty(UnitId);
         this.serialNumber = new SimpleStringProperty(serialNumber);
+        this.curveTaskNumber = new SimpleStringProperty(curveTaskNumber);
+        this.status = new SimpleBooleanProperty(status);
     }
 
     public int getPruflingID() {
-        return PruflingID;
+        return PruflingID.get();
     }
 
     public String getSerialNumber() {

@@ -24,7 +24,9 @@ public class UnitUnderTestDao {
             if (rs.next()) {
                 unitUnderTest = new UnitUnderTest(
                         rs.getInt("Prufling_ID"),
-                        rs.getString("Serialnumber")
+                        rs.getString("Serialnumber"),
+                        rs.getString("CurveTaskNumber"),
+                        rs.getBoolean("Status")
                 );
             }
             return unitUnderTest;
@@ -43,7 +45,9 @@ public class UnitUnderTestDao {
             while (rs.next()) {
                 unitUnderTests.add(new UnitUnderTest(
                         rs.getInt("Prufling_ID"),
-                        rs.getString("Serialnumber")
+                        rs.getString("Serialnumber"),
+                        rs.getString("CurveTaskNumber"),
+                        rs.getBoolean("Status")
                 ));
             }
         } catch (SQLException | NullPointerException ex) {

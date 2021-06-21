@@ -1,8 +1,5 @@
 package com.imposters.team;
 
-import com.imposters.team.db.MyJDBC;
-import com.imposters.team.client.Client;
-
 
 import javafx.stage.Stage;
 import javafx.scene.Scene;

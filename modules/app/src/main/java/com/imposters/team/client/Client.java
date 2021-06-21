@@ -1,5 +1,6 @@
 package com.imposters.team.client;
 
+import com.imposters.team.controllers.context.Context;
 import com.imposters.team.model.UnitUnderTest;
 
 import java.util.List;
@@ -8,10 +9,9 @@ import java.util.ArrayList;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 public class Client {
@@ -80,7 +80,9 @@ public class Client {
         if (matcher.matches()) {
             UnitUnderTest unitUnderTest = new UnitUnderTest(
                     Integer.parseInt(matcher.group(2)),
-                    matcher.group(1));
+                    matcher.group(1),
+                    Context.getCurve().getTaskNumber(),
+                    false);
             return unitUnderTest;
         } else {
             return null;

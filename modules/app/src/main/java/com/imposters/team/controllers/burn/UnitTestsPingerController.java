@@ -47,7 +47,7 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
 
 
     /* todo
-     *   1. storing all slots in burinInTest1 static List for sharing
+     *   1. storing all slots in ValidationOfUnitTestsController static List for sharing
      *   2. Extracting the ID, slot number and order Number of the list
      *   3. Pinging to all slots
      *   4. showing the results in the ObservableList
@@ -63,7 +63,6 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
 
     @FXML
     public void fertigBtnClicked() {
-        this.buildTable();
         table.setItems(FXCollections.observableArrayList(
                 UnitTestsInitializationController.addedTestingUnits
                         .stream()
@@ -83,14 +82,15 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new ClockController(11, "Hi My Friend").run(this.clock, this.massage);
+        new ClockController(10, "Hi My Friend").run(this.clock, this.massage);
         this.setStatusBar(Context.getUser(), Context.getEnvChamber());
+        this.buildTable();
     }
 
     public void buildTable() {
         this.slotNumber.setCellValueFactory(new PropertyValueFactory<>("Slot"));
-        this.orderNumber.setCellValueFactory(new PropertyValueFactory<>("Auftragsnummer"));
+        this.orderNumber.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
         this.status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        this.serialNumOfTheUnitTest.setCellValueFactory(new PropertyValueFactory<>("Bauteil-ID"));
+        this.serialNumOfTheUnitTest.setCellValueFactory(new PropertyValueFactory<>("PruflingID"));
     }
 }
