@@ -4,21 +4,20 @@ import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.App;
 
 import com.imposters.team.controllers.clock.ClockController;
+import javafx.scene.control.cell.PropertyValueFactory;
 import com.imposters.team.controllers.context.Context;
-import javafx.collections.ObservableList;
+import com.imposters.team.model.UnitUnderTest;
 import javafx.collections.FXCollections;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.fxml.FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 
-public class UnitTestsPingerController extends MainConfigurations implements Initializable
-{
+public class UnitTestsPingerController extends MainConfigurations implements Initializable {
 
     @FXML
     private Label alertMessageBurnIn;
@@ -26,8 +25,17 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
     private Label clock;
     @FXML
     private Label massage;
+
     @FXML
-    private TableView table;
+    private TableView<UnitUnderTest> table;
+    @FXML
+    private TableColumn<UnitUnderTest, Integer> slotNumber;
+    @FXML
+    private TableColumn<UnitUnderTest, Integer> orderNumber;
+    @FXML
+    private TableColumn<UnitUnderTest, Boolean> status;
+    @FXML
+    private TableColumn<UnitUnderTest, String> serialNumOfTheUnitTest;
 
     @FXML
     private TextField SlotTextField;
@@ -39,15 +47,14 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
 
 
     /* todo
-    *   1. storing all slots in burinInTest1 static List for sharing
-    *   2. Extracting the ID, slot number and order Number of the list
-    *   3. Pinging to all slots
-    *   4. showing the results in the ObservableList
-    */
+     *   1. storing all slots in burinInTest1 static List for sharing
+     *   2. Extracting the ID, slot number and order Number of the list
+     *   3. Pinging to all slots
+     *   4. showing the results in the ObservableList
+     */
     @Override
     @FXML
-    public void nextClicked() 
-    {
+    public void nextClicked() {
         String Slot = SlotTextField.getText();
         String BauteilID = BauteilIDTextField.getText();
         alertMessageBurnIn.setText("Ich bin eine Warnungsnachricht");
@@ -55,31 +62,35 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
     }
 
     @FXML
-    public void fertigBtnClicked() 
-    {
-        ObservableList<String> courseData = FXCollections.observableArrayList(
-                new String("Inheritance"),
-                new String("Abstraction"),
-                new String("Polymorphism"),
-                new String("Generics"),
-                new String("OOPS"),
-                new String("Functions"));
-        table.setItems(courseData);
+    public void fertigBtnClicked() {
+        this.buildTable();
+        table.setItems(FXCollections.observableArrayList(
+                UnitTestsInitializationController.addedTestingUnits
+                        .stream()
+                        .filter((UnitUnderTest unitUnderTest) -> unitUnderTest != null)
+                        .collect(Collectors.toList())
+        ));
     }
-    public void hinzufügenBtnClicked()
-    {
+
+    public void hinzufügenBtnClicked() {
         alertMessageBurnIn.setText("Ich werde hinzufügt werden");
     }
-    public void entfernenBtnClicked()
-    {
+
+    public void entfernenBtnClicked() {
         alertMessageBurnIn.setText("Ich werde entfernt werden");
 
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) 
-    {
-        new ClockController(11,"Hi My Friend").run(this.clock,this.massage);
-        this.setStatusBar(Context.getUser(),Context.getEnvChamber());
+    public void initialize(URL location, ResourceBundle resources) {
+        new ClockController(11, "Hi My Friend").run(this.clock, this.massage);
+        this.setStatusBar(Context.getUser(), Context.getEnvChamber());
+    }
+
+    public void buildTable() {
+        this.slotNumber.setCellValueFactory(new PropertyValueFactory<>("Slot"));
+        this.orderNumber.setCellValueFactory(new PropertyValueFactory<>("Auftragsnummer"));
+        this.status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        this.serialNumOfTheUnitTest.setCellValueFactory(new PropertyValueFactory<>("Bauteil-ID"));
     }
 }

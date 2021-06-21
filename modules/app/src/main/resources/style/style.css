@@ -295,8 +295,6 @@ BorderPane{
 .table-view .filler, .tree-table-view .filler, .table-view .column-header,
 .tree-table-view .column-header {
    -fx-size:                         cell-width;
-   /*-fx-color:                       transparent;*/
-   /*-fx-border-style:                       null;*/
    -fx-border-color:                 main-color;
    -fx-wrap-text:                          true;
    -fx-border-width:                          2;

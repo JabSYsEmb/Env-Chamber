@@ -17,10 +17,9 @@ import java.net.URL;
 import java.util.stream.Collectors;
 
 
-public class ValidationOfUnitTestsController extends MainConfigurations implements Initializable
-{
+public class ValidationOfUnitTestsController extends MainConfigurations implements Initializable {
 
-    private List<String> preTestList = new ArrayList<>();
+    private final List<String> preTestList = new ArrayList<>();
 
 
     @FXML
@@ -30,14 +29,12 @@ public class ValidationOfUnitTestsController extends MainConfigurations implemen
 
     @FXML
     @Override
-    public void nextClicked()
-    {
+    public void nextClicked() {
         App.changeView("/fxml/burnIn-views/UnitTestsPinger.fxml");
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) 
-    {
+    public void initialize(URL location, ResourceBundle resources) {
 
         UnitTestsInitializationController.addedTestingUnits
                 .stream()
@@ -49,18 +46,16 @@ public class ValidationOfUnitTestsController extends MainConfigurations implemen
         // Ending The initialization
         this.client.toServer("ENDINIT");
 
-        new ClockController(1,"Initialisierungsvorgang ist beendet!").run(clock,message);
-        this.setStatusBar(Context.getUser(),Context.getEnvChamber());
-        
-        new Thread( () -> this.runPreTest()).start();
+        new ClockController(1, "Initialisierungsvorgang ist beendet!").run(clock, message);
+        this.setStatusBar(Context.getUser(), Context.getEnvChamber());
+
+        new Thread(() -> this.runPreTest()).start();
     }
 
-    public void runPreTest()
-    {
+    public void runPreTest() {
         this.preTestList.add("STRTPRE|32");
-        for(int i = 1; i <= 20; i++) 
-        {
-            this.preTestList.add("PRETST|"+i);
+        for (int i = 1; i <= 20; i++) {
+            this.preTestList.add("PRETST|" + i);
         }
         this.preTestList.add("ENDPRE");
         this.preTestList.stream().forEach(item -> this.client.toServer(item));

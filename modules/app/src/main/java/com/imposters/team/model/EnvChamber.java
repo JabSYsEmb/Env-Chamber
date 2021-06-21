@@ -6,16 +6,14 @@ import javafx.beans.property.SimpleStringProperty;
 import java.util.Objects;
 
 
-public class EnvChamber
-{
-    private int envchamberID;
-    private SimpleStringProperty Ip;
+public class EnvChamber {
+    private final int envchamberID;
+    private final SimpleStringProperty Ip;
     private SimpleIntegerProperty failureRate;
     private SimpleIntegerProperty maxTemperature;
     private SimpleIntegerProperty acceptedResponseTime;
 
-    public EnvChamber(int envchamberID, String ip, int failureRate, int maxTemperature, int acceptedResponseTime) 
-    {
+    public EnvChamber(int envchamberID, String ip, int failureRate, int maxTemperature, int acceptedResponseTime) {
         this.envchamberID = envchamberID;
         this.Ip = new SimpleStringProperty(ip);
         this.failureRate = new SimpleIntegerProperty(failureRate);
@@ -23,48 +21,41 @@ public class EnvChamber
         this.acceptedResponseTime = new SimpleIntegerProperty(acceptedResponseTime);
     }
 
-    public EnvChamber(int envchamberID, String ip) 
-    {
+    public EnvChamber(int envchamberID, String ip) {
         this.envchamberID = envchamberID;
         this.Ip = new SimpleStringProperty(ip);
     }
 
-    public int getEnvchamberID() 
-    {
+    public int getEnvchamberID() {
         return envchamberID;
     }
 
-    public String getIp()
-    {
+    public String getIp() {
         return Ip.get();
     }
 
-    public SimpleStringProperty ipProperty() 
-    {
+    public SimpleStringProperty ipProperty() {
         return Ip;
     }
 
     @Override
-    public String toString() 
-    {
+    public String toString() {
         return "EnvChamber{" +
                 "EnvchamberID=" + envchamberID +
                 ", Ip=" + Ip +
                 '}';
     }
 
-    public int getFailureRate()
-    {
+    public int getFailureRate() {
         return this.failureRate.get();
     }
-    public int getAcceptedResponseTime()
-    {
+
+    public int getAcceptedResponseTime() {
         return this.acceptedResponseTime.get();
     }
 
     @Override
-    public boolean equals(Object o) 
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EnvChamber that = (EnvChamber) o;
@@ -72,8 +63,7 @@ public class EnvChamber
     }
 
     @Override
-    public int hashCode() 
-    {
+    public int hashCode() {
         return Objects.hash(envchamberID);
     }
 }

@@ -7,8 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Objects;
 
-public class User 
-{
+public class User {
     private boolean adminStatus;
     private SimpleIntegerProperty id;
     private SimpleStringProperty firstName;
@@ -17,115 +16,96 @@ public class User
     private SimpleStringProperty password;
 
     // constructors
-    public User(){}
-
-    public User(int id, String firstName, String lastName, String username, boolean administrator, String passwd)
-    {
-        this.id             = new SimpleIntegerProperty(id);
-        this.password       = new SimpleStringProperty(passwd);
-        this.lastName       = new SimpleStringProperty(lastName);
-        this.username       = new SimpleStringProperty(username);
-        this.firstName      = new SimpleStringProperty(firstName);
-        this.adminStatus    = administrator;
+    public User() {
     }
 
-    public User(String userName, String passwd, boolean administrator)
-    {
-        this.password       = new SimpleStringProperty(passwd);
-        this.username       = new SimpleStringProperty(userName);
-        this.adminStatus    = administrator;
+    public User(int id, String firstName, String lastName, String username, boolean administrator, String passwd) {
+        this.id = new SimpleIntegerProperty(id);
+        this.password = new SimpleStringProperty(passwd);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.username = new SimpleStringProperty(username);
+        this.firstName = new SimpleStringProperty(firstName);
+        this.adminStatus = administrator;
+    }
+
+    public User(String userName, String passwd, boolean administrator) {
+        this.password = new SimpleStringProperty(passwd);
+        this.username = new SimpleStringProperty(userName);
+        this.adminStatus = administrator;
     }
 
     // Getter and setters of attributes
 
-    public boolean isAdminStatus() 
-    {
+    public boolean isAdminStatus() {
         return adminStatus;
     }
 
-    public void setAdminStatus(boolean adminStatus) 
-    {
+    public void setAdminStatus(boolean adminStatus) {
         this.adminStatus = adminStatus;
     }
 
-    public int getId() 
-    {
+    public int getId() {
         return id.get();
     }
 
-    public SimpleIntegerProperty idProperty() 
-    {
-        return id;
-    }
-
-    public void setId(int id) 
-    {
+    public void setId(int id) {
         this.id.set(id);
     }
 
-    public String getFirstName() 
-    {
+    public SimpleIntegerProperty idProperty() {
+        return id;
+    }
+
+    public String getFirstName() {
         return firstName.get();
     }
 
-    public SimpleStringProperty firstNameProperty() 
-    {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) 
-    {
+    public void setFirstName(String firstName) {
         this.firstName.set(firstName);
     }
 
-    public String getLastName() 
-    {
+    public SimpleStringProperty firstNameProperty() {
+        return firstName;
+    }
+
+    public String getLastName() {
         return lastName.get();
     }
 
-    public SimpleStringProperty lastNameProperty() 
-    {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) 
-    {
+    public void setLastName(String lastName) {
         this.lastName.set(lastName);
     }
 
-    public String getUsername() 
-    {
+    public SimpleStringProperty lastNameProperty() {
+        return lastName;
+    }
+
+    public String getUsername() {
         return username.get();
     }
 
-    public SimpleStringProperty usernameProperty() 
-    {
-        return username;
-    }
-
-    public void setUsername(String username) 
-    {
+    public void setUsername(String username) {
         this.username.set(username);
     }
 
-    public String getPassword() 
-    {
+    public SimpleStringProperty usernameProperty() {
+        return username;
+    }
+
+    public String getPassword() {
         return password.get();
     }
 
-    public SimpleStringProperty passwordProperty() 
-    {
-        return password;
-    }
-
-    public void setPassword(String password) 
-    {
+    public void setPassword(String password) {
         this.password.set(password);
     }
 
+    public SimpleStringProperty passwordProperty() {
+        return password;
+    }
+
     @Override
-    public String toString() 
-    {
+    public String toString() {
         return "User{" +
                 "adminStatus=" + adminStatus +
                 ", id=" + id +
@@ -137,8 +117,7 @@ public class User
     }
 
     @Override
-    public boolean equals(Object o) 
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
@@ -146,19 +125,14 @@ public class User
     }
 
     @Override
-    public int hashCode() 
-    {
+    public int hashCode() {
         return Objects.hash(id);
     }
 
-    public String isAdminOrLimitedUser()
-    {
-        if(this.isAdminStatus())
-        {
+    public String isAdminOrLimitedUser() {
+        if (this.isAdminStatus()) {
             return "Admin";
-        }
-        else
-        {
+        } else {
             return "Limited User";
         }
     }

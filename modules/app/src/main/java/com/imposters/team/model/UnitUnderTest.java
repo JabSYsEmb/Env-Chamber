@@ -5,39 +5,33 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Objects;
 
-public class UnitUnderTest
-{
+public class UnitUnderTest {
     //Attribute in prufling
   /*public int Prufling_ID;
 	public String Serialnumber;
 	public int Maxduration;*/
-    private int PruflingID;
-    private SimpleStringProperty serialNumber;
+    private final int PruflingID;
+    private final SimpleStringProperty serialNumber;
 
-    public UnitUnderTest(int UnitId, String serialNumber)
-    {
+    public UnitUnderTest(int UnitId, String serialNumber) {
         this.PruflingID = UnitId;
         this.serialNumber = new SimpleStringProperty(serialNumber);
     }
 
-    public int getPruflingID() 
-    {
+    public int getPruflingID() {
         return PruflingID;
     }
 
-    public String getSerialNumber() 
-    {
+    public String getSerialNumber() {
         return serialNumber.get();
     }
 
-    public SimpleStringProperty serialNumberProperty() 
-    {
+    public SimpleStringProperty serialNumberProperty() {
         return serialNumber;
     }
 
     @Override
-    public String toString() 
-    {
+    public String toString() {
         return "Prufling{" +
                 "PruflingID=" + PruflingID +
                 ", serialNumber=" + serialNumber +
@@ -45,8 +39,7 @@ public class UnitUnderTest
     }
 
     @Override
-    public boolean equals(Object o) 
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UnitUnderTest prufling = (UnitUnderTest) o;
@@ -54,8 +47,7 @@ public class UnitUnderTest
     }
 
     @Override
-    public int hashCode() 
-    {
+    public int hashCode() {
         return Objects.hash(PruflingID);
     }
 }

@@ -10,8 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-public class MyJDBC 
-{
+public class MyJDBC {
     //Part 1
     private static final String DB_DEFAULT_DATABASE = "mydb";
     private static final String DB_DEFAULT_SERVER_URL = "172.16.103.136:3310";
@@ -32,32 +31,26 @@ public class MyJDBC
 
     // constructors
 
-    public MyJDBC() 
-    {
+    public MyJDBC() {
         this(DB_DEFAULT_DATABASE, DB_DEFAULT_SERVER_URL, DB_DEFAULT_ACCOUNT, DB_DEFAULT_PASSWORD);
     }
-    public MyJDBC(String dbName) 
-    {
+
+    public MyJDBC(String dbName) {
         this(dbName, DB_DEFAULT_SERVER_URL, DB_DEFAULT_ACCOUNT, DB_DEFAULT_PASSWORD);
     }
 
-    public MyJDBC(String dbName, String account, String password) 
-    {
+    public MyJDBC(String dbName, String account, String password) {
         this(dbName, DB_DEFAULT_SERVER_URL, account, password);
     }
 
-    public MyJDBC(String dbName, String serverURL, String account, String password) 
-    {
-        try 
-        {
+    public MyJDBC(String dbName, String serverURL, String account, String password) {
+        try {
             // verify that a proper JDBC driver has been installed and linked
-            if (!Boolean.TRUE.equals(selectDriver(DB_DRIVER_URL)))
-            {
+            if (!Boolean.TRUE.equals(selectDriver(DB_DRIVER_URL))) {
                 return;
             }
 
-            if (password == null) 
-            {
+            if (password == null) {
                 password = "";
             }
 
@@ -65,10 +58,8 @@ public class MyJDBC
             String connStr = DB_DRIVER_PREFIX + serverURL + "/" + dbName + DB_DRIVER_PARAMETERS;
             log("Connecting " + connStr);
             this.connection = DriverManager.getConnection(connStr, account, password);
-            this.checkDatabaseConnectionValidation(this.connection,5);
-        } 
-        catch (SQLException eSQL) 
-        {
+            this.checkDatabaseConnectionValidation(this.connection, 5);
+        } catch (SQLException eSQL) {
             error(eSQL);
             this.close();
         }
@@ -77,6 +68,62 @@ public class MyJDBC
     // end of constructors
 
     /* ********************************PART_1************************************** */
+
+    public static String getDBConnectionStatus(MyJDBC db) {
+        String status = null;
+        try {
+            if (db.connection.isValid(5)) {
+                status = "The connection to " +
+                        getDbDefaultServerUrl() +
+                        "/" +
+                        getDbDefaultDatabase() +
+                        " has been established successfully";
+            }
+        } catch (SQLException ex) {
+            status = "The connection hasn't been established";
+            db.error(ex);
+        }
+        return status;
+    }
+
+    public static String getDbDefaultDatabase() {
+        return DB_DEFAULT_DATABASE;
+    }
+
+    public static String getDbDefaultServerUrl() {
+        return DB_DEFAULT_SERVER_URL;
+    }
+
+    public static String getDbDefaultAccount() {
+        return DB_DEFAULT_ACCOUNT;
+    }
+
+
+    // this part of code needs refactoring.
+
+    public static String getDbDefaultPassword() {
+        return DB_DEFAULT_PASSWORD;
+    }
+
+    public static String getDbDriverUrl() {
+        return DB_DRIVER_URL;
+    }
+
+
+
+    /* ********************************PART_2************************************** */
+
+    public static String getDbDriverPrefix() {
+        return DB_DRIVER_PREFIX;
+    }
+
+
+    /* ********************************PART_3************************************** */
+
+    public static String getDbDriverParameters() {
+        return DB_DRIVER_PARAMETERS;
+    }
+
     /**
      * *
      * elects proper loading of the named driver for database connections. This
@@ -87,30 +134,27 @@ public class MyJDBC
      * @param driverName the name of the driver to be activated.
      * @return indicates whether a suitable driver is available
      */
-    private Boolean selectDriver(String driverName) 
-    {
-        try 
-        {
+    private Boolean selectDriver(String driverName) {
+        try {
             Class.forName(driverName).newInstance();
             // Put all non-preferred drivers to the end, such that driver selection hits the first
             Enumeration<Driver> drivers = DriverManager.getDrivers();
-            while (drivers.hasMoreElements()) 
-            {
+            while (drivers.hasMoreElements()) {
                 Driver d = drivers.nextElement();
-                if (!d.getClass().getName().equals(driverName)) 
-                {   // move the driver to the end of the list
+                if (!d.getClass().getName().equals(driverName)) {   // move the driver to the end of the list
                     DriverManager.deregisterDriver(d);
                     DriverManager.registerDriver(d);
                 }
             }
-        } 
-        catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException ex) 
-        {
+        } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException ex) {
             error(ex);
             return false;
         }
         return true;
     }
+
+    /* ********************************PART_4************************************** */
+    // For error handler and console functions.
 
     /**
      * *
@@ -122,14 +166,10 @@ public class MyJDBC
      * @return a ResultSet object that can iterate along all rows
      * @throws SQLException
      */
-    public ResultSet executeResultSetQuery(String sql)
-    {
-        try(Statement s = this.connection.createStatement())
-        {
+    public ResultSet executeResultSetQuery(String sql) {
+        try (Statement s = this.connection.createStatement()) {
             return s.executeQuery(sql);
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             error(ex);
             return null;
         }
@@ -143,16 +183,12 @@ public class MyJDBC
      * @param sql the full sql text of the query.
      * @return the number of rows that have been impacted, -1 on error
      */
-    public int executeUpdateQuery(String sql)
-    {
-        try (Statement s = this.connection.createStatement())
-        {
+    public int executeUpdateQuery(String sql) {
+        try (Statement s = this.connection.createStatement()) {
             log(sql);
             int n = s.executeUpdate(sql);
             return (n);
-        } 
-        catch (SQLException ex) 
-        {
+        } catch (SQLException ex) {
             // handle exception
             error(ex);
             return -1;
@@ -167,26 +203,19 @@ public class MyJDBC
      * @param sql the full sql text of the query.
      * @return the string result, null if no result or error
      */
-    public String executeStringQuery(String sql) 
-    {
+    public String executeStringQuery(String sql) {
         String result = null;
-        try (Statement s = this.connection.createStatement(); ResultSet rs = s.executeQuery(sql))
-        {
+        try (Statement s = this.connection.createStatement(); ResultSet rs = s.executeQuery(sql)) {
             log(sql);
-            if (rs.next()) 
-            {
+            if (rs.next()) {
                 result = rs.getString(1);
             }
-        } 
-        catch (SQLException ex) 
-        {
+        } catch (SQLException ex) {
             error(ex);
         }
         return result;
     }
 
-
-    // this part of code needs refactoring.
     /**
      * *
      * Executes query that is expected to return a list of String values
@@ -194,19 +223,14 @@ public class MyJDBC
      * @param sql the full sql text of the query.
      * @return the string result, null if no result or error
      */
-    public String executeStringListQuery(String sql) 
-    {
+    public String executeStringListQuery(String sql) {
         String result = null;
-        try (Statement s = this.connection.createStatement(); ResultSet rs = s.executeQuery(sql))
-        {
+        try (Statement s = this.connection.createStatement(); ResultSet rs = s.executeQuery(sql)) {
             log(sql);
-            if (rs.next()) 
-            {
+            if (rs.next()) {
                 result = rs.getString(5);
             }
-        }
-        catch (SQLException ex) 
-        {
+        } catch (SQLException ex) {
             error(ex);
         }
         return result;
@@ -224,36 +248,27 @@ public class MyJDBC
      * (2) 0 for SQL statements that return nothing
      * (3) -1 in case function call throws a SQLException
      */
-    public int executeUserPasswordUpdateQuery(String userID, String newPassword) throws SQLException 
-    {
+    public int executeUserPasswordUpdateQuery(String userID, String newPassword) throws SQLException {
         try (PreparedStatement preparedStatement =
-                     this.connection.prepareStatement("UPDATE employee SET " + "password = ? WHERE employeeId = ?"))
-        {
+                     this.connection.prepareStatement("UPDATE employee SET " + "password = ? WHERE employeeId = ?")) {
 
             preparedStatement.setString(1, newPassword);
             preparedStatement.setString(2, userID);
 
             return preparedStatement.executeUpdate();
-        }
-        catch (SQLException ex) 
-        {
+        } catch (SQLException ex) {
             // handle exception
             error(ex);
             return -1;
         }
     }
 
-
-
-    /* ********************************PART_2************************************** */
     /**
      * @author Hail Ibrahimoglu
-     *
      **/
 
     // Creating the whole database for the project.
-    public void createDatabase() 
-    {
+    public void createDatabase() {
         /*
         +---------+---------+------------+----------+----------+-------------+
         | User_ID | Fname   | Lname      | Username | Password | AdminStatus |
@@ -378,15 +393,11 @@ public class MyJDBC
                 + "  Startingtime DATETIME);");
     }
 
-
-    /* ********************************PART_3************************************** */
     /**
-    * @author Hail Ibrahimoglu
-    *
-    **/
+     * @author Hail Ibrahimoglu
+     **/
 
-    public void insertDataIntoDatabase()
-    {
+    public void insertDataIntoDatabase() {
         final String SET_FOREIGN_KEY_CHECKS_0 = "SET FOREIGN_KEY_CHECKS = 0;";
         final String SET_FOREIGN_KEY_CHECKS_1 = "SET FOREIGN_KEY_CHECKS = 1;";
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_0);
@@ -442,13 +453,10 @@ public class MyJDBC
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
     }
 
-    public void dropDatabase()
-    {
+    public void dropDatabase() {
         this.executeUpdateQuery("DROP DATABASE mysql;");
     }
 
-    /* ********************************PART_4************************************** */
-    // For error handler and console functions.
     /**
      * *
      * echoes an exception and its stack trace on the system console. remembers
@@ -457,13 +465,11 @@ public class MyJDBC
      *
      * @param e
      */
-    public final void error(Exception e) 
-    {
+    public final void error(Exception e) {
         String msg = "MyJDBC-" + e.getClass().getName() + ": " + e.getMessage();
 
         // capture the message of the first error of the connection
-        if (this.errorMessage == null) 
-        {
+        if (this.errorMessage == null) {
             this.errorMessage = msg;
         }
 
@@ -474,21 +480,16 @@ public class MyJDBC
         this.close();
     }
 
-    public final void close() 
-    {
-        if (this.connection == null) 
-        {
+    public final void close() {
+        if (this.connection == null) {
             // db has been closed earlier already
             return;
         }
-        try 
-        {
+        try {
             this.connection.close();
             this.connection = null;
             this.log("Data base has been closed");
-        } 
-        catch (SQLException eSQL) 
-        {
+        } catch (SQLException eSQL) {
             error(eSQL);
         }
     }
@@ -498,21 +499,17 @@ public class MyJDBC
      *
      * @param message value is true by default for inspecting
      */
-    public void log(String message) 
-    {
-        if (isVerbose()) 
-        {
+    public void log(String message) {
+        if (isVerbose()) {
             System.out.println("MyJDBC: " + message);
         }
     }
 
-    public boolean isVerbose() 
-    {
+    public boolean isVerbose() {
         return verbose;
     }
 
-    public void setVerbose(boolean verbose) 
-    {
+    public void setVerbose(boolean verbose) {
         this.verbose = verbose;
     }
 
@@ -523,29 +520,22 @@ public class MyJDBC
      *
      * @param passwd the unencrypted password that is passed by an user
      *               to the database.
-     * @return       encrypted password as a String
+     * @return encrypted password as a String
      */
-    public String passwordEncrypter(String passwd)
-    {
-        try
-        {
+    public String passwordEncrypter(String passwd) {
+        try {
             MessageDigest md = null;
-            try
-            {
+            try {
                 md = MessageDigest.getInstance("SHA-512");
                 // seperates the password into bytes for encyprtion.
                 md.update(passwd.getBytes(StandardCharsets.UTF_8));
-            }
-            catch(NoSuchAlgorithmException ex)
-            {
+            } catch (NoSuchAlgorithmException ex) {
                 System.out.println(ex.getMessage());
             }
             byte[] digest = md.digest();
 
-            return String.format("%064x",new BigInteger(1,digest));
-        } 
-        catch (Exception e) 
-        {
+            return String.format("%064x", new BigInteger(1, digest));
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -554,90 +544,27 @@ public class MyJDBC
     /**
      * checks if the connection to a database is still valid or not
      *
-     * @param conn      Connection Object for validation checking.
-     * @param timeOut   The time in seconds to wait for the database operation used to validate the connection to complete.
+     * @param conn    Connection Object for validation checking.
+     * @param timeOut The time in seconds to wait for the database operation used to validate the connection to complete.
      */
-    public void checkDatabaseConnectionValidation(Connection conn,int timeOut)
-    {
-        try 
-        {
-            if(conn.isValid(timeOut)) 
-            {
+    public void checkDatabaseConnectionValidation(Connection conn, int timeOut) {
+        try {
+            if (conn.isValid(timeOut)) {
                 log(
                         "The connection to " +
-                        DB_DEFAULT_SERVER_URL +
-                        "/" +
-                        DB_DEFAULT_DATABASE +
-                        " has been established successfully"
+                                DB_DEFAULT_SERVER_URL +
+                                "/" +
+                                DB_DEFAULT_DATABASE +
+                                " has been established successfully"
                 );
             }
-        }
-        catch(SQLException ex)
-        {
+        } catch (SQLException ex) {
             error(ex);
         }
     }
 
-    public static String getDBConnectionStatus(MyJDBC db)
-    {
-        String status = null;
-        try 
-        {
-            if(db.connection.isValid(5)) 
-            {
-                status = "The connection to " +
-                                db.getDbDefaultServerUrl() +
-                                "/" +
-                                db.getDbDefaultDatabase() +
-                                " has been established successfully";
-            }
-        }
-        catch(SQLException ex)
-        {
-            status = "The connection hasn't been established";
-            db.error(ex);
-        }
-        return status;
-    }
-
-    public static String getDbDefaultDatabase() 
-    {
-        return DB_DEFAULT_DATABASE;
-    }
-
-    public static String getDbDefaultServerUrl() 
-    {
-        return DB_DEFAULT_SERVER_URL;
-    }
-
-    public static String getDbDefaultAccount() 
-    {
-        return DB_DEFAULT_ACCOUNT;
-    }
-
-    public static String getDbDefaultPassword() 
-    {
-        return DB_DEFAULT_PASSWORD;
-    }
-
-    public static String getDbDriverUrl() 
-    {
-        return DB_DRIVER_URL;
-    }
-
-    public static String getDbDriverPrefix() 
-    {
-        return DB_DRIVER_PREFIX;
-    }
-
-    public Connection getConnection() 
-    {
+    public Connection getConnection() {
         return this.connection;
-    }
-
-    public static String getDbDriverParameters() 
-    {
-        return DB_DRIVER_PARAMETERS;
     }
 }
 

@@ -16,21 +16,21 @@
                 <Text styleClass="TitleText"
                       layoutX="26.0"
                       layoutY="43.0"
-                      text="Report" />
+                      text="Report"/>
 
                 <Label fx:id="closeBtn"
                        styleClass="closeMinimizeBtns"
                        layoutX="960.0"
                        layoutY="0.0"
                        onMouseClicked="#onCloseClicked"
-                       text="✖" />
+                       text="✖"/>
 
                 <Label fx:id="minimizingBtn"
                        styleClass="closeMinimizeBtns"
                        layoutX="920.0"
                        layoutY="0.0"
                        onMouseClicked="#onMinimizingClicked"
-                       text="➖" />
+                       text="➖"/>
 
             </children>
         </AnchorPane>
@@ -38,7 +38,6 @@
     <center>
         <AnchorPane styleClass="windowMainStyle">
             <children>
-
 
 
                 <Button fx:id="weiterBtn"
@@ -54,13 +53,13 @@
                       text="Bericht ID : "/>
 
                 <Label fx:id="berichtID"
-                        styleClass="ReportText"
-                        alignment="CENTER_RIGHT"
-                        layoutX="160.0"
-                        layoutY="45.0"
-                        prefHeight="18.0"
-                        prefWidth="150.0"
-                        text="1" />
+                       styleClass="ReportText"
+                       alignment="CENTER_RIGHT"
+                       layoutX="160.0"
+                       layoutY="45.0"
+                       prefHeight="18.0"
+                       prefWidth="150.0"
+                       text="1"/>
 
                 <Text styleClass="ReportText"
                       layoutX="30.0"
@@ -73,7 +72,7 @@
                        layoutY="75.0"
                        prefHeight="18.0"
                        prefWidth="150.0"
-                       text="22.10.2022" />
+                       text="22.10.2022"/>
 
                 <Text styleClass="ReportText"
                       layoutX="30.0"
@@ -86,7 +85,7 @@
                        layoutY="105.0"
                        prefHeight="18.0"
                        prefWidth="150.0"
-                       text="1" />
+                       text="1"/>
 
                 <Text styleClass="ReportText"
                       layoutX="30.0"
@@ -99,7 +98,7 @@
                        layoutY="135.0"
                        prefHeight="18.0"
                        prefWidth="150.0"
-                       text="Dunklerberg" />
+                       text="Dunklerberg"/>
 
                 <Text styleClass="ReportText"
                       layoutX="30.0"
@@ -112,7 +111,7 @@
                        layoutY="165.0"
                        prefHeight="18.0"
                        prefWidth="150.0"
-                       text="Anna" />
+                       text="Anna"/>
 
                 <Text styleClass="ReportText"
                       layoutX="30.0"
@@ -125,7 +124,7 @@
                        layoutY="195.0"
                        prefHeight="18.0"
                        prefWidth="150.0"
-                       text="356541" />
+                       text="356541"/>
 
 
                 <TableView fx:id="table"
@@ -133,13 +132,13 @@
                            layoutY="40.0">
                     <columns>
                         <TableColumn fx:id="slot"
-                                     prefWidth="100.0" text="Slot" />
+                                     prefWidth="100.0" text="Slot"/>
                         <TableColumn fx:id="bauteilID"
-                                     prefWidth="150.0" text="Bauteil-ID" />
+                                     prefWidth="150.0" text="Bauteil-ID"/>
                         <TableColumn fx:id="auftragsnummer"
-                                     prefWidth="150.0" text="Auftragsnummer" />
+                                     prefWidth="150.0" text="Auftragsnummer"/>
                         <TableColumn fx:id="status"
-                                     prefWidth="78.0" text="status" />
+                                     prefWidth="78.0" text="status"/>
                     </columns>
                 </TableView>
 

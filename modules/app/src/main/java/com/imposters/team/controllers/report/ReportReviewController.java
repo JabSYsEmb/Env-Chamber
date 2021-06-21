@@ -13,8 +13,7 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 
-public class ReportReviewController extends MainConfigurations implements Initializable
-{
+public class ReportReviewController extends MainConfigurations implements Initializable {
 
     @FXML
     private Label berichtID;
@@ -34,8 +33,7 @@ public class ReportReviewController extends MainConfigurations implements Initia
 
     @Override
     @FXML
-    public void nextClicked() 
-    {
+    public void nextClicked() {
         ObservableList<String> courseData = FXCollections.observableArrayList(
                 "Inheritance",
                 "Abstraction",
@@ -54,8 +52,7 @@ public class ReportReviewController extends MainConfigurations implements Initia
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) 
-    {
-        this.setStatusBar(Context.getUser(),Context.getEnvChamber());
+    public void initialize(URL location, ResourceBundle resources) {
+        this.setStatusBar(Context.getUser(), Context.getEnvChamber());
     }
 }

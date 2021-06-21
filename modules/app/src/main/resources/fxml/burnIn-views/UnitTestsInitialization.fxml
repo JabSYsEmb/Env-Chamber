@@ -16,21 +16,21 @@
                 <Text styleClass="TitleText"
                       layoutX="26.0"
                       layoutY="43.0"
-                      text="Burn-In Tester" />
+                      text="Burn-In Tester"/>
 
                 <Label fx:id="closeBtn"
                        styleClass="closeMinimizeBtns"
                        layoutX="960.0"
                        layoutY="0.0"
                        onMouseClicked="#onCloseClicked"
-                       text="✖" />
+                       text="✖"/>
 
                 <Label fx:id="minimizingBtn"
                        styleClass="closeMinimizeBtns"
                        layoutX="920.0"
                        layoutY="0.0"
                        onMouseClicked="#onMinimizingClicked"
-                       text="➖" />
+                       text="➖"/>
 
             </children>
         </AnchorPane>
@@ -43,14 +43,14 @@
                            styleClass="textBoxLogin"
                            layoutX="277.0"
                            layoutY="190.0"
-                           promptText="Artikelnummer" />
+                           promptText="Artikelnummer"/>
 
                 <TextField fx:id="orderNumber"
                            styleClass="textBoxLogin"
                            layoutX="277.0"
                            layoutY="230.0"
-                           promptText="Auftragsnummer" />
-                               
+                           promptText="Auftragsnummer"/>
+
                 <Label fx:id="alertMessageInit"
                        styleClass="alertMessage"
                        layoutX="277.0"

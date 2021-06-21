@@ -4,6 +4,7 @@ import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.App;
 
 import com.imposters.team.controllers.context.Context;
+import com.imposters.team.dao.CurveDao;
 import com.imposters.team.dao.EnvChamberDao;
 import com.imposters.team.model.EnvChamber;
 import com.imposters.team.model.User;
@@ -17,8 +18,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class ChamberSelection extends MainConfigurations implements Initializable
-{
+public class ChamberSelection extends MainConfigurations implements Initializable {
     private User user;
     private List<EnvChamber> envChamberList;
 
@@ -26,17 +26,15 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
     private ComboBox<String> chamberComboBox;
 
     @FXML
-    public void DropDownClicked()
-    {
+    public void DropDownClicked() {
         chamberComboBox.getItems().setAll(this.getEnvChamberIps());
     }
 
     @FXML
     @Override
-    public void nextClicked() 
-    {
+    public void nextClicked() {
         Context.setChamber(EnvChamberDao.getEnvChamberFromDatabase(
-            chamberComboBox.getSelectionModel().getSelectedItem(),this.db));
+                chamberComboBox.getSelectionModel().getSelectedItem(), this.db));
 
         this.sendInitMsg();
 
@@ -44,7 +42,6 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
     }
 
     private void sendInitMsg() {
-
         String toServerMsg = this.client.messageJoiner(Arrays.asList(
                 "STRT",
                 chamberComboBox.getSelectionModel().getSelectedItem(),
@@ -58,20 +55,18 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) 
-    {
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println(CurveDao.getCurveFromDatabase(2, this.db));
         user = Context.getUser();
         this.setStatusBar(user);
         this.setEnvChamberList(EnvChamberDao.getEnvChamberFromDatabase(this.db));
     }
 
-    public void setEnvChamberList(List<EnvChamber> envChamberList) 
-    {
+    public void setEnvChamberList(List<EnvChamber> envChamberList) {
         this.envChamberList = envChamberList;
     }
 
-    public List<String> getEnvChamberIps()
-    {
+    public List<String> getEnvChamberIps() {
         return this.envChamberList
                 .stream()
                 .map(item -> item.getIp())

@@ -16,21 +16,21 @@
                 <Text styleClass="TitleText"
                       layoutX="26.0"
                       layoutY="43.0"
-                      text="Anmeldung" />
+                      text="Anmeldung"/>
 
                 <Label fx:id="closeBtn"
                        styleClass="closeMinimizeBtns"
                        layoutX="960.0"
                        layoutY="0.0"
                        onMouseClicked="#onCloseClicked"
-                       text="✖" />
+                       text="✖"/>
 
                 <Label fx:id="minimizingBtn"
                        styleClass="closeMinimizeBtns"
                        layoutX="920.0"
                        layoutY="0.0"
                        onMouseClicked="#onMinimizingClicked"
-                       text="➖" />
+                       text="➖"/>
 
             </children>
         </AnchorPane>
@@ -43,25 +43,25 @@
                            styleClass="textBoxLogin"
                            layoutX="277.0"
                            layoutY="190.0"
-                           promptText="Benutzername" />
+                           promptText="Benutzername"/>
 
                 <PasswordField fx:id="passwordTextField"
                                styleClass="textBoxLogin"
                                layoutX="277.0"
                                layoutY="230.0"
-                               promptText="Passwort" />
+                               promptText="Passwort"/>
 
                 <Label fx:id="alertMessage"
                        styleClass="alertMessage"
                        layoutX="280.0"
-                       layoutY="275.0" />
+                       layoutY="275.0"/>
 
                 <Button fx:id="loginBtn"
                         styleClass="button1"
                         layoutX="612.0"
                         layoutY="270.0"
                         onAction="#nextClicked"
-                        text="anmelden" />
+                        text="anmelden"/>
 
             </children>
         </AnchorPane>

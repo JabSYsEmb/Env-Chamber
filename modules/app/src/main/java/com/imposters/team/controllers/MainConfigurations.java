@@ -13,87 +13,68 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 
-public abstract class MainConfigurations
-{
+public abstract class MainConfigurations {
 
     // Establish a connection to the database
     protected MyJDBC db = DbConnectionEstablish.getInstance().getDb();
 
     // Connect the app to the server
     protected Client client = ClientConnectionEstablish.getInstance().getClient();
-
-    private double initialX;
-    private double initialY;
-
     @FXML
     protected Label statusChamber;
     @FXML
     protected Label statusUser;
     @FXML
     protected Label statusAdmin;
+    private double initialX;
+    private double initialY;
 
     @FXML
-    public void onCloseClicked()
-    {
+    public void onCloseClicked() {
         App.getPrimaryStageOfProgram().close();
     }
 
     @FXML
-    public void onMinimizingClicked()
-    {
+    public void onMinimizingClicked() {
         App.getPrimaryStageOfProgram().setIconified(true);
     }
 
-    public void setOnMousePressed(MouseEvent event)
-    {
+    public void setOnMousePressed(MouseEvent event) {
         initialX = event.getSceneX();
         initialY = event.getSceneY();
     }
 
-    public void setOnMouseDragged(MouseEvent event)
-    {
+    public void setOnMouseDragged(MouseEvent event) {
         App.getPrimaryStageOfProgram().setX(event.getScreenX() - initialX);
         App.getPrimaryStageOfProgram().setY(event.getScreenY() - initialY);
     }
 
-    public void setStatusBar(User signedInUser)
-    {
-        try
-        {
-            if(signedInUser.isAdminStatus())
-            {
+    public void setStatusBar(User signedInUser) {
+        try {
+            if (signedInUser.isAdminStatus()) {
                 statusAdmin.setText("Admin");
-            }
-            else
-            {
+            } else {
                 statusAdmin.setText("Limited User");
             }
             statusUser.setText(signedInUser.getFirstName() + " " + signedInUser.getLastName());
-        }
-        catch (NullPointerException ex)
-        {
+        } catch (NullPointerException ex) {
             ex.getMessage();
         }
     }
 
-    public void setStatusBar(User signedInUser, EnvChamber chamber)
-    {
-        try
-        {
+    public void setStatusBar(User signedInUser, EnvChamber chamber) {
+        try {
             this.setStatusBar(signedInUser);
             statusChamber.setText(chamber.getIp());
-        }
-        catch (NullPointerException ex)
-        {
+        } catch (NullPointerException ex) {
             ex.getMessage();
         }
     }
 
-    public void onKeyPressedListener(KeyEvent keyEvent)
-    {
-        switch (keyEvent.getCode())
-        {
-            case ENTER: nextClicked();
+    public void onKeyPressedListener(KeyEvent keyEvent) {
+        switch (keyEvent.getCode()) {
+            case ENTER:
+                nextClicked();
         }
     }
 

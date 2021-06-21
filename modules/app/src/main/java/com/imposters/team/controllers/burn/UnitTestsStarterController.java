@@ -12,8 +12,7 @@ import javafx.fxml.FXML;
 import java.util.ResourceBundle;
 import java.net.URL;
 
-public class UnitTestsStarterController extends MainConfigurations implements Initializable
-{
+public class UnitTestsStarterController extends MainConfigurations implements Initializable {
 
     @FXML
     private Label message;
@@ -31,8 +30,7 @@ public class UnitTestsStarterController extends MainConfigurations implements In
 
     @FXML
     @Override
-    public void nextClicked()
-    {
+    public void nextClicked() {
 
         //App.changeView("/fxml/burnIn-views/ReportReview.fxml");
         message.setText("Hallo heißer ich bin Message");
@@ -42,9 +40,8 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) 
-    {
-        new ClockController(5,"BurnInTester4Controller").run(clock,message);
-        this.setStatusBar(Context.getUser(),Context.getEnvChamber());
+    public void initialize(URL location, ResourceBundle resources) {
+        new ClockController(5, "BurnInTester4Controller").run(clock, message);
+        this.setStatusBar(Context.getUser(), Context.getEnvChamber());
     }
 }

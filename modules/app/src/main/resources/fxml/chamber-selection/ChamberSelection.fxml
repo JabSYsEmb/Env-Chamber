@@ -19,28 +19,28 @@
                 <Text styleClass="TitleText"
                       layoutX="26.0"
                       layoutY="43.0"
-                      text="Schrank Auswahl" />
+                      text="Schrank Auswahl"/>
 
                 <Label fx:id="closeBtn"
                        styleClass="closeMinimizeBtns"
                        layoutX="960.0"
                        layoutY="0.0"
                        onMouseClicked="#onCloseClicked"
-                       text="✖" />
+                       text="✖"/>
 
                 <Label fx:id="minimizingBtn"
                        styleClass="closeMinimizeBtns"
                        layoutX="920.0"
                        layoutY="0.0"
                        onMouseClicked="#onMinimizingClicked"
-                       text="➖" />
+                       text="➖"/>
 
             </children>
         </AnchorPane>
     </top>
 
     <center>
-        <AnchorPane styleClass="windowMainStyle" >
+        <AnchorPane styleClass="windowMainStyle">
             <children>
                 <ComboBox fx:id="chamberComboBox"
                           layoutX="277.0"

@@ -6,58 +6,49 @@ import javafx.scene.control.Label;
 
 public class ClockController {
 
-    private SimpleIntegerProperty seconds = new SimpleIntegerProperty(0);
-    private SimpleIntegerProperty minutes = new SimpleIntegerProperty(0);
-    private int countDownInMinutes;
-    private String message;
-
     private final int SECOND = 1;
     private final int MINUTE = 1;
+    private final SimpleIntegerProperty seconds = new SimpleIntegerProperty(0);
+    private final SimpleIntegerProperty minutes = new SimpleIntegerProperty(0);
+    private int countDownInMinutes;
+    private final String message;
 
-    public ClockController(int countDownInMinutes, String message){
+    public ClockController(int countDownInMinutes, String message) {
         this.countDownInMinutes = countDownInMinutes;
         this.message = message;
     }
 
 
-    private void updateTime(Label clock, Label message) throws InterruptedException 
-    {
-        while(this.minutes.get()!=this.countDownInMinutes)
-        {
+    private void updateTime(Label clock, Label message) throws InterruptedException {
+        while (this.minutes.get() != this.countDownInMinutes) {
             Platform.runLater(() ->
-                    {
-                        {
-                            if(this.seconds.get()!=60)
-                            {
-                                if(this.seconds.get()<10)
-                                {
-                                    clock.setText(
-                                            "00:0"+
-                                                    String.valueOf(this.minutes.get())+
-                                                    ":0"+String.valueOf(this.seconds.get())
-                                    );
-                                }
-                                else
-                                {
-                                    clock.setText(
-                                            "00:0"+
-                                                    String.valueOf(this.minutes.get())+
-                                                    ":"+String.valueOf(this.seconds.get())
-                                    );
-                                }
-                                this.seconds.set(this.seconds.get() + SECOND);
-                            }
-                            else
-                            {
-                                this.minutes.set(this.minutes.get() + MINUTE);
-                                this.seconds.set(0);
-                            }
+            {
+                {
+                    if (this.seconds.get() != 60) {
+                        if (this.seconds.get() < 10) {
+                            clock.setText(
+                                    "00:0" +
+                                            this.minutes.get() +
+                                            ":0" + this.seconds.get()
+                            );
+                        } else {
+                            clock.setText(
+                                    "00:0" +
+                                            this.minutes.get() +
+                                            ":" + this.seconds.get()
+                            );
                         }
-                    });
+                        this.seconds.set(this.seconds.get() + SECOND);
+                    } else {
+                        this.minutes.set(this.minutes.get() + MINUTE);
+                        this.seconds.set(0);
+                    }
+                }
+            });
 
             Thread.sleep(1000);
         }
-        Platform.runLater(()-> 
+        Platform.runLater(() ->
         {
             clock.setStyle("-fx-text-fill:green;");
             message.setText(this.message);
@@ -65,27 +56,22 @@ public class ClockController {
         });
     }
 
-    public void run(Label clock, Label message)
-    {
-        new Thread(() -> 
+    public void run(Label clock, Label message) {
+        new Thread(() ->
         {
-            try 
-            {
-                this.updateTime(clock,message);
-            } 
-            catch (InterruptedException e) 
-            {
+            try {
+                this.updateTime(clock, message);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }).start();
     }
-    public String getCurrentTime()
-    {
-        return "00:0"+String.valueOf(this.minutes.get())+":"+String.valueOf(this.seconds.get());
+
+    public String getCurrentTime() {
+        return "00:0" + this.minutes.get() + ":" + this.seconds.get();
     }
 
-    public void stopStopwatch()
-    {
+    public void stopStopwatch() {
         this.countDownInMinutes = 0;
     }
 

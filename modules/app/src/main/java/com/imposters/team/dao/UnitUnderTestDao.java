@@ -11,17 +11,17 @@ import java.util.List;
 
 public class UnitUnderTestDao {
 
-    private UnitUnderTestDao(){
+    private UnitUnderTestDao() {
         throw new IllegalStateException("Utility class");
     }
 
-    public static UnitUnderTest getUnitUnderTestFromDBById(int pruflingID, MyJDBC db){
-        try(PreparedStatement preparedStatement =
-                    db.getConnection().prepareStatement("SELECT * from Prufling where Prufling_ID = ?;")){
-            preparedStatement.setInt(1,pruflingID);
+    public static UnitUnderTest getUnitUnderTestFromDBById(int pruflingID, MyJDBC db) {
+        try (PreparedStatement preparedStatement =
+                     db.getConnection().prepareStatement("SELECT * from Prufling where Prufling_ID = ?;")) {
+            preparedStatement.setInt(1, pruflingID);
             ResultSet rs = preparedStatement.executeQuery();
             UnitUnderTest unitUnderTest = null;
-            if(rs.next()) {
+            if (rs.next()) {
                 unitUnderTest = new UnitUnderTest(
                         rs.getInt("Prufling_ID"),
                         rs.getString("Serialnumber")
@@ -35,12 +35,12 @@ public class UnitUnderTestDao {
         }
     }
 
-    public static List<UnitUnderTest> getUnitUnderTestFromDB(MyJDBC db){
+    public static List<UnitUnderTest> getUnitUnderTestFromDB(MyJDBC db) {
         List<UnitUnderTest> unitUnderTests = new ArrayList<>();
-        try(PreparedStatement preparedStatement =
-                    db.getConnection().prepareStatement("SELECT * from Prufling;")){
+        try (PreparedStatement preparedStatement =
+                     db.getConnection().prepareStatement("SELECT * from Prufling;")) {
             ResultSet rs = preparedStatement.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 unitUnderTests.add(new UnitUnderTest(
                         rs.getInt("Prufling_ID"),
                         rs.getString("Serialnumber")

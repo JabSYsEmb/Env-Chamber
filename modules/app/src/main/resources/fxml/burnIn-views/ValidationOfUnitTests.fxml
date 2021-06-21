@@ -16,21 +16,21 @@
                 <Text styleClass="TitleText"
                       layoutX="26.0"
                       layoutY="43.0"
-                      text="Burn-In Tester" />
+                      text="Burn-In Tester"/>
 
                 <Label fx:id="closeBtn"
                        styleClass="closeMinimizeBtns"
                        layoutX="960.0"
                        layoutY="0.0"
                        onMouseClicked="#onCloseClicked"
-                       text="✖" />
+                       text="✖"/>
 
                 <Label fx:id="minimizingBtn"
                        styleClass="closeMinimizeBtns"
                        layoutX="920.0"
                        layoutY="0.0"
                        onMouseClicked="#onMinimizingClicked"
-                       text="➖" />
+                       text="➖"/>
 
             </children>
         </AnchorPane>
@@ -42,7 +42,7 @@
                 <AnchorPane fx:id="clockAnchor"
                             layoutX="324.0"
                             layoutY="175.0"
-                            styleClass="BurnInclock" >
+                            styleClass="BurnInclock">
 
                     <Label fx:id="clock"
                            text="00:00:00"
@@ -61,14 +61,13 @@
                 </AnchorPane>
 
 
-
                 <Button fx:id="weiterBtn"
                         styleClass="button1"
                         layoutX="424.0"
                         layoutY="270.0"
                         onAction="#nextClicked"
                         text="Check in"/>
-                
+
             </children>
         </AnchorPane>
     </center>

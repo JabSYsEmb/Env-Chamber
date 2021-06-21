@@ -11,9 +11,7 @@ import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 
 
-
-public class HomePageController extends MainConfigurations
-{
+public class HomePageController extends MainConfigurations {
     @FXML
     private Label alertMessage;
 
@@ -24,36 +22,27 @@ public class HomePageController extends MainConfigurations
     private TextField usernameTextField;
 
     @FXML
-    public void nextClicked() 
-    {
+    public void nextClicked() {
         this.infoChecker();
     }
 
-    public void infoChecker()
-    {
-        try 
-        {
+    public void infoChecker() {
+        try {
             String password = passwordTextField.getText();
             String username = usernameTextField.getText();
-            User user = UserDao.getUserFromDatabase(username,this.db);
-            if(user.getPassword().equals(this.db.passwordEncrypter(password)))
-            {
+            User user = UserDao.getUserFromDatabase(username, this.db);
+            if (user.getPassword().equals(this.db.passwordEncrypter(password))) {
                 Context.setUser(user);
                 App.changeView("/fxml/chamber-selection/ChamberSelection.fxml");
-            }
-            else
-            {
+            } else {
                 textFieldCleaner();
             }
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             textFieldCleaner();
         }
     }
 
-    public void textFieldCleaner()
-    {
+    public void textFieldCleaner() {
         passwordTextField.clear();
         usernameTextField.clear();
         alertMessage.setText("invalid username or password, try again!");

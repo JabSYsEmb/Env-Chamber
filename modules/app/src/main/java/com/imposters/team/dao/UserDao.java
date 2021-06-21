@@ -11,17 +11,17 @@ import java.util.List;
 
 public class UserDao {
 
-    private UserDao(){
+    private UserDao() {
         throw new IllegalStateException("Utility class");
     }
 
-    public static User getUserFromDatabase(String username, MyJDBC db){
-        try(PreparedStatement preparedStatement =
-                    db.getConnection().prepareStatement("SELECT * from User where Username = ?;")){
-            preparedStatement.setString(1,username);
+    public static User getUserFromDatabase(String username, MyJDBC db) {
+        try (PreparedStatement preparedStatement =
+                     db.getConnection().prepareStatement("SELECT * from User where Username = ?;")) {
+            preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             User user = null;
-            if(rs.next()) {
+            if (rs.next()) {
                 user = new User(
                         rs.getInt("User_ID"),
                         rs.getString("Fname"),
@@ -39,12 +39,12 @@ public class UserDao {
         }
     }
 
-    public static List<User> getUsersFromDatabase(MyJDBC db){
+    public static List<User> getUsersFromDatabase(MyJDBC db) {
         List<User> user = new ArrayList<>();
-        try(PreparedStatement preparedStatement =
-                    db.getConnection().prepareStatement("SELECT * from User;")){
+        try (PreparedStatement preparedStatement =
+                     db.getConnection().prepareStatement("SELECT * from User;")) {
             ResultSet rs = preparedStatement.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 user.add(new User(
                         rs.getInt("User_ID"),
                         rs.getString("Fname"),

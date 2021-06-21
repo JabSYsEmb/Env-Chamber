@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class Report 
-{
+public class Report {
     //Attribute in Bericht
     /*public int Bericht_ID;
     public int User_ID;
@@ -21,47 +20,40 @@ public class Report
     // Wir brauchen hier eine Array for testobjekte
 
     private int ReportID;
-    private User user;
-    private EnvChamber envChamber;
-    private LocalDate date;
+    private final User user;
+    private final EnvChamber envChamber;
+    private final LocalDate date;
     private List<Test> test = new ArrayList<>();
 
-    public Report( User user, EnvChamber envChamber, LocalDate date, List<Test> test) 
-    {
+    public Report(User user, EnvChamber envChamber, LocalDate date, List<Test> test) {
         this.user = user;
         this.envChamber = envChamber;
         this.date = date;
         this.test = test;
     }
 
-    public int getReportID() 
-    {
+    public int getReportID() {
         return ReportID;
     }
 
-    public User getUser() 
-    {
+    public User getUser() {
         return user;
     }
 
-    public EnvChamber getEnvChamber() 
-    {
+    public EnvChamber getEnvChamber() {
         return envChamber;
     }
 
-    public LocalDate getDate() 
-    {
+    public LocalDate getDate() {
         return date;
     }
 
-    public List<Test> getTest() 
-    {
+    public List<Test> getTest() {
         return test;
     }
 
     @Override
-    public boolean equals(Object o) 
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Report report = (Report) o;
@@ -69,8 +61,7 @@ public class Report
     }
 
     @Override
-    public String toString() 
-    {
+    public String toString() {
         return "Report{" +
                 "ReportID=" + ReportID +
                 ", user=" + user +
@@ -81,8 +72,7 @@ public class Report
     }
 
     @Override
-    public int hashCode() 
-    {
+    public int hashCode() {
         return Objects.hash(ReportID);
     }
 }
