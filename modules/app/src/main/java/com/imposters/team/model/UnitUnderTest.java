@@ -9,14 +9,24 @@ import java.util.Objects;
 public class UnitUnderTest {
 
     private SimpleIntegerProperty PruflingID;
+
     private SimpleStringProperty serialNumber;
+
     private SimpleStringProperty curveTaskNumber;
     private SimpleBooleanProperty status;
+    private SimpleIntegerProperty slotId;
+    // Constructor
+    public UnitUnderTest(int slotId, String serialNumber, String curveTaskNumber, boolean status) {
+        this.serialNumber = new SimpleStringProperty(serialNumber);
+        this.slotId = new SimpleIntegerProperty(slotId);
+        this.curveTaskNumber = new SimpleStringProperty(curveTaskNumber);
+        this.status = new SimpleBooleanProperty(status);
+    }
 
-
-    public UnitUnderTest(int UnitId, String serialNumber, String curveTaskNumber, boolean status) {
+    public UnitUnderTest(int UnitId, int slotId, String serialNumber, String curveTaskNumber, boolean status) {
         this.PruflingID = new SimpleIntegerProperty(UnitId);
         this.serialNumber = new SimpleStringProperty(serialNumber);
+        this.slotId = new SimpleIntegerProperty(slotId);
         this.curveTaskNumber = new SimpleStringProperty(curveTaskNumber);
         this.status = new SimpleBooleanProperty(status);
     }
@@ -27,6 +37,34 @@ public class UnitUnderTest {
 
     public String getSerialNumber() {
         return serialNumber.get();
+    }
+
+    public String getCurveTaskNumber() {
+        return curveTaskNumber.get();
+    }
+
+    public boolean isStatus() {
+        return status.get();
+    }
+
+    public int getSlotId() {
+        return slotId.get();
+    }
+
+    public SimpleStringProperty curveTaskNumberProperty() {
+        return curveTaskNumber;
+    }
+
+    public SimpleIntegerProperty pruflingIDProperty() {
+        return PruflingID;
+    }
+
+    public SimpleBooleanProperty statusProperty() {
+        return status;
+    }
+
+    public SimpleIntegerProperty slotIdProperty() {
+        return slotId;
     }
 
     public SimpleStringProperty serialNumberProperty() {

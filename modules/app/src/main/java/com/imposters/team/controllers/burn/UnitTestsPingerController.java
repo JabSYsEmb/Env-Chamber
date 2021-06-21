@@ -63,7 +63,7 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
 
     @FXML
     public void fertigBtnClicked() {
-        int i =0;
+//        table.getItems().setAll(UnitTestsInitializationController.addedTestingUnits);
         table.setItems(FXCollections.observableArrayList(
                 UnitTestsInitializationController.addedTestingUnits
                         .stream()
@@ -89,9 +89,9 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
     }
 
     public void buildTable() {
-        this.slotNumber.setCellValueFactory(new PropertyValueFactory<>("Slot"));
-        this.orderNumber.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
+        this.slotNumber.setCellValueFactory(new PropertyValueFactory<>("slotId"));
+        this.orderNumber.setCellValueFactory(new PropertyValueFactory<>("curveTaskNumber"));
         this.status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        this.serialNumOfTheUnitTest.setCellValueFactory(new PropertyValueFactory<>("PruflingID"));
+        this.serialNumOfTheUnitTest.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
     }
 }

@@ -24,6 +24,7 @@ public class UnitUnderTestDao {
             if (rs.next()) {
                 unitUnderTest = new UnitUnderTest(
                         rs.getInt("Prufling_ID"),
+                        rs.getInt("Slot_ID"),
                         rs.getString("Serialnumber"),
                         rs.getString("CurveTaskNumber"),
                         rs.getBoolean("Status")
@@ -45,6 +46,7 @@ public class UnitUnderTestDao {
             while (rs.next()) {
                 unitUnderTests.add(new UnitUnderTest(
                         rs.getInt("Prufling_ID"),
+                        rs.getInt("Slot_ID"),
                         rs.getString("Serialnumber"),
                         rs.getString("CurveTaskNumber"),
                         rs.getBoolean("Status")
