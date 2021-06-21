@@ -346,7 +346,8 @@ public class MyJDBC {
         +-------------+--------------+-------------+
          */
         this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Prufling ("
-                + "  Prufling_ID  INT  NOT NULL  PRIMARY KEY ,"
+                + "  Prufling_ID  INT  NOT NULL AUTO_INCREMENT PRIMARY KEY ,"
+                + "  Slot_ID INT NOT NULL,"
                 + "  Serialnumber varchar(45),"
                 + "  CurveTaskNumber varchar(45),"
                 + "  Status BOOLEAN  );");
@@ -432,7 +433,7 @@ public class MyJDBC {
 
         //Prufling
         this.executeUpdateQuery("TRUNCATE table Prufling;");
-        this.executeUpdateQuery("INSERT INTO Prufling VALUES (3,'A17777','A203',TRUE)");
+        this.executeUpdateQuery("INSERT INTO Prufling VALUES (1, 3,'A17777','A203',TRUE)");
 
         //Bericht
         this.executeUpdateQuery("TRUNCATE table Bericht;");

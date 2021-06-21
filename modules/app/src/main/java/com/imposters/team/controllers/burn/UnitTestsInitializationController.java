@@ -39,9 +39,16 @@ public class UnitTestsInitializationController extends MainConfigurations implem
     public void nextClicked() {
         this.units.stream().forEach
                 (
-                        item -> addedTestingUnits.add(this.client.initHandler(item))
+                        item -> {
+                            System.out.println(" - "+item);
+                            addedTestingUnits.add(this.client.initHandler(item));
+                        }
                 );
 
+        this.changetheView();
+    }
+
+    private void changetheView() {
         App.changeView("/fxml/burnIn-views/ValidationOfUnitTests.fxml");
     }
 

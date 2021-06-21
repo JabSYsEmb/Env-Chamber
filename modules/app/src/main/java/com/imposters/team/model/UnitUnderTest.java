@@ -35,9 +35,11 @@ public class UnitUnderTest {
 
     @Override
     public String toString() {
-        return "Prufling{" +
+        return "UnitUnderTest{" +
                 "PruflingID=" + PruflingID +
                 ", serialNumber=" + serialNumber +
+                ", curveTaskNumber=" + curveTaskNumber +
+                ", status=" + status +
                 '}';
     }
 

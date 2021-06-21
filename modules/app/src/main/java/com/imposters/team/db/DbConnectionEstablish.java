@@ -8,8 +8,6 @@ public class DbConnectionEstablish {
 
     private DbConnectionEstablish() {
         this.db = new MyJDBC();
-        this.db.createDatabase();
-        this.db.insertDataIntoDatabase();
     }
 
     public static DbConnectionEstablish getInstance() {

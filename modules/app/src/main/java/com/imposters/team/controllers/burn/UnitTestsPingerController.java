@@ -63,6 +63,7 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
 
     @FXML
     public void fertigBtnClicked() {
+        int i =0;
         table.setItems(FXCollections.observableArrayList(
                 UnitTestsInitializationController.addedTestingUnits
                         .stream()
