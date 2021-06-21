@@ -11,6 +11,7 @@ import com.imposters.team.model.User;
 import javafx.scene.control.ComboBox;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -24,10 +25,17 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
 
     @FXML
     private ComboBox<String> chamberComboBox;
+    @FXML
+    private ComboBox<String> curveComboBox;
 
     @FXML
-    public void DropDownClicked() {
+    public void dropDownClicked() {
         chamberComboBox.getItems().setAll(this.getEnvChamberIps());
+    }
+
+    @FXML
+    public void dropDownCurveClicked() {
+        curveComboBox.getItems().setAll("ahmed","rami","mustafa");
     }
 
     @FXML
