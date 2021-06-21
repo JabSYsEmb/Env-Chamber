@@ -5,13 +5,15 @@ import com.imposters.team.model.*;
 import java.util.List;
 
 public class Context {
+    private static UnitUnderTest unitUnderTest;
     private static List<String> setMsgToSent;
     private static EnvChamber envChamber;
-    private static UnitUnderTest unitUnderTest;
     private static List<Test> tests;
     private static Report report;
-    private static User user;
 
+    private static Curve curve;
+
+    private static User user;
     public static List<String> getSetMsgToSent() {
         return setMsgToSent;
     }
@@ -63,5 +65,13 @@ public class Context {
 
     public static void setChamber(EnvChamber chamber) {
         Context.envChamber = chamber;
+    }
+
+    public static Curve getCurve() {
+        return curve;
+    }
+
+    public static void setCurve(Curve curve) {
+        Context.curve = curve;
     }
 }

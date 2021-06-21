@@ -50,7 +50,7 @@
                 <Text styleClass="GeneralTextStyle"
                       layoutX="277.0"
                       layoutY="180.0"
-                      text="Wählen Sie Bitte einen Klimaschrank und einen Kurve für weitere Testung ninoaus"/>
+                      text="Wählen Sie Bitte einen Klimaschrank und einen Kurve aus"/>
 
                 <ComboBox fx:id="curveComboBox"
                           layoutX="277.0"

@@ -10,7 +10,12 @@ public class Curve {
     HashMap<Integer, CurveDefinition> CurveDefinitions = new HashMap<Integer, CurveDefinition>();
     private final int id;
     private final SimpleStringProperty taskNumber;
+
     // constructor
+    public Curve(int id, String taskNumber){
+        this.id = id;
+        this.taskNumber = new SimpleStringProperty(taskNumber);
+    }
 
     public Curve(int id, String taskNumber, HashMap<Integer, CurveDefinition> curveDefinitions) {
         this.id = id;

@@ -3,11 +3,14 @@ package com.imposters.team.dao;
 import com.imposters.team.model.CurveDefinition;
 import com.imposters.team.model.Curve;
 import com.imposters.team.db.MyJDBC;
+import com.imposters.team.model.EnvChamber;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CurveDao {
     private CurveDao() {
@@ -25,6 +28,27 @@ public class CurveDao {
                         rs.getInt("Curve_ID"),
                         rs.getString("Tasknumber"),
                         getCurveDefinitionsFromDatabase(Curve_ID, db)
+                );
+            }
+            return curve;
+        } catch (SQLException | NullPointerException ex) {
+            System.out.println("NotFoundCurveInfo, try again!");
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public static Curve getCurveFromDatabaseByTaskNumber(String taskNumber, MyJDBC db) {
+        try (PreparedStatement preparedStatement =
+                     db.getConnection().prepareStatement("SELECT Curve_ID,Tasknumber from Curve where taskNumber = ?;")) {
+            preparedStatement.setString(1, taskNumber);
+            ResultSet rs = preparedStatement.executeQuery();
+            Curve curve = null;
+            if (rs.next()) {
+                curve = new Curve(
+                        rs.getInt("Curve_ID"),
+                        rs.getString("Tasknumber"),
+                        getCurveDefinitionsFromDatabase(rs.getInt("Curve_ID"), db)
                 );
             }
             return curve;
@@ -53,5 +77,24 @@ public class CurveDao {
             ex.printStackTrace();
         }
         return CurveDefinitions;
+    }
+
+    public static List<Curve> getCurvesFromDatabase(MyJDBC db) {
+        try (PreparedStatement preparedStatement =
+                     db.getConnection().prepareStatement("SELECT * from Curve;")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            List<Curve> curveArrayList = new ArrayList<>();
+            while (rs.next()) {
+                curveArrayList.add(
+                        new Curve(
+                                rs.getInt("Curve_ID"),
+                                rs.getString("Tasknumber")
+                        ));
+            }
+            return curveArrayList;
+        } catch (SQLException | NullPointerException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }
