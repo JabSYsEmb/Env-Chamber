@@ -131,7 +131,7 @@ ComboBox{
 /* Design of Overall GUI */
 
 BorderPane{
-    -fx-pref-heigh:               window-height;
+    -fx-pref-height:              window-height;
     -fx-pref-width:                window-width;
     -fx-background-color:      background-color;
 }
