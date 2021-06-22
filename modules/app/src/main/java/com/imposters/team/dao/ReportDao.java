@@ -25,15 +25,14 @@ public class ReportDao {
             ex.printStackTrace();
         }
         try (PreparedStatement preparedStatement =
-                     db.getConnection().prepareStatement("INSERT INTO Test  VALUES (?,?,LAST_INSERT_ID(),?,?,?,?) ;")) {
+                     db.getConnection().prepareStatement("INSERT INTO Test  VALUES (?,LAST_INSERT_ID(),?,?,?,?) ;")) {
             int a = 0;
             while (report.getTest().size() > a) {
-                preparedStatement.setInt(1, report.getTest().get(a).getSlot_ID());
-                preparedStatement.setInt(2, report.getTest().get(a).getCurve().getId());
-                preparedStatement.setInt(3, report.getTest().get(a).getPrufling().getPruflingID());
-                preparedStatement.setBoolean(4, report.getTest().get(a).isFailurestatus());
-                preparedStatement.setInt(5, report.getTest().get(a).getTakenduration());
-                preparedStatement.setDate(6, null);
+                preparedStatement.setInt(1, report.getTest().get(a).getCurve().getId());
+                preparedStatement.setInt(2, report.getTest().get(a).getPrufling().getPruflingID());
+                preparedStatement.setBoolean(3, report.getTest().get(a).isFailurestatus());
+                preparedStatement.setInt(4, report.getTest().get(a).getTakenduration());
+                preparedStatement.setDate(5, null);
                 a++;
                 preparedStatement.executeUpdate();
             }

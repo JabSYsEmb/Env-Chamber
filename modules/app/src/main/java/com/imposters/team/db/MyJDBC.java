@@ -10,17 +10,13 @@ import java.security.NoSuchAlgorithmException;
 public class MyJDBC {
     //Part 1
     private static final String DB_DEFAULT_DATABASE = "mydb";
-    private static final String DB_DEFAULT_SERVER_URL = "172.16.103.136:3310";
-    private static final String DB_DEFAULT_ACCOUNT = "sa";
-    private static final String DB_DEFAULT_PASSWORD = "123456";
-
+    private static final String DB_DEFAULT_SERVER_URL = "localhost:3306/mydb?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=Turkey#";
+    private static final String DB_DEFAULT_ACCOUNT = "root";
+    private static final String DB_DEFAULT_PASSWORD = "1234";
     private final static String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
     private final static String DB_DRIVER_PREFIX = "jdbc:mysql://";
     private final static String DB_DRIVER_PARAMETERS = "";
-
     private Connection connection = null;
-
-
     private boolean verbose = true;
     // remembers the first error message on the connection
 
@@ -285,18 +281,17 @@ public class MyJDBC {
                 + " AdminStatus  BOOLEAN);");
 
         /*
-        +----------+------------+----------+
-        | Curve_ID | Tasknumber | Duration |
-        +----------+------------+----------+
-        |        1 | 200A       | NULL     |
-        |        2 | 201A       | NULL     |
-        |        3 | 202A       | NULL     |
-        +----------+------------+----------+
+        +----------+------------+
+        | Curve_ID | Tasknumber |
+        +----------+------------+
+        |        1 | 200A       |
+        |        2 | 201A       |
+        |        3 | 202A       |
+        +----------+------------+
              */
         this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Curve ("
                 + "Curve_ID INT(10) NOT NULL AUTO_INCREMENT  PRIMARY KEY,"
-                + " Tasknumber VARCHAR(45),"
-                + " Duration VARCHAR(100));");
+                + " Tasknumber VARCHAR(45));");
 
         /*
         +------+------+----------+-------------+----------+
@@ -319,12 +314,14 @@ public class MyJDBC {
                 + " FOREIGN KEY (Curve_ID) REFERENCES Curve(Curve_ID));");
 
         /*
-        +---------------+-----------+-------------+
-        | Envchamber_ID | Ip        | temperature |
-        +---------------+-----------+-------------+
-        |             1 | 127.04.39 |        NULL |
-        |             2 | 536.02.01 |        NULL |
-        +---------------+-----------+-------------+
+        +---------------+-----------------+-------------+----------------+--------------+
+        | Envchamber_ID | Ip              | FailureRate | maxTemperature | responseTime |
+        +---------------+-----------------+-------------+----------------+--------------+
+        |             1 | 192.16.103.132  |          10 |             90 |           25 |
+        |             2 | 192.16.100.2    |          20 |             80 |           20 |
+        |             3 | 51.16.10.1      |          20 |             80 |           20 |
+        |             4 | 142.250.187.142 |          20 |             80 |           10 |
+        +---------------+-----------------+-------------+----------------+--------------+
          */
         this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Envchamber ("
                 + "  Envchamber_ID INT  NOT NULL AUTO_INCREMENT  PRIMARY KEY ,"
@@ -334,13 +331,13 @@ public class MyJDBC {
                 + "  responseTime INT);");
 
         /*
-        +-------------+--------------+-------------+
-        | Prufling_ID | Serialnumber | Maxduration |
-        +-------------+--------------+-------------+
-        |           1 | A10252       |          30 |
-        |           2 | A15425       |          20 |
-        |           3 | A17777       |          20 |
-        +-------------+--------------+-------------+
+        +-------------+---------+--------------+-----------------+--------+
+        | Prufling_ID | Slot_ID | Serialnumber | CurveTaskNumber | Status |
+        +-------------+---------+--------------+-----------------+--------+
+        |           1 |       3 | A17777       | A203            |      1 |
+        +-------------+---------+--------------+-----------------+--------+
+
+
          */
         this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Prufling ("
                 + "  Prufling_ID  INT  NOT NULL AUTO_INCREMENT PRIMARY KEY ,"
@@ -356,6 +353,7 @@ public class MyJDBC {
         +------------+---------+---------------+------+
         |          1 |       2 |             1 | NULL |
         |          2 |       3 |             1 | NULL |
+        |          3 |       1 |             1 | NULL |
         +------------+---------+---------------+------+
          */
         this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Bericht ("
@@ -368,19 +366,18 @@ public class MyJDBC {
 
 
         /*
-        +---------+----------+------------+-------------+---------------+---------------+--------------+
-        | Slot_ID | Curve_ID | Bericht_ID | Prufling_ID | Failurestatus | Takenduration | Startingtime |
-        +---------+----------+------------+-------------+---------------+---------------+--------------+
-        |       1 |        1 |          1 |           1 |             1 |            50 | NULL         |
-        |       2 |        2 |          1 |           1 |             1 |            70 | NULL         |
-        |       3 |        2 |          2 |           3 |             0 |            20 | NULL         |
-        |       4 |        1 |          1 |           1 |             0 |             5 | NULL         |
-        |       5 |        2 |          2 |           2 |             1 |            60 | NULL         |
-        |       6 |        3 |          2 |           3 |             0 |             3 | NULL         |
-        +---------+----------+------------+-------------+---------------+---------------+--------------+
+        +----------+------------+-------------+---------------+---------------+--------------+
+        | Curve_ID | Bericht_ID | Prufling_ID | Failurestatus | Takenduration | Startingtime |
+        +----------+------------+-------------+---------------+---------------+--------------+
+        |        1 |          1 |           1 |             1 |            50 | NULL         |
+        |        2 |          1 |           1 |             1 |            70 | NULL         |
+        |        2 |          2 |           3 |             0 |            20 | NULL         |
+        |        1 |          1 |           1 |             0 |             5 | NULL         |
+        |        2 |          2 |           2 |             1 |            60 | NULL         |
+        |        3 |          2 |           3 |             0 |             3 | NULL         |
+        +----------+------------+-------------+---------------+---------------+--------------+
          */
         this.executeUpdateQuery("CREATE TABLE IF NOT EXISTS Test ("
-                + "  Slot_ID  INT  NOT NULL  ,"
                 + "  Curve_ID INT(10),"
                 + "  Bericht_ID INT,"
                 + "  Prufling_ID  INT,"
@@ -440,12 +437,12 @@ public class MyJDBC {
 
         //Test
         this.executeUpdateQuery("TRUNCATE table Test;");
-        this.executeUpdateQuery("INSERT INTO Test VALUES (1,1,1,1, true,50,NULL)");
-        this.executeUpdateQuery("INSERT INTO Test VALUES (2,2,1,1,true,70,NULL)");
-        this.executeUpdateQuery("INSERT INTO Test VALUES (3,2,2,3,false,20, NULL)");
-        this.executeUpdateQuery("INSERT INTO Test VALUES (4,1,1,1,false,5, NULL)");
-        this.executeUpdateQuery("INSERT INTO Test VALUES (5,2,2,2,true,60, NULL)");
-        this.executeUpdateQuery("INSERT INTO Test VALUES (6,3,2,3,false,3, NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (1,1,1, true,50,NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (2,1,1,true,70,NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (2,2,3,false,20, NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (1,1,1,false,5, NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (2,2,2,true,60, NULL)");
+        this.executeUpdateQuery("INSERT INTO Test VALUES (3,2,3,false,3, NULL)");
 
         this.executeUpdateQuery(SET_FOREIGN_KEY_CHECKS_1);
     }
