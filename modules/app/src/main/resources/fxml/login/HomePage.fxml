@@ -53,8 +53,8 @@
 
                 <Label fx:id="alertMessage"
                        styleClass="alertMessage"
-                       layoutX="280.0"
-                       layoutY="275.0"/>
+                       layoutX="277.0"
+                       layoutY="277.0"/>
 
                 <Button fx:id="loginBtn"
                         styleClass="button1"

@@ -1,14 +1,11 @@
 package com.imposters.team.db;
 
-import com.imposters.team.model.User;
-
 import java.sql.*;
 import java.math.BigInteger;
 import java.util.Enumeration;
 import java.security.MessageDigest;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 public class MyJDBC {
     //Part 1

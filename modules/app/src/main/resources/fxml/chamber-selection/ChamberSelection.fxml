@@ -57,6 +57,11 @@
                           layoutY="230.0"
                           onMouseClicked="#dropDownCurveClicked"/>
 
+                <Label fx:id="alertMessage"
+                       styleClass="alertMessage"
+                       layoutX="277.0"
+                       layoutY="277.0"/>
+
                 <Button styleClass="button1"
                         layoutX="612.0"
                         layoutY="270.0"

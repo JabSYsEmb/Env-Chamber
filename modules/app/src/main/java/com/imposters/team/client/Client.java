@@ -112,4 +112,8 @@ public class Client {
     private void pingHandler(String responseFromServer) {
         System.out.println("Check the response failed Or Not and get the failure rate of the response");
     }
+
+    public boolean checkConnection() throws Exception {
+        return this.echoSocket.isConnected();
+    }
 }

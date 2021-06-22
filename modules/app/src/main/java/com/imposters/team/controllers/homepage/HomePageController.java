@@ -5,13 +5,18 @@ import com.imposters.team.App;
 
 import com.imposters.team.controllers.context.Context;
 import com.imposters.team.dao.UserDao;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import com.imposters.team.model.User;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class HomePageController extends MainConfigurations {
+
+public class HomePageController extends MainConfigurations implements Initializable {
     @FXML
     private Label alertMessage;
 
@@ -46,6 +51,24 @@ public class HomePageController extends MainConfigurations {
         passwordTextField.clear();
         usernameTextField.clear();
         alertMessage.setText("invalid username or password, try again!");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.checkDatabaseStatus();
+    }
+
+    public void checkDatabaseStatus() {
+        try {
+            if(!this.db.getConnection().isClosed()) {
+                this.alertMessage.setText("Connection Database is established successfully.");
+                this.alertMessage.setStyle("-fx-text-fill:BLUE;");
+            }else{
+                this.alertMessage.setText("Something has gone wrong with Database Connection.");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
 

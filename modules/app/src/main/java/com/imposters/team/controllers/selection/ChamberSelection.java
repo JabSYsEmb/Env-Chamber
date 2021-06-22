@@ -11,6 +11,7 @@ import com.imposters.team.model.User;
 import javafx.scene.control.ComboBox;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -26,6 +27,8 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
     private ComboBox<String> chamberComboBox;
     @FXML
     private ComboBox<String> curveComboBox;
+    @FXML
+    private Label alertMessage;
 
     @FXML
     public void dropDownClicked() {
@@ -70,6 +73,7 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
     public void initialize(URL location, ResourceBundle resources) {
         user = Context.getUser();
         this.setStatusBar(user);
+        this.statusOfServer();
     }
 
     public List<String> getEnvChamberIps() {
@@ -84,6 +88,18 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
                 .stream()
                 .map(item -> item.getTaskNumber())
                 .collect(Collectors.toList());
+    }
+
+    public void statusOfServer() {
+        try {
+            if (this.client.checkConnection()) {
+                alertMessage.setText("Server funktioniert, können Sie weitere!");
+                alertMessage.setStyle("-fx-text-fill:BLUE;");
+            }
+        } catch (Exception ex) {
+            alertMessage.setText("Mit dem Server ist ein Fehler aufgetreten.");
+            ex.printStackTrace();
+        }
     }
 }
 
