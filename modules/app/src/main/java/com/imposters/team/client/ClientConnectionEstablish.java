@@ -7,7 +7,7 @@ public class ClientConnectionEstablish {
     protected Client client;
 
     private ClientConnectionEstablish() {
-        this.client = new Client("127.0.0.1", 1111);
+        this.client = new Client("127.0.0.1", 2332);
     }
 
     public static ClientConnectionEstablish getInstance() {

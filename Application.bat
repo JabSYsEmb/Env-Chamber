@@ -1,0 +1,1 @@
+java -jar .\modules\app\target\app-1.jar

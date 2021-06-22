@@ -10,7 +10,7 @@ GOTO BUILD
 
 :build
 
-mvn clean package && .\modules\app\target\app-1.exe
+mvn clean package
 
 :kill
 
