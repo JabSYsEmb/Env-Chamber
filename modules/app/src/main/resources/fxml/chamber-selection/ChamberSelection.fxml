@@ -62,7 +62,8 @@
                        layoutX="277.0"
                        layoutY="277.0"/>
 
-                <Button styleClass="button1"
+                <Button fx:id="nextBtn"
+                        styleClass="button1"
                         layoutX="612.0"
                         layoutY="270.0"
                         onMouseClicked="#nextClicked"

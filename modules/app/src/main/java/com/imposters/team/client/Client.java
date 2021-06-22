@@ -35,6 +35,7 @@ public class Client {
     public void socketInitializer() {
         try {
             this.echoSocket = new Socket(this.hostName, this.portNumber);
+            System.out.println("CLIENT: Connection to Server has been established successfully.");
 
             this.toServer =
                     new PrintWriter(echoSocket.getOutputStream(), true);

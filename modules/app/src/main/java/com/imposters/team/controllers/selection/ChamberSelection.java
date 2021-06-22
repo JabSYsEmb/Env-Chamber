@@ -8,6 +8,7 @@ import com.imposters.team.dao.CurveDao;
 import com.imposters.team.dao.EnvChamberDao;
 import com.imposters.team.model.EnvChamber;
 import com.imposters.team.model.User;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -21,7 +22,6 @@ import java.util.stream.Collectors;
 
 public class ChamberSelection extends MainConfigurations implements Initializable {
     private User user;
-    private List<EnvChamber> envChamberList;
 
     @FXML
     private ComboBox<String> chamberComboBox;
@@ -29,6 +29,8 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
     private ComboBox<String> curveComboBox;
     @FXML
     private Label alertMessage;
+    @FXML
+    private Button nextBtn;
 
     @FXML
     public void dropDownClicked() {
@@ -98,6 +100,7 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
             }
         } catch (Exception ex) {
             alertMessage.setText("Mit dem Server ist ein Fehler aufgetreten.");
+            nextBtn.setDisable(true);
             ex.printStackTrace();
         }
     }

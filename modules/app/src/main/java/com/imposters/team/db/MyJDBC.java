@@ -552,7 +552,7 @@ public class MyJDBC {
                                 DB_DEFAULT_SERVER_URL +
                                 "/" +
                                 DB_DEFAULT_DATABASE +
-                                " has been established successfully"
+                                " has been established successfully."
                 );
             }
         } catch (SQLException ex) {
