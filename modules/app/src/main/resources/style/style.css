@@ -297,18 +297,24 @@ BorderPane{
    -fx-size:                         cell-width;
    -fx-border-color:                 main-color;
    -fx-wrap-text:                          true;
+   -fx-font-weight:                        bold;
    -fx-border-width:                          2;
    -fx-background-color:             main-color;
 }
 .table-row-cell, .tree-table-row-cell {
    -fx-cell-size:                   cell-height;
+   -fx-text-alignment:                   center;
 }
 .table-view .column-header .label{
    -fx-text-fill:                         white;
+   -fx-alignment:                        center;
 }
 .table-row-cell:selected {
    -fx-background-color:             main-color;
-   -fx-text-background-color:        main-color;
+   -fx-text-background-color:   text-main-color;
+}
+.table-column {
+  -fx-alignment: CENTER;
 }
 /* End of Tables */
 
