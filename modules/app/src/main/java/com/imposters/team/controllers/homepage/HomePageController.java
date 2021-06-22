@@ -55,16 +55,13 @@ public class HomePageController extends MainConfigurations implements Initializa
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.checkDatabaseStatus();
+//        this.checkDatabaseStatus();
     }
 
     public void checkDatabaseStatus() {
         try {
             if(!this.db.getConnection().isClosed()) {
-                this.alertMessage.setText("Connection Database is established successfully.");
-                this.alertMessage.setStyle("-fx-text-fill:BLUE;");
-            }else{
-                this.alertMessage.setText("Something has gone wrong with Database Connection.");
+                this.alertMessage.setText("Prüfen Sie Ihre Datenbankverbindung");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
