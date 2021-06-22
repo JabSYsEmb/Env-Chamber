@@ -6,29 +6,27 @@ The prerequistes for building this project are the following:
 
 ## Building steps 
 At the first modify the database configuration to whatever works on your machine in the [MyJDBC Class](https://github.com/JabSYsEmb/Env-Chamber/blob/main/modules/app/src/main/java/com/imposters/team/db/MyJDBC.java)
-Then, follow run the following commands in your terminal:
-### For Windows users:
+Then, run the following commands in your terminal:
+### For Windows & Linux users :
 ```bash
 git clone https://github.com/JabSYsEmb/Env-Chamber.git
 cd ./Env-Chamber
-buildrun.cmd
+buildProject.bat 
 ```
-The buildrun batch file should do the whole works for you, in case any problem occurs you can follow the same steps as a linux user.
-### For Linux users:
+The buildProject batch file should do the whole cleaning and packaging of the project for you.
+After the project is built, we need to run the application and the server in two seperated terminals.
+
+### In First Terminal:
+At the first, we need to start the server to let the application communicate with it, the server is set up to run and listen automatically to port 2332 (in case you want to change the port you need to change in both in the server and the client class in the application).
+Type the following for starting the server:
+```
+StartServer.bat
+```
+
+### In Second Terminal:
+Now we need to run the application by typing the following command in a seperated terminal
 ```bash
-git clone https://github.com/JabSYsEmb/Env-Chamber.git
-cd ./Env-Chamber
-mvn clean package
-java -jar ./modules/app/target/app-1.jar
-```
-### to start the server:
-After the building has been done and regardless of whatever operating system you use, you should run the following commands in order to start the server:
-```bash
-java -jar ./modules/server/target/server-1.jar <port>
-```
-The port argument is optional since the server is set to listen on port 2332 as default but it is possible to change the port by passing it to the server, for instance:
-```
-java -jar ./modules/server/target/server-1.jar 2021
+Application.bat
 ```
 
 Wait for more, 
