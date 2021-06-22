@@ -1,0 +1,1 @@
+java -jar .\modules\server\target\server-1.jar
