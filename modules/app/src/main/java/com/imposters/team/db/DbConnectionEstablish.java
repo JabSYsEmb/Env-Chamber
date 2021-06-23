@@ -1,7 +1,7 @@
 package com.imposters.team.db;
 
 public class DbConnectionEstablish {
-    // singleton Design Pattern Applied in to avoid initializing more then one Connection to DB.
+    // Singleton Design Pattern Applied in to avoid initializing more then one Connection to DB.
 
     private static volatile DbConnectionEstablish instance;
     protected MyJDBC db;

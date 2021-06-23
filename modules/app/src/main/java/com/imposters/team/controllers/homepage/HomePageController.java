@@ -38,7 +38,7 @@ public class HomePageController extends MainConfigurations implements Initializa
             User user = UserDao.getUserFromDatabase(username, this.db);
             if (user.getPassword().equals(this.db.passwordEncrypter(password))) {
                 Context.setUser(user);
-                App.changeView("/fxml/chamber-selection/ChamberSelection.fxml");
+                App.changeView("/fxml/report/ReportReview.fxml");
             } else {
                 textFieldCleaner();
             }
@@ -50,7 +50,7 @@ public class HomePageController extends MainConfigurations implements Initializa
     public void textFieldCleaner() {
         passwordTextField.clear();
         usernameTextField.clear();
-        alertMessage.setText("invalid username or password, try again!");
+        alertMessage.setText("Ungültiger Benutzername oder Passwort!");
     }
 
     @Override

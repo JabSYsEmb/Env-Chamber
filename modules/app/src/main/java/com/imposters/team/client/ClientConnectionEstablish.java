@@ -3,6 +3,7 @@ package com.imposters.team.client;
 import com.imposters.team.db.DbConnectionEstablish;
 
 public class ClientConnectionEstablish {
+    // Singleton Design Pattern Applied in to avoid initializing more then one Connection to the Server.
     private static volatile ClientConnectionEstablish instance;
     protected Client client;
 

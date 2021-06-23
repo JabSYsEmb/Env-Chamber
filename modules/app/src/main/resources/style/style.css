@@ -317,9 +317,9 @@ BorderPane{
 }
 /* End of Tables */
 
-/* ************************************** */
+/* ******************************************** */
 /* * This part is dedicated for progress-bar ** */
-/* ************************************** */
+/* ******************************************** */
 .progress-bar {
     -fx-accent: main-color;
     -fx-background-color:      background-color;
