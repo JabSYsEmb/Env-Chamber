@@ -96,7 +96,7 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
         try {
             if (this.client.checkConnection()) {
                 alertMessage.setText("Server funktioniert, können Sie weitere!");
-                alertMessage.setStyle("-fx-text-fill:BLUE;");
+                alertMessage.setStyle("-fx-text-fill:#054671;");
             }
         } catch (Exception ex) {
             alertMessage.setText("Mit dem Server ist ein Fehler aufgetreten.");

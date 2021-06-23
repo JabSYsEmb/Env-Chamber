@@ -39,11 +39,10 @@ public class UnitTestsInitializationController extends MainConfigurations implem
     public void nextClicked() {
         this.units.stream().forEach
                 (
-                        item -> {
-                            System.out.println("Sending - " + item);
-                            addedTestingUnits.add(this.client.initHandler(item));
-                        }
+                        item ->
+                                addedTestingUnits.add(this.client.initHandler(item))
                 );
+
         this.changeTheView();
     }
 

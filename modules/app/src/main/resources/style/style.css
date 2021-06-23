@@ -33,11 +33,10 @@
     -fx-alignment:                       CENTER;
     -fx-pref-height:             infoBar-height;
     -fx-pref-width:               infoBar-width;
-    -fx-border-color:                     BLACK;
-    -fx-background-color:     second-main-color;
+    -fx-background-color:            main-color;
 }
 .statusStyle{
-    -fx-text-fill:                         BLUE;
+    -fx-text-fill:                        WHITE;
 }
 
 #statusChamber{

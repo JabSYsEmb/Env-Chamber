@@ -95,8 +95,8 @@
                         styleClass="button1"
                         layoutX="272.0"
                         layoutY="320.0"
-                        onAction="#fertigBtnClicked"
-                        text="Fertig"/>
+                        onAction="#startPingOverUnits"
+                        text="Ping"/>
 
                 <Button fx:id="entfernenBtn"
                         styleClass="button1"

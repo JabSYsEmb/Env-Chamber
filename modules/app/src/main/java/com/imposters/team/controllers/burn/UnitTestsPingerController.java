@@ -58,18 +58,12 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
         String Slot = SlotTextField.getText();
         String BauteilID = BauteilIDTextField.getText();
         alertMessageBurnIn.setText("Ich bin eine Warnungsnachricht");
-        App.changeView("/fxml/burnIn-views/UnitTestsStarter.fxml");
+//        App.changeView("/fxml/burnIn-views/UnitTestsStarter.fxml");
     }
 
     @FXML
-    public void fertigBtnClicked() {
-//        table.getItems().setAll(UnitTestsInitializationController.addedTestingUnits);
-        table.setItems(FXCollections.observableArrayList(
-                UnitTestsInitializationController.addedTestingUnits
-                        .stream()
-                        .filter((UnitUnderTest unitUnderTest) -> unitUnderTest != null)
-                        .collect(Collectors.toList())
-        ));
+    public void startPingOverUnits() {
+        table.getItems().stream().forEach(item -> this.client.pingHandler(item));
     }
 
     public void hinzufügenBtnClicked() {
@@ -86,6 +80,7 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
         new ClockController(10, "Hi My Friend").run(this.clock, this.massage);
         this.setStatusBar(Context.getUser(), Context.getEnvChamber());
         this.buildTable();
+        this.fillTableWithInitializedTestingUnits();
     }
 
     public void buildTable() {
@@ -93,5 +88,14 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
         this.orderNumber.setCellValueFactory(new PropertyValueFactory<>("curveTaskNumber"));
         this.status.setCellValueFactory(new PropertyValueFactory<>("status"));
         this.serialNumOfTheUnitTest.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
+    }
+
+    public void fillTableWithInitializedTestingUnits() {
+        table.setItems(FXCollections.observableArrayList(
+                UnitTestsInitializationController.addedTestingUnits
+                        .stream()
+                        .filter((UnitUnderTest unitUnderTest) -> unitUnderTest != null)
+                        .collect(Collectors.toList())
+        ));
     }
 }

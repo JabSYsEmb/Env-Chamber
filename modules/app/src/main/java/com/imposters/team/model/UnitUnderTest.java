@@ -75,6 +75,7 @@ public class UnitUnderTest {
     public String toString() {
         return "UnitUnderTest{" +
                 "PruflingID=" + PruflingID +
+                ", slotId=" + slotId +
                 ", serialNumber=" + serialNumber +
                 ", curveTaskNumber=" + curveTaskNumber +
                 ", status=" + status +

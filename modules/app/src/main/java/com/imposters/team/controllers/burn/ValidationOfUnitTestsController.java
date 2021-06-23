@@ -41,19 +41,12 @@ public class ValidationOfUnitTestsController extends MainConfigurations implemen
             this.weiterBtn.setText("Weiter");
             status = false;
         }else {
-            App.changeView("/fxml/burnIn-views/UnitTestsPinger.fxml");
+            App.changeView("/fxml/burnIn-views/UnitTestsStarter.fxml");
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        UnitTestsInitializationController.addedTestingUnits
-                .stream()
-                .filter((UnitUnderTest unitUnderTest) -> unitUnderTest != null)
-                .collect(Collectors.toList())
-                .stream()
-                .forEach(item -> System.out.println(item));
 
         // Ending The initialization
         this.client.toServer("ENDINIT");
@@ -68,8 +61,8 @@ public class ValidationOfUnitTestsController extends MainConfigurations implemen
         for (int i = 1; i <= 20; i++) {
             this.preTestList.add("PRETST|" + i);
         }
-        this.preTestList.add("ENDPRE");
         this.preTestList.stream().forEach(item -> this.client.toServer(item));
+        this.client.toServer("ENDPRE");
     }
 
 }

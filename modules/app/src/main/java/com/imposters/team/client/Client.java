@@ -2,6 +2,7 @@ package com.imposters.team.client;
 
 import com.imposters.team.controllers.context.Context;
 import com.imposters.team.model.UnitUnderTest;
+import com.sun.javafx.binding.StringFormatter;
 
 import java.util.List;
 import java.net.Socket;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.InputStreamReader;
@@ -52,6 +54,7 @@ public class Client {
     }
 
     public void toServer(String msg) {
+        System.out.println("Sending - " + new StringTokenizer(msg).nextToken("|"));
         try {
             this.toServer.println(msg);
             this.fromServer.readLine();
@@ -61,6 +64,7 @@ public class Client {
     }
 
     private String getMessageFromServer(String toServerMsg) {
+        System.out.println("Sending - " + new StringTokenizer(toServerMsg).nextToken("|"));
         this.toServer.println(toServerMsg);
         String gottenMsg;
         try {
@@ -110,7 +114,14 @@ public class Client {
     }
 
 
-    private void pingHandler(String responseFromServer) {
+    public void pingHandler(UnitUnderTest unitUnderTest) {
+        this.toServer("STRTBURNIN");
+        this.toServer("SETTARGET|70.5|180|3|5");
+        String toSeverMsg = "PING|" + unitUnderTest.getSlotId();
+        long startTime = System.nanoTime();
+        this.getMessageFromServer(toSeverMsg);
+        long endTime = System.nanoTime();
+        System.out.println(String.format("CLIENT: server has responded in {%d} ms",((endTime - startTime)/(1000000))));
         System.out.println("Check the response failed Or Not and get the failure rate of the response");
     }
 

@@ -1,5 +1,6 @@
 package com.imposters.team.controllers.burn;
 
+import com.imposters.team.App;
 import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.controllers.clock.ClockController;
 
@@ -33,6 +34,7 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     public void nextClicked() {
 
         //App.changeView("/fxml/burnIn-views/ReportReview.fxml");
+        App.changeView("/fxml/burnIn-views/UnitTestsPinger.fxml");
         message.setText("Hallo heißer ich bin Message");
         progressBar.setProgress(0.88);
         Tempratur.setText("0080.9");
