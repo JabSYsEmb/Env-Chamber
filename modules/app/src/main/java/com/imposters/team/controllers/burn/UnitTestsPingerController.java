@@ -58,7 +58,6 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
         String Slot = SlotTextField.getText();
         String BauteilID = BauteilIDTextField.getText();
         alertMessageBurnIn.setText("Ich bin eine Warnungsnachricht");
-//        App.changeView("/fxml/burnIn-views/UnitTestsStarter.fxml");
     }
 
     @FXML

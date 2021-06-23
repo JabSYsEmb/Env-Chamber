@@ -43,13 +43,13 @@
                            styleClass="textBoxLogin"
                            layoutX="277.0"
                            layoutY="190.0"
-                           promptText="Artikelnummer"/>
+                           promptText="Slot Nr."/>
 
                 <TextField fx:id="orderNumber"
                            styleClass="textBoxLogin"
                            layoutX="277.0"
                            layoutY="230.0"
-                           promptText="Auftragsnummer"/>
+                           promptText="Bauteil ID"/>
 
                 <Label fx:id="alertMessageInit"
                        styleClass="alertMessage"

@@ -98,11 +98,18 @@ public class Client {
         }
     }
 
-    private void opertempHandler(String readLine) {
-        long startTime = System.nanoTime();
-        System.out.println("calculate the response time in Milliseconds...");
-        long stopTime = System.nanoTime();
-        System.out.println("Execution time " + (stopTime - startTime) + "nano seconds");
+    public float opertempHandler() {
+        String fromServerMsg = this.getMessageFromServer("OPERTEMP");
+
+        String responsePatter = "OPERTEMP-RESP:(.*?)";
+
+        Matcher matcher = Pattern.compile(responsePatter).matcher(fromServerMsg);
+
+        if(matcher.matches()) {
+            return Float.parseFloat(matcher.group(1));
+        }else{
+            return -1;
+        }
     }
 
     private void pretestHandler(String test) {
@@ -115,8 +122,7 @@ public class Client {
 
 
     public void pingHandler(UnitUnderTest unitUnderTest) {
-        this.toServer("STRTBURNIN");
-        this.toServer("SETTARGET|70.5|180|3|5");
+        this.toServer("STRTPING|25");
         String toSeverMsg = "PING|" + unitUnderTest.getSlotId();
         long startTime = System.nanoTime();
         this.getMessageFromServer(toSeverMsg);

@@ -4,6 +4,7 @@ import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.App;
 
 import com.imposters.team.controllers.context.Context;
+import com.imposters.team.dao.CurveDao;
 import com.imposters.team.dao.UserDao;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -36,9 +37,10 @@ public class HomePageController extends MainConfigurations implements Initializa
             String password = passwordTextField.getText();
             String username = usernameTextField.getText();
             User user = UserDao.getUserFromDatabase(username, this.db);
+
             if (user.getPassword().equals(this.db.passwordEncrypter(password))) {
                 Context.setUser(user);
-                App.changeView("/fxml/report/ReportReview.fxml");
+                App.changeView("/fxml/chamber-selection/ChamberSelection.fxml");
             } else {
                 textFieldCleaner();
             }
@@ -55,12 +57,12 @@ public class HomePageController extends MainConfigurations implements Initializa
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        this.checkDatabaseStatus();
+
     }
 
     public void checkDatabaseStatus() {
         try {
-            if(!this.db.getConnection().isClosed()) {
+            if (!this.db.getConnection().isClosed()) {
                 this.alertMessage.setText("Prüfen Sie Ihre Datenbankverbindung");
             }
         } catch (SQLException throwables) {
