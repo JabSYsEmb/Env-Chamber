@@ -12,7 +12,7 @@ public class ReportDao {
         throw new IllegalStateException("Utility class");
     }
 
-    public static void setReportinDatabase(Report report, MyJDBC db) {
+    public static boolean setReportinDatabase(Report report, MyJDBC db) {
         try (PreparedStatement preparedStatement =
                      db.getConnection().prepareStatement("INSERT INTO Bericht (User_ID,Envchamber_ID,Date) VALUES (?,?,?) ;")) {
             db.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
@@ -37,9 +37,11 @@ public class ReportDao {
                 preparedStatement.executeUpdate();
             }
             db.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 1;");
+            return true;
         } catch (SQLException | NullPointerException ex) {
             System.out.println("NotFoundReportInfo, try again!");
             ex.printStackTrace();
+            return false;
         }
     }
 }

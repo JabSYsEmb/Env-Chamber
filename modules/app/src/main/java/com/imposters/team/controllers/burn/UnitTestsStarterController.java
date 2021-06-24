@@ -56,11 +56,21 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.weiterBtn.setText("Testen");
-        new ClockController(5, "UnitTestsStarterController").run(clock, message);
         this.setStatusBar(Context.getUser(), Context.getEnvChamber());
+        this.startClock();
         // Sending BurnIn Message to the server
         this.client.toServer("STRTBURNIN");
         this.setTemperatureThread();
+    }
+
+    public void startClock() {
+        this.clockController = new ClockController(5, "Burn-in Test ist beendet");
+        this.clockController.run(clock, message);
+    }
+
+    public void stopClock() {
+        this.Testdauer.setText("Voraussichtliche Testdauer: " + clockController.getCurrentTime());
+        this.clockController.stopStopwatch();
     }
 
     public void setTemperatureThread() {
@@ -88,9 +98,6 @@ public class UnitTestsStarterController extends MainConfigurations implements In
         Thread.sleep(1000);
     }
 
-    public void stopTheRunningThread() {
-        temperatureUpdaterThread = null;
-    }
 
     public List<CurveDefinition> getCurveDefinitionForTest(int curveId, MyJDBC db) {
         List<CurveDefinition> curveDefinitionList = new ArrayList<>();
@@ -117,6 +124,7 @@ public class UnitTestsStarterController extends MainConfigurations implements In
             }
         });
         this.changeTheStatusOfTheWeiterBtn();
+        this.stopClock();
     }
 
     public void changeTheStatusOfTheWeiterBtn() {

@@ -3,8 +3,11 @@ package com.imposters.team.controllers.report;
 import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.controllers.burn.UnitTestsInitializationController;
 import com.imposters.team.controllers.context.Context;
+import com.imposters.team.dao.ReportDao;
+import com.imposters.team.db.MyJDBC;
+import com.imposters.team.model.Report;
+import com.imposters.team.model.Test;
 import com.imposters.team.model.UnitUnderTest;
-import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -13,9 +16,9 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.stream.Collectors;
@@ -50,7 +53,7 @@ public class ReportReviewController extends MainConfigurations implements Initia
     @Override
     @FXML
     public void nextClicked() {
-
+        this.insertBerichtIntoDatabase(null, this.db);
     }
 
 
@@ -60,6 +63,27 @@ public class ReportReviewController extends MainConfigurations implements Initia
         this.setBerichtIDInformation();
     }
 
+    public boolean insertBerichtIntoDatabase(Report report, MyJDBC myJDBC) {
+        if(ReportDao.setReportinDatabase(report, myJDBC)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public void reportCreator() {
+        // User, EnvChamber, LocalDate, List<UnitUnderTests>
+        Report report = new Report(
+                Context.getUser(),
+                Context.getEnvChamber(),
+                LocalDateTime.now().toLocalDate(),
+                null);
+    }
+
+    public List<Test> testListCreater() {
+        return null;
+    }
+    
     public void setBerichtIDInformation() {
         this.buildTable();
         this.fillTableWithInitializedTestingUnits();
@@ -69,7 +93,7 @@ public class ReportReviewController extends MainConfigurations implements Initia
     }
 
     public void setDatum(){
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDateTime now = LocalDateTime.now();
         this.datum.setText(dtf.format(now));
     }
