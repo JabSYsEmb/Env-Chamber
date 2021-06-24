@@ -83,7 +83,7 @@ public class ReportReviewController extends MainConfigurations implements Initia
     public List<Test> testListCreater() {
         return null;
     }
-    
+
     public void setBerichtIDInformation() {
         this.buildTable();
         this.fillTableWithInitializedTestingUnits();

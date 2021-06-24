@@ -57,5 +57,20 @@ public class UnitUnderTestDao {
         }
         return unitUnderTests;
     }
+
+    public static void insertUnitUnderTestIntoDB(UnitUnderTest unitUnderTest,MyJDBC db){
+        try (PreparedStatement preparedStatement =
+                     db.getConnection().prepareStatement("INSERT INTO Prufling (Slot_ID,Serialnumber,CurveTaskNumber, Status) VALUES (?,?,?,?) ;")) {
+            db.executeUpdateQuery("SET FOREIGN_KEY_CHECKS = 0;");
+            preparedStatement.setInt(1, unitUnderTest.getSlotId());
+            preparedStatement.setString(2, unitUnderTest.getSerialNumber());
+            preparedStatement.setString(3, unitUnderTest.getCurveTaskNumber());
+            preparedStatement.setBoolean(3, unitUnderTest.isStatus());
+            preparedStatement.executeUpdate();
+        } catch (SQLException | NullPointerException ex) {
+            System.out.println("NotFoundReportInfo, try again!");
+            ex.printStackTrace();
+        }
+    }
 }
 

@@ -4,6 +4,7 @@ import com.imposters.team.controllers.MainConfigurations;
 import com.imposters.team.App;
 
 import com.imposters.team.controllers.clock.ClockController;
+import com.imposters.team.dao.UnitUnderTestDao;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.imposters.team.controllers.context.Context;
 import com.imposters.team.model.UnitUnderTest;
@@ -13,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.fxml.FXML;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -57,7 +59,18 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
     @Override
     @FXML
     public void nextClicked() {
+        this.insertUnitUnderTestsIntoDatabase(
+                UnitTestsInitializationController.addedTestingUnits
+                        .stream()
+                        .filter((UnitUnderTest unitUnderTest) -> unitUnderTest != null)
+                        .collect(Collectors.toList()));
         App.changeView("/fxml/report/ReportReview.fxml");
+    }
+
+    public void insertUnitUnderTestsIntoDatabase(List<UnitUnderTest> unitUnderTestList) {
+        unitUnderTestList.stream().forEach(item -> {
+            UnitUnderTestDao.insertUnitUnderTestIntoDB(item,this.db);
+        });
     }
 
     @FXML
