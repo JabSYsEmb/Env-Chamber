@@ -6,6 +6,8 @@ import com.imposters.team.controllers.clock.ClockController;
 
 import com.imposters.team.controllers.context.Context;
 import com.imposters.team.dao.CurveDao;
+import com.imposters.team.db.MyJDBC;
+import com.imposters.team.model.CurveDefinition;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
@@ -13,8 +15,7 @@ import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 
-import javax.swing.plaf.basic.BasicGraphicsUtils;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.net.URL;
 
 public class UnitTestsStarterController extends MainConfigurations implements Initializable {
@@ -32,20 +33,21 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     @FXML
     private ProgressBar progressBar;
     @FXML
-
-    private volatile Thread temperatureUpdaterThread;
-
-    @FXML
     private Button weiterBtn;
 
+
+
+
+    private volatile Thread temperatureUpdaterThread;
+    private List<CurveDefinition> curveDefinitionList = new ArrayList<>();
     private boolean testStatus = false;
+    private int i = 0;
 
     @FXML
     @Override
     public void nextClicked() {
         if(!testStatus){
-            this.client.toServer("SETTARGET|70.5|19|3|5");
-            this.run(this.Tempratur, 20);
+            this.run();
         }
         else {
             App.changeView("/fxml/burnIn-views/UnitTestsPinger.fxml");
@@ -60,17 +62,17 @@ public class UnitTestsStarterController extends MainConfigurations implements In
         this.setStatusBar(Context.getUser(), Context.getEnvChamber());
         // Sending BurnIn Message to the server
         this.client.toServer("STRTBURNIN");
+        this.setTemperatureThread();
     }
 
-    public void run(Label temperature, int seconds) {
-        this.temperatureUpdaterThread = new Thread(() ->
-        {
-            try {
-                this.updateTemperature(temperature,seconds);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
+    public void setTemperatureThread() {
+        this.temperatureUpdaterThread = this.setMessageToServerForStartTesting(
+                this.getCurveDefinitionForTest(Context.getCurve().getId(),this.db),
+                this.Tempratur,
+                this.sollTempratur);
+        ++i;
+    }
+    public void run(){
         this.temperatureUpdaterThread.start();
     }
 
@@ -95,6 +97,32 @@ public class UnitTestsStarterController extends MainConfigurations implements In
         temperatureUpdaterThread = null;
     }
 
+    public List<CurveDefinition> getCurveDefinitionForTest(int curveId, MyJDBC db){
+        List<CurveDefinition> curveDefinitionList = new ArrayList<>();
+        HashMap<Integer, CurveDefinition> tempHashTable = CurveDao.getCurveDefinitionsFromDatabase(curveId,db);
+        for(int i =1 ;i <= tempHashTable.size(); ++i) {
+            curveDefinitionList.add(tempHashTable.get(i));
+        }
+        return curveDefinitionList;
+    }
+
+    public Thread setMessageToServerForStartTesting(List<CurveDefinition> list, Label tempratur, Label sollTempratur) {
+        return new Thread( () ->
+        {
+            System.out.println(list.get(i));
+            this.client.toServer("SETTARGET|" +
+                    list.get(i).getTemperature() + "|" +
+                    list.get(i).getDuration() + "|" +
+                    "3|5");
+            Platform.runLater(()->this.sollTempratur.setText(String.format("Soll Tempratur : %d.0",list.get(i).getTemperature())));
+            try {
+                this.updateTemperature(tempratur, (list.get(i).getDuration() * 60));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
     public void printDefintionOfTheSelectedCurve(int curveID) {
         CurveDao.getCurvesFromDatabase(this.db).stream().forEach(item -> {
             for(int i = 1 ; i <= CurveDao.getCurveDefinitionsFromDatabase(curveID, this.db).size(); ++i) {
@@ -107,6 +135,7 @@ public class UnitTestsStarterController extends MainConfigurations implements In
             }
         });
     }
+
 
     public void setTargetTemperatureForTests(){
 

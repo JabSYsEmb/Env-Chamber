@@ -6,6 +6,7 @@ import com.imposters.team.App;
 import com.imposters.team.controllers.context.Context;
 import com.imposters.team.dao.CurveDao;
 import com.imposters.team.dao.UserDao;
+import com.imposters.team.model.Curve;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import com.imposters.team.model.User;
@@ -15,6 +16,7 @@ import javafx.fxml.FXML;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 
 public class HomePageController extends MainConfigurations implements Initializable {
@@ -57,7 +59,6 @@ public class HomePageController extends MainConfigurations implements Initializa
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     public void checkDatabaseStatus() {
@@ -69,5 +70,6 @@ public class HomePageController extends MainConfigurations implements Initializa
             throwables.printStackTrace();
         }
     }
+
 }
 

@@ -68,8 +68,8 @@ public class CurveDao {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 CurveDefinitions.put(step, new CurveDefinition(
-                        rs.getInt("Duration"),
-                        rs.getInt("Temperature"))
+                        rs.getInt("Temperature"),
+                        rs.getInt("Duration"))
                 );
                 step++;
             }

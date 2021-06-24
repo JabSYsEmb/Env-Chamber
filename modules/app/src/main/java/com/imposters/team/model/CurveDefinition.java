@@ -11,7 +11,7 @@ public class CurveDefinition {
         this.duration = new SimpleIntegerProperty(duration);
     }
 
-    public int getTemperature() {
+    public int  getTemperature() {
         return Temperature.get();
     }
 
