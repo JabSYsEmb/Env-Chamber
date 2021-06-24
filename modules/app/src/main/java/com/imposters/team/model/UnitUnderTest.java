@@ -14,7 +14,9 @@ public class UnitUnderTest {
 
     private SimpleStringProperty curveTaskNumber;
     private SimpleBooleanProperty status;
+
     private SimpleIntegerProperty slotId;
+
     // Constructor
     public UnitUnderTest(int slotId, String serialNumber, String curveTaskNumber, boolean status) {
         this.serialNumber = new SimpleStringProperty(serialNumber);
@@ -22,7 +24,6 @@ public class UnitUnderTest {
         this.curveTaskNumber = new SimpleStringProperty(curveTaskNumber);
         this.status = new SimpleBooleanProperty(status);
     }
-
     public UnitUnderTest(int UnitId, int slotId, String serialNumber, String curveTaskNumber, boolean status) {
         this.PruflingID = new SimpleIntegerProperty(UnitId);
         this.serialNumber = new SimpleStringProperty(serialNumber);
@@ -69,6 +70,10 @@ public class UnitUnderTest {
 
     public SimpleStringProperty serialNumberProperty() {
         return serialNumber;
+    }
+
+    public void setStatus(boolean status) {
+        this.status.set(status);
     }
 
     @Override

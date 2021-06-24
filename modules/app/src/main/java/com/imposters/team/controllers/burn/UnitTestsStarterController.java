@@ -38,12 +38,12 @@ public class UnitTestsStarterController extends MainConfigurations implements In
 
     private volatile Thread temperatureUpdaterThread;
     private List<CurveDefinition> curveDefinitionList = new ArrayList<>();
-    private volatile boolean  testStatus = false;
+    private volatile boolean isTestDone = false;
 
     @FXML
     @Override
     public void nextClicked() {
-        if (!testStatus) {
+        if (!isTestDone) {
             this.run();
         } else {
             App.changeView("/fxml/burnIn-views/UnitTestsPinger.fxml");
@@ -73,16 +73,22 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     }
 
     public void updateTemperature(Label temperature, int seconds) throws InterruptedException {
-        for (int i = 0; i < seconds; ++i) {
-            Platform.runLater(() ->
-                    temperature.setText(String.format("%.02f", this.client.opertempHandler())));
-            Thread.sleep(1000);
+        for (int i = 0; i <= seconds; ++i) {
+            this.setTextOfLabel(temperature);
         }
+        // wait for 3 seconds after each iteration
+        Thread.sleep(3000);
+    }
+
+    public void setTextOfLabel(Label temperature) throws InterruptedException {
+        Platform.runLater(() ->
+                temperature.setText(String.format("%.02f", this.client.opertempHandler())));
+        Thread.sleep(1000);
     }
 
     public void changeTheStatusOfTheWeiterBtn() {
         Platform.runLater(() -> {
-            this.testStatus = true;
+            this.isTestDone = true;
             this.weiterBtn.setText("Weiter");
         });
     }
@@ -107,9 +113,8 @@ public class UnitTestsStarterController extends MainConfigurations implements In
                     item.getDuration() + "|" +
                     "3|5");
 
-            Platform.runLater(
-                    () -> sollTempratur.setText(String.format("Soll Tempratur : %d.0", item.getTemperature()))
-            );
+            this.setTargetTemperatureLabel(item.getTemperature());
+
             try {
                 this.updateTemperature(tempratur, (item.getDuration()));
             } catch (InterruptedException e) {
@@ -119,7 +124,10 @@ public class UnitTestsStarterController extends MainConfigurations implements In
         this.changeTheStatusOfTheWeiterBtn();
     }
 
-    public void setTargetTemperatureForTests() {
-
+    public void setTargetTemperatureLabel(int targetTemperature){
+        Platform.runLater(() -> {
+            this.sollTempratur.setText(String.format("Soll Tempratur : %d.0", targetTemperature));
+            this.sollTempratur.setStyle("-fx-text-fill:#f00;");
+        });
     }
 }

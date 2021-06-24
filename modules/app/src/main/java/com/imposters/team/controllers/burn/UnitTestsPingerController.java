@@ -57,12 +57,12 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
     public void nextClicked() {
         String Slot = SlotTextField.getText();
         String BauteilID = BauteilIDTextField.getText();
-        alertMessageBurnIn.setText("Ich bin eine Warnungsnachricht");
+        App.changeView("/fxml/report/ReportReview.fxml");
     }
 
     @FXML
     public void startPingOverUnits() {
-        table.getItems().stream().forEach(item -> this.client.pingHandler(item));
+        table.getItems().stream().forEach(item -> this.client.pingHandler(item,Context.getEnvChamber().getFailureRate()));
     }
 
     public void hinzufügenBtnClicked() {

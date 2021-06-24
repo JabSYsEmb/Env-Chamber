@@ -121,14 +121,17 @@ public class Client {
     }
 
 
-    public void pingHandler(UnitUnderTest unitUnderTest) {
+    public void pingHandler(UnitUnderTest unitUnderTest, int allowedResponseTime) {
         this.toServer("STRTPING|25");
         String toSeverMsg = "PING|" + unitUnderTest.getSlotId();
         long startTime = System.nanoTime();
         this.getMessageFromServer(toSeverMsg);
         long endTime = System.nanoTime();
-        System.out.println(String.format("CLIENT: server has responded in {%d} ms",((endTime - startTime)/(1000000))));
-        System.out.println("Check the response failed Or Not and get the failure rate of the response");
+        long takenTime = (endTime - startTime)/(1000000);
+        if(takenTime<=allowedResponseTime){
+            System.out.println(String.format("CLIENT: server has responded in {%d} ms",((endTime - startTime)/(1000000))));
+            unitUnderTest.setStatus(true);
+        }
     }
 
     public boolean checkConnection() throws Exception {
