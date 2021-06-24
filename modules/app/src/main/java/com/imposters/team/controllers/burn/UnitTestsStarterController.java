@@ -36,20 +36,16 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     private Button weiterBtn;
 
 
-
-
     private volatile Thread temperatureUpdaterThread;
     private List<CurveDefinition> curveDefinitionList = new ArrayList<>();
-    private boolean testStatus = false;
-    private int i = 0;
+    private volatile boolean  testStatus = false;
 
     @FXML
     @Override
     public void nextClicked() {
-        if(!testStatus){
+        if (!testStatus) {
             this.run();
-        }
-        else {
+        } else {
             App.changeView("/fxml/burnIn-views/UnitTestsPinger.fxml");
         }
 
@@ -66,28 +62,26 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     }
 
     public void setTemperatureThread() {
-        this.temperatureUpdaterThread = this.setMessageToServerForStartTesting(
-                this.getCurveDefinitionForTest(Context.getCurve().getId(),this.db),
+        this.temperatureUpdaterThread = new Thread (() -> this.setMessageToServerForStartTesting(
+                this.getCurveDefinitionForTest(Context.getCurve().getId(), this.db),
                 this.Tempratur,
-                this.sollTempratur);
-        ++i;
+                this.sollTempratur));
     }
-    public void run(){
+
+    public void run() {
         this.temperatureUpdaterThread.start();
     }
 
-    public void updateTemperature(Label temperature, int seconds) throws InterruptedException{
-        for(int i = 0; i < seconds; ++i){
-            Platform.runLater( () ->
+    public void updateTemperature(Label temperature, int seconds) throws InterruptedException {
+        for (int i = 0; i < seconds; ++i) {
+            Platform.runLater(() ->
                     temperature.setText(String.format("%.02f", this.client.opertempHandler())));
             Thread.sleep(1000);
         }
-        this.changeTheStatusOfTheWeiterBtn();
-        this.stopTheRunningThread();
     }
 
-    public void changeTheStatusOfTheWeiterBtn(){
-        Platform.runLater( () -> {
+    public void changeTheStatusOfTheWeiterBtn() {
+        Platform.runLater(() -> {
             this.testStatus = true;
             this.weiterBtn.setText("Weiter");
         });
@@ -97,47 +91,35 @@ public class UnitTestsStarterController extends MainConfigurations implements In
         temperatureUpdaterThread = null;
     }
 
-    public List<CurveDefinition> getCurveDefinitionForTest(int curveId, MyJDBC db){
+    public List<CurveDefinition> getCurveDefinitionForTest(int curveId, MyJDBC db) {
         List<CurveDefinition> curveDefinitionList = new ArrayList<>();
-        HashMap<Integer, CurveDefinition> tempHashTable = CurveDao.getCurveDefinitionsFromDatabase(curveId,db);
-        for(int i =1 ;i <= tempHashTable.size(); ++i) {
+        HashMap<Integer, CurveDefinition> tempHashTable = CurveDao.getCurveDefinitionsFromDatabase(curveId, db);
+        for (int i = 1; i <= tempHashTable.size(); ++i) {
             curveDefinitionList.add(tempHashTable.get(i));
         }
         return curveDefinitionList;
     }
 
-    public Thread setMessageToServerForStartTesting(List<CurveDefinition> list, Label tempratur, Label sollTempratur) {
-        return new Thread( () ->
-        {
-            System.out.println(list.get(i));
+    public void setMessageToServerForStartTesting(List<CurveDefinition> list, Label tempratur, Label sollTempratur) {
+        list.forEach(item -> {
             this.client.toServer("SETTARGET|" +
-                    list.get(i).getTemperature() + "|" +
-                    list.get(i).getDuration() + "|" +
+                    item.getTemperature() + "|" +
+                    item.getDuration() + "|" +
                     "3|5");
-            Platform.runLater(()->this.sollTempratur.setText(String.format("Soll Tempratur : %d.0",list.get(i).getTemperature())));
+
+            Platform.runLater(
+                    () -> sollTempratur.setText(String.format("Soll Tempratur : %d.0", item.getTemperature()))
+            );
             try {
-                this.updateTemperature(tempratur, (list.get(i).getDuration() * 60));
+                this.updateTemperature(tempratur, (item.getDuration()));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         });
+        this.changeTheStatusOfTheWeiterBtn();
     }
 
-    public void printDefintionOfTheSelectedCurve(int curveID) {
-        CurveDao.getCurvesFromDatabase(this.db).stream().forEach(item -> {
-            for(int i = 1 ; i <= CurveDao.getCurveDefinitionsFromDatabase(curveID, this.db).size(); ++i) {
-                System.out.println(
-                        i +
-                                ". Temperature : " +
-                                CurveDao.getCurveDefinitionsFromDatabase(curveID, this.db).get(i).getTemperature() +
-                                " Duration : " + CurveDao.getCurveDefinitionsFromDatabase(2, this.db).get(i).getDuration()
-                );
-            }
-        });
-    }
-
-
-    public void setTargetTemperatureForTests(){
+    public void setTargetTemperatureForTests() {
 
     }
 }
