@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
@@ -26,8 +27,8 @@ import java.util.stream.Collectors;
 
 public class ReportReviewController extends MainConfigurations implements Initializable {
 
-    @FXML
-    private Label berichtID;
+//    @FXML
+//    private Label berichtID;
     @FXML
     private Label datum;
     @FXML
@@ -50,10 +51,13 @@ public class ReportReviewController extends MainConfigurations implements Initia
     @FXML
     private TableColumn<UnitUnderTest, String> serialNumOfTheUnitTest;
 
+    private List<Test> testList = new ArrayList<>();
+
     @Override
     @FXML
     public void nextClicked() {
-        this.insertBerichtIntoDatabase(null, this.db);
+        this.insertBerichtIntoDatabase(this.reportCreator(), this.db);
+        this.testListCreator(this.TestingUnits());
     }
 
 
@@ -71,23 +75,33 @@ public class ReportReviewController extends MainConfigurations implements Initia
         }
     }
 
-    public void reportCreator() {
-        // User, EnvChamber, LocalDate, List<UnitUnderTests>
+    public Report reportCreator() {
+        // User, EnvChamber, LocalDate, List<Test>
         Report report = new Report(
                 Context.getUser(),
                 Context.getEnvChamber(),
                 LocalDateTime.now().toLocalDate(),
-                null);
+                testListCreator(this.TestingUnits()));
+        return report;
     }
 
-    public List<Test> testListCreater() {
+    public List<Test> testListCreator(List<UnitUnderTest> unitUnderTestList) {
+        unitUnderTestList.stream().forEach(item ->
+                        testList.add(new Test(
+                                item.getSlotId(),
+                                Context.getCurve(),
+                                item,
+                                item.isStatus(),
+                                10
+                        ))
+                );
         return null;
     }
 
     public void setBerichtIDInformation() {
         this.buildTable();
         this.fillTableWithInitializedTestingUnits();
-        this.berichtID.setText("1");
+//        this.berichtID.setText("1");
         this.setDatum();
         this.setChamberIDAndArbeiterIDAndArbeitersvorname();
     }
@@ -115,10 +129,14 @@ public class ReportReviewController extends MainConfigurations implements Initia
 
     public void fillTableWithInitializedTestingUnits() {
         table.setItems(FXCollections.observableArrayList(
-                UnitTestsInitializationController.addedTestingUnits
-                        .stream()
-                        .filter((UnitUnderTest unitUnderTest) -> unitUnderTest != null)
-                        .collect(Collectors.toList())
+                this.TestingUnits()
         ));
+    }
+
+    public List<UnitUnderTest> TestingUnits(){
+        return UnitTestsInitializationController.addedTestingUnits
+                .stream()
+                .filter((UnitUnderTest unitUnderTest) -> unitUnderTest != null)
+                .collect(Collectors.toList());
     }
 }

@@ -59,18 +59,21 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
     @Override
     @FXML
     public void nextClicked() {
-        this.insertUnitUnderTestsIntoDatabase(
-                UnitTestsInitializationController.addedTestingUnits
-                        .stream()
-                        .filter((UnitUnderTest unitUnderTest) -> unitUnderTest != null)
-                        .collect(Collectors.toList()));
+//        this.insertUnitUnderTestsIntoDatabase(
+//
+//        );
         App.changeView("/fxml/report/ReportReview.fxml");
     }
 
-    public void insertUnitUnderTestsIntoDatabase(List<UnitUnderTest> unitUnderTestList) {
-        unitUnderTestList.stream().forEach(item -> {
-            UnitUnderTestDao.insertUnitUnderTestIntoDB(item,this.db);
-        });
+    public void insertUnitUnderTestsIntoDatabase() {
+        UnitTestsInitializationController.addedTestingUnits
+                .stream()
+                .filter((UnitUnderTest unitUnderTest) -> unitUnderTest != null)
+                .collect(Collectors.toList())
+                .stream()
+                .forEach(item -> {
+                UnitUnderTestDao.insertUnitUnderTestIntoDB(item,this.db);
+        }   );
     }
 
     @FXML

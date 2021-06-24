@@ -50,12 +50,7 @@
                            AnchorPane.topAnchor="0.0"
                            AnchorPane.leftAnchor="0.0"
                            AnchorPane.bottomAnchor="0.0"/>
-                    <Label fx:id="Testdauer"
-                           text="Voraussichtliche Testdauer: 00:00:00"
-                           styleClass="BurnInTextStyle"
-                           AnchorPane.topAnchor="65.0"
-                           AnchorPane.leftAnchor="0.0"
-                           AnchorPane.bottomAnchor="0.0"/>
+
                 </AnchorPane>
 
                 <AnchorPane fx:id="TempraturAnchor"

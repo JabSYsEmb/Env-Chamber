@@ -47,19 +47,19 @@
                         onAction="#nextClicked"
                         text="Speichern"/>
 
-                <Text styleClass="ReportText"
-                      layoutX="30.0"
-                      layoutY="60.0"
-                      text="Bericht ID : "/>
+<!--                <Text styleClass="ReportText"-->
+<!--                      layoutX="30.0"-->
+<!--                      layoutY="60.0"-->
+<!--                      text="Bericht ID : "/>-->
 
-                <Label fx:id="berichtID"
-                       styleClass="ReportText"
-                       alignment="CENTER_RIGHT"
-                       layoutX="160.0"
-                       layoutY="45.0"
-                       prefHeight="18.0"
-                       prefWidth="150.0"
-                       text="1"/>
+<!--                <Label fx:id="berichtID"-->
+<!--                       styleClass="ReportText"-->
+<!--                       alignment="CENTER_RIGHT"-->
+<!--                       layoutX="160.0"-->
+<!--                       layoutY="45.0"-->
+<!--                       prefHeight="18.0"-->
+<!--                       prefWidth="150.0"-->
+<!--                       text="1"/>-->
 
                 <Text styleClass="ReportText"
                       layoutX="30.0"

@@ -26,6 +26,7 @@ public class Report {
     private List<Test> test = new ArrayList<>();
 
     public Report(User user, EnvChamber envChamber, LocalDate date, List<Test> test) {
+        this.ReportID = (int) Math.floor(Math.random()*(20000-10+1)+2000);
         this.user = user;
         this.envChamber = envChamber;
         this.date = date;

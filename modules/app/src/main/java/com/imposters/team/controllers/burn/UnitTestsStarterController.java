@@ -24,8 +24,7 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     private Label message;
     @FXML
     private Label clock;
-    @FXML
-    private Label Testdauer;
+
     @FXML
     private Label Tempratur;
     @FXML
@@ -69,7 +68,7 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     }
 
     public void stopClock() {
-        this.Testdauer.setText("Voraussichtliche Testdauer: " + clockController.getCurrentTime());
+//        this.Testdauer.setText("Voraussichtliche Testdauer: " + clockController.getCurrentTime());
         this.clockController.stopStopwatch();
     }
 

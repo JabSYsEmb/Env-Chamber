@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 public class MyJDBC {
     //Part 1
     private static final String DB_DEFAULT_DATABASE = "mydb";
-    private static final String DB_DEFAULT_SERVER_URL = "172.16.103.136:3310";
+    private static final String DB_DEFAULT_SERVER_URL = "172.16.103.136:3311";
     private static final String DB_DEFAULT_ACCOUNT = "sa";
     private static final String DB_DEFAULT_PASSWORD = "123456";
     private final static String DB_DRIVER_URL = "com.mysql.cj.jdbc.Driver";
