@@ -45,7 +45,7 @@
                         layoutX="160"
                         layoutY="240.0"
                         onAction="#nextClicked"
-                        text="Ende"/>
+                        text="Speichern"/>
 
                 <Text styleClass="ReportText"
                       layoutX="30.0"
@@ -128,14 +128,14 @@
 
 
                 <TableView fx:id="table"
-                           layoutX="400.0"
+                           layoutX="450.0"
                            layoutY="40.0">
                     <columns>
-                        <TableColumn fx:id="slot"
+                        <TableColumn fx:id="slotNumber"
                                      prefWidth="100.0" text="Slot"/>
-                        <TableColumn fx:id="bauteilID"
+                        <TableColumn fx:id="serialNumOfTheUnitTest"
                                      prefWidth="150.0" text="Bauteil-ID"/>
-                        <TableColumn fx:id="auftragsnummer"
+                        <TableColumn fx:id="orderNumber"
                                      prefWidth="150.0" text="Auftragsnummer"/>
                         <TableColumn fx:id="status"
                                      prefWidth="78.0" text="status"/>

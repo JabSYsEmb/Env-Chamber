@@ -56,6 +56,41 @@ public class ClockController {
         });
     }
 
+    private void updateTime(Label clock) throws InterruptedException {
+        while (this.minutes.get() < this.countDownInMinutes) {
+            Platform.runLater(() ->
+            {
+                {
+                    if (this.seconds.get() != 60) {
+                        if (this.seconds.get() < 10) {
+                            clock.setText(
+                                    "00:0" +
+                                            this.minutes.get() +
+                                            ":0" + this.seconds.get()
+                            );
+                        } else {
+                            clock.setText(
+                                    "00:0" +
+                                            this.minutes.get() +
+                                            ":" + this.seconds.get()
+                            );
+                        }
+                        this.seconds.set(this.seconds.get() + SECOND);
+                    } else {
+                        this.minutes.set(this.minutes.get() + MINUTE);
+                        this.seconds.set(0);
+                    }
+                }
+            });
+
+            Thread.sleep(1000);
+        }
+        Platform.runLater(() ->
+        {
+            clock.setStyle("-fx-text-fill:green;");
+        });
+    }
+
     public void run(Label clock, Label message) {
         new Thread(() ->
         {
@@ -66,6 +101,18 @@ public class ClockController {
             }
         }).start();
     }
+
+    public void run(Label clock) {
+        new Thread(() ->
+        {
+            try {
+                this.updateTime(clock);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
     public String getCurrentTime() {
         return "00:0" + this.minutes.get() + ":" + this.seconds.get();
     }

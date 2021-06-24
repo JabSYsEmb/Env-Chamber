@@ -37,6 +37,8 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
     @FXML
     private TableColumn<UnitUnderTest, String> serialNumOfTheUnitTest;
 
+    private ClockController clockController;
+
     @FXML
     private TextField SlotTextField;
 
@@ -55,31 +57,32 @@ public class UnitTestsPingerController extends MainConfigurations implements Ini
     @Override
     @FXML
     public void nextClicked() {
-        String Slot = SlotTextField.getText();
-        String BauteilID = BauteilIDTextField.getText();
         App.changeView("/fxml/report/ReportReview.fxml");
     }
 
     @FXML
     public void startPingOverUnits() {
-        table.getItems().stream().forEach(item -> this.client.pingHandler(item,Context.getEnvChamber().getFailureRate()));
-    }
+        table.getItems()
+                .stream()
+                .forEach(item -> this.client.pingHandler(item,Context.getEnvChamber().getFailureRate()));
 
-    public void hinzufügenBtnClicked() {
-        alertMessageBurnIn.setText("Ich werde hinzufügt werden");
-    }
-
-    public void entfernenBtnClicked() {
-        alertMessageBurnIn.setText("Ich werde entfernt werden");
-
+        this.stopTheClock();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new ClockController(10, "Hi My Friend").run(this.clock, this.massage);
+        this.startTheClock();
         this.setStatusBar(Context.getUser(), Context.getEnvChamber());
         this.buildTable();
         this.fillTableWithInitializedTestingUnits();
+    }
+
+    public void startTheClock() {
+        this.clockController =  new ClockController(10, "Hi My Friend");
+        this.clockController.run(this.clock);
+    }
+    public void stopTheClock() {
+        this.clockController.stopStopwatch();
     }
 
     public void buildTable() {

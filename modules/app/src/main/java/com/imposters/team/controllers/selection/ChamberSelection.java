@@ -54,7 +54,6 @@ public class ChamberSelection extends MainConfigurations implements Initializabl
                 curveComboBox.getSelectionModel().getSelectedItem(), this.db));
 
         this.sendInitMsg();
-
         App.changeView("/fxml/burnIn-views/UnitTestsInitialization.fxml");
     }
 

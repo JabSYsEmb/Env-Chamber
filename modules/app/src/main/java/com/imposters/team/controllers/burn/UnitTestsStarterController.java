@@ -36,6 +36,7 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     private Button weiterBtn;
 
 
+    private ClockController clockController;
     private volatile Thread temperatureUpdaterThread;
     private List<CurveDefinition> curveDefinitionList = new ArrayList<>();
     private volatile boolean isTestDone = false;
@@ -45,6 +46,7 @@ public class UnitTestsStarterController extends MainConfigurations implements In
     public void nextClicked() {
         if (!isTestDone) {
             this.run();
+            this.weiterBtn.setDisable(true);
         } else {
             App.changeView("/fxml/burnIn-views/UnitTestsPinger.fxml");
         }
@@ -86,13 +88,6 @@ public class UnitTestsStarterController extends MainConfigurations implements In
         Thread.sleep(1000);
     }
 
-    public void changeTheStatusOfTheWeiterBtn() {
-        Platform.runLater(() -> {
-            this.isTestDone = true;
-            this.weiterBtn.setText("Weiter");
-        });
-    }
-
     public void stopTheRunningThread() {
         temperatureUpdaterThread = null;
     }
@@ -124,10 +119,17 @@ public class UnitTestsStarterController extends MainConfigurations implements In
         this.changeTheStatusOfTheWeiterBtn();
     }
 
+    public void changeTheStatusOfTheWeiterBtn() {
+        Platform.runLater(() -> {
+            this.isTestDone = true;
+            this.weiterBtn.setDisable(false);
+            this.weiterBtn.setText("Weiter");
+        });
+    }
+
     public void setTargetTemperatureLabel(int targetTemperature){
         Platform.runLater(() -> {
             this.sollTempratur.setText(String.format("Soll Tempratur : %d.0", targetTemperature));
-            this.sollTempratur.setStyle("-fx-text-fill:#f00;");
         });
     }
 }
