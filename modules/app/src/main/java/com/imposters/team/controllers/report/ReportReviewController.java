@@ -27,8 +27,6 @@ import java.util.stream.Collectors;
 
 public class ReportReviewController extends MainConfigurations implements Initializable {
 
-//    @FXML
-//    private Label berichtID;
     @FXML
     private Label datum;
     @FXML
@@ -101,7 +99,6 @@ public class ReportReviewController extends MainConfigurations implements Initia
     public void setBerichtIDInformation() {
         this.buildTable();
         this.fillTableWithInitializedTestingUnits();
-//        this.berichtID.setText("1");
         this.setDatum();
         this.setChamberIDAndArbeiterIDAndArbeitersvorname();
     }

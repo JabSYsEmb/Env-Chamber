@@ -50,7 +50,6 @@ public class ClockController {
         }
         Platform.runLater(() ->
         {
-//            clock.setStyle("-fx-text-fill:green;");
             message.setText(this.message);
             message.setStyle("-fx-text-fill:green;");
         });
